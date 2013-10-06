@@ -1,12 +1,19 @@
 package utils;
 
 import java.util.Calendar;
-//import java.util.Date;
 import java.util.GregorianCalendar;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.lang.Long;
+
+/*********************************
+ * 
+ * Create a Date object based on a Gregorian Calendar
+ * 
+ * @author Tom Scheepers
+ * @version initial 20131005-01
+ *
+ */
 
 public class Datum2 implements Comparable<Datum2> {
 
@@ -16,7 +23,7 @@ public class Datum2 implements Comparable<Datum2> {
 	private int maand;
 	private int jaar;
 	
-	// Getters & Setters
+	//  Setters
 
 	private void setDag(int dag) {
 		this.dag = dag;
@@ -31,9 +38,6 @@ public class Datum2 implements Comparable<Datum2> {
 	private void setJaar(int jaar) {
 		this.jaar = jaar;
 	}
-	
-	// te verwijderen - Getters
-	
 	
 	public int getDag() {
 		return dag;
@@ -55,9 +59,9 @@ public class Datum2 implements Comparable<Datum2> {
 		// Set date = system date
 		try{
 		GregorianCalendar Cal = new GregorianCalendar();
-		setJaar(Cal.get(GregorianCalendar.YEAR));
-		setMaand(Cal.get(GregorianCalendar.MONTH)+1); //+1 omdat 0=januari
-		setDag(Cal.get(GregorianCalendar.DAY_OF_MONTH));
+		setJaar(Cal.get(Calendar.YEAR));
+		setMaand(Cal.get(Calendar.MONTH)+1); //+1 omdat 0=januari
+		setDag(Cal.get(Calendar.DAY_OF_MONTH));
 		System.out.println("Datum aangemaakt: "+ this.toString());
 		}
 		catch (Exception e){
@@ -82,16 +86,18 @@ public class Datum2 implements Comparable<Datum2> {
 		catch (IllegalArgumentException i){
 			System.out.println("Datum is niet aangemaakt! Er zijn foutieve parameters gegeven.");
 		}
-		catch (Exception e) {}
+		catch (Exception e) {
+			System.out.println("Exception"+ e.getMessage());
+		}
 	}
 	
-	public Datum2(Datum2 dat) throws IllegalArgumentException {
+	public Datum2(Datum2 dat) {
 		try{
 			setJaar(dat.jaar);
 			setMaand(dat.maand);
 			setDag(dat.dag);
 		}
-		catch(IllegalArgumentException i){
+		catch(Exception i){
 			System.out.println(i.toString());
 		}
 	}
@@ -109,9 +115,21 @@ public class Datum2 implements Comparable<Datum2> {
 		catch (ParseException e){
 			System.out.println("Datum werd niet in het juiste formaat ingegeven (dd/mm/jjjj): " + e.toString());
 		}
+		catch(Exception i){
+			System.out.println(i.toString());
+		}
 	}
 	
 	// methods
+	
+	/**
+	 * Set instantievariabelen jaar, maand en dag 
+	 * 
+	 * @param dag
+	 * @param maand
+	 * @param jaar
+	 * @return boolean 
+	 */
 	
 	public boolean SetDatum(int dag, int maand, int jaar) {
 		try{
@@ -139,33 +157,53 @@ public class Datum2 implements Comparable<Datum2> {
 			{
 				// Foutieve parameters ontvangen
 				
-				throw new IllegalArgumentException("Foutieve datum");
+				throw new IllegalArgumentException();
 			}	
 
 		}
-		catch (IllegalArgumentException iae){
+		catch (IllegalArgumentException e){
 			System.out.println("Datum bestaat niet !");
 			return false;
 		}
-		catch (ParseException pe){
-			System.out.println("Parameters kunnen niet naar een datum omgezet worden !");
+		catch (ParseException e){
+			System.out.println("Parameters kunnen niet naar een bestaande datum omgezet worden !");
 			return false;
 		}
 	}
 
+	/**
+	 * Geef de datum in Amerikaans formaat terug (jjjj/MM/dd)
+	 * @return String als jjjj/MM/dd
+	 */
+	
 	public String getDatumInAmerikaansFormaat(){
 		return Integer.toString(this.jaar) + "/" + Integer.toString(maand) + "/" + Integer.toString(this.dag);
 	}
 	
+	/**
+	 * Geef de datum in Europees formaat terug (dd/MM/jjjj)
+	 * @return String als dd/MM/jjjj
+	 */
+	
 	public String getDatumInEuropeesFormaat(){
 		return Integer.toString(this.dag) + "/" + Integer.toString(maand) + "/" + Integer.toString(this.jaar);
 	}
+	
+	/**
+	 * Omschrijft object als "dag maand-als-tekst jaar"
+	 */
 	
 	@Override
 	public String toString() {
 		return Integer.toString(this.dag) + " " + new DateFormatSymbols().getMonths()[this.maand-1] + " " + Integer.toString(this.jaar);
 	}
 
+	/**
+	 * Vergelijkt datum2 objecten
+	 * @param dateToCompare
+	 * @return integer (-1 = kleiner dan / 0 = gelijk of fout / +1 = groter dan)
+	 */
+	
 	@Override
 	public int compareTo(Datum2 dateToCompare) {
 		// Parse naar Date en vergelijk
@@ -178,12 +216,22 @@ public class Datum2 implements Comparable<Datum2> {
 			otherDate.setTime(sdf.parse(Integer.toString(dateToCompare.dag) + "/" + Integer.toString(dateToCompare.maand) + "/" + Integer.toString(dateToCompare.jaar)));
 			return thisDate.compareTo(otherDate);
 		} 
-		
 		catch (ParseException e) {
-			e.printStackTrace();
+			System.out.println("Probleem met het omzetten naar een werkelijke datum: " + e.toString());
+			return 0;
+		}
+		catch (Exception e) {
+			System.out.println("Probleem met het vergelijken van de twee datums: " + e.toString());
 			return 0;
 		}
 	}
+	
+	/**
+	 * Controleert of datum gelijk is met dateToCompare
+	 * 
+	 * @param dateToCompare
+	 * @return boolean true=gelijk / false=verschillend
+	 */
 	
 	public boolean equals(Datum2 dateToCompare) {
 		if ((this.jaar==dateToCompare.jaar) && (this.maand==dateToCompare.maand) && (this.dag==dateToCompare.dag)) 
@@ -191,6 +239,12 @@ public class Datum2 implements Comparable<Datum2> {
 		else
 		{return false;}
 	}
+	
+	/**
+	 * Controleert of de datum kleiner is dan de dateToCompare
+	 * @param dateToCompare
+	 * @return
+	 */
 	
 	public boolean kleinerDan (Datum2 dateToCompare) {
 		if (this.compareTo(dateToCompare)>0) {
@@ -200,40 +254,70 @@ public class Datum2 implements Comparable<Datum2> {
 		{return false;}
 	}
 	
-	public long verschilInMilliseconden(Datum2 d1){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		sdf.setLenient(false);
-		GregorianCalendar thisDate = new GregorianCalendar();
-		GregorianCalendar otherDate = new GregorianCalendar();
+	/**
+	 * Geeft het verschil in milliseconden tussen datum en vergelijkingsdatum
+	 * Wordt enkel intern gebruikt
+	 * @param d1
+	 * @return long
+	 */
+	
+	private long verschilInMilliseconden(Datum2 d1){
 		try {
-			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			sdf.setLenient(false);
+			GregorianCalendar thisDate = new GregorianCalendar();
+			GregorianCalendar otherDate = new GregorianCalendar();
 			thisDate.setTime(sdf.parse(Integer.toString(this.dag) + "/" + Integer.toString(maand) + "/" + Integer.toString(this.jaar)));
 			otherDate.setTime(sdf.parse(Integer.toString(d1.dag) + "/" + Integer.toString(d1.maand) + "/" + Integer.toString(d1.jaar)));
 			return thisDate.getTimeInMillis()-otherDate.getTimeInMillis();
 		} 
-		catch (ParseException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 			return 0;
 		}
 	}
 	
+	/**
+	 * Geeft het verschil in jaren tussen datum en dateToCompare
+	 * @param dateToCompare
+	 * @return integer als aantal jaren verschil
+	 */
+	
 	public int verschilInJaren(Datum2 dateToCompare){
 		return (int)(this.verschilInMilliseconden(dateToCompare) / (365 * 24 * 60 * 60 * 1000L ));
 	}
+	
+	/**
+	 * Geeft het verschil in maanden tussen datum en dateToCompare
+	 * @param dateToCompare
+	 * @return integer als aantal maanden verschil
+	 */
 	
 	public int verschilInMaanden(Datum2 dateToCompare){
 		return (int)(this.verschilInMilliseconden(dateToCompare) / (30 * 24 * 60 * 60 * 1000L ));
 	}
 	
+	/**
+	 * Geeft het verschil in dagen tussen datum en dateToCompare
+	 * @param dateToCompare
+	 * @return integer als aantal dagen verschil
+	 */
+	
 	public int verschilInDagen(Datum2 dateToCompare){
 		return (int)(this.verschilInMilliseconden(dateToCompare) / (24 * 60 * 60 * 1000L ));
 	}
 	
+	/**
+	 * voeg dagen toe bij de datum
+	 * 
+	 * @param aantalDagen
+	 */
+	
 	public void veranderDatum(int aantalDagen){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		sdf.setLenient(false);
-		GregorianCalendar thisDate = new GregorianCalendar();
 		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			sdf.setLenient(false);
+			GregorianCalendar thisDate = new GregorianCalendar();
 			thisDate.setTime(sdf.parse(Integer.toString(this.dag) + "/" + Integer.toString(maand) + "/" + Integer.toString(this.jaar)));
 			thisDate.add(Calendar.DAY_OF_WEEK, aantalDagen);
 			setDag(thisDate.get(Calendar.DAY_OF_MONTH));
@@ -245,82 +329,16 @@ public class Datum2 implements Comparable<Datum2> {
 		}
 	}
 	
+	/**
+	 * copy datum en voeg dagen toe
+	 * @param aantalDagen
+	 * @return
+	 */
+	
 	public Datum2 nieuweDatum(int aantalDagen){
 		Datum2 newDate = new Datum2(this);
 		newDate.veranderDatum(aantalDagen);
 		return newDate;
-		/*
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		sdf.setLenient(false);
-		Datum2 newDate = new Datum2(this);
-		GregorianCalendar tempCal = new GregorianCalendar();
-		try {
-			tempCal.setTime(sdf.parse(Integer.toString(newDate.dag) + "/" + Integer.toString(newDate.maand) + "/" + Integer.toString(newDate.jaar)));
-			tempCal.add(Calendar.DAY_OF_WEEK, aantalDagen);
-			setDag(thisDate.get(Calendar.DAY_OF_MONTH));
-			setMaand(thisDate.get(Calendar.MONTH)+1);
-			setJaar(thisDate.get(Calendar.YEAR));
-		} 
-		catch (ParseException e) {
-			e.printStackTrace();
-		}
-		*/
-	}
-	
-	public static void main(String[] args) {
-
-		Datum2 testje, testje2 = null;
-		try {
-			testje = new Datum2("03/01/2007");
-			if (testje!=null)
-			{
-				System.out.println("Testje: "+ testje.toString());
-				System.out.println(testje.dag);
-				System.out.println(testje.maand);
-				System.out.println(testje.jaar);
-				testje.veranderDatum(5);
-				System.out.println("Testje: "+ testje.toString());
-				System.out.println(testje.dag);
-				System.out.println(testje.maand);
-				System.out.println(testje.jaar);
-				Datum2 nieuweDatum = testje.nieuweDatum(17);
-				System.out.println("Nieuwe datum: "+ nieuweDatum.toString());
-				System.out.println(nieuweDatum.dag);
-				System.out.println(nieuweDatum.maand);
-				System.out.println(nieuweDatum.jaar);
-			}
-		} catch (IllegalArgumentException | ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//testje2 = new Datum2(3,1,2009);
-		
-		/*
-		testje2 = testje;
-
-		testje.veranderDatum(5);
-		if (testje!=null)
-		{
-		System.out.println("Testje: "+ testje.toString());
-		System.out.println(testje.dag);
-		System.out.println(testje.maand);
-		System.out.println(testje.jaar);
-		}
-		if (testje2!=null)
-		{
-			System.out.println("Testje 2: "+ testje.toString());
-			System.out.println(testje2.dag);
-			System.out.println(testje2.maand);
-			System.out.println(testje2.jaar);
-		}
-		System.out.println(testje.compareTo(testje2));
-		System.out.println(testje.equals(testje2));
-		System.out.println(testje.kleinerDan(testje2));
-
-		System.out.println(testje.verschilInJaren(testje2));
-		System.out.println(testje.verschilInMaanden(testje2));
-		System.out.println(testje.verschilInDagen(testje2));
-*/
 	}
 	
 }
