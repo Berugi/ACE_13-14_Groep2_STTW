@@ -5,5 +5,5 @@ public class Opdracht {
 	private String juisteAntwoord;
 	private int maxAantalPogingen;
 	private String antwoordHints;
-	private Time
+	
 }
