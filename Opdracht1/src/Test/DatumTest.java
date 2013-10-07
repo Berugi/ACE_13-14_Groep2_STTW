@@ -1,12 +1,16 @@
-package Datum;
+package Test;
 
 import static org.junit.Assert.*;
+
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import DatumV1.Datum;
 
 public class DatumTest {
 

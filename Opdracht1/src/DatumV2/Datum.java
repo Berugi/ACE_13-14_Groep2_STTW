@@ -1,4 +1,4 @@
-package utils;
+package DatumV2;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
  *
  */
 
-public class Datum2 implements Comparable<Datum2> {
+public class Datum implements Comparable<Datum> {
 
 	// Declaratie
 	
@@ -55,7 +55,7 @@ public class Datum2 implements Comparable<Datum2> {
 	
 	// Constructors
 	
-	public Datum2() {
+	public Datum() {
 		// Set date = system date
 		try{
 		GregorianCalendar Cal = new GregorianCalendar();
@@ -69,7 +69,7 @@ public class Datum2 implements Comparable<Datum2> {
 		}
 	}
 	
-	public Datum2(int dd, int mm, int yyyy) {
+	public Datum(int dd, int mm, int yyyy) {
 		try{
 			if ((dd>=1 && dd<=31) && (mm>=1 && mm<=12) && (yyyy>0))
 			{
@@ -91,7 +91,7 @@ public class Datum2 implements Comparable<Datum2> {
 		}
 	}
 	
-	public Datum2(Datum2 dat) {
+	public Datum(Datum dat) {
 		try{
 			setJaar(dat.jaar);
 			setMaand(dat.maand);
@@ -102,7 +102,7 @@ public class Datum2 implements Comparable<Datum2> {
 		}
 	}
 	
-	public Datum2(String datum_als_tekst) throws IllegalArgumentException, ParseException {
+	public Datum(String datum_als_tekst) throws IllegalArgumentException, ParseException {
 		try{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(false);
@@ -205,7 +205,7 @@ public class Datum2 implements Comparable<Datum2> {
 	 */
 	
 	@Override
-	public int compareTo(Datum2 dateToCompare) {
+	public int compareTo(Datum dateToCompare) {
 		// Parse naar Date en vergelijk
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(false);
@@ -233,7 +233,7 @@ public class Datum2 implements Comparable<Datum2> {
 	 * @return boolean true=gelijk / false=verschillend
 	 */
 	
-	public boolean equals(Datum2 dateToCompare) {
+	public boolean equals(Datum dateToCompare) {
 		if ((this.jaar==dateToCompare.jaar) && (this.maand==dateToCompare.maand) && (this.dag==dateToCompare.dag)) 
 		{return true;}
 		else
@@ -246,7 +246,7 @@ public class Datum2 implements Comparable<Datum2> {
 	 * @return
 	 */
 	
-	public boolean kleinerDan (Datum2 dateToCompare) {
+	public boolean kleinerDan (Datum dateToCompare) {
 		if (this.compareTo(dateToCompare)>0) {
 		return true;
 		}
@@ -261,7 +261,7 @@ public class Datum2 implements Comparable<Datum2> {
 	 * @return long
 	 */
 	
-	private long verschilInMilliseconden(Datum2 d1){
+	private long verschilInMilliseconden(Datum d1){
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			sdf.setLenient(false);
@@ -283,7 +283,7 @@ public class Datum2 implements Comparable<Datum2> {
 	 * @return integer als aantal jaren verschil
 	 */
 	
-	public int verschilInJaren(Datum2 dateToCompare){
+	public int verschilInJaren(Datum dateToCompare){
 		return (int)(this.verschilInMilliseconden(dateToCompare) / (365 * 24 * 60 * 60 * 1000L ));
 	}
 	
@@ -293,7 +293,7 @@ public class Datum2 implements Comparable<Datum2> {
 	 * @return integer als aantal maanden verschil
 	 */
 	
-	public int verschilInMaanden(Datum2 dateToCompare){
+	public int verschilInMaanden(Datum dateToCompare){
 		return (int)(this.verschilInMilliseconden(dateToCompare) / (30 * 24 * 60 * 60 * 1000L ));
 	}
 	
@@ -303,7 +303,7 @@ public class Datum2 implements Comparable<Datum2> {
 	 * @return integer als aantal dagen verschil
 	 */
 	
-	public int verschilInDagen(Datum2 dateToCompare){
+	public int verschilInDagen(Datum dateToCompare){
 		return (int)(this.verschilInMilliseconden(dateToCompare) / (24 * 60 * 60 * 1000L ));
 	}
 	
@@ -335,8 +335,8 @@ public class Datum2 implements Comparable<Datum2> {
 	 * @return
 	 */
 	
-	public Datum2 nieuweDatum(int aantalDagen){
-		Datum2 newDate = new Datum2(this);
+	public Datum nieuweDatum(int aantalDagen){
+		Datum newDate = new Datum(this);
 		newDate.veranderDatum(aantalDagen);
 		return newDate;
 	}
