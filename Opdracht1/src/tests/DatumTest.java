@@ -1,5 +1,5 @@
 
-package Test;
+package tests;
 
 import static org.junit.Assert.*;
 
