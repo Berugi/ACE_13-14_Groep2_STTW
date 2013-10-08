@@ -2,33 +2,29 @@ package model;
 
 import java.util.*;
 
-public class OpdrachtCatalogus {
+public class OpdrachtCatalogus extends Catalogus{
 	
 	//data members
-	
-	private ArrayList<Opdracht> catalogus;
-	
-	//getters & setters
-	
-	protected ArrayList<Opdracht> getCatalogus() {
-		return this.catalogus;
-	}
+	//Nu in abstracte klasse
 
-	private void setCatalogus(ArrayList<Opdracht> catalogus) {
-		this.catalogus = new ArrayList<Opdracht>(catalogus);
-	}
+	//getters & setters
+	//Nu in abstracte klasse
 	
 	//constructors
 	
 	public OpdrachtCatalogus() {
-		this.catalogus = new ArrayList<Opdracht>();
+		this.catalogus = new ArrayList<Object>();
 	}
 	
-	public OpdrachtCatalogus(ArrayList<Opdracht> catalogus) {
-		setCatalogus(catalogus);
+	public OpdrachtCatalogus(ArrayList<Object> catalogus) {
+		this.setCatalogus(catalogus);
 	}
 	
 	//methods
+	@Override
+	Opdracht change(int index) {
+		return  (Quiz) catalogus.get(index);
+	}
 	
 	public Boolean addOpdracht(Opdracht o) {
 		if(!this.catalogus.contains(o)) {

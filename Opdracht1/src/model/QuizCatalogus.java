@@ -2,47 +2,28 @@ package model;
 
 import java.util.*;
 
-public class QuizCatalogus {
+public class QuizCatalogus extends Catalogus {
 	
 	//data members
-	
-	private ArrayList<Quiz> catalogus;
+	//Nu in abstracte klasse
 
 	//getters & setters
+	//Nu in abstracte klasse
 	
-	public ArrayList<Quiz> getCatalogus() {
-		return catalogus;
-	}
-
-	public void setCatalogus(ArrayList<Quiz> catalogus) {
-		this.catalogus = catalogus;
-	}
 	
 	//constructors
 	
 	public QuizCatalogus() {
-		this.catalogus = new ArrayList<Quiz>();
+		this.catalogus = new ArrayList<Object>();
 	}
 	
 	public QuizCatalogus(ArrayList<Quiz> catalogus) {
-		this.catalogus = new ArrayList<Quiz>(catalogus);
+		this.catalogus = new ArrayList<Object>(catalogus);
 	}
 	
 	//methods
-	
-	public Boolean addQuiz(Quiz q) {
-		if(!this.catalogus.contains(q)) {
-			this.catalogus.add(q);
-			return true;
-		}
-		return false;
-	}
-	
-	public Boolean removeQuiz(Quiz q) {
-		if(this.catalogus.contains(q)) {
-			this.catalogus.remove(q);
-			return true;
-		}
-		return false;
+	@Override
+	Quiz change(int index) {
+		return  (Quiz) catalogus.get(index);
 	}
 }
