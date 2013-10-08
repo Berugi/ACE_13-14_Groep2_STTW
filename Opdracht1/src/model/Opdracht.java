@@ -1,11 +1,18 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Opdracht {
 	
 	//data members
 	
 	private String vraag;
-	private String juisteAntwoord;
+	//private String juisteAntwoord;
+	//Dictionary komt in Java overeen met HashMap
+	private HashMap<String,Boolean> antwoordenMetJuistFout;
 	private int maxAantalPogingen;
 	private String[] antwoordHints;
 	//private IetsMetTijd ??? maxAntwoordTijd
@@ -24,11 +31,19 @@ public class Opdracht {
 	}
 
 	protected String getJuisteAntwoord() {
-		return juisteAntwoord;
+		for(Map.Entry entry : antwoordenMetJuistFout.entrySet()){
+				if((boolean)entry.getValue()){
+					return (String) entry.getKey();
+				}
+		}
+		//Exception nodig
+		return "Exception: No answer found!";
 	}
 
 	private void setJuisteAntwoord(String juisteAntwoord) {
-		this.juisteAntwoord = juisteAntwoord;
+		
+		this.antwoordenMetJuistFout.put(juisteAntwoord, true);
+		
 	}
 
 	protected int getMaxAantalPogingen() {
@@ -68,10 +83,13 @@ public class Opdracht {
 	}
 	
 	//constructors
-	
+	public Opdracht(){
+		antwoordenMetJuistFout = new HashMap<String, Boolean>();
+	}
 	public Opdracht(String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
 			String ... antwoordHints) {
+		this();
 		setVraag(vraag);
 		setJuisteAntwoord(juisteAntwoord);
 		setMaxAantalPogingen(maxAantalPogingen);

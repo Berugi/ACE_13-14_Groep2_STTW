@@ -16,31 +16,16 @@ public class OpdrachtCatalogus extends Catalogus{
 		this.catalogus = new ArrayList<Object>();
 	}
 	
-	public OpdrachtCatalogus(ArrayList<Object> catalogus) {
-		this.setCatalogus(catalogus);
+	public OpdrachtCatalogus(ArrayList<Opdracht> catalogus) {
+		this.catalogus = new ArrayList<Object>(catalogus);
 	}
 	
 	//methods
 	@Override
 	Opdracht change(int index) {
-		return  (Quiz) catalogus.get(index);
+		return  (Opdracht) catalogus.get(index);
 	}
 	
-	public Boolean addOpdracht(Opdracht o) {
-		if(!this.catalogus.contains(o)) {
-			this.catalogus.add(o);
-			return true;
-		}
-		return false;
-	}
-	
-	public Boolean removeOpdracht(Opdracht o) {
-		if(this.catalogus.contains(o)) {
-			this.catalogus.remove(o);
-			return true;
-		}
-		return false;
-	}
 	
 	public Opdracht getOpdracht(Opdracht o) {
 		if(this.catalogus.contains(o))
