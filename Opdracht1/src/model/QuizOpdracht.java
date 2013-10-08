@@ -38,8 +38,10 @@ public class QuizOpdracht {
 	
 	//constructors
 	
-	public QuizOpdracht() {
-		//...
+	public QuizOpdracht(int maxScore, ArrayList<Quiz> quizzes, Opdracht opdracht) {
+		setMaxScore(maxScore);
+		setQuizzes(quizzes);
+		setOpdracht(opdracht);
 	}
 	
 	//methods

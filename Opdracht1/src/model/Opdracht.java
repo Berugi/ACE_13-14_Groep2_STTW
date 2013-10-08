@@ -11,6 +11,7 @@ public class Opdracht {
 	//private IetsMetTijd ??? maxAntwoordTijd
 	private int maxAntwoordTijd;
 	private Leraar auteur;
+	private OpdrachtCategorie categorie;
 	
 	//getters & setters
 	
@@ -58,15 +59,25 @@ public class Opdracht {
 		return auteur;
 	}
 	
+	private void setOpdrachtCategorie(OpdrachtCategorie categorie) {
+		this.categorie = categorie;
+	}
+	
+	protected OpdrachtCategorie getOpdrachtCategorie() {
+		return categorie;
+	}
+	
 	//constructors
 	
 	public Opdracht(String vraag, String juisteAntwoord, int maxAantalPogingen,
-			int maxAntwoordTijd, Leraar auteur, String ... antwoordHints) {
+			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
+			String ... antwoordHints) {
 		setVraag(vraag);
 		setJuisteAntwoord(juisteAntwoord);
 		setMaxAantalPogingen(maxAantalPogingen);
 		setMaxAantalPogingen(maxAntwoordTijd);
 		setAuteur(auteur);
+		setOpdrachtCategorie(categorie);
 		setAntwoordHints(antwoordHints);
 	}
 	

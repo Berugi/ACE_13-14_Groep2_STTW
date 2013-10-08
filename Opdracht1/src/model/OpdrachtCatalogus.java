@@ -10,11 +10,11 @@ public class OpdrachtCatalogus {
 	
 	//getters & setters
 	
-	public ArrayList<Opdracht> getCatalogus() {
+	protected ArrayList<Opdracht> getCatalogus() {
 		return this.catalogus;
 	}
 
-	public void setCatalogus(ArrayList<Opdracht> catalogus) {
+	private void setCatalogus(ArrayList<Opdracht> catalogus) {
 		this.catalogus = new ArrayList<Opdracht>(catalogus);
 	}
 	
@@ -25,7 +25,7 @@ public class OpdrachtCatalogus {
 	}
 	
 	public OpdrachtCatalogus(ArrayList<Opdracht> catalogus) {
-		this.catalogus = new ArrayList<Opdracht>(catalogus);
+		setCatalogus(catalogus);
 	}
 	
 	//methods
