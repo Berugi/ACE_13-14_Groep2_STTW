@@ -73,7 +73,7 @@ public class Datum implements Comparable<Datum> {
 		try{
 			if ((dd>=1 && dd<=31) && (mm>=1 && mm<=12) && (yyyy>0))
 			{
-				if (SetDatum(dd,mm,yyyy)==true) {
+				if (setDatum(dd,mm,yyyy)==true) {
 					System.out.println("Datum set gelukt : " + this.toString());
 				}
 			}
@@ -131,7 +131,7 @@ public class Datum implements Comparable<Datum> {
 	 * @return boolean 
 	 */
 	
-	public boolean SetDatum(int dag, int maand, int jaar) {
+	public boolean setDatum(int dag, int maand, int jaar) {
 		try{
 			if ((dag>=1 && dag<=31) && (maand>=1 && maand<=12) && (jaar>0))
 			{

@@ -12,7 +12,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import DatumV1.Datum;
+import DatumV2.Datum;
 
 public class DatumTest {
 
@@ -35,7 +35,7 @@ public class DatumTest {
 		for(int i = 1; i<=12;i++){
 			for(int j = 1;j<= dagenPerMaand[i];j++){
 				for(int k = 0;k<20;k++){
-					int jaar = generator.nextInt();
+					int jaar = generator.nextInt(3000);
 					
 					datum = new Datum(j, i, jaar);			
 				}
@@ -55,7 +55,7 @@ public class DatumTest {
 			do{
 				maand = generator.nextInt();
 			}while(maand > 0 && maand < 13);
-			jaar = -(generator.nextInt());
+			jaar = -(generator.nextInt(3000));
 			
 			datum = new Datum(dag, maand, jaar);		
 		}
@@ -66,7 +66,7 @@ public class DatumTest {
 		for(int i = 1; i<=12;i++){
 			for(int j = 1;j<= dagenPerMaand[i];j++){
 				for(int k = 0;k<20;k++){
-					int jaar = generator.nextInt();
+					int jaar = generator.nextInt(3000);
 					
 					datum = new Datum(new Datum(j, i, jaar));			
 				}
@@ -86,7 +86,7 @@ public class DatumTest {
 			do{
 				maand = generator.nextInt();
 			}while(maand > 0 && maand < 13);
-			jaar = -generator.nextInt();
+			jaar = -generator.nextInt(3000);
 			
 			datum = new Datum(new Datum(dag, maand, jaar));		
 		}
@@ -106,7 +106,7 @@ public class DatumTest {
 						maand = "0"+maand;
 					}
 					
-					String jaar = Integer.toString(generator.nextInt());
+					String jaar = Integer.toString(generator.nextInt(3000));
 					while(jaar.length() < 4){
 						jaar = "0"+jaar;					
 					}					
@@ -131,7 +131,7 @@ public class DatumTest {
 			do{
 				maand = generator.nextInt();
 			}while(maand > 0 && maand < 13);
-			jaar = -(generator.nextInt());
+			jaar = -(generator.nextInt(3000));
 			
 			String sign = Character.toString(((char) generator.nextInt()));
 			
@@ -157,7 +157,7 @@ public class DatumTest {
 		for(int i = 1; i<=12;i++){
 			for(int j = 1;j<= dagenPerMaand[i];j++){
 				for(int k = 0;k<20;k++){
-					int jaar = generator.nextInt();
+					int jaar = generator.nextInt(3000);
 					
 					datum.setDatum(j, i, jaar);			
 				}
@@ -172,7 +172,7 @@ public class DatumTest {
 			for(int j = 1;j<= 200;j++){
 				
 				int dag;
-				int jaar = generator.nextInt();
+				int jaar = generator.nextInt(3000);
 				do{
 					dag = generator.nextInt();
 				}while(dag >0 && dag<32);
@@ -188,7 +188,7 @@ public class DatumTest {
 		
 			int dag = generator.nextInt(28)+1;
 			int maand;
-			int jaar = generator.nextInt();
+			int jaar = generator.nextInt(3000);
 			
 			do{
 				maand = generator.nextInt();
@@ -208,7 +208,7 @@ public class DatumTest {
 			int jaar;
 			
 			do{
-				jaar = generator.nextInt()*4;
+				jaar = generator.nextInt(200000)*4;
 			}while(jaar % 100 ==0 && jaar % 400 != 0 );
 			
 			datum.setDatum(dag, maand, jaar);
@@ -221,7 +221,7 @@ public class DatumTest {
 		
 		for(int i = 1; i<=12;i++){
 			for(int j = 1;j<= dagenPerMaand[i];j++){
-				int jaar = generator.nextInt();
+				int jaar = generator.nextInt(3000);
 				
 				datum = new Datum(j, i, jaar);
 				assertEquals(j,datum.getDag());
@@ -233,7 +233,7 @@ public class DatumTest {
 	public void test_GetMaand_Geldige_Waarden_Aanvaard() {
 		for(int i = 1; i<=12;i++){
 			for(int j = 1;j<= dagenPerMaand[i];j++){
-				int jaar = generator.nextInt();
+				int jaar = generator.nextInt(3000);
 				
 				datum = new Datum(j, i, jaar);
 				assertEquals(i,datum.getMaand());
@@ -246,7 +246,7 @@ public class DatumTest {
 		for(int i = 0;i<200;i++){
 			int dag = generator.nextInt(28)+1;
 			int maand = generator.nextInt(12)+1;
-			int jaar = generator.nextInt();
+			int jaar = generator.nextInt(3000);
 			
 			datum = new Datum(dag, maand, jaar);
 			assertEquals(jaar,datum.getJaar());
@@ -263,7 +263,7 @@ public class DatumTest {
 				for(int k = 0;k<20;k++){
 					int dag = j;
 					int maand = i;
-					int jaar = generator.nextInt();
+					int jaar = generator.nextInt(3000);
 					
 					datum = new Datum(j, i, jaar);	
 					String[] string = {"","",""};
@@ -291,7 +291,7 @@ public class DatumTest {
 				for(int k = 0;k<20;k++){
 					int dag = j;
 					int maand = i;
-					int jaar = generator.nextInt();
+					int jaar = generator.nextInt(3000);
 					
 					datum = new Datum(j, i, jaar);	
 					String[] string = {"","",""};
@@ -320,7 +320,7 @@ public class DatumTest {
 				for(int k = 0;k<20;k++){
 					int dag = j;
 					int maand = i;
-					int jaar = generator.nextInt();
+					int jaar = generator.nextInt(3000);
 					
 					datum = new Datum(j, i, jaar);	
 					
@@ -341,7 +341,7 @@ public class DatumTest {
 		for(int i = 1; i<=12;i++){
 			for(int j = 1;j<= dagenPerMaand[i];j++){
 				for(int k = 0;k<20;k++){
-					int jaar = generator.nextInt();
+					int jaar = generator.nextInt(3000);
 					
 					datum.setDatum(j, i, jaar);	
 					datum2.setDatum(j, i, jaar);
@@ -357,7 +357,7 @@ public class DatumTest {
 		for(int i = 1; i<=12;i++){
 			for(int j = 1;j<= dagenPerMaand[i];j++){
 			
-				int jaar = generator.nextInt();
+				int jaar = generator.nextInt(3000);
 				
 				datum.setDatum(j, i, jaar);
 				
