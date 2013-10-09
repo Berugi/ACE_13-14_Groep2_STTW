@@ -12,7 +12,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import DatumV2.Datum;
+import DatumV1.Datum;
 
 public class DatumTest {
 
@@ -388,7 +388,7 @@ public class DatumTest {
 						
 			int dag = generator.nextInt(28)+1;
 			int maand = generator.nextInt(12)+1;
-			int jaar = generator.nextInt();
+			int jaar = generator.nextInt(3000);
 					
 			datum.setDatum(dag, maand, jaar);
 							
@@ -404,11 +404,11 @@ public class DatumTest {
 			}while(maand2 > 12);
 
 			
-			int jaar2 = jaar + generator.nextInt(20000);
+			int jaar2 = jaar + generator.nextInt(3000);
 						
 			if(dag!=dag2 || maand!=maand2 || jaar!=jaar2){
 				datum2.setDatum(dag2, maand2, jaar2);
-				assertTrue(datum.compareTo(datum2)<0);
+				assertTrue(datum.compareTo(datum2)>0);
 			}
 		}			
 	}
@@ -421,7 +421,7 @@ public class DatumTest {
 						
 			int dag = generator.nextInt(28)+1;
 			int maand = generator.nextInt(12)+1;
-			int jaar = generator.nextInt();
+			int jaar = generator.nextInt(3000);
 					
 			datum.setDatum(dag, maand, jaar);
 							
@@ -440,11 +440,11 @@ public class DatumTest {
 
 
 			
-			int jaar2 = jaar - generator.nextInt(20000);
+			int jaar2 = jaar - generator.nextInt(3000);
 						
 			if(dag!=dag2 || maand!=maand2 || jaar!=jaar2){
 				datum2.setDatum(dag2, maand2, jaar2);
-				assertTrue(datum.compareTo(datum2)>0);
+				assertTrue(datum.compareTo(datum2)<0);
 
 
 
@@ -461,12 +461,12 @@ public class DatumTest {
 	@Test
 	public void test_CompareTo_Data_Gelijk_Geslaagd() {
 		Datum datum2 = new Datum();
-		
+		//fail("Takes too long!");
 		for(int i = 0; i<50;i++){
 						
-			int dag = generator.nextInt(28)+1;
-			int maand = generator.nextInt(12)+1;
-			int jaar = generator.nextInt();
+			int dag = generator.nextInt(27)+1;
+			int maand = generator.nextInt(11)+1;
+			int jaar = generator.nextInt(3000);
 					
 			datum.setDatum(dag, maand, jaar);
 						
@@ -524,8 +524,8 @@ public class DatumTest {
 		
 		for(int i = 0; i<20;i++){
 						
-			int dag = generator.nextInt(28)+1;
-			int maand = generator.nextInt(12)+1;
+			int dag = generator.nextInt(27)+1;
+			int maand = generator.nextInt(11)+1;
 			int jaar = generator.nextInt(2000);
 					
 			datum.setDatum(dag, maand, jaar);
@@ -537,7 +537,7 @@ public class DatumTest {
 			int maand2;
 			do{
 				maand2 = maand - generator.nextInt(11)+1;
-			}while(maand2 < 1 && maand2 > 12);
+			}while(maand2 < 1 || maand2 > 12);
 			int jaar2;
 			do{
 				jaar2 = jaar - generator.nextInt(2000);
@@ -560,7 +560,7 @@ public class DatumTest {
 						
 			int dag = generator.nextInt(28)+1;
 			int maand = generator.nextInt(12)+1;
-			int jaar = generator.nextInt();
+			int jaar = generator.nextInt(3000);
 					
 			datum.setDatum(dag, maand, jaar);
 							
@@ -570,7 +570,7 @@ public class DatumTest {
 			do{
 				dag2 = generator.nextInt(28)+1;
 				maand2 = generator.nextInt(12)+1;
-				jaar2 = generator.nextInt();
+				jaar2 = generator.nextInt(3000);
 			}while(jaar==jaar2 && maand==maand2 && jaar==jaar2);
 			
 			datum2.setDatum(dag2, maand2, jaar2);
