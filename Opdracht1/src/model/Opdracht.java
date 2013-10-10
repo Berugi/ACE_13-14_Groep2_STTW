@@ -10,13 +10,14 @@ public class Opdracht {
 	//data members
 	
 	private String vraag;
-	//private String juisteAntwoord;
-	//Dictionary komt in Java overeen met HashMap
-	private HashMap<String,Boolean> antwoordenMetJuistFout;
 	private int maxAantalPogingen;
-	private String[] antwoordHints;
 	//private IetsMetTijd ??? maxAntwoordTijd
 	private int maxAntwoordTijd;
+	
+	//private String juisteAntwoord;
+	//Arraylist om makkelijk antwoorden toe te voegen en te verwijderen.
+	private ArrayList<Antwoord> antwoorden;
+	private String[] antwoordHints;
 	private Leraar auteur;
 	private OpdrachtCategorie categorie;
 	
@@ -31,9 +32,9 @@ public class Opdracht {
 	}
 
 	protected String getJuisteAntwoord() {
-		for(Map.Entry entry : antwoordenMetJuistFout.entrySet()){
-				if((boolean)entry.getValue()){
-					return (String) entry.getKey();
+		for(Antwoord antwoord : antwoorden){
+				if(antwoord.isJuist()){
+					return ""+antwoord;
 				}
 		}
 		//Exception nodig
@@ -41,8 +42,14 @@ public class Opdracht {
 	}
 
 	private void setJuisteAntwoord(String juisteAntwoord) {
-		
-		this.antwoordenMetJuistFout.put(juisteAntwoord, true);
+		for(Antwoord antwoord : antwoorden){
+			if(antwoord.toString() == juisteAntwoord){
+				antwoord.setJuist(true);
+				return;
+			}
+		}
+		//als juisteantwoord niet gevonden dan is er geen return en wordt volgende uitgevoerd:
+		this.antwoorden.add(new Antwoord(juisteAntwoord, true));
 		
 	}
 
@@ -84,7 +91,7 @@ public class Opdracht {
 	
 	//constructors
 	public Opdracht(){
-		antwoordenMetJuistFout = new HashMap<String, Boolean>();
+		
 	}
 	public Opdracht(String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
@@ -102,7 +109,12 @@ public class Opdracht {
 	//methods
 	
 	public Boolean IsJuisteAntwoord(String antwoord) {
-		return (antwoord == juisteAntwoord) ? true : false;
+		for(Antwoord _antwoord : antwoorden){
+			if(_antwoord.toString() == antwoord){
+				return _antwoord.isJuist();
+			}
+		}
+		return false;
 	}
 	
 }
