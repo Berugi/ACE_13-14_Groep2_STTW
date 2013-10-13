@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import utils.Datum;
 
-public class Quiz implements Comparable<Opdracht>, Cloneable{
+public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	//data members
 	private String onderwerp;
@@ -137,7 +137,7 @@ public class Quiz implements Comparable<Opdracht>, Cloneable{
 	}
 	
 	
-	public int compareTo(Opdracht o) {
+	public int compareTo(Quiz o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

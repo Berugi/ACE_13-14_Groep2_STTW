@@ -12,7 +12,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import DatumV2.Datum;
+import utils.Datum;
 
 public class DatumTest {
 
@@ -244,9 +244,9 @@ public class DatumTest {
 	@Test
 	public void test_GetJaar_200_Geldige_Waarden_Aanvaard() {
 		for(int i = 0;i<200;i++){
-			int dag = generator.nextInt(28)+1;
-			int maand = generator.nextInt(12)+1;
 			int jaar = generator.nextInt(3000);
+			int maand = generator.nextInt(12)+1;
+			int dag = generator.nextInt(dagenPerMaand[maand])+1;
 			
 			datum = new Datum(dag, maand, jaar);
 			assertEquals(jaar,datum.getJaar());
@@ -446,14 +446,6 @@ public class DatumTest {
 				datum2.setDatum(dag2, maand2, jaar2);
 				assertTrue(datum.compareTo(datum2)<0);
 
-
-
-
-
-
-
-
-
 			}
 		}			
 	}
@@ -509,10 +501,6 @@ public class DatumTest {
 			//fail(datum.getDatumInAmerikaansFormaat() +" "+datum2.getDatumInAmerikaansFormaat());
 			assertEquals(false,datum.kleinerDan(datum2));
 
-
-
-
-			
 		}			
 
 
@@ -607,7 +595,7 @@ public class DatumTest {
 			
 			datum2.setDatum(dag2, maand2, jaar2);
 			
-			int verschilInMaanden = (int)((double)(datum2.getDatumInAantalDagen() - datum.getDatumInAantalDagen())/(31.0+28+31+30+31+30+31+31+30+31+30+31));
+			int verschilInMaanden = (int)((double)(datum2.getDatumInAantalDagen() - datum.getDatumInAantalDagen())/(365/12));
 			if(verschilInMaanden < 0){
 				verschilInMaanden = -verschilInMaanden;
 			}
@@ -621,11 +609,6 @@ public class DatumTest {
 	public void test_VerschilInDagen_Geldige_Waarden_Geslaagd() {
 		Datum datum2 = new Datum();
 		
-
-
-
-
-
 		for(int i = 0; i<50;i++){
 
 						
@@ -661,35 +644,33 @@ public class DatumTest {
 	@Test
 	public void test_VeranderDatum_Void_Geldige_Waarden_Geslaagd() {
 		for(int i = 0; i<50;i++){
-			int dag = generator.nextInt(28)+1;
-			int maand = generator.nextInt(12)+1;
 			int jaar = generator.nextInt();
-					
+			int maand = generator.nextInt(12)+1;
+			int dag = generator.nextInt(dagenPerMaand[maand])+1;
+							
 			datum.setDatum(dag, maand, jaar);
 			Datum datum2 = new Datum(dag, maand, jaar);
 			
 			int aantalDagen = generator.nextInt();
 			
 			datum.veranderDatum(aantalDagen);
-			assertEquals(aantalDagen,datum.getDatumInAantalDagen()-datum2.getDatumInAantalDagen());
+			assertEquals(aantalDagen,datum2.getDatumInAantalDagen()-datum.getDatumInAantalDagen());
 		}
-
-
 	}
 	
 
 	@Test
 	public void test_VeranderDatum_Datum_Geldige_Waarden_Geslaagd() {
 		for(int i = 0; i<50;i++){
-			int dag = generator.nextInt(28)+1;
-			int maand = generator.nextInt(12)+1;
 			int jaar = generator.nextInt();
+			int maand = generator.nextInt(12)+1;
+			int dag = generator.nextInt(dagenPerMaand[maand])+1;
 					
 			datum.setDatum(dag, maand, jaar);
 			
 			int aantalDagen = generator.nextInt();
 			
-			Datum datum2 =  datum.veranderDatum(aantalDagen);
+			Datum datum2 =  datum.veranderDatumObject(aantalDagen);
 			
 			assertEquals(aantalDagen,datum2.getDatumInAantalDagen()-datum.getDatumInAantalDagen());
 		}
