@@ -13,6 +13,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	private Boolean isUniekeDeelname;
 	private Leraar auteur;
 	private Datum datumRegistratie;
+	private QuizStatus quizStatus;
 	
 	//getters & setters
 
@@ -20,6 +21,11 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return onderwerp;
 	}
 
+	/*
+	 * Bij het vergelijken van de onderwerpnamen houden we geen rekening met hoofdletters, blanco’s en leestekens
+	 * zoals komma’s, vraagtekens,… De woorden’ de, een, het, met, van, in’  worden bij de vergelijking van de 
+	 * onderwerpen genegeerd. Volgens deze afspraken is ‘hoofdsteden europa’ gelijk aan ‘De hoofdsteden van Europa’.
+	 */
 	private void setOnderwerp(String onderwerp) {
 		this.onderwerp = onderwerp;
 	}
@@ -28,6 +34,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return leerjaren;
 	}
 	
+	//er zijn 6 leerjaren genummerd van 1 tot en met 6
 	private void setLeerjaren(int[] leerjaren) {
 		this.leerjaren = new int[leerjaren.length];
 		for(int i = 0; i < leerjaren.length; i++) {
@@ -57,6 +64,11 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 
 	private void setAuteur(Leraar auteur) {
 		this.auteur = auteur;
+	}
+	
+	private void setDatumRegistratie(Datum datum)
+	{
+		this.datumRegistratie = datum;
 	}
 	
 	
