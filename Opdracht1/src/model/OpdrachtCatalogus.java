@@ -33,4 +33,14 @@ public class OpdrachtCatalogus extends Catalogus{
 		else
 			return null;
 	}
+
+	public int compareTo(Catalogus o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public Iterator<Catalogus> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

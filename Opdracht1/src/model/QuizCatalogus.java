@@ -26,4 +26,17 @@ public class QuizCatalogus extends Catalogus {
 	Quiz change(int index) {
 		return  (Quiz) catalogus.get(index);
 	}
+
+	public int compareTo(Catalogus o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public Iterator<Catalogus> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
 }

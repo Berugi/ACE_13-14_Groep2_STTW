@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public abstract class Catalogus {
+public abstract class Catalogus implements Comparable<Catalogus>, Cloneable, Iterable<Catalogus>{
 	   
     protected ArrayList<Object> catalogus;
    
