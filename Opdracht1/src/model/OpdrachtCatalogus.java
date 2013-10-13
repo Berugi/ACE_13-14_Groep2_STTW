@@ -22,7 +22,7 @@ public class OpdrachtCatalogus extends Catalogus{
 	
 	//methods
 	@Override
-	Opdracht change(int index) {
+	public Opdracht change(int index) {
 		return  (Opdracht) catalogus.get(index);
 	}
 	
