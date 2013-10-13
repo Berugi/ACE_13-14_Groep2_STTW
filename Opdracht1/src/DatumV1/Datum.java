@@ -1,8 +1,12 @@
+/*
+ * Author : Tom VAES
+ * Opdracht 1 : Datum class from scratch.
+ * 
+ * 13/10/13 : veranderDatum method require further analysis.
+ */
+
 package DatumV1;
 import java.util.Date;
-
-//import domain.Tijd;
-
 
 public class Datum implements Comparable<Datum>
 {
@@ -29,35 +33,17 @@ public class Datum implements Comparable<Datum>
 		return dag;
 	}
 
-	/*public void setDag(int dag) throws IllegalArgumentException
-	{
-		if(dag < 1 || dag > 31)
-			throw new IllegalArgumentException("Dag moet tussen 1 en 31 zijn !!");
-		
-		this.dag = dag;
-	}*/
-
+	
 	public int getMaand() 
 	{
 		return maand;
 	}
 
-	/*public void setMaand(int maand) throws IllegalArgumentException
-	{
-		if(maand < 1 || maand > 12)
-			throw new IllegalArgumentException("Maand moet tussen 1 en 12 zijn !!");
-		this.maand = maand;
-	}*/
-
+	
 	public int getJaar() 
 	{
 		return jaar;
 	}
-
-	/*public void setJaar(int jaar) 
-	{
-		this.jaar = jaar;
-	}*/
 
 	private boolean isSchrikkeljaar(int jaar)
 	{
@@ -69,7 +55,7 @@ public class Datum implements Comparable<Datum>
 	
 	public void setDatum(int dag, int maand, int jaar) throws IllegalArgumentException
 	{
-		//boolean result = false;
+		
 		if(maand < 1 || maand > 12)
 			throw new IllegalArgumentException("Maand moet tussen 1 en 12 zijn !!");
 		
@@ -90,9 +76,7 @@ public class Datum implements Comparable<Datum>
 		this.dag = dag;
 		this.maand = maand;
 		this.jaar = jaar;
-		//result = true;
 		
-		//return result;
 	}
 	/**
 	 * Constructors
@@ -169,27 +153,25 @@ public class Datum implements Comparable<Datum>
 	public int getDatumInAantalDagen()
 	{
 		
-		int resultaat = 0; 
-		
-		resultaat += dag;
-		
-		for(int i=1; i<=maand-1;i++)
-		{
-			resultaat += DAGEN_PER_MAAND[maand];
-		}
-		
-		for(int i=1; i <= jaar; i++)
+		int resultaat = 0;
+				
+		for(int i=0; i<=jaar-1; i++)
 		{
 			if(isSchrikkeljaar(jaar))
 				resultaat += 366;
 			else
 				resultaat += 365;
 		}
+
+		for(int i=1; i<=maand-1;i++)
+		{
+			resultaat += DAGEN_PER_MAAND[i];
+		}
+		resultaat += dag;
 		
 		return resultaat;
 	}
 	
-	@Override
 	public int compareTo(Datum datum) 
 	{
 		return datum.getDatumInAantalDagen() - this.getDatumInAantalDagen();
@@ -211,6 +193,75 @@ public class Datum implements Comparable<Datum>
 			return this.compareTo(d)/365; 
 	}
 	
+	public int verschilInMaanden(Datum d)
+	{			
+		if (this.compareTo(d) < 0)
+			return -(int)(double)this.compareTo(d)/(365/12);
+		else			
+			return (int)(double)this.compareTo(d)/(365/12);
+	}
+	
+	public int verschilInDagen(Datum d)
+	{		
+		if (this.compareTo(d) < 0)
+			return -this.compareTo(d);
+		else			
+			return this.compareTo(d); 
+	}
+	
+	/*
+	 * Needs some finetunig, doesn't work correctly
+	 */
+	public void veranderDatum(int aantalDagen)
+	{
+		
+		if (aantalDagen > 0)
+		{
+			for (int i=1; i<=aantalDagen; i++)
+			{
+				dag++;
+				
+				if(dag > DAGEN_PER_MAAND[maand]){
+					dag = 1;
+					maand++;
+					
+					if(maand == 13){
+						maand = 1;
+						dag = 1;
+						jaar++;
+					}
+					
+				}
+			}	
+		}
+		else
+		{
+			for (int i=-1; i>=aantalDagen; i--)
+			{
+				if(dag == 1){
+					maand--;
+					if(maand == 0){
+						maand = 12;
+						dag = 31;
+						jaar--;
+					}
+					dag = DAGEN_PER_MAAND[maand];
+				}
+				else{
+					dag--;
+				}
+			}	
+		}
+	}
+	
+	public Datum veranderDatumObject(int aantalDagen)
+	{
+		Datum newDate = new Datum(this);
+		newDate.veranderDatum(aantalDagen);
+		
+		return newDate;
+	}
+	
 	/**
 	 * 
 	 * Main method
@@ -218,8 +269,8 @@ public class Datum implements Comparable<Datum>
 	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
-		Datum d = new Datum("19/01/2001");
-		Datum d1 = new Datum(19,1,2014);
+		Datum d = new Datum("19/02/2014");
+		Datum d1 = new Datum(19,2,2014);
 		System.out.println(d);
 		System.out.println(d.getDatumInAmerikaansFormaat());
 		System.out.println(d.getDatumInEuropeesFormaat());
@@ -227,6 +278,14 @@ public class Datum implements Comparable<Datum>
 		System.out.println(d1.getDatumInAantalDagen());
 		System.out.println(d.kleinerDan(d1));
 		System.out.println(d.verschilInJaren(d1));
+		System.out.println(d.verschilInMaanden(d1));
+		d1.veranderDatum(1200);
+		System.out.println(d1);
+		System.out.println(d.getDatumInAantalDagen());
+		System.out.println(d1.getDatumInAantalDagen());
+		System.out.println(d1.verschilInDagen(d));
+		Datum d2 = d.veranderDatumObject(10);
+		System.out.println(d2);
 	}
 
 }
