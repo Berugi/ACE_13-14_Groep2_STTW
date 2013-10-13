@@ -16,7 +16,7 @@ public class Opdracht {
 	
 	//private String juisteAntwoord;
 	//Arraylist om makkelijk antwoorden toe te voegen en te verwijderen.
-	private ArrayList<Antwoord> antwoorden;
+	private ArrayList<Antwoord> antwoorden = new ArrayList<Antwoord>();
 	private String[] antwoordHints;
 	private Leraar auteur;
 	private OpdrachtCategorie categorie;
@@ -42,12 +42,14 @@ public class Opdracht {
 	}
 
 	private void setJuisteAntwoord(String juisteAntwoord) {
+		
 		for(Antwoord antwoord : antwoorden){
 			if(antwoord.toString() == juisteAntwoord){
 				antwoord.setJuist(true);
 				return;
 			}
 		}
+		
 		//als juisteantwoord niet gevonden dan is er geen return en wordt volgende uitgevoerd:
 		this.antwoorden.add(new Antwoord(juisteAntwoord, true));
 		

@@ -652,14 +652,9 @@ public class DatumTest {
 			int verschilInDagen = datum2.getDatumInAantalDagen() - datum.getDatumInAantalDagen();
 			if(verschilInDagen < 0){
 				verschilInDagen = -verschilInDagen;
-
-
-
-
-
 			}
 			assertEquals(verschilInDagen,datum.verschilInDagen(datum2));
-			
+		}
 
 	}
 
