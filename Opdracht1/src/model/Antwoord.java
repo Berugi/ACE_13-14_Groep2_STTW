@@ -15,14 +15,23 @@ public class Antwoord {
 	public void setJuist(boolean juist){
 		this.juist = juist;
 	}
+	public AntwoordCategorie getCategorie(){
+		return this.categorie;
+	}
 	
 	public Antwoord(){
 		
 	}
 	public Antwoord(String antwoord){
-		this.antwoord = antwoord;
-		categorie = AntwoordCategorie.enigAntwoord;
-		this.juist = true;
+		if(antwoord.contains(";") == false){
+			this.antwoord = antwoord;
+			categorie = AntwoordCategorie.enigAntwoord;
+			this.juist = true;
+		}
+		else if(antwoord.contains(";") == true){
+			this.antwoord += antwoord;
+			categorie = AntwoordCategorie.opsomming;
+		}
 	}
 	public Antwoord(String antwoord,boolean juist){
 		this.antwoord = antwoord;

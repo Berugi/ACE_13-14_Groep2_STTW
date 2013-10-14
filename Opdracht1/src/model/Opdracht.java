@@ -47,17 +47,20 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	}
 
 	private void setJuisteAntwoord(String juisteAntwoord) {
-		
+		boolean gevonden = false;;
 		for(Antwoord antwoord : antwoorden){
-			if(antwoord.toString() == juisteAntwoord){
+			if(antwoord.getCategorie() == AntwoordCategorie.enigAntwoord && antwoord.toString() != juisteAntwoord){
+				antwoord.setJuist(false);
+			}
+			else if(antwoord.toString() == juisteAntwoord){
 				antwoord.setJuist(true);
-				return;
+				gevonden = true;
 			}
 		}
-		
-		//als juisteantwoord niet gevonden dan is er geen return en wordt volgende uitgevoerd:
-		this.antwoorden.add(new Antwoord(juisteAntwoord, true));
-		
+		if(gevonden == false){
+			//als juisteantwoord niet gevonden dan gevonden == false en wordt volgende uitgevoerd:
+			this.antwoorden.add(new Antwoord(juisteAntwoord, true));
+		}
 	}
 
 	protected int getMaxAantalPogingen() {
