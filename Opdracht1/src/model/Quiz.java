@@ -4,6 +4,16 @@ import java.util.Arrays;
 
 import utils.Datum;
 
+/**
+ * 
+ * @author Sander van der Borght
+ * 
+ * @version 20131008-01 - Initial version
+ * @version 20131013-01 - modified by Tom Scheepers - added QuizStatus
+ *
+ * Bevat Quiz informatie
+ */
+
 public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	//data members
