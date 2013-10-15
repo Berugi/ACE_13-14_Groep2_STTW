@@ -40,7 +40,7 @@ public class QuizCatalogus extends Catalogus {
 	@Override
 	public Boolean add(Object item) {
 		for(Object quiz : this.catalogus) {
-			if(((Quiz)item).getShortOnderwerp() != ((Quiz)quiz).getShortOnderwerp()){
+			if(((Quiz)item).getShortOnderwerp().equalsIgnoreCase(((Quiz)quiz).getShortOnderwerp())){
 				this.catalogus.add(item);
 				return true;
 			}
