@@ -25,19 +25,7 @@ public class OpdrachtCatalogus extends Catalogus{
 	public Opdracht change(int index) {
 		return  (Opdracht) catalogus.get(index);
 	}
-	@Override
-	public Boolean remove(Object item) {
-		if(this.catalogus.contains(item)) {
-			if(((Opdracht)item).islinkedToQuiz()){
-				//Exception 'object is linked' needed
-				return false;
-			}else{
-				this.catalogus.remove(item);
-				return true;
-			}
-		}
-		return false;
-	}
+	
 	
 	public Opdracht getOpdracht(Opdracht o) {
 		if(this.catalogus.contains(o))
