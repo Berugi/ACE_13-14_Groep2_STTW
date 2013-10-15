@@ -158,6 +158,10 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return true;
 	}
 	
+	public String getShortOnderwerp(){
+		//Volgende moet korter kunnen; verwijderen van de, een, het, met, van, in en spaties
+		return this.onderwerp.replaceAll("van", "").replaceAll("de", "").replaceAll("een", "").replaceAll("het", "").replaceAll("met", "").replaceAll("in", "").replaceAll(" ", "");
+	}
 	
 	public int compareTo(Quiz o) {
 		// TODO Auto-generated method stub
