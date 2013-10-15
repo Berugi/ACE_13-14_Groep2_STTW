@@ -47,10 +47,14 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	}
 	
 	//er zijn 6 leerjaren genummerd van 1 tot en met 6
-	private void setLeerjaren(int[] leerjaren) {
-		this.leerjaren = new int[leerjaren.length];
-		for(int i = 0; i < leerjaren.length; i++) {
-			this.leerjaren[i] = leerjaren[i];
+	private void setLeerjaren(int[] leerjaren) throws IllegalArgumentException {
+		if(leerjaren.length == 0)
+			throw new IllegalArgumentException("Leerjaren must contain at least one element.");
+		else{
+			this.leerjaren = new int[leerjaren.length];
+			for(int i = 0; i < leerjaren.length; i++) {
+				this.leerjaren[i] = leerjaren[i];
+			}
 		}
 	}
 
