@@ -37,6 +37,16 @@ public class QuizCatalogus extends Catalogus {
 		return null;
 	}
 	
+	@Override
+	public Boolean add(Object item) {
+		for(Object quiz : this.catalogus) {
+			if(((Quiz)item).getShortOnderwerp() != ((Quiz)quiz).getShortOnderwerp()){
+				this.catalogus.add(item);
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 }
