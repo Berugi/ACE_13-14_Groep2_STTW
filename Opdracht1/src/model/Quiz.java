@@ -32,12 +32,14 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	}
 
 	/*
-	 * Bij het vergelijken van de onderwerpnamen houden we geen rekening met hoofdletters, blanco’s en leestekens
-	 * zoals komma’s, vraagtekens,… De woorden’ de, een, het, met, van, in’  worden bij de vergelijking van de 
-	 * onderwerpen genegeerd. Volgens deze afspraken is ‘hoofdsteden europa’ gelijk aan ‘De hoofdsteden van Europa’.
+	 * Bij het vergelijken van de onderwerpnamen houden we geen rekening met hoofdletters, blancoï¿½s en leestekens
+	 * zoals kommaï¿½s, vraagtekens,ï¿½ De woordenï¿½ de, een, het, met, van, inï¿½  worden bij de vergelijking van de 
+	 * onderwerpen genegeerd. Volgens deze afspraken is ï¿½hoofdsteden europaï¿½ gelijk aan ï¿½De hoofdsteden van Europaï¿½.
 	 */
-	private void setOnderwerp(String onderwerp) {
-		this.onderwerp = onderwerp;
+	private void setOnderwerp(String onderwerp) throws IllegalArgumentException {
+		if(onderwerp != null && !onderwerp.isEmpty())
+			this.onderwerp = onderwerp;
+		else throw new IllegalArgumentException("Argument cannot be null or empty");
 	}
 	
 	protected int[] getLeerjaren() {
