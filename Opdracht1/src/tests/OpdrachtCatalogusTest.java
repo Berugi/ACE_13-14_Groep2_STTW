@@ -8,7 +8,7 @@ import java.util.Random;
 import model.Leraar;
 import model.Opdracht;
 import model.OpdrachtCatalogus;
-import model.OpdrachtCategorie;
+import model.enums.OpdrachtCategorie;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -6,6 +6,8 @@ import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.enums.AntwoordCategorie;
+import model.enums.OpdrachtCategorie;
 import utils.Datum;
 
 public class Opdracht implements Comparable<Opdracht>, Cloneable{

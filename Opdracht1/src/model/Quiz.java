@@ -2,6 +2,7 @@ package model;
 
 import java.util.Arrays;
 
+import model.enums.QuizStatus;
 import utils.Datum;
 
 /**

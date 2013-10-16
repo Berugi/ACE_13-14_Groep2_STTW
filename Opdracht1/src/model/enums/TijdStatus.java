@@ -1,4 +1,4 @@
-package model;
+package model.enums;
 import java.util.*;
 
 public enum TijdStatus {
