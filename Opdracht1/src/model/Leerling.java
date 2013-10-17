@@ -15,7 +15,7 @@ public class Leerling {
 
 	//getters & setters
 	
-	protected String getNaam() {
+	public String getNaam() {
 		return naam;
 	}
 
@@ -26,7 +26,7 @@ public class Leerling {
 			this.naam = naam;
 	}
 
-	protected int getLeerjaar() {
+	public int getLeerjaar() {
 		return leerjaar;
 	}
 

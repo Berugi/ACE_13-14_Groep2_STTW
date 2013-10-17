@@ -33,7 +33,7 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 	
 	//getters & setters
 	
-	protected String getVraag() {
+	public String getVraag() {
 		return vraag;
 	}
 
@@ -41,7 +41,7 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 		this.vraag = vraag;
 	}
 
-	protected String getJuisteAntwoord() {
+	public String getJuisteAntwoord() {
 		for(Antwoord antwoord : antwoorden){
 				if(antwoord.isJuist()){
 					return ""+antwoord;
@@ -68,7 +68,7 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 		}
 	}
 
-	protected int getMaxAantalPogingen() {
+	public int getMaxAantalPogingen() {
 		return maxAantalPogingen;
 	}
 
@@ -76,7 +76,7 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 		this.maxAantalPogingen = maxAantalPogingen;
 	}
 
-	protected String[] getAntwoordHints() {
+	public String[] getAntwoordHints() {
 		return antwoordHints;
 	}
 
@@ -84,7 +84,7 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 		this.antwoordHints = antwoordHints;
 	}
 	
-	protected int getMaxAntwoordTijd() {
+	public int getMaxAntwoordTijd() {
 		return maxAntwoordTijd;
 	}
 	
@@ -92,7 +92,7 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 		this.auteur = auteur;
 	}
 	
-	protected Leraar getAuteur() {
+	public Leraar getAuteur() {
 		return auteur;
 	}
 	
@@ -100,7 +100,7 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 		this.categorie = categorie;
 	}
 	
-	protected OpdrachtCategorie getOpdrachtCategorie() {
+	public OpdrachtCategorie getOpdrachtCategorie() {
 		return categorie;
 	}
 	

@@ -16,7 +16,7 @@ public class Antwoord {
 		this.juist = juist;
 	}
 	
-	protected String getAntwoord() {
+	public String getAntwoord() {
 		return antwoord;
 	}
 	

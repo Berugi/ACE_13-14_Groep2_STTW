@@ -28,7 +28,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	//getters & setters
 
-	protected String getOnderwerp() {
+	public String getOnderwerp() {
 		return onderwerp;
 	}
 
@@ -43,7 +43,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		else throw new IllegalArgumentException("Argument cannot be null or empty");
 	}
 	
-	protected int[] getLeerjaren() {
+	public int[] getLeerjaren() {
 		return leerjaren;
 	}
 	
@@ -59,7 +59,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		}
 	}
 
-	protected Boolean getIsTest() {
+	public Boolean getIsTest() {
 		return isTest;
 	}
 
@@ -67,7 +67,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		this.isTest = isTest;
 	}
 
-	protected Boolean getIsUniekeDeelname() {
+	public Boolean getIsUniekeDeelname() {
 		return isUniekeDeelname;
 	}
 
@@ -75,7 +75,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		this.isUniekeDeelname = isUniekeDeelname;
 	}
 
-	protected Leraar getAuteur() {
+	public Leraar getAuteur() {
 		return auteur;
 	}
 

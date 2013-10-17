@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Catalogus implements Comparable<Catalogus>, Cloneable, Iterable<Catalogus>{
 	   
-    protected ArrayList<Object> catalogus;
+    public ArrayList<Object> catalogus;
    
     //getters and setters
     public ArrayList<Object> getCatalogus() {

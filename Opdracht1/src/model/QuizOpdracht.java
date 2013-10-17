@@ -12,7 +12,7 @@ public class QuizOpdracht {
 	
 	//getters & setters
 	
-	protected int getMaxScore() {
+	public int getMaxScore() {
 		return maxScore;
 	}
 	
@@ -20,7 +20,7 @@ public class QuizOpdracht {
 		this.maxScore = maxScore;
 	}
 	
-	protected ArrayList<Quiz> getQuizzes() {
+	public ArrayList<Quiz> getQuizzes() {
 		return quizzes;
 	}
 	
@@ -28,7 +28,7 @@ public class QuizOpdracht {
 		this.quizzes = new ArrayList<Quiz>(quizzes);
 	}
 	
-	protected Opdracht getOpdracht() {
+	public Opdracht getOpdracht() {
 		return opdracht;
 	}
 	
