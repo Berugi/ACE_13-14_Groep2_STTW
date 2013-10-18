@@ -7,11 +7,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.Antwoord;
-import model.Leraar;
 import model.Opdracht;
 import model.enums.AntwoordCategorie;
 import model.enums.OpdrachtCategorie;
+import model.enums.Leraar;
 import utils.Datum;
+
+/*********************************
+ * 
+ * Create a Opdracht object 
+ * 
+ * @author Sander Van der Borght
+ * @version 20131008-01 =  initial
+ * @version 20131013-01 = modification done by Tom Scheepers (only 1 answer allowed -> String iso Arraylist)
+ *
+ * @
+ */
 
 public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 	
@@ -19,12 +30,8 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 	
 	private String vraag;
 	private int maxAantalPogingen;
-	//private IetsMetTijd ??? maxAntwoordTijd
-	private int maxAntwoordTijd;
-	
-	//private String juisteAntwoord;
-	//Arraylist om makkelijk antwoorden toe te voegen en te verwijderen.
-	private ArrayList<Antwoord> antwoorden = new ArrayList<Antwoord>();
+	private int maxAntwoordTijd; // in seconden
+	private String juisteAntwoord;
 	private String[] antwoordHints;
 	private Leraar auteur;
 	private OpdrachtCategorie categorie;
@@ -41,32 +48,14 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 		this.vraag = vraag;
 	}
 
-	public String getJuisteAntwoord() {
-		for(Antwoord antwoord : antwoorden){
-				if(antwoord.isJuist()){
-					return ""+antwoord;
-				}
-		}
-		//Exception nodig
-		return "Exception: No answer found!";
+	protected String getJuisteAntwoord() {
+		return this.juisteAntwoord;
 	}
 
 	private void setJuisteAntwoord(String juisteAntwoord) {
-		boolean gevonden = false;;
-		for(Antwoord antwoord : antwoorden){
-			if(antwoord.getCategorie() == AntwoordCategorie.enigAntwoord && antwoord.toString() != juisteAntwoord){
-				antwoord.setJuist(false);
-			}
-			else if(antwoord.toString() == juisteAntwoord){
-				antwoord.setJuist(true);
-				gevonden = true;
-			}
-		}
-		if(gevonden == false){
-			//als juisteantwoord niet gevonden dan gevonden == false en wordt volgende uitgevoerd:
-			this.antwoorden.add(new Antwoord(juisteAntwoord, true));
-		}
+		this.juisteAntwoord=juisteAntwoord;
 	}
+
 
 	public int getMaxAantalPogingen() {
 		return maxAantalPogingen;
@@ -105,9 +94,28 @@ public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
 	}
 	
 	//constructors
+	
+	/**
+	 * @param vraag (String) de vraag
+	 * @param juisteAntwoord (String) het antwoord
+	 * @param antwoordHints (ArrayList) 1 of meer hints
+	 * @param maxAantalPogingen (int) het aantal pogingen dat mag gedaan worden - default = 1
+	 * @param maxAntwoordTijd (int) tijd in seconden die mag gebruikt worden om een antwoord te geven - 0 = geen tijdslimiet
+	 * @param auteur (enum Leraar) de auteur van de vraag
+	 * @param categorie (enum OpdrachtCategorie) de categorie van de opdracht
+	 * 	
+	 */
+	
 	public OpdrachtBase(){
-		
+		this.vraag = "";
+		this.juisteAntwoord="";
+		this.antwoordHints=null;
+		this.maxAantalPogingen=1;
+		this.maxAntwoordTijd=0; //0 = unlimited time
+		this.auteur=Leraar.TBA;
+		this.categorie=OpdrachtCategorie.TBA;
 	}
+	
 	public OpdrachtBase(String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
 			String ... antwoordHints) {
