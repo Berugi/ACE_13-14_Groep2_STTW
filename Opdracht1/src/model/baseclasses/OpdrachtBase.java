@@ -24,7 +24,7 @@ import utils.Datum;
  * @
  */
 
-public abstract class OpdrachtBase implements Comparable<Opdracht>, Cloneable{
+public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	
 	//data members
 	

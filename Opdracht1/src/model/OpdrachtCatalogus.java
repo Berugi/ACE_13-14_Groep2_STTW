@@ -1,6 +1,10 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import model.baseclasses.*;
+import DatumV1.Datum;
+import model.enums.Leraar;
+
 
 public class OpdrachtCatalogus extends Catalogus{
 	
@@ -13,11 +17,15 @@ public class OpdrachtCatalogus extends Catalogus{
 	//constructors
 	
 	public OpdrachtCatalogus() {
-		this.catalogus = new ArrayList<Object>();
+		this.catalogus=new ArrayList<Object>();
+		this.registratiedatum = new Datum();
+		this.auteur = Leraar.TBA;
 	}
 	
-	public OpdrachtCatalogus(ArrayList<Opdracht> catalogus) {
+	public OpdrachtCatalogus(ArrayList<Opdracht> catalogus, Datum registratiedatum, Leraar auteur) {
 		this.catalogus = new ArrayList<Object>(catalogus);
+		this.registratiedatum = registratiedatum;
+		this.auteur = auteur;
 	}
 	
 	//methods
