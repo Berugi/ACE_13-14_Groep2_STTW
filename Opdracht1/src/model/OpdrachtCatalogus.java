@@ -46,9 +46,12 @@ public class OpdrachtCatalogus extends Catalogus{
 	
 	public boolean Opdracht_verwijderen(OpdrachtBase opdracht){
 		try{
+			if (opdracht.getQuizOpdrachten().size()==0){
 			this.remove(opdracht);
 			opdracht = null;
 			return true;
+			}
+			return false;
 		}
 		catch (Exception e){
 			return false;
