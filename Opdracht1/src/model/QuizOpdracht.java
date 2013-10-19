@@ -9,6 +9,7 @@ public class QuizOpdracht {
 	private int maxScore;
 	private ArrayList<Quiz> quizzes;
 	private Opdracht opdracht;
+	private Set<OpdrachtAntwoord> opdrachtAntwoorden;
 	
 	//getters & setters
 	
@@ -36,15 +37,24 @@ public class QuizOpdracht {
 		this.opdracht = opdracht;
 	}
 	
+	public Set<OpdrachtAntwoord> getOpdrachtAntwoorden(){
+		return opdrachtAntwoorden;
+	}
+	
 	//constructors
 	
 	public QuizOpdracht(int maxScore, ArrayList<Quiz> quizzes, Opdracht opdracht) {
 		setMaxScore(maxScore);
 		setQuizzes(quizzes);
 		setOpdracht(opdracht);
+		this.opdrachtAntwoorden = new HashSet<OpdrachtAntwoord>();
 	}
 	
 	//methods
+	
+	public int AantalMaalBeantwoord(){
+		return opdrachtAntwoorden.size();
+	}
 	
 	//...
 }

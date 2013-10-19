@@ -5,9 +5,12 @@ import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 
 import model.Antwoord;
 import model.Opdracht;
+import model.QuizOpdracht;
 import model.enums.AntwoordCategorie;
 import model.enums.OpdrachtCategorie;
 import model.enums.Leraar;
@@ -36,6 +39,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	private Leraar auteur;
 	private OpdrachtCategorie categorie;
 	private Datum datumRegistratie;
+	private Set<QuizOpdracht> quizOpdrachten;
 	
 	
 	//getters & setters
@@ -93,8 +97,16 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		return categorie;
 	}
 	
-	//constructors
+	public Set<QuizOpdracht> getQuizOpdrachten() {
+		return quizOpdrachten;
+	}
+
+	public void setQuizOpdrachten(Set<QuizOpdracht> quizOpdrachten) {
+		this.quizOpdrachten = quizOpdrachten;
+	}
 	
+	//constructors
+
 	/**
 	 * @param vraag (String) de vraag
 	 * @param juisteAntwoord (String) het antwoord
@@ -114,6 +126,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		this.maxAntwoordTijd=0; //0 = unlimited time
 		this.auteur=Leraar.TBA;
 		this.categorie=OpdrachtCategorie.TBA;
+		this.setQuizOpdrachten(new HashSet<QuizOpdracht>());
 	}
 	
 	public OpdrachtBase(String vraag, String juisteAntwoord, int maxAantalPogingen,
@@ -137,22 +150,54 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	 * @return true als wijziging succesvol was
 	 */
 	
-	public Boolean Opdracht_wijzigen(){
+	public Boolean Opdracht_wijzigen(String vraag, String juisteAntwoord, int maxAantalPogingen,
+			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
+			String ... antwoordHints){
 		try{
-			
-		return true;
+			setVraag(vraag);
+			setJuisteAntwoord(juisteAntwoord);
+			setMaxAantalPogingen(maxAantalPogingen);
+			setMaxAantalPogingen(maxAntwoordTijd);
+			setAuteur(auteur);
+			setOpdrachtCategorie(categorie);
+			setAntwoordHints(antwoordHints);
+			return true;
 		}
 		catch (Exception e){
-		return false;
+			return false;
 		}
 	}
 	
+	/**
+	 * Controle of opdracht al eens beantwoord werd
+	 * @return true als nog geen enkele maal beantwoord werd
+	 */
+	
+	public Boolean MagGewijzigdWorden(){
+		int totaal = 0;
+		for (QuizOpdracht qo: quizOpdrachten)
+		{
+			totaal = totaal + qo.AantalMaalBeantwoord();
+		}
+		if (totaal==0)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Controleert het gegeven antwoord op juistheid
+	 * @param antwoord
+	 * @return
+	 */
+	
 	public Boolean IsJuisteAntwoord(String antwoord) {
-		if(this.getJuisteAntwoord() == antwoord){
+		if(this.getJuisteAntwoord().equals(antwoord)){
 				return true;
 		}
 		else{
-		return false;
+			return false;
 		}
 	}
 
