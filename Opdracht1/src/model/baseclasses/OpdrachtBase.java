@@ -131,13 +131,29 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	
 	//methods
 	
-	public Boolean IsJuisteAntwoord(String antwoord) {
-		for(Antwoord _antwoord : antwoorden){
-			if(_antwoord.toString() == antwoord){
-				return _antwoord.isJuist();
-			}
+	/**
+	 * Wijzig de opdracht.
+	 * Constraint: Opdracht mag enkel gewijzigd worden als ze nog niet behoort tot een Quiz die door leerlingen al is uitgevoerd
+	 * @return true als wijziging succesvol was
+	 */
+	
+	public Boolean Opdracht_wijzigen(){
+		try{
+			
+		return true;
 		}
+		catch (Exception e){
 		return false;
+		}
+	}
+	
+	public Boolean IsJuisteAntwoord(String antwoord) {
+		if(this.getJuisteAntwoord() == antwoord){
+				return true;
+		}
+		else{
+		return false;
+		}
 	}
 
 	public int compareTo(Opdracht arg0) {

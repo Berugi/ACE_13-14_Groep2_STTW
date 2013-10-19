@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import model.baseclasses.*;
 import DatumV1.Datum;
 import model.enums.Leraar;
+import java.util.Iterator;
 
 
 public class OpdrachtCatalogus extends Catalogus{
-	
-	//data members
-	//Nu in abstracte klasse
-
-	//getters & setters
-	//Nu in abstracte klasse
 	
 	//constructors
 	
@@ -29,6 +24,37 @@ public class OpdrachtCatalogus extends Catalogus{
 	}
 	
 	//methods
+	
+	public boolean Opdracht_toevoegen(OpdrachtBase opdracht){
+		try{
+			this.add(opdracht);
+			return true;
+		}
+		catch (Exception e){
+			return false;
+		}
+	}
+	
+	/**
+	 * 
+	 * Opdracht volledig verwijderen
+	 * Constraint: Opdracht mag enkel verwijderd worden als deze nog niet werd uitgevoerd door een leerling
+	 * 
+	 * @param opdracht
+	 * @return true als het verwijderen gelukt is
+	 */
+	
+	public boolean Opdracht_verwijderen(OpdrachtBase opdracht){
+		try{
+			this.remove(opdracht);
+			opdracht = null;
+			return true;
+		}
+		catch (Exception e){
+			return false;
+		}
+	}
+	
 	@Override
 	public Opdracht change(int index) {
 		return  (Opdracht) catalogus.get(index);
@@ -48,7 +74,7 @@ public class OpdrachtCatalogus extends Catalogus{
 	}
 
 	public Iterator<Catalogus> iterator() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }
