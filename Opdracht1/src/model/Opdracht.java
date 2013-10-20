@@ -19,9 +19,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	//private IetsMetTijd ??? maxAntwoordTijd
 	private int maxAntwoordTijd;
 	
-	//private String juisteAntwoord;
-	//Arraylist om makkelijk antwoorden toe te voegen en te verwijderen.
-	private ArrayList<Antwoord> antwoorden = new ArrayList<Antwoord>();
+	private String juisteAntwoord;
 	private String[] antwoordHints;
 	private Leraar auteur;
 	private OpdrachtCategorie categorie;
@@ -39,30 +37,13 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	}
 
 	public String getJuisteAntwoord() {
-		for(Antwoord antwoord : antwoorden){
-				if(antwoord.isJuist()){
-					return ""+antwoord;
-				}
-		}
-		//Exception nodig
-		return "Exception: No answer found!";
+		return this.juisteAntwoord;
 	}
 
 	private void setJuisteAntwoord(String juisteAntwoord) {
-		boolean gevonden = false;;
-		for(Antwoord antwoord : antwoorden){
-			if(antwoord.getCategorie() == AntwoordCategorie.enigAntwoord && antwoord.toString() != juisteAntwoord){
-				antwoord.setJuist(false);
-			}
-			else if(antwoord.toString() == juisteAntwoord){
-				antwoord.setJuist(true);
-				gevonden = true;
-			}
-		}
-		if(gevonden == false){
-			//als juisteantwoord niet gevonden dan gevonden == false en wordt volgende uitgevoerd:
-			this.antwoorden.add(new Antwoord(juisteAntwoord, true));
-		}
+		
+		this.juisteAntwoord = juisteAntwoord;
+		
 	}
 
 	public int getMaxAantalPogingen() {
@@ -121,12 +102,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	//methods
 	
 	public Boolean IsJuisteAntwoord(String antwoord) {
-		for(Antwoord _antwoord : antwoorden){
-			if(_antwoord.toString() == antwoord){
-				return _antwoord.isJuist();
-			}
-		}
-		return false;
+		return this.juisteAntwoord.equalsIgnoreCase(antwoord);
 	}
 
 	public int compareTo(Opdracht arg0) {
@@ -141,7 +117,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 		int result = 1;
 		result = prime * result + Arrays.hashCode(antwoordHints);
 		result = prime * result
-				+ ((antwoorden == null) ? 0 : antwoorden.hashCode());
+				+ ((juisteAntwoord == null) ? 0 : juisteAntwoord.hashCode());
 		result = prime * result + ((auteur == null) ? 0 : auteur.hashCode());
 		result = prime * result
 				+ ((categorie == null) ? 0 : categorie.hashCode());
@@ -165,10 +141,10 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 		Opdracht other = (Opdracht) obj;
 		if (!Arrays.equals(antwoordHints, other.antwoordHints))
 			return false;
-		if (antwoorden == null) {
-			if (other.antwoorden != null)
+		if (juisteAntwoord == null) {
+			if (other.juisteAntwoord != null)
 				return false;
-		} else if (!antwoorden.equals(other.antwoorden))
+		} else if (!juisteAntwoord.equals(other.juisteAntwoord))
 			return false;
 		if (auteur != other.auteur)
 			return false;
@@ -195,7 +171,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	public String toString() {
 		return "Opdracht [vraag=" + vraag + ", maxAantalPogingen="
 				+ maxAantalPogingen + ", maxAntwoordTijd=" + maxAntwoordTijd
-				+ ", antwoorden=" + antwoorden + ", antwoordHints="
+				+ ", juiste antwoord=" + juisteAntwoord + ", antwoordHints="
 				+ Arrays.toString(antwoordHints) + ", auteur=" + auteur
 				+ ", categorie=" + categorie + ", datumRegistratie="
 				+ datumRegistratie + "]";
