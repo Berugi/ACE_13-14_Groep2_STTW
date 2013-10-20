@@ -2,17 +2,21 @@ package model;
 
 import java.util.*;
 
-public class QuizCatalogus extends Catalogus {
-	
-	//data members
-	//Nu in abstracte klasse
 
-	//getters & setters
-	//Nu in abstracte klasse
-	
-	
+/**
+ * 
+ * @author Sander van der Borght
+ * 
+ * @version 20131008-01 - Initial version
+ * @version 20131020-01 - modified by Tom Vaes - 
+ *
+ * Bevat QuizCatalogues informatie
+ */
+
+
+public class QuizCatalogus extends Catalogus {
+
 	//constructors
-	
 	public QuizCatalogus() {
 		this.catalogus = new ArrayList<Object>();
 	}

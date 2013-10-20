@@ -10,7 +10,9 @@ import utils.Datum;
  * @author Sander van der Borght
  * 
  * @version 20131008-01 - Initial version
- * @version 20131013-01 - modified by Tom Scheepers - added QuizStatus
+ * @version 20131013-01 - modified by Tom Vaes - added datumRegistratie
+ * @version 20131013-02 - modified by Tom Scheepers - added QuizStatus
+ * @version 20131020-01 - modified by Tom Vaes - 
  *
  * Bevat Quiz informatie
  */
@@ -91,6 +93,31 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	//constructors
 
+	public Quiz()
+	{
+		this(" ", null, false, false, null);		
+	}
+	
+	public Quiz(Leraar auteur)
+	{
+		this(" ", null, false, false, auteur);		
+	}
+		
+	public Quiz(String onderwerp)
+	{
+		this(onderwerp, null, false, false, null);
+	}
+		
+	public Quiz(String onderwerp, Leraar auteur)
+	{
+		this (onderwerp, null, false, false, auteur);
+	}
+	
+	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur)
+	{
+		this(onderwerp, leerjaren, false, false, auteur);
+	}
+	
 
 	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
 			Boolean isUniekeDeelname, Leraar auteur) {

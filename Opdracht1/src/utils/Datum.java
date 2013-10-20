@@ -1,13 +1,26 @@
 package utils;
 import java.util.Date;
 
-//import DatumV1.Datum;
+/**
+ * 
+ * @author Tom Vaes
+ * 
+ * @version 20131004-01 - Initial version
+ * @version 20131013-01 - modified by Tom Vaes - updated several methods
+ * @version 20131020-01 - modified by Tom Vaes - added Java text
+ * 
+ * Bevat Datum class from scratch
+ */
 
 public class Datum implements Comparable<Datum>
 {
 
 	/**
-	 * Variabelen
+	 * Private Variabelen
+	 * 
+	 * int dag, maand, jaar
+	 * int[] DAGEN_PER_MAAND
+	 * String[] MAANDEN_NAAR_TEKST
 	 */
 	
 	private int dag, maand, jaar;
@@ -73,8 +86,18 @@ public class Datum implements Comparable<Datum>
 		this.jaar = jaar;
 		
 	}
+	
 	/**
 	 * Constructors
+	 * 
+	 * Datum() : Sets the date to system date
+	 * 
+	 * Datum(Datum datum) : Sets the date using a Datum object
+	 * 
+	 * Datum(int dag, int maand, int jaar) : Sets the date using 3 integers for day, month and year
+	 * 
+	 * Datum(String datum) : Sets the date using a string format dd/mm/yyyy separated with a /
+	 * 
 	 */
 
 	public Datum() throws IllegalArgumentException
@@ -204,9 +227,8 @@ public class Datum implements Comparable<Datum>
 			return this.compareTo(d); 
 	}
 	
-	/*
-	 * Needs some finetunig, doesn't work correctly
-	 */
+	
+	//Needs some finetunig, doesn't work correctly
 	public void veranderDatum(int aantalDagen)
 	{
 		
@@ -257,10 +279,7 @@ public class Datum implements Comparable<Datum>
 		return newDate;
 	}
 	
-	/**
-	 * 
-	 * Main method
-	 */
+	//Main method used only for testing when Junit test van not available
 	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
