@@ -1,13 +1,20 @@
 package model;
 
-import java.util.Set;
-import java.util.HashSet;
-
+import utils.Datum;
+/**
+ * 
+ * @author 
+ * 
+ * @version 20131020-01 - modified by Sander Van der Borght - Added constructor
+ *
+ * Bevat QuizCatalogues informatie
+ */
 public class QuizDeelname {
 
 	private Leerling leerling;
 	private Quiz quiz;
-	private Set antwoorden;
+	private OpdrachtAntwoord[] antwoorden;
+	private Datum datumDeelname;
 	
 	// Setters & Getters
 	
@@ -23,20 +30,25 @@ public class QuizDeelname {
 	public void setQuiz(Quiz quiz) {
 		this.quiz = quiz;
 	}
-	public Set getAntwoorden() {
+	public OpdrachtAntwoord[] getAntwoorden() {
 		return antwoorden;
 	}
-	public void setAntwoorden(Set antwoorden) {
+	public void setAntwoorden(OpdrachtAntwoord[] antwoorden) {
 		this.antwoorden = antwoorden;
+	}
+	public Datum getDatumDeelname() {
+		return datumDeelname;
 	}
 	
 	// Constructors
 	
 	public QuizDeelname(){
-		this.setLeerling(null);
-		this.setQuiz(null);
-		this.setAntwoorden(new HashSet<OpdrachtAntwoord>());
+		datumDeelname = new Datum();
 	}
-	
-	
+	public QuizDeelname(Leerling leerling,Quiz quiz,OpdrachtAntwoord... antwoorden){
+		this();
+		setLeerling(leerling);
+		setQuiz(quiz);
+		setAntwoorden(antwoorden);
+	}	
 }

@@ -19,7 +19,7 @@ import model.interfaces.IValideerbaar;
 public class MeerKeuze extends OpdrachtBase implements IValideerbaar {
 	
 	private ArrayList<String> keuzes;
-	private String valideerTekst = "Er is nog geen validatie aangevraagd";
+	private String valideerTekst = "Er is nog geen validatie gebeurd";
 
 	public MeerKeuze() {
 		this.keuzes = null;

@@ -16,10 +16,10 @@ import model.interfaces.IValideerbaar;
 
 public class Opsomming  extends OpdrachtBase implements IValideerbaar {
 
-	private String valideerTekst;
+	private String valideerTekst = "Er is nog geen validatie gebeurd";
 	
 	public Opsomming() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Opsomming(String vraag, String juisteAntwoord,
@@ -27,9 +27,9 @@ public class Opsomming  extends OpdrachtBase implements IValideerbaar {
 			OpdrachtCategorie categorie, String... antwoordHints) {
 		super(vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd,
 				auteur, categorie, antwoordHints);
-		// TODO Auto-generated constructor stub
 	}
 	
+	//getters en setters
 	private String[] getAntwoordlijst(){
 		return super.getJuisteAntwoord().split(";");
 	}
@@ -82,7 +82,7 @@ public class Opsomming  extends OpdrachtBase implements IValideerbaar {
 		return true;
 	}
 	
-	
+	//kijkt na of de opsomming het juist aantal elementen bevat, gescheiden door ';'
 	public boolean isValide(String antwoord){
 		if(this.getAntwoordlijst().length > 1){
 			if(!antwoord.contains(";")){

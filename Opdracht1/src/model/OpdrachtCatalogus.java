@@ -12,7 +12,7 @@ public class OpdrachtCatalogus extends Catalogus{
 	//constructors
 	
 	public OpdrachtCatalogus() {
-		this.catalogus=new ArrayList<Object>();
+		this.catalogus = new ArrayList<Object>();
 		this.registratiedatum = new Datum();
 		this.auteur = Leraar.TBA;
 	}
@@ -39,6 +39,7 @@ public class OpdrachtCatalogus extends Catalogus{
 	 * 
 	 * Opdracht volledig verwijderen
 	 * Constraint: Opdracht mag enkel verwijderd worden als deze nog niet werd uitgevoerd door een leerling
+	 * @version 20131020-01 toevoegen constraint Sander Van der Borght
 	 * 
 	 * @param opdracht
 	 * @return true als het verwijderen gelukt is
@@ -47,9 +48,11 @@ public class OpdrachtCatalogus extends Catalogus{
 	public boolean Opdracht_verwijderen(OpdrachtBase opdracht){
 		try{
 			if (opdracht.getQuizOpdrachten().size()==0){
-			this.remove(opdracht);
-			opdracht = null;
-			return true;
+				if(opdracht.MagGewijzigdWorden()){
+					this.remove(opdracht);
+					opdracht = null;
+					return true;
+				}
 			}
 			return false;
 		}

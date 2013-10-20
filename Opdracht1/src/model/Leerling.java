@@ -20,10 +20,12 @@ public class Leerling {
 	}
 
 	private void setNaam(String naam) throws IllegalArgumentException {
-		if(naam == null || naam.isEmpty())
+		if(naam == null || naam.isEmpty()){
 			throw new IllegalArgumentException("Naam cannot be null or empty.");
-		else
+		}
+		else{
 			this.naam = naam;
+		}
 	}
 
 	public int getLeerjaar() {
@@ -31,10 +33,12 @@ public class Leerling {
 	}
 
 	private void setLeerjaar(int leerjaar) throws IllegalArgumentException {
-		if(leerjaar < 1 || leerjaar > 6)
+		if(leerjaar < 1 || leerjaar > 6){
 			throw new IllegalArgumentException("Leerjaar must be between 1 and 6.");
-		else
+		}
+		else{
 			this.leerjaar = leerjaar;
+		}
 	}
 	
 	//constructors
