@@ -47,15 +47,16 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	}
 	
 	//er zijn 6 leerjaren genummerd van 1 tot en met 6
-	private void setLeerjaren(int[] leerjaren) throws IllegalArgumentException {
-		if(leerjaren.length == 0)
+	public void setLeerjaren(int[] leerjaren) throws IllegalArgumentException {
+		/*if(leerjaren.length == 0)
 			throw new IllegalArgumentException("Leerjaren must contain at least one element.");
 		else{
 			this.leerjaren = new int[leerjaren.length];
 			for(int i = 0; i < leerjaren.length; i++) {
 				this.leerjaren[i] = leerjaren[i];
 			}
-		}
+		}*/
+		this.leerjaren = leerjaren;
 	}
 
 	public Boolean getIsTest() {
@@ -82,9 +83,13 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		this.auteur = auteur;
 	}
 	
-	public void setDatumRegistratie(Datum datum)
+	public void setDatumRegistratie(Datum datum) throws IllegalArgumentException
 	{
 		this.datumRegistratie = datum;
+	}
+	
+	public Datum getDatumRegistratie(){
+		return this.datumRegistratie;
 	}
 	
 	public void setQuizStatus(QuizStatus status)
@@ -99,35 +104,40 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	//constructors
 
-	public Quiz()
-	{
-		this(" ", null, false, false, null, null, null);		
-	}
-	
-	public Quiz(Leraar auteur)
-	{
-		this(" ", null, false, false, auteur, null, null);		
-	}
-		
-	public Quiz(String onderwerp)
-	{
-		this(onderwerp, null, false, false, null, null,null);
-	}
-		
-	public Quiz(String onderwerp, Leraar auteur)
-	{
-		this (onderwerp, null, false, false, auteur, null,null);
-	}
+//	public Quiz()
+//	{
+//		this(" ", null, false, false, null, null, null);		
+//	}
+//	
+//	public Quiz(Leraar auteur)
+//	{
+//		this(" ", null, false, false, auteur, null, null);		
+//	}
+//		
+//	public Quiz(String onderwerp)
+//	{
+//		this(onderwerp, null, false, false, null, null,null);
+//	}
+//		
+//	public Quiz(String onderwerp, Leraar auteur)
+//	{
+//		this (onderwerp, null, false, false, auteur, null,null);
+//	}
 	
 	public Quiz(String onderwerp, Leraar auteur, Datum regDatum)
 	{
 		this (onderwerp, null, false, false, auteur, regDatum,null);
 	}
 	
-	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur)
+	public Quiz(String onderwerp, Leraar auteur, Datum regDatum, QuizStatus status)
 	{
-		this(onderwerp, leerjaren, false, false, auteur, null,null);
+		this (onderwerp, null, false, false, auteur, regDatum,status);
 	}
+	
+//	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur)
+//	{
+//		this(onderwerp, leerjaren, false, false, auteur, null,null);
+//	}
 	
 	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur, Datum regDatum)
 	{
@@ -218,10 +228,32 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	 * zoals komma's, vraagtekens,... De woorden 'de, een, het, met, van, in'  worden bij de vergelijking van de 
 	 * onderwerpen genegeerd. Volgens deze afspraken is 'hoofdsteden europa' gelijk aan 'De hoofdsteden van Europa'.
 	 */
+	
+	private String removeDelimString(String tekst, String[] delim)
+	{
+		final  String[] delimitors = delim;
+		String str, input;
+		String[] output;
+		
+		input = tekst.toLowerCase();
+		for(int i=0; i<delimitors.length; i++)
+		{
+			str = delimitors[i];
+			output = input.split(str);
+			input = "";
+			for(String s: output)
+			{
+				input += s;
+			}
+		}
+		
+		return input;
+	}
+	
 	public String getShortOnderwerp(){
-		String delimitors[] = {"van","de","een","het","met","in"};
-		//Volgende moet korter kunnen; verwijderen van de, een, het, met, van, in en spaties
-		return this.onderwerp.replaceAll("van", "").replaceAll("de", "").replaceAll("een", "").replaceAll("het", "").replaceAll("met", "").replaceAll("in", "").replaceAll(" ", "");
+		//delimitors kunnen eventueel in de Business intel gestopt worden.
+		final String[] delimitors = {"van","de","een","het","met","in","([.,!?:;'\"-]|\\s)+"};
+		return removeDelimString(this.getOnderwerp(),delimitors);
 	}
 	
 	public int compareTo(Quiz o) {

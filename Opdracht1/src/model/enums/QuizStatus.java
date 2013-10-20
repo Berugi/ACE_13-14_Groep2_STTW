@@ -18,7 +18,7 @@ public enum QuizStatus {
 	
 	private final String statusVanQuiz;
 	
-	private String getStatusVanQuiz()
+	public String getStatusVanQuiz()
 	{
 		return statusVanQuiz;
 	}

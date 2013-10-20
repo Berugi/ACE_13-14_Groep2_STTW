@@ -103,7 +103,7 @@ public class Datum implements Comparable<Datum>
 	public Datum() throws IllegalArgumentException
 	{
 		Date systeemDatum = new Date();
-		setDatum(systeemDatum.getDate(),systeemDatum.getMonth(),1900 + systeemDatum.getYear());
+		setDatum(systeemDatum.getDate(),systeemDatum.getMonth()+1,1900 + systeemDatum.getYear());
 	}
 	
 	public Datum(Datum datum) throws IllegalArgumentException
@@ -285,21 +285,23 @@ public class Datum implements Comparable<Datum>
 		// TODO Auto-generated method stub
 		Datum d = new Datum("19/02/2014");
 		Datum d1 = new Datum(19,2,2014);
-		System.out.println(d);
-		System.out.println(d.getDatumInAmerikaansFormaat());
-		System.out.println(d.getDatumInEuropeesFormaat());
-		System.out.println(d.getDatumInAantalDagen());
-		System.out.println(d1.getDatumInAantalDagen());
-		System.out.println(d.kleinerDan(d1));
-		System.out.println(d.verschilInJaren(d1));
-		System.out.println(d.verschilInMaanden(d1));
-		d1.veranderDatum(1200);
-		System.out.println(d1);
-		System.out.println(d.getDatumInAantalDagen());
-		System.out.println(d1.getDatumInAantalDagen());
-		System.out.println(d1.verschilInDagen(d));
-		Datum d2 = d.veranderDatumObject(10);
-		System.out.println(d2);
+		Datum d3 = new Datum();
+		System.out.println(d3);
+//		System.out.println(d);
+//		System.out.println(d.getDatumInAmerikaansFormaat());
+//		System.out.println(d.getDatumInEuropeesFormaat());
+//		System.out.println(d.getDatumInAantalDagen());
+//		System.out.println(d1.getDatumInAantalDagen());
+//		System.out.println(d.kleinerDan(d1));
+//		System.out.println(d.verschilInJaren(d1));
+//		System.out.println(d.verschilInMaanden(d1));
+//		d1.veranderDatum(1200);
+//		System.out.println(d1);
+//		System.out.println(d.getDatumInAantalDagen());
+//		System.out.println(d1.getDatumInAantalDagen());
+//		System.out.println(d1.verschilInDagen(d));
+//		Datum d2 = d.veranderDatumObject(10);
+//		System.out.println(d2);
 	}
 
 }
