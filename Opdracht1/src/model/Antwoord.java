@@ -1,7 +1,14 @@
 package model;
 
 import model.enums.AntwoordCategorie;
-
+/**
+ * 
+ * @author Sander van der Borght
+ * 
+ * Hoeft niet meer gebruikt te worden: zie klasse meerkeuze en opsomming voor soorten antwoorden
+ *
+ * Bevat Quiz informatie
+ */
 public class Antwoord {
 
 	//data members
@@ -63,8 +70,8 @@ public class Antwoord {
 	}
 	
 	public Antwoord(String... antwoordlijst){
-		for(String antwoord : antwoordlijst){
-			setAntwoord(antwoord);
+		for(String antwoord : antwoordlijst){			
+			setAntwoord(antwoord+";");
 		}
 		categorie = AntwoordCategorie.opsomming;
 	}
