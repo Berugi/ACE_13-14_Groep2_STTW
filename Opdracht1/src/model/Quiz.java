@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import model.enums.QuizStatus;
 import utils.Datum;
+import model.enums.Leraar;
 
 /**
  * 
@@ -12,7 +13,7 @@ import utils.Datum;
  * @version 20131008-01 - Initial version
  * @version 20131013-01 - modified by Tom Vaes - added datumRegistratie
  * @version 20131013-02 - modified by Tom Scheepers - added QuizStatus
- * @version 20131020-01 - modified by Tom Vaes - 
+ * @version 20131020-01 - modified by Tom Vaes - added constructors
  *
  * Bevat Quiz informatie
  */
@@ -34,19 +35,15 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return onderwerp;
 	}
 
-	/*
-	 * Bij het vergelijken van de onderwerpnamen houden we geen rekening met hoofdletters, blanco�s en leestekens
-	 * zoals komma�s, vraagtekens,� De woorden� de, een, het, met, van, in�  worden bij de vergelijking van de 
-	 * onderwerpen genegeerd. Volgens deze afspraken is �hoofdsteden europa� gelijk aan �De hoofdsteden van Europa�.
-	 */
-	private void setOnderwerp(String onderwerp) throws IllegalArgumentException {
+	
+	public void setOnderwerp(String onderwerp) throws IllegalArgumentException {
 		if(onderwerp != null && !onderwerp.isEmpty())
 			this.onderwerp = onderwerp;
 		else throw new IllegalArgumentException("Argument cannot be null or empty");
 	}
 	
 	public int[] getLeerjaren() {
-		return leerjaren;
+		return this.leerjaren;
 	}
 	
 	//er zijn 6 leerjaren genummerd van 1 tot en met 6
@@ -62,71 +59,91 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	}
 
 	public Boolean getIsTest() {
-		return isTest;
+		return this.isTest;
 	}
 
-	private void setIsTest(Boolean isTest) {
+	public void setIsTest(Boolean isTest) {
 		this.isTest = isTest;
 	}
 
 	public Boolean getIsUniekeDeelname() {
-		return isUniekeDeelname;
+		return this.isUniekeDeelname;
 	}
 
-	private void setIsUniekeDeelname(Boolean isUniekeDeelname) {
+	public void setIsUniekeDeelname(Boolean isUniekeDeelname) {
 		this.isUniekeDeelname = isUniekeDeelname;
 	}
 
 	public Leraar getAuteur() {
-		return auteur;
+		return this.auteur;
 	}
 
-	private void setAuteur(Leraar auteur) {
+	public void setAuteur(Leraar auteur) {
 		this.auteur = auteur;
 	}
 	
-	private void setDatumRegistratie(Datum datum)
+	public void setDatumRegistratie(Datum datum)
 	{
 		this.datumRegistratie = datum;
 	}
 	
+	public void setQuizStatus(QuizStatus status)
+	{
+		this.quizStatus = status;
+	}
+	
+	public QuizStatus getQuizStatus()
+	{
+		return this.quizStatus;
+	}
 	
 	//constructors
 
 	public Quiz()
 	{
-		this(" ", null, false, false, null);		
+		this(" ", null, false, false, null, null, null);		
 	}
 	
 	public Quiz(Leraar auteur)
 	{
-		this(" ", null, false, false, auteur);		
+		this(" ", null, false, false, auteur, null, null);		
 	}
 		
 	public Quiz(String onderwerp)
 	{
-		this(onderwerp, null, false, false, null);
+		this(onderwerp, null, false, false, null, null,null);
 	}
 		
 	public Quiz(String onderwerp, Leraar auteur)
 	{
-		this (onderwerp, null, false, false, auteur);
+		this (onderwerp, null, false, false, auteur, null,null);
+	}
+	
+	public Quiz(String onderwerp, Leraar auteur, Datum regDatum)
+	{
+		this (onderwerp, null, false, false, auteur, regDatum,null);
 	}
 	
 	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur)
 	{
-		this(onderwerp, leerjaren, false, false, auteur);
+		this(onderwerp, leerjaren, false, false, auteur, null,null);
 	}
 	
-
+	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur, Datum regDatum)
+	{
+		this(onderwerp, leerjaren, false, false, auteur, regDatum,null);
+	}
+	
 	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
-			Boolean isUniekeDeelname, Leraar auteur) {
-		super();
+			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) {
+		//super();
 		setOnderwerp(onderwerp);
 		setLeerjaren(leerjaren);
 		setIsTest(isTest);
 		setIsUniekeDeelname(isUniekeDeelname);
 		setAuteur(auteur);
+		setDatumRegistratie(regDatum);
+		setQuizStatus(status);
 	}
 
 	// Override methodes - standard	
@@ -153,6 +170,8 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		result = prime * result + Arrays.hashCode(leerjaren);
 		result = prime * result
 				+ ((onderwerp == null) ? 0 : onderwerp.hashCode());
+		result = prime * result
+				+ ((quizStatus == null) ? 0 : quizStatus.hashCode());
 		return result;
 	}
 
@@ -189,10 +208,18 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 				return false;
 		} else if (!onderwerp.equals(other.onderwerp))
 			return false;
+		if (quizStatus != other.quizStatus)
+			return false;
 		return true;
 	}
 	
+	/*
+	 * Bij het vergelijken van de onderwerpnamen houden we geen rekening met hoofdletters, blanco's en leestekens
+	 * zoals komma's, vraagtekens,... De woorden 'de, een, het, met, van, in'  worden bij de vergelijking van de 
+	 * onderwerpen genegeerd. Volgens deze afspraken is 'hoofdsteden europa' gelijk aan 'De hoofdsteden van Europa'.
+	 */
 	public String getShortOnderwerp(){
+		String delimitors[] = {"van","de","een","het","met","in"};
 		//Volgende moet korter kunnen; verwijderen van de, een, het, met, van, in en spaties
 		return this.onderwerp.replaceAll("van", "").replaceAll("de", "").replaceAll("een", "").replaceAll("het", "").replaceAll("met", "").replaceAll("in", "").replaceAll(" ", "");
 	}

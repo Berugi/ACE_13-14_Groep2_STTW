@@ -1,6 +1,9 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import model.enums.QuizStatus;
 
 
 /**
@@ -8,27 +11,24 @@ import java.util.*;
  * @author Sander van der Borght
  * 
  * @version 20131008-01 - Initial version
- * @version 20131020-01 - modified by Tom Vaes - 
+ * @version 20131020-01 - modified by Tom Vaes - complete redesign.
  *
  * Bevat QuizCatalogues informatie
  */
 
+public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Catalogus>{
 
-public class QuizCatalogus extends Catalogus {
-
+	public ArrayList<Quiz> quizen;
+	
 	//constructors
 	public QuizCatalogus() {
-		this.catalogus = new ArrayList<Object>();
+		this.quizen = new ArrayList<Quiz>();
 	}
-	
-	public QuizCatalogus(ArrayList<Quiz> catalogus) {
-		this.catalogus = new ArrayList<Object>(catalogus);
-	}
-	
+		
 	//methods
-	@Override
+	
 	Quiz change(int index) {
-		return  (Quiz) catalogus.get(index);
+		return  quizen.get(index);
 	}
 
 	public int compareTo(Catalogus o) {
@@ -41,16 +41,29 @@ public class QuizCatalogus extends Catalogus {
 		return null;
 	}
 	
-	@Override
-	public Boolean add(Object item) {
-		for(Object quiz : this.catalogus) {
-			if(((Quiz)item).getShortOnderwerp().equalsIgnoreCase(((Quiz)quiz).getShortOnderwerp())){
-				this.catalogus.add(item);
+	public Boolean add(Quiz newQuiz) {
+		for(Quiz quiz : this.quizen) {
+			if(newQuiz.getShortOnderwerp().equalsIgnoreCase(quiz.getShortOnderwerp())){
+				this.quizen.add(newQuiz);
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	
+
+	public Boolean remove(Quiz removeQuiz)
+	{
+		QuizStatus status = removeQuiz.getQuizStatus();
+				
+		if(status == QuizStatus.AFGEWERKT || status == QuizStatus.INCONSTRUCTIE)
+			{
+				return false;		
+			}
+			else
+			{
+				this.quizen.remove(removeQuiz);
+				return true;	
+			}
+	}
 }
