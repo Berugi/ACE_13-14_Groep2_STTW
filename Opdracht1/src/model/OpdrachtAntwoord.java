@@ -85,7 +85,7 @@ public class OpdrachtAntwoord implements Comparable<OpdrachtAntwoord>, Cloneable
 	 * @param obj is a non-null OpdrachtAntwoord
 	 * @throws NullPointerException if obj is null
 	 */
-	@Override public int compareTo(OpdrachtAntwoord obj) {
+	public int compareTo(OpdrachtAntwoord obj) {
 		final int BEFORE = -1;
 		final int EQUAL = 0;
 		final int AFTER = 1;
