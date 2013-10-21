@@ -104,9 +104,21 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	public void setQuizOpdrachten(Set<QuizOpdracht> quizOpdrachten) {
 		this.quizOpdrachten = quizOpdrachten;
 	}
-	
-	//constructors
 
+	public Datum getDatumRegistratie() {
+		return datumRegistratie;
+	}
+
+	public void setDatumRegistratie(Datum datumRegistratie) {
+		this.datumRegistratie = datumRegistratie;
+	}
+
+	public void setMaxAntwoordTijd(int maxAntwoordTijd) {
+		this.maxAntwoordTijd = maxAntwoordTijd;
+	}
+
+	//constructors
+	
 	/**
 	 * @param vraag (String) de vraag
 	 * @param juisteAntwoord (String) het antwoord
