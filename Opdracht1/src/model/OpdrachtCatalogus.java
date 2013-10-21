@@ -1,38 +1,59 @@
 package model;
 
 import java.util.ArrayList;
+
 import model.baseclasses.*;
 import DatumV1.Datum;
 import model.enums.Leraar;
+
 import java.util.Iterator;
 
-
-public class OpdrachtCatalogus extends Catalogus{
+/**
+ * 
+ * @author 
+ * 
+ * @version 20131008-01 - Initial version
+ * @version 20131021-01 - Sander Van der Borght removed registratiedatum, auteur, check if this exists in opdracht
+ *
+ * Bevat OpdrachtCatalogues informatie
+ */
+public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Catalogus>{
 	
+	private ArrayList<OpdrachtBase> opdrachten;
 	//constructors
 	
 	public OpdrachtCatalogus() {
-		this.catalogus = new ArrayList<Object>();
-		this.registratiedatum = new Datum();
-		this.auteur = Leraar.TBA;
+		this.opdrachten = new ArrayList<OpdrachtBase>();
+		//this.registratiedatum = new Datum();
+		//this.auteur = Leraar.TBA;
 	}
 	
-	public OpdrachtCatalogus(ArrayList<Opdracht> catalogus, Datum registratiedatum, Leraar auteur) {
-		this.catalogus = new ArrayList<Object>(catalogus);
-		this.registratiedatum = registratiedatum;
-		this.auteur = auteur;
+	//getters en setters
+	public ArrayList<OpdrachtBase> getCatalogus()
+	{
+		return this.opdrachten;
 	}
-	
 	//methods
 	
-	public boolean Opdracht_toevoegen(OpdrachtBase opdracht){
-		try{
-			this.add(opdracht);
-			return true;
+	public boolean add(OpdrachtBase newOpdracht) throws IllegalArgumentException{
+		
+		Boolean result = true;
+		
+		if (newOpdracht.getDatumRegistratie() == null || newOpdracht.getAuteur() == null || newOpdracht.getAuteur() == Leraar.TBA)
+			throw new IllegalArgumentException("Auteur en/of registratie datum van de opdracht moeten ingevuld zijn");
+		
+		for(OpdrachtBase existingOpdracht : this.opdrachten)
+		{
+			if (existingOpdracht.equals(newOpdracht))
+				result = false;
 		}
-		catch (Exception e){
-			return false;
+		
+		if(result) {
+			this.opdrachten.add(newOpdracht);
+			return result;
 		}
+		
+		return result;
 	}
 	
 	/**
@@ -45,11 +66,11 @@ public class OpdrachtCatalogus extends Catalogus{
 	 * @return true als het verwijderen gelukt is
 	 */
 	
-	public boolean Opdracht_verwijderen(OpdrachtBase opdracht){
+	public boolean remove(OpdrachtBase opdracht){
 		try{
 			if (opdracht.getQuizOpdrachten().size()==0){
 				if(opdracht.MagGewijzigdWorden()){
-					this.remove(opdracht);
+					this.opdrachten.remove(opdracht);
 					opdracht = null;
 					return true;
 				}
@@ -61,17 +82,8 @@ public class OpdrachtCatalogus extends Catalogus{
 		}
 	}
 	
-	@Override
-	public Opdracht change(int index) {
-		return  (Opdracht) catalogus.get(index);
-	}
-	
-	
-	public Opdracht getOpdracht(Opdracht o) {
-		if(this.catalogus.contains(o))
-			return o;
-		else
-			return null;
+	public OpdrachtBase change(int index) {
+		return  this.opdrachten.get(index);
 	}
 
 	public int compareTo(Catalogus o) {
