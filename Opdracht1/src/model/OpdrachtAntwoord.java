@@ -86,6 +86,9 @@ public class OpdrachtAntwoord implements Comparable<OpdrachtAntwoord>, Cloneable
 	 * @throws NullPointerException if obj is null
 	 */
 	public int compareTo(OpdrachtAntwoord obj) {
+		
+		//nog eens goed nadenken op welke key er hier moet vergeleken worden
+		
 		final int BEFORE = -1;
 		final int EQUAL = 0;
 		final int AFTER = 1;
