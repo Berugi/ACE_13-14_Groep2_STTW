@@ -273,4 +273,8 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 				+ datumRegistratie + "]";
 	}
 	
+	@Override
+	public OpdrachtBase clone() throws CloneNotSupportedException{
+		return this;
+	}
 }

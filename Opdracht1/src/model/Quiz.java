@@ -5,6 +5,8 @@ import java.util.Arrays;
 import model.enums.QuizStatus;
 import utils.Datum;
 import model.enums.Leraar;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * 
@@ -28,6 +30,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	private Leraar auteur;
 	private Datum datumRegistratie;
 	private QuizStatus quizStatus;
+	private Set<QuizOpdracht> quizOpdrachten;
 	
 	//getters & setters
 
@@ -154,6 +157,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		setAuteur(auteur);
 		setDatumRegistratie(regDatum);
 		setQuizStatus(status);
+		this.quizOpdrachten = new HashSet<QuizOpdracht>();
 	}
 
 	// Override methodes - standard	
