@@ -143,7 +143,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	
 	public OpdrachtBase(String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
-			String ... antwoordHints) {
+			String... antwoordHints) {
 		this();
 		setVraag(vraag);
 		setJuisteAntwoord(juisteAntwoord);
