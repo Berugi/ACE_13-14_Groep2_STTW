@@ -1,12 +1,7 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Map;
-
-import model.enums.AntwoordCategorie;
+import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import utils.Datum;
 

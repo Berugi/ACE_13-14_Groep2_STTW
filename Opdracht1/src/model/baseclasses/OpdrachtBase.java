@@ -1,17 +1,11 @@
 package model.baseclasses;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 
-import model.Antwoord;
 import model.Opdracht;
 import model.QuizOpdracht;
-import model.enums.AntwoordCategorie;
 import model.enums.OpdrachtCategorie;
 import model.enums.Leraar;
 import utils.Datum;
@@ -23,6 +17,7 @@ import utils.Datum;
  * @author Sander Van der Borght
  * @version 20131008-01 =  initial
  * @version 20131013-01 = modification done by Tom Scheepers (only 1 answer allowed -> String iso Arraylist)
+ * @version 20131023-01 = Object antwoorden added because it wasn't defined.
  *
  * @
  */
@@ -40,6 +35,11 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	private OpdrachtCategorie categorie;
 	private Datum datumRegistratie;
 	private Set<QuizOpdracht> quizOpdrachten;
+	
+	//antwoorden was niet gedefinieerd dus heb
+	//heb ik een Object antwoorden bijgemaakt
+	//verder uitvissen !!! Wim
+	private Object antwoorden;
 	
 	
 	//getters & setters
@@ -221,9 +221,11 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 
 	@Override
 	public int hashCode() {
+		
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Arrays.hashCode(antwoordHints);
+		
 		result = prime * result
 				+ ((antwoorden == null) ? 0 : antwoorden.hashCode());
 		result = prime * result + ((auteur == null) ? 0 : auteur.hashCode());
