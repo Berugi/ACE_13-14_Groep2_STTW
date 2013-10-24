@@ -17,7 +17,7 @@ import utils.Datum;
  * @author Sander Van der Borght
  * @version 20131008-01 =  initial
  * @version 20131013-01 = modification done by Tom Scheepers (only 1 answer allowed -> String iso Arraylist)
- * @version 20131023-01 = Object antwoorden added because it wasn't defined.
+ * @version 20131023-01 = modification done by Wim Ombelets (Object antwoorden added because it wasn't defined)
  *
  * @
  */
