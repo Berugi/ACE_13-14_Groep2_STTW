@@ -78,7 +78,7 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 	public Boolean remove(Quiz removeQuiz) throws IllegalArgumentException
 	{
 		if(removeQuiz.getQuizStatus() == QuizStatus.AFGEWERKT || removeQuiz.getQuizStatus() == QuizStatus.INCONSTRUCTIE)
-		 throw new IllegalArgumentException (String.format("Quiz kan niet verwijderd worden. Status = %s",removeQuiz.getQuizStatus().getStatusVanQuiz()));
+		 throw new IllegalArgumentException (String.format("Quiz kan niet verwijderd worden. Status = %s",removeQuiz.getQuizStatus().getDescription()));
 		
 		 this.quizen.remove(removeQuiz);
 				return true;	

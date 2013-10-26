@@ -38,12 +38,11 @@ public abstract class Catalogus implements Comparable<Catalogus>, Cloneable, Ite
 
 	//methods
     public Boolean add(Object item) {
-		if(!this.catalogus.contains(item)) {
-			this.catalogus.add(item);
-			return true;
-		}
-		return false;
-	}
+        if (this.catalogus.contains(item))
+            return false;
+        this.catalogus.add(item);
+        return true;
+    }
 	
 	public Boolean remove(Object item) {
 		if(this.catalogus.contains(item)) {
@@ -53,7 +52,7 @@ public abstract class Catalogus implements Comparable<Catalogus>, Cloneable, Ite
 		return false;
 	}
    
-	//abstracte methods
+	//abstract methods
 
     abstract Object change(int index);
 }

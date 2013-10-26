@@ -6,6 +6,7 @@ package model.enums;
  * 
  * @version 20131013-01 - Initial version
  * @version 20131020-01 - modified by Tom Vaes - Added methods and variable
+ * @version 20131026-01 - modified by Wim Ombelets - changed naming to be a little clearer
  *
  * Bevat QuizCatalogues informatie
  */
@@ -15,16 +16,17 @@ public enum QuizStatus {
 	AFGEWERKT("Afgewerkt"),
 	OPENGESTELD("Opengesteld"),
 	LAATSTEKANS("Laatste Kans");
-	
-	private final String statusVanQuiz;
-	
-	public String getStatusVanQuiz()
+
+
+	private final String description;
+
+	public String getDescription()
 	{
-		return statusVanQuiz;
+		return description;
 	}
-	
-	QuizStatus(String statusVanQuiz)
+
+	private QuizStatus(String description)
 	{
-		this.statusVanQuiz = statusVanQuiz;
+		this.description = description;
 	}
 }
