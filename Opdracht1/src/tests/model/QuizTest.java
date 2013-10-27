@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Leraar;
+import model.enums.*;
 import model.Quiz;
 
 public class QuizTest {

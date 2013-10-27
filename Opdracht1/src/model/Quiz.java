@@ -106,26 +106,6 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	}
 	
 	//constructors
-
-//	public Quiz()
-//	{
-//		this(" ", null, false, false, null, null, null);		
-//	}
-//	
-//	public Quiz(Leraar auteur)
-//	{
-//		this(" ", null, false, false, auteur, null, null);		
-//	}
-//		
-//	public Quiz(String onderwerp)
-//	{
-//		this(onderwerp, null, false, false, null, null,null);
-//	}
-//		
-//	public Quiz(String onderwerp, Leraar auteur)
-//	{
-//		this (onderwerp, null, false, false, auteur, null,null);
-//	}
 	
 	public Quiz(String onderwerp, Leraar auteur, Datum regDatum)
 	{
@@ -137,11 +117,6 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		this (onderwerp, null, false, false, auteur, regDatum,status);
 	}
 	
-//	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur)
-//	{
-//		this(onderwerp, leerjaren, false, false, auteur, null,null);
-//	}
-	
 	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur, Datum regDatum)
 	{
 		this(onderwerp, leerjaren, false, false, auteur, regDatum,null);
@@ -149,7 +124,6 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
 			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) {
-		//super();
 		setOnderwerp(onderwerp);
 		setLeerjaren(leerjaren);
 		setIsTest(isTest);
