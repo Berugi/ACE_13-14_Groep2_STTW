@@ -204,7 +204,6 @@ public class Datum implements Comparable<Datum> {
 	 * @return integer (-1 = kleiner dan / 0 = gelijk of fout / +1 = groter dan)
 	 */
 	
-	@Override
 	public int compareTo(Datum dateToCompare) {
 		// Parse naar Date en vergelijk
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

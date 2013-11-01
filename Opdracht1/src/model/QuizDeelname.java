@@ -1,6 +1,10 @@
 package model;
 
 import utils.Datum;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 
  * @author 
@@ -13,7 +17,7 @@ public class QuizDeelname {
 
 	private Leerling leerling;
 	private Quiz quiz;
-	private OpdrachtAntwoord[] antwoorden;
+	private Set<OpdrachtAntwoord> antwoorden;
 	private Datum datumDeelname;
 	
 	// Setters & Getters
@@ -30,12 +34,7 @@ public class QuizDeelname {
 	public void setQuiz(Quiz quiz) {
 		this.quiz = quiz;
 	}
-	public OpdrachtAntwoord[] getAntwoorden() {
-		return antwoorden;
-	}
-	public void setAntwoorden(OpdrachtAntwoord[] antwoorden) {
-		this.antwoorden = antwoorden;
-	}
+
 	public Datum getDatumDeelname() {
 		return datumDeelname;
 	}
@@ -44,11 +43,14 @@ public class QuizDeelname {
 	
 	public QuizDeelname(){
 		datumDeelname = new Datum();
+		leerling=null;
+		quiz=null;
+		antwoorden = new HashSet<OpdrachtAntwoord>();
 	}
-	public QuizDeelname(Leerling leerling,Quiz quiz,OpdrachtAntwoord... antwoorden){
+	public QuizDeelname(Leerling leerling,Quiz quiz,OpdrachtAntwoord antwoord){
 		this();
 		setLeerling(leerling);
 		setQuiz(quiz);
-		setAntwoorden(antwoorden);
+		antwoorden.add(antwoord);
 	}	
 }

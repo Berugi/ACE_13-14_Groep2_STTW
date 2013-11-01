@@ -1,9 +1,13 @@
 package model;
 
+import model.QuizOpdracht;
+import model.QuizDeelname;
+
 /**
  * 
  * @author wim ombelets
  * @version 20131020-01 initial commit
+ * @version 20131101-01 added QuizOpdracht, QuizDeelname - Tom Scheepers
  *
  */
 public class OpdrachtAntwoord implements Comparable<OpdrachtAntwoord>, Cloneable {
@@ -13,6 +17,8 @@ public class OpdrachtAntwoord implements Comparable<OpdrachtAntwoord>, Cloneable
 	private String laatsteAntwoord;
 	private int aantalPogingen;
 	private int antwoordTijd; //in seconden
+	private QuizOpdracht quizopdracht;
+	private QuizDeelname quizdeelname;
 	
 	
 	//getters & setters
@@ -52,12 +58,32 @@ public class OpdrachtAntwoord implements Comparable<OpdrachtAntwoord>, Cloneable
 		this.antwoordTijd = antwoordTijd;
 	}
 
-	//constructors
+	public QuizOpdracht getQuizopdracht() {
+		return quizopdracht;
+	}
 
-	public OpdrachtAntwoord(String laatsteAntwoord, int aantalPogingen, int antwoordTijd){
+
+	public void setQuizopdracht(QuizOpdracht quizopdracht) {
+		this.quizopdracht = quizopdracht;
+	}
+	
+	public QuizDeelname getQuizdeelname() {
+		return quizdeelname;
+	}
+
+
+	public void setQuizdeelname(QuizDeelname quizdeelname) {
+		this.quizdeelname = quizdeelname;
+	}
+
+	//constructors
+	
+	public OpdrachtAntwoord(String laatsteAntwoord, int aantalPogingen, int antwoordTijd, QuizOpdracht quizopdracht, QuizDeelname quizdeelname){
 		setLaatsteAntwoord(laatsteAntwoord);
 		setAantalPogingen(aantalPogingen);
 		setAntwoordTijd(antwoordTijd);
+		setQuizopdracht(quizopdracht);
+		setQuizdeelname(quizdeelname);
 	}
 	
 	//overrides

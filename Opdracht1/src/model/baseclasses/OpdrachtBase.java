@@ -81,6 +81,10 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		return maxAntwoordTijd;
 	}
 	
+	public void setMaxAntwoordTijd(int maxAntwoordTijd) {
+		this.maxAntwoordTijd = maxAntwoordTijd;
+	}
+	
 	private void setAuteur(Leraar auteur) {
 		this.auteur = auteur;
 	}
@@ -113,9 +117,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		this.datumRegistratie = datumRegistratie;
 	}
 
-	public void setMaxAntwoordTijd(int maxAntwoordTijd) {
-		this.maxAntwoordTijd = maxAntwoordTijd;
-	}
+
 
 	//constructors
 	
@@ -148,7 +150,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		setVraag(vraag);
 		setJuisteAntwoord(juisteAntwoord);
 		setMaxAantalPogingen(maxAantalPogingen);
-		setMaxAantalPogingen(maxAntwoordTijd);
+		setMaxAntwoordTijd(maxAntwoordTijd);
 		setAuteur(auteur);
 		setOpdrachtCategorie(categorie);
 		setAntwoordHints(antwoordHints);
@@ -166,6 +168,8 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
 			String ... antwoordHints){
 		try{
+			if (this.MagGewijzigdWorden())
+			{
 			setVraag(vraag);
 			setJuisteAntwoord(juisteAntwoord);
 			setMaxAantalPogingen(maxAantalPogingen);
@@ -174,6 +178,9 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 			setOpdrachtCategorie(categorie);
 			setAntwoordHints(antwoordHints);
 			return true;
+			}
+			
+			return false;
 		}
 		catch (Exception e){
 			return false;

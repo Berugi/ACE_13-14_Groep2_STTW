@@ -7,6 +7,7 @@ import utils.Datum;
 import model.enums.Leraar;
 import java.util.Set;
 import java.util.HashSet;
+import model.baseclasses.*;
 
 /**
  * 
@@ -16,6 +17,7 @@ import java.util.HashSet;
  * @version 20131013-01 - modified by Tom Vaes - added datumRegistratie
  * @version 20131013-02 - modified by Tom Scheepers - added QuizStatus
  * @version 20131020-01 - modified by Tom Vaes - added constructors
+ * @version 20131031-01 - modified by Tom Scheepers - added methods to add/remove QuizOpdrachten
  *
  * Bevat Quiz informatie
  */
@@ -201,6 +203,8 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return true;
 	}
 	
+	// class methods
+	
 	/*
 	 * Bij het vergelijken van de onderwerpnamen houden we geen rekening met hoofdletters, blanco's en leestekens
 	 * zoals komma's, vraagtekens,... De woorden 'de, een, het, met, van, in'  worden bij de vergelijking van de 
@@ -237,5 +241,25 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	public int compareTo(Quiz o) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public Boolean quizOpdrachtToevoegen(QuizOpdracht quizopdracht){
+		try{
+		quizOpdrachten.add(quizopdracht);
+		return true;
+		}
+		catch (Exception e){
+			return false;
+		}
+	}
+	
+	public Boolean quizOpdrachtVerwijderen(QuizOpdracht quizopdracht){
+		try{
+			quizOpdrachten.remove(quizopdracht);
+			return true;
+		}
+		catch (Exception e){
+			return false;
+		}
 	}
 }
