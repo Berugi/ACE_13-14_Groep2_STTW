@@ -65,6 +65,7 @@ public class OpdrachtAntwoord implements Comparable<OpdrachtAntwoord>, Cloneable
 
 	public void setQuizopdracht(QuizOpdracht quizopdracht) {
 		this.quizopdracht = quizopdracht;
+		this.quizopdracht.OpdrachtAntwoordToevoegen(this);
 	}
 	
 	public QuizDeelname getQuizdeelname() {
@@ -73,7 +74,7 @@ public class OpdrachtAntwoord implements Comparable<OpdrachtAntwoord>, Cloneable
 
 
 	public void setQuizdeelname(QuizDeelname quizdeelname) {
-		this.quizdeelname = quizdeelname;
+			this.quizdeelname = quizdeelname;
 	}
 
 	//constructors

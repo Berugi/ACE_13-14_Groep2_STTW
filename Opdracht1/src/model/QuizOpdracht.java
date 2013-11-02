@@ -68,12 +68,21 @@ public class QuizOpdracht {
 		setQuiz(quiz);
 		setOpdracht(opdracht);
 		this.opdrachtAntwoorden = new HashSet<OpdrachtAntwoord>();
+		if (opdracht!=null){
+			opdracht.ToevoegenAanQuizOpdrachten(this);
+		}
 	}
 	
 	//methods
 	
 	public int AantalMaalBeantwoord(){
 		return opdrachtAntwoorden.size();
+	}
+	
+	public void OpdrachtAntwoordToevoegen(OpdrachtAntwoord opdrachtantwoord){
+		if (opdrachtantwoord!=null){
+			this.opdrachtAntwoorden.add(opdrachtantwoord);
+		}
 	}
 	
 	//...

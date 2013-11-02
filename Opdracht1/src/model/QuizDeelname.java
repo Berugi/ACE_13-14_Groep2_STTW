@@ -46,11 +46,26 @@ public class QuizDeelname {
 		leerling=null;
 		quiz=null;
 		antwoorden = new HashSet<OpdrachtAntwoord>();
+		
 	}
-	public QuizDeelname(Leerling leerling,Quiz quiz,OpdrachtAntwoord antwoord){
+	public QuizDeelname(Leerling leerling,Quiz quiz){
 		this();
 		setLeerling(leerling);
 		setQuiz(quiz);
-		antwoorden.add(antwoord);
 	}	
+	
+	// Methods
+	
+	public Boolean OpdrachtAntwoordToevoegen(OpdrachtAntwoord opdrachtantwoord){
+		try{
+			if (opdrachtantwoord!=null){
+				antwoorden.add(opdrachtantwoord);
+				return true;
+			}
+			return false;
+		}
+		catch (Exception e){
+			return false;
+		}
+	}
 }

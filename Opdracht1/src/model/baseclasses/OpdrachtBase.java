@@ -117,8 +117,6 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		this.datumRegistratie = datumRegistratie;
 	}
 
-
-
 	//constructors
 	
 	/**
@@ -158,6 +156,27 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	
 	//methods
 	
+	public Boolean ToevoegenAanQuizOpdrachten(QuizOpdracht qo){
+		try{
+			quizOpdrachten.add(qo);
+			return true;	
+		}
+		catch (Exception e){
+			return false;
+		}
+	}
+	
+	public Boolean VerwijderenUitQuizOpdrachten(QuizOpdracht qo){
+		try{
+			
+			quizOpdrachten.remove(qo);
+			return true;
+		}
+		catch (Exception e){
+			return false;
+		}
+	}
+	
 	/**
 	 * Wijzig de opdracht.
 	 * Constraint: Opdracht mag enkel gewijzigd worden als ze nog niet behoort tot een Quiz die door leerlingen al is uitgevoerd
@@ -194,6 +213,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	
 	public Boolean MagGewijzigdWorden(){
 		int totaal = 0;
+		
 		for (QuizOpdracht qo: quizOpdrachten)
 		{
 			totaal = totaal + qo.AantalMaalBeantwoord();
