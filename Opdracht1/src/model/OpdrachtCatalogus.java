@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.io.*;
+
 import model.baseclasses.*;
 import DatumV1.Datum;
 import model.enums.Leraar;
@@ -76,33 +76,6 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 				}
 			}
 			return false;
-		}
-		catch (Exception e){
-			return false;
-		}
-	}
-	
-	public Boolean WegschrijvenAlsTekstbestand(String bestand) throws Exception{
-		try{
-			File file = new File(bestand);
-			PrintWriter writer = new PrintWriter(file);
-			for (OpdrachtBase opdracht: opdrachten)
-			{
-				StringBuilder regel = new StringBuilder();
-				regel.append(opdrachten.indexOf(opdracht)+";");
-				regel.append(opdracht.getVraag()+";");
-				regel.append(opdracht.getJuisteAntwoord()+";");
-				regel.append(opdracht.getMaxAantalPogingen()+";");
-				regel.append(opdracht.getMaxAntwoordTijd()+";");
-				regel.append(opdracht.getAuteur()+";");
-				regel.append(opdracht.getOpdrachtCategorie()+";");
-				regel.append(opdracht.getDatumRegistratie()+";");
-				//nog geen quizopdrachten
-				writer.println(regel.toString());
-			}
-			if (writer !=null)
-				writer.close();
-			return true;
 		}
 		catch (Exception e){
 			return false;
