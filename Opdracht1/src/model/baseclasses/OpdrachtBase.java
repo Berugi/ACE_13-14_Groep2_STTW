@@ -52,7 +52,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		this.vraag = vraag;
 	}
 
-	protected String getJuisteAntwoord() {
+	public String getJuisteAntwoord() {
 		return this.juisteAntwoord;
 	}
 
@@ -139,6 +139,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		this.auteur=Leraar.TBA;
 		this.categorie=OpdrachtCategorie.TBA;
 		this.setQuizOpdrachten(new HashSet<QuizOpdracht>());
+		this.setDatumRegistratie(new Datum());
 	}
 	
 	public OpdrachtBase(String vraag, String juisteAntwoord, int maxAantalPogingen,
@@ -301,7 +302,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 //				return false;
 //		} else if (!vraag.equals(other.vraag))
 //			return false;
-		return true;
+		return false;
 	}
 
 	@Override
