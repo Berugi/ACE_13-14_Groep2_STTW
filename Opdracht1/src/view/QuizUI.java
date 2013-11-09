@@ -1,5 +1,8 @@
 package view;
 
-public class QuizUI {
+import javax.swing.*;
+
+public class QuizUI extends JFrame{
+	
 
 }
