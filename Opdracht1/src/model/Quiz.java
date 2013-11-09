@@ -124,6 +124,16 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		this(onderwerp, leerjaren, false, false, auteur, regDatum,null);
 	}
 	
+	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest, Boolean isUniekeDeelname, Leraar auteur, Datum regDatum)
+	{
+		this(onderwerp, leerjaren, isTest, isUniekeDeelname, auteur, regDatum,null);
+	}
+	
+	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest, Boolean isUniekeDeelname, Leraar auteur)
+	{
+		this(onderwerp, leerjaren, isTest, isUniekeDeelname, auteur, new Datum(),null);
+	}
+	
 	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
 			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) {
 		setOnderwerp(onderwerp);
