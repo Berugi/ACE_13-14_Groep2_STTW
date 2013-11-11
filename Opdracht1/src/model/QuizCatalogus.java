@@ -88,8 +88,8 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		public static void main(String[] args) 
 		{
 			Datum d = new Datum();
-			Quiz quiz1 = new Quiz("hoofdsteden, europa",Leraar.An,d,QuizStatus.INCONSTRUCTIE);
-			Quiz quiz2 = new Quiz("De hoofdsteden? van Europa!",Leraar.An,d,QuizStatus.INCONSTRUCTIE);
+			Quiz quiz1 = new Quiz("hoofdsteden, europa",Leraar.AN,d,QuizStatus.INCONSTRUCTIE);
+			Quiz quiz2 = new Quiz("De hoofdsteden? van Europa!",Leraar.AN,d,QuizStatus.INCONSTRUCTIE);
 			QuizCatalogus quizen = new QuizCatalogus();
 			
 			try

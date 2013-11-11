@@ -7,7 +7,8 @@ package model.enums;
  * @version 20131013-01 - Initial version
  * @version 20131020-01 - modified by Tom Vaes - Added methods and variable
  * @version 20131026-01 - modified by Wim Ombelets - changed naming to be a little clearer
- *
+ * @version 20131110-01 - modified by Tom Vaes - Added Override toString
+ *  
  * Bevat QuizCatalogues informatie
  */
 
@@ -16,7 +17,6 @@ public enum QuizStatus {
 	AFGEWERKT("Afgewerkt"),
 	OPENGESTELD("Opengesteld"),
 	LAATSTEKANS("Laatste Kans");
-
 
 	private final String description;
 
@@ -29,4 +29,9 @@ public enum QuizStatus {
 	{
 		this.description = description;
 	}
+	
+	@Override
+    public String toString() {
+        return description;
+    }
 }
