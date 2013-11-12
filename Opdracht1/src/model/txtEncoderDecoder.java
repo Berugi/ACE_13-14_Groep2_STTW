@@ -2,12 +2,18 @@ package model;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Sander Van der Borght
+ * 
+ * @version 20131112
+ *
+ * Bevat code om een tabel met variabelen in een tekstbestand op te slaan
+ */
 public class txtEncoderDecoder {
 
 	String bestandspad;
@@ -17,23 +23,25 @@ public class txtEncoderDecoder {
 		this.bestandspad = bestandspad;
 	}
 	
-	public boolean Encode(String [][] objectTabel) throws IOException{
-		BufferedWriter writer = new BufferedWriter(new FileWriter(bestandspad));
+	public txtEncoderDecoder() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public boolean encode(String[][] objectTabel) throws IOException{
+		File bestand = new File(this.bestandspad);		 
+		//tekstbestand aanmaken als het nog niet bestaat
+		if (!bestand.exists()) {
+			bestand.createNewFile();
+		}
+		
+		BufferedWriter writer = new BufferedWriter(new FileWriter(this.bestandspad));
 		try {
-			File bestand = new File(bestandspad);
-			 
-			//tekstbestand aanmaken als het nog niet bestaat
-			if (!bestand.exists()) {
-				bestand.createNewFile();
-			}
 			
-			
-					
 			for(String[] list : objectTabel){
 				for(String item : list){
 					writer.write(item+";");
 				}
-				writer.write("\n");
+				writer.newLine();
 			}	
 			writer.close();
 			return true;
@@ -42,7 +50,7 @@ public class txtEncoderDecoder {
 		    }
 	}
 	
-	public String [][] Decode() throws IOException{
+	public String [][] decode() throws IOException{
 		BufferedReader reader  = new BufferedReader(new FileReader(bestandspad));
 		ArrayList<String[]> arrayTabel = new ArrayList<String[]>();
 		try{
