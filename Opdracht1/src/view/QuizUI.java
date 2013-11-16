@@ -9,6 +9,7 @@ import javax.swing.*;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
+import javax.swing.border.LineBorder;
 
 /**
  * This class contains the GUI for the Quiz Application
@@ -18,113 +19,111 @@ import model.enums.QuizStatus;
  */
 
 public class QuizUI extends JFrame {
-		
-	private JLabel onderwerpLabel;
-	private JLabel klasLabel;
-	private JLabel auteurLabel;
-	private JLabel quizStatusLabel;
-	private JLabel opdrachtCategorieLabel;
-	private JLabel sorteerLabel;
-	private JLabel aantalOpdrachtenLabel;
-	private JTextField OnderwepTextField;
-	private JButton registreerButton;
 	private JButton rangschikButton;
 	private JButton toevoegButton;
 	private JButton verwijderButton;
-	private JComboBox klasComboBox;
-	private JComboBox auteurComboBox;
-	private JComboBox quizStatusComboBox;
-	private JComboBox opdrachtCategorieComboBox;
 	private JComboBox sorteerComboBox;
 	private JCheckBox isUniekeDeelnameChkBox;
 	private JCheckBox isTestChkBox;
+	private JLabel lblOnderwerp;
+	private JButton btnNewButton;
+	private JTextField textField;
+	private JLabel lblKlas;
+	private JComboBox klasComboBox;
+	private JLabel lblAuteur;
+	private JLabel lblQuizStatus;
+	private JComboBox auteurComboBox;
 	
 	public QuizUI() {
 		super("Aanmaken nieuwe Quiz");
-		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
-		
-		JPanel topPanel = new JPanel();
-		topPanel.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
-		onderwerpLabel = new JLabel("Onderwerp : ");
-		c.fill = GridBagConstraints.HORIZONTAL;
-	    c.gridx = 0;
-	    c.gridy = 0;
-		topPanel.add(onderwerpLabel,c);
-		
-		OnderwepTextField = new JTextField(50);
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
-		c.gridx = 1;
-	    c.gridy = 0;
-		topPanel.add(OnderwepTextField,c);
-		
-		klasLabel = new JLabel("Klas : ");
-		topPanel.add(klasLabel);
-		
-		klasComboBox = new JComboBox();
-		topPanel.add(klasComboBox);
-		
-		auteurLabel = new JLabel("Auteur : ");
-		topPanel.add(auteurLabel);
-		
-		auteurComboBox = new JComboBox(Leraar.values());
-		topPanel.add(auteurComboBox);
-		
-		quizStatusLabel = new JLabel("Status : ");
-		topPanel.add(quizStatusLabel);
-		
-		quizStatusComboBox = new JComboBox(QuizStatus.values());
-		topPanel.add(quizStatusComboBox);
-		
-		registreerButton = new JButton("Registreer nieuwe quiz");
-		c.fill = GridBagConstraints.HORIZONTAL;
-	    c.ipady = 10;      //make this component tall
-	    c.weightx = 0.0;
-	    c.gridwidth = 8;
-	    c.gridx = 0;
-	    c.gridy = 1;
-		topPanel.add(registreerButton,c);
-		
-		//label4 = 
-		
-		JPanel bottomPanel = new JPanel();
-		bottomPanel.setLayout(new GridBagLayout());
-		
-		opdrachtCategorieLabel = new JLabel("Toon opdrachten van categorie : ");
-		c.fill = GridBagConstraints.HORIZONTAL;
-	    c.gridx = 0;
-	    c.gridy = 0;
-		bottomPanel.add(opdrachtCategorieLabel,c);
-		
-		opdrachtCategorieComboBox = new JComboBox(OpdrachtCategorie.values());
-		bottomPanel.add(opdrachtCategorieComboBox);
-		
-		sorteerLabel = new JLabel("Sorteer opdrachten op : ");
-		c.fill = GridBagConstraints.HORIZONTAL;
-	    c.gridx = 0;
-	    c.gridy = 1;
-		bottomPanel.add(sorteerLabel,c);
-		
-		aantalOpdrachtenLabel = new JLabel("Aantal toegevoegde opdrachten :");
-		bottomPanel.add(aantalOpdrachtenLabel);
-		
-		mainPanel.add(topPanel);
-		mainPanel.add(bottomPanel);
 		
 		super.setContentPane(mainPanel);
+		mainPanel.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBounds(0, 116, 843, 422);
+		mainPanel.add(panel);
+		panel.setLayout(null);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(141, 23, 117, 22);
+		panel.add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(141, 81, 117, 22);
+		panel.add(comboBox_1);
+		
+		JButton btnNewButton_1 = new JButton("^^^^^^^^^");
+		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(538, 81, 148, 40);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton(">>>");
+		btnNewButton_2.setBounds(370, 143, 97, 40);
+		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("<<<");
+		btnNewButton_3.setBounds(370, 186, 97, 40);
+		panel.add(btnNewButton_3);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_1.setBounds(0, 0, 843, 103);
+		mainPanel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		lblOnderwerp = new JLabel("Onderwerp :");
+		lblOnderwerp.setBounds(12, 9, 73, 16);
+		panel_1.add(lblOnderwerp);
+		
+		klasComboBox = new JComboBox();
+		klasComboBox.setModel(new DefaultComboBoxModel(new String[] {"", "1A", "2A", "3A", "4A", "5A", "6A"}));
+		klasComboBox.setBounds(367, 6, 62, 22);
+		panel_1.add(klasComboBox);
+		
+		textField = new JTextField();
+		textField.setBounds(97, 6, 215, 22);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		lblKlas = new JLabel("Klas : ");
+		lblKlas.setBounds(324, 9, 36, 16);
+		panel_1.add(lblKlas);
+		
+		auteurComboBox = new JComboBox(Leraar.values());
+		auteurComboBox.setBounds(494, 6, 100, 22);
+		panel_1.add(auteurComboBox);
+		
+		lblAuteur = new JLabel("Auteur : ");
+		lblAuteur.setBounds(442, 9, 51, 16);
+		panel_1.add(lblAuteur);
+		
+		btnNewButton = new JButton("Registreer nieuwe quiz");
+		btnNewButton.setBounds(12, 56, 819, 34);
+		panel_1.add(btnNewButton);
+		
+		lblQuizStatus = new JLabel("Quiz Status :");
+		lblQuizStatus.setBounds(606, 9, 74, 16);
+		panel_1.add(lblQuizStatus);
+		
+		JComboBox quizStatusComboBox = new JComboBox(QuizStatus.values());
+		quizStatusComboBox.setBounds(692, 6, 125, 22);
+		panel_1.add(quizStatusComboBox);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
 	}
 
 	public static void main(String [] args){
 	QuizUI testQuiz = new QuizUI();
-	testQuiz.setSize(1080,400);
+	testQuiz.setSize(861,587);
     //testQuiz.setMinimumSize(new Dimension(520,600));
     testQuiz.setVisible(true);
 	}
-
 }
