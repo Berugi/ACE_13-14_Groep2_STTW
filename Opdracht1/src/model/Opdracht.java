@@ -100,9 +100,10 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 		return this.juisteAntwoord.equalsIgnoreCase(antwoord);
 	}
 
-	public int compareTo(Opdracht arg0) {
+	public int compareTo(Opdracht opdracht) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.getVraag().compareTo(opdracht.getVraag());
+		//return 0;
 			
 	}
 
