@@ -39,7 +39,6 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	public String getOnderwerp() {
 		return onderwerp;
 	}
-
 	
 	public void setOnderwerp(String onderwerp) throws IllegalArgumentException {
 		if(onderwerp != null && !onderwerp.isEmpty())
@@ -248,9 +247,10 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return removeDelimString(this.getOnderwerp(),delimitors);
 	}
 	
-	public int compareTo(Quiz o) {
+	public int compareTo(Quiz quiz) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.getOnderwerp().compareTo(quiz.getOnderwerp());
+		//return 0;
 	}
 	
 	public Boolean quizOpdrachtToevoegen(QuizOpdracht quizopdracht){

@@ -50,32 +50,32 @@ public class QuizUI extends JFrame {
 		bottomPanel.setLayout(null);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(141, 23, 117, 22);
+		comboBox.setBounds(229, 23, 117, 22);
 		bottomPanel.add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(141, 81, 117, 22);
+		comboBox_1.setBounds(229, 81, 117, 22);
 		bottomPanel.add(comboBox_1);
 		
-		JButton btnNewButton_1 = new JButton("^^^^^^^^^");
-		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 14));
-		btnNewButton_1.setBounds(574, 90, 148, 40);
-		bottomPanel.add(btnNewButton_1);
+		JButton btnSorteer = new JButton("^^^^^^^^^");
+		btnSorteer.setFont(new Font("Verdana", Font.PLAIN, 14));
+		btnSorteer.setBounds(574, 90, 148, 40);
+		bottomPanel.add(btnSorteer);
 		
-		JButton btnNewButton_2 = new JButton(">>>");
-		btnNewButton_2.setBounds(370, 143, 97, 40);
-		bottomPanel.add(btnNewButton_2);
+		JButton btnAdd = new JButton(">>>");
+		btnAdd.setBounds(370, 143, 97, 40);
+		bottomPanel.add(btnAdd);
 		
-		JButton btnNewButton_3 = new JButton("<<<");
-		btnNewButton_3.setBounds(370, 186, 97, 40);
-		bottomPanel.add(btnNewButton_3);
+		JButton btnRemove = new JButton("<<<");
+		btnRemove.setBounds(370, 186, 97, 40);
+		bottomPanel.add(btnRemove);
 		
 		JLabel lblCategorie = new JLabel("categorie :");
 		lblCategorie.setBounds(12, 26, 117, 16);
 		bottomPanel.add(lblCategorie);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(538, 41, 56, 16);
+		lblNewLabel.setBounds(608, 41, 56, 16);
 		bottomPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
