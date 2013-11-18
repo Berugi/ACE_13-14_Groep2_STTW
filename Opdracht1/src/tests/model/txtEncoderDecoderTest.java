@@ -1,9 +1,11 @@
-package model;
+package tests.model;
 
 import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.Random;
+
+import model.txtEncoderDecoder;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -84,6 +84,19 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 				return true;	
 	}
 	
+	public void opslaanInBestand(String bestandsnaam) {
+		txtEncoderDecoder encoder = new txtEncoderDecoder(bestandsnaam);
+		
+		ArrayList<String[]> list = null;
+		String [] VarNamen = {"Auteur","DatumRegistratie","Leerjaren","Onderwerp","IsTest","QuizStatus","IsUniekeDeelname"};
+		list.add(VarNamen);
+		for(Quiz quiz : this.quizen){
+			String[] quizVars = {quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),quiz.getLeerjaren().toString(),quiz.getOnderwerp(),quiz.getIsTest().toString(),quiz.getQuizStatus().toString(),quiz.getIsUniekeDeelname().toString()};
+			list.add(quizVars);
+		}
+		String [][] quizTabel;
+	}
+	
 	//Main method used only for testing when Junit test van not available
 		public static void main(String[] args) 
 		{
