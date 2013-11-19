@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 /**
  * 
  * @author Sander Van der Borght
@@ -50,8 +51,12 @@ public class txtEncoderDecoder {
 		    }
 	}
 	
-	public String [][] decode() throws IOException{
+	public Hashtable<String,ArrayList<String>> decode() throws IOException{
 		BufferedReader reader  = new BufferedReader(new FileReader(bestandspad));
+		
+		Hashtable<String,ArrayList<String>> tabel = new Hashtable<String,ArrayList<String>>();
+		
+		
 		ArrayList<String[]> arrayTabel = new ArrayList<String[]>();
 		try{
 			String line;
@@ -60,9 +65,16 @@ public class txtEncoderDecoder {
 			   }
 			reader.close();
 			
-			String[][] objectTabel = arrayTabel.toArray(new String[arrayTabel.size()][]);;
-			
-			return objectTabel;
+			for(int i = 0;i<arrayTabel.get(0).length;i++){
+				
+				ArrayList<String> waarden = new ArrayList<String>();
+				for(int j = 1;j<arrayTabel.size();j++){
+					waarden.add(arrayTabel.get(j)[i]);
+				}
+				tabel.put(arrayTabel.get(0)[i],waarden);
+			}
+							
+			return tabel;
 		} finally {
 			 reader.close();
 	    }
