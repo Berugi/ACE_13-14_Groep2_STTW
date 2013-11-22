@@ -1,12 +1,14 @@
 package controller.interfaces;
 
+import controller.basecontroller.BaseController;
+
 /**
+ * Interface for controllers that extend BaseController
  * 
- * 
- * @author Wim
- *
+ * @author Wim Ombelets
+ * @version 20131122-01 - initial commit
  * @param <T>
  */
-public interface IController<T> {
+public interface IController<T extends BaseController> {
 	T getInstance();
 }
