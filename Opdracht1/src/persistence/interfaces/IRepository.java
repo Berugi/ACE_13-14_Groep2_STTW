@@ -9,7 +9,8 @@ package persistence.interfaces;
  */
 public interface IRepository<T> {
 	
-	boolean create(T... objs);
+	//nog niet helemaal af, niet te veel op baseren... (Wim)
+	boolean write(T... objs);
 	T[] read();
 	boolean update(T... objs);
 	boolean delete(T... objs);

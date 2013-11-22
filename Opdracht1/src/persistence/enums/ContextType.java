@@ -8,7 +8,6 @@ package persistence.enums;
  *
  */
 public enum ContextType {
-	Local, //data will be persisted to the local file system
-	Database, //data will be persisted to database
-	DatabaseAndLocal //data will be persisted to both database and local file system
+	LocalFS, //data will be persisted to the local file system
+	MySQL, //data will be persisted to database
 }

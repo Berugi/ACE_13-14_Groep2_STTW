@@ -10,13 +10,14 @@ import controller.interfaces.IController;
  * 
  * @author Tom Vaes
  * @version 20131109-01 - initial version.
- * @version 20131122-02 - extends base class to ensure Singleton, implements basic repository methods
+ * @version 20131122-02 - modification done by Wim Ombelets - extends base class to ensure Singleton, implements basic repository methods
  *
  */
 public class QuizController extends BaseController implements IRepository<Quiz> {
 	
-	//methods
-	public boolean create(Quiz... objs) {
+	//IRepository interface method implementations
+	
+	public boolean write(Quiz... objs) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -35,6 +36,5 @@ public class QuizController extends BaseController implements IRepository<Quiz> 
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
 	
 }

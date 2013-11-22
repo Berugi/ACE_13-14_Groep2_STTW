@@ -3,11 +3,11 @@ package controller;
 import view.QuizUI;
 
 /**
- * De OpstartController start een nieuwe QuizUI op en maakt deze zichtbaar.
+ * Starts a new QuizUI and makes it visible.
  * 
- * @author Wim
+ * @author Wim Ombelets
  * @version 20131122-01 - initial commit
- *
+ * 
  */
 public class OpstartController {
 
