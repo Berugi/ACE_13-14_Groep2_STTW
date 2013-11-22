@@ -1,14 +1,25 @@
 package controller.basecontroller;
+import controller.interfaces.IController;
 
 /**
- * The BaseController is the base class that abstracts general
- * functionality required by all other (conctrete) controllers.
+ * 
+ * Singleton base class from which all other controllers extend
  * 
  * @author Wim Ombelets
  * @version 20131122-01 initial commit
- * 
- * 
+ * @param <T>
+ *
  */
-public abstract class BaseController {
+public class BaseController implements IController<BaseController> {
 
+	private BaseController instance = null;
+	
+	protected BaseController() { }
+	
+	public BaseController getInstance() {
+		if(instance == null)
+			instance = new BaseController();
+		return instance;
+	}
+	
 }
