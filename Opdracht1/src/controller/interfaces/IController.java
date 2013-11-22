@@ -1,6 +1,6 @@
 package controller.interfaces;
 
-import controller.basecontroller.BaseController;
+import controller.baseclasses.BaseController;
 
 /**
  * Interface for controllers that extend BaseController

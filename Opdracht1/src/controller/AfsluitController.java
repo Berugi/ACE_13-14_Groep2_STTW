@@ -4,7 +4,7 @@ import model.*;
 
 import java.io.*;
 
-import controller.basecontroller.BaseController;
+import controller.baseclasses.BaseController;
 
 /**
  * Deze class zet alle gekende data naar tekstbestanden 

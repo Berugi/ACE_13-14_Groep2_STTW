@@ -1,6 +1,6 @@
 package controller;
 
-import controller.basecontroller.BaseController;
+import controller.baseclasses.BaseController;
 
 /**
  * Factory that enables the creation of controllers

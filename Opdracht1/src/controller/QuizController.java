@@ -2,7 +2,7 @@ package controller;
 
 import persistence.interfaces.IRepository;
 import model.Quiz;
-import controller.basecontroller.BaseController;
+import controller.baseclasses.BaseController;
 import controller.interfaces.IController;
 
 /**

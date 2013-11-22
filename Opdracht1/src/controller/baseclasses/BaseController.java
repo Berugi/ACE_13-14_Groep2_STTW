@@ -1,4 +1,4 @@
-package controller.basecontroller;
+package controller.baseclasses;
 import controller.interfaces.IController;
 
 /**
