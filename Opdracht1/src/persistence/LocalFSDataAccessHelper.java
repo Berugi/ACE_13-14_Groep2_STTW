@@ -27,7 +27,7 @@ public class LocalFSDataAccessHelper extends AbstractDataAccessHelper {
 		if(filePath != null && !filePath.isEmpty())
 			this.filePath = Paths.get(filePath);
 		else
-			throw new IllegalArgumentException("File path cannot be null");
+			throw new IllegalArgumentException("File path cannot be null or empty.");
 	}
 	
 	//constructors

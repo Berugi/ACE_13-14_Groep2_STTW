@@ -8,6 +8,7 @@ import persistence.enums.ContextType;
  * 
  * @author Wim Ombelets
  * @version 20131122-01 - initial commit
+ * @version 20131123-01 - added comment
  */
 public class DataAccessHelperFactory {
 	
@@ -21,7 +22,7 @@ public class DataAccessHelperFactory {
 			case MySQL:
 				return new MySQLDataAccessHelper();
 			default:
-				return null;
+				return null; //unreachable code because ContextType is an enum
 		}
 		
 	}
