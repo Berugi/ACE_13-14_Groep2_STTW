@@ -3,6 +3,8 @@ package model;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
+import utils.SimpleIniFile;
+
 /**
  * Can read from and write to the start.ini file.
  * Important to know, is that this class does not use nor extend java.util.Properties.
@@ -53,7 +55,7 @@ public class Properties {
 	 * @param pathToIniFile
 	 */
 	public Properties(String pathToIniFile) {
-		
+		setDbProperties(SimpleIniFile.deserialize(pathToIniFile));
 	}
 	
 	public Properties(){

@@ -3,7 +3,6 @@ package utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -24,9 +23,31 @@ import model.Properties;
  */
 public class SimpleIniFile {
 
-	public Properties deserialize(String pathToIniFile) {
+	//data members
+	
+	private Path pathToIniFile;
+	
+	public Path getPathToIniFile() {
+		return pathToIniFile;
+	}
+
+	private void setPathToIniFile(String pathToIniFile) {
+		if(pathToIniFile == null || pathToIniFile.isEmpty() || !pathToIniFile.endsWith(".ini"))
+			throw new IllegalArgumentException("Path to .ini file cannot be null or empty.");
+		else {
+			try {
+				Path p = Paths.get(pathToIniFile);
+				this.pathToIniFile = p;
+			} catch (InvalidPathException ipe) {
+				throw ipe;
+			}
+		}
+	}
+
+	public static Properties deserialize(String pathToIniFile) {
 		
-		Path p = null;
+		Path p;
+		Properties deserializedProperties = null;
 		
 		try {
 			p = Paths.get(pathToIniFile);
@@ -35,7 +56,7 @@ public class SimpleIniFile {
 				return null;
 			
 			Map<String, String> props = readProperties(p);
-			Properties deserializedProperties;
+			
 			
 			for(Map.Entry<String, String> entry : props.entrySet()) {
 				//entries found, initialize return object
@@ -54,13 +75,26 @@ public class SimpleIniFile {
 			
 		} catch (InvalidPathException e) {
 			e.printStackTrace();
-		} catch (NoSuchFieldException nsfe) {
-			nsfe.printStackTrace();
-		}
+		}	
 		
+		return deserializedProperties;
 	}
 	
-	private Map<String, String> readProperties(Path pathToIniFile) {
+	public static Map<String, String> readSection(String sectionName) {
+
+		if(sectionName == null || sectionName.isEmpty())
+			return null;
+		
+		Map<String, String> result = null;
+		
+		BufferedReader reader = null;
+		
+		try {
+			File file = new File(new FileReader())
+		}
+	}
+	
+	private static Map<String, String> readProperties(Path pathToIniFile) {
 		
 		//check if there is a valid .ini file at given pathToIniFile
 		if(Files.notExists(pathToIniFile))
