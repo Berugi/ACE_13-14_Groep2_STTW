@@ -126,8 +126,8 @@ public class DBProperties {
 		setDatabase(database);
 	}
 	
-	//overrides	
-	
+	//overrides
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -183,5 +183,14 @@ public class DBProperties {
 		}
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "DBProperties [getType()=" + getType() + ", getConnector()="
+				+ getConnector() + ", getHost()=" + getHost() + ", getPort()="
+				+ getPort() + ", getDatabase()=" + getDatabase() + "]";
+	}
+	
+	
 	
 }
