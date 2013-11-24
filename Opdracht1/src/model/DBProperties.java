@@ -2,6 +2,12 @@ package model;
 
 import model.enums.DBType;
 
+/**
+ * Encapsulates all relevant database properties for use in connections.
+ * 
+ * @author Wim Ombelets
+ * @version 20131124-01 - initial commit
+ */
 public class DBProperties {
 	
 	//data members
@@ -22,32 +28,56 @@ public class DBProperties {
 		return type;
 	}
 	
-	public void setType(DBType type) {
-		this.type = type;
+	private void setType(DBType type) {
+		if(type != null)
+			this.type = type;
+	}
+	
+	private void setType(String type) {
+		if(type != null && !type.isEmpty()) {
+			setType(DBType.valueOf(type.toUpperCase()));
+		}
 	}
 	
 	public String getConnector() {
 		return connector;
 	}
 	
-	public void setConnector(String connector) {
-		this.connector = connector;
+	private void setConnector(String connector) {
+		if(connector == null || connector.isEmpty())
+			throw new IllegalArgumentException("Connector cannot be null or empty.");
+		else
+			this.connector = connector;
 	}
 	
 	public String getHost() {
 		return host;
 	}
 	
-	public void setHost(String host) {
-		this.host = host;
+	private void setHost(String host) {
+		if(host == null || host.isEmpty())
+			throw new IllegalArgumentException("Host cannot be null or empty.");
+		else
+			this.host = host;
 	}
 	
 	public int getPort() {
 		return port;
 	}
 	
-	public void setPort(int port) {
+	private void setPort(int port) {
 		this.port = port;
+	}
+	
+	private void setPort(String port) {
+		if(port == null || port.isEmpty())
+			throw new IllegalArgumentException("Port cannot be null or empty.");
+		try{
+			int portAsInt = Integer.parseInt(port);
+			setPort(portAsInt);
+		} catch (NumberFormatException e) {
+			throw e;
+		}
 	}
 	
 	public String getDatabase() {
@@ -55,13 +85,45 @@ public class DBProperties {
 	}
 	
 	public void setDatabase(String database) {
-		this.database = database;
+		if(database == null || database.isEmpty())
+			throw new IllegalArgumentException("Database cannot be null or empty.");
+		else
+			this.database = database;
 	}
 	
 	//constructors
+	/**
+	 * Creates an instance of DBProperties using all String arguments.
+	 * 
+	 * @param dbType
+	 * @param connector
+	 * @param host
+	 * @param port
+	 * @param database
+	 */
+	public DBProperties(String dbType, String connector, String host, String port, String database) {
+		setType(dbType);
+		setConnector(connector);
+		setHost(host);
+		setPort(port);
+		setDatabase(database);
+	}
 	
-	public DBProperties() {
-		// TODO Auto-generated constructor stub
+	/**
+	 * Creates an instance of DBProperties.
+	 * 
+	 * @param type
+	 * @param connector
+	 * @param host
+	 * @param port
+	 * @param database
+	 */
+	public DBProperties(DBType type, String connector, String host, int port, String database) {
+		setType(type);
+		setConnector(connector);
+		setHost(host);
+		setPort(port);
+		setDatabase(database);
 	}
 	
 	//overrides	
