@@ -3,8 +3,6 @@ package model;
 import model.baseclasses.OpdrachtBase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.interfaces.IValideerbaar;
