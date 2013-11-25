@@ -22,7 +22,7 @@ public class QuizApplication {
 		//show the menu a first time
 		Scanner sc = new Scanner(System.in);
 		showMenu();
-		System.out.print("Keuze: ");
+		System.out.print("Maak je Keuze (0-7): ");
 		ingave = sc.nextLine();
 		try{
 		choice = Integer.parseInt(ingave);

@@ -1,0 +1,2 @@
+-1;Wat is het antwoord;Dit is het antwoord;1;30;Pieter;AlgemeneKennis;4 november 2013;
+-1;Wat is een tekstbestand;flat file van ascii tekens;3;60;Jean;AlgemeneKennis;4 november 2013;
