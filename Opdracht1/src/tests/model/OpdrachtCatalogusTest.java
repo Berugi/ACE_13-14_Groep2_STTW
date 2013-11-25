@@ -75,6 +75,7 @@ public class OpdrachtCatalogusTest {
 		
 	}
 	@Test
+	
 	public void test_Add_Geldige_Opdracht_Geslaagd() {
 		this.catalogus = new OpdrachtCatalogus();
 		//catalogus wordt gevuld met 60 willekeurige opdrachten
@@ -135,7 +136,7 @@ public class OpdrachtCatalogusTest {
 		int index = generator.nextInt(60);
 		assertEquals(true,this.catalogus.remove(this.catalogus.change(index)));
 	}
-
+	
 	@Test
 	public void test_Remove_Ongeldige_Opdracht_Niet_Geslaagd() {
 		this.catalogus = new OpdrachtCatalogus();
@@ -164,7 +165,42 @@ public class OpdrachtCatalogusTest {
 			}		
 			this.catalogus.add(new OpdrachtBase(vraag, juisteAntwoord, maxAantalPogingen,maxAntwoordTijd, auteur, categorie,	antwoordHints,antwoordHints2));
 		}
-		assertEquals(false,this.catalogus.remove(new OpdrachtBase("testvraag", "testantwoord", 1,1, Leraar.An, OpdrachtCategorie.AlgemeneKennis,	"Hint")));
+		assertEquals(false,this.catalogus.remove(new OpdrachtBase("testvraag", "testantwoord", 1,1, Leraar.AN, OpdrachtCategorie.AlgemeneKennis,	"Hint")));
+	}
+	
+	@Test
+	public void test_wegschrijvenAlsTekstbestand_Geslaagd() throws Exception {
+		
+		this.catalogus = new OpdrachtCatalogus();
+		
+		//catalogus wordt gevuld met 60 willekeurige opdrachten
+		for(int j = 0;j<60;j++){
+			String vraag = "";
+			for(int i =0;i < generator.nextInt(120);i++){
+				vraag += Character.toString(((char) generator.nextInt()));
+			}
+			String juisteAntwoord = "";
+			for(int i = 0;i < generator.nextInt(120);i++){
+				juisteAntwoord += Character.toString(((char) generator.nextInt()));
+			}
+			int maxAantalPogingen = generator.nextInt(120);
+			int maxAntwoordTijd = generator.nextInt(120);
+			Leraar auteur = Leraar.values()[generator.nextInt(4)];
+			OpdrachtCategorie categorie = OpdrachtCategorie.values()[generator.nextInt(4)];
+			String antwoordHints = "";
+			for(int i= 0;i < generator.nextInt(120);i++){
+				antwoordHints += Character.toString(((char) generator.nextInt()));
+			}
+			String antwoordHints2 = "";
+			for(int i= 0;i < generator.nextInt(120);i++){
+				antwoordHints2 += Character.toString(((char) generator.nextInt()));
+			}		
+			this.catalogus.add(new OpdrachtBase(vraag, juisteAntwoord, maxAantalPogingen,maxAntwoordTijd, auteur, categorie,	antwoordHints,antwoordHints2));
+		}
+		
+		this.catalogus.wegschrijvenAlsTekstbestand("test.txt");
+		
+		assertEquals(this.catalogus,new OpdrachtCatalogus("test.txt"));
 	}
 
 }

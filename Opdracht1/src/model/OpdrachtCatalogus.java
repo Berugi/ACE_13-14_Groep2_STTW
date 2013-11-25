@@ -134,7 +134,7 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 			
 			for (OpdrachtBase opdracht: opdrachten)
 			{
-				StringBuilder regel = new StringBuilder();
+				regel = new StringBuilder();
 				regel.append(opdrachten.indexOf(opdracht)+";");
 				regel.append(opdracht.getVraag()+";");
 				regel.append(opdracht.getJuisteAntwoord()+";");

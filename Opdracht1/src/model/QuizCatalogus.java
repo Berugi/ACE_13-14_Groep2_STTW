@@ -40,11 +40,9 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		txtEncoderDecoder decoder = new txtEncoderDecoder(bestandsnaam);
 		
 		Hashtable<String,ArrayList<String>> quizTabel = decoder.decode();
-		String [] varNamen = {"Auteur","DatumRegistratie","Leerjaren","Onderwerp","IsTest","QuizStatus","IsUniekeDeelname"};
-		
-		
 						
 		for(int j = 0; j<quizTabel.get("Auteur").size();j++){
+			//Leerjaren van String naar Int[]
 			String[] leerjarenString = quizTabel.get("Leerjaren").get(j).replace("[", "").replace("]","").split(",");
 			int[] leerjaren = new int[leerjarenString.length];;
 							
@@ -53,13 +51,20 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 				leerjaren[i] = Integer.parseInt(leerjarenString[i]);
 			}
 			
-			this.quizen.add(new Quiz(quizTabel.get("Onderwerp").get(j), leerjaren , (quizTabel.get("IsTest").get(j)=="True"?true:false),
-					(quizTabel.get("IsUniekeDeelname").get(j)=="True"?true:false), Leraar.valueOf(quizTabel.get("Auteur").get(j)), new Datum(quizTabel.get("DatumRegistratie").get(j)), QuizStatus.valueOf(quizTabel.get("QuizStatus").get(j))));
+			
+			this.quizen.add(
+					new Quiz(
+							quizTabel.get("Onderwerp").get(j), 
+							leerjaren , 
+							(quizTabel.get("IsTest").get(j)=="True"?true:false),
+							(quizTabel.get("IsUniekeDeelname").get(j)=="True"?true:false),
+							Leraar.valueOf(quizTabel.get("Auteur").get(j)), 
+							new Datum(quizTabel.get("DatumRegistratie").get(j)),
+							QuizStatus.valueOf(quizTabel.get("QuizStatus").get(j))
+							)
+					);
 		}
 			
-
-		
-		
 	}
 	
 	//getter
@@ -122,10 +127,12 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		ArrayList<String[]> list = null;
 		String [] VarNamen = {"Auteur","DatumRegistratie","Leerjaren","Onderwerp","IsTest","QuizStatus","IsUniekeDeelname"};
 		list.add(VarNamen);
+		
 		for(Quiz quiz : this.quizen){
 			String[] quizVars = {quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),Arrays.toString(quiz.getLeerjaren()),quiz.getOnderwerp(),quiz.getIsTest().toString(),quiz.getQuizStatus().toString(),quiz.getIsUniekeDeelname().toString()};
 			list.add(quizVars);
 		}
+		
 		String [][] quizTabel = list.toArray(new String[list.size()][list.get(0).length]);
 		
 		encoder.encode(quizTabel);
