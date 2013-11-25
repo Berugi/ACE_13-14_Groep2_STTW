@@ -1,10 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.io.*;
+
 import model.baseclasses.*;
-import DatumV1.Datum;
+import utils.Datum;
 import model.enums.Leraar;
+import model.enums.OpdrachtCategorie;
+import model.enums.QuizStatus;
 
 import java.util.Iterator;
 
@@ -26,6 +30,33 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 		this.opdrachten = new ArrayList<OpdrachtBase>();
 		//this.registratiedatum = new Datum();
 		//this.auteur = Leraar.TBA;
+	}
+	/**
+	 * Constructor that uses a txt file
+	 * @param bestandsnaam
+	 * @throws IOException
+	 */
+	public OpdrachtCatalogus(String bestandsnaam) throws IOException{
+		this();
+		txtEncoderDecoder decoder = new txtEncoderDecoder(bestandsnaam);
+		
+		Hashtable<String,ArrayList<String>> opdrachtTabel = decoder.decode();
+						
+		for(int j = 0; j<opdrachtTabel.get("Auteur").size();j++){
+			
+			this.opdrachten.add(
+					new OpdrachtBase(
+							opdrachtTabel.get("vraag").get(j), 
+							opdrachtTabel.get("juisteAntwoord").get(j) , 
+							Integer.parseInt(opdrachtTabel.get("maxAantalPogingen").get(j)),
+							Integer.parseInt(opdrachtTabel.get("maxAntwoordTijd").get(j)), 
+							Leraar.valueOf(opdrachtTabel.get("auteur").get(j)), 
+							OpdrachtCategorie.valueOf(opdrachtTabel.get("opdrachtCategorie").get(j)), 
+							new Datum(opdrachtTabel.get("DatumRegistratie").get(j)), 
+							opdrachtTabel.get("antwoordHints").get(j))
+			);
+		}
+		
 	}
 	
 	//getters en setters
@@ -82,10 +113,25 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 		}
 	}
 	
-	public Boolean WegschrijvenAlsTekstbestand(String bestand) throws Exception{
+	public Boolean wegschrijvenAlsTekstbestand(String bestand) throws Exception{
 		try{
 			File file = new File(bestand);
 			PrintWriter writer = new PrintWriter(file);
+			
+			//write headers
+			StringBuilder regel = new StringBuilder();
+			regel.append("id"+";");
+			regel.append("vraag"+";");
+			regel.append("juisteAntwoord"+";");
+			regel.append("maxAantalPogingen"+";");
+			regel.append("maxAntwoordTijd"+";");
+			regel.append("auteur"+";");
+			regel.append("opdrachtCategorie"+";");
+			regel.append("datumRegistratie"+";");
+			regel.append("antwoordHints"+";");
+			writer.println(regel.toString());
+			
+			
 			for (OpdrachtBase opdracht: opdrachten)
 			{
 				StringBuilder regel = new StringBuilder();

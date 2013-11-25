@@ -155,8 +155,23 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		setAntwoordHints(antwoordHints);
 	}
 	
+	public OpdrachtBase(String vraag, String juisteAntwoord, int maxAantalPogingen,
+			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie, Datum datumRegistratie,
+			String... antwoordHints) {
+		this();
+		setVraag(vraag);
+		setJuisteAntwoord(juisteAntwoord);
+		setMaxAantalPogingen(maxAantalPogingen);
+		setMaxAntwoordTijd(maxAntwoordTijd);
+		setAuteur(auteur);
+		setOpdrachtCategorie(categorie);
+		setAntwoordHints(antwoordHints);
+		setDatumRegistratie(datumRegistratie);
+	}
+	
 	//methods
 	
+
 	public Boolean ToevoegenAanQuizOpdrachten(QuizOpdracht qo){
 		try{
 			quizOpdrachten.add(qo);

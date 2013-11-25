@@ -42,31 +42,23 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		Hashtable<String,ArrayList<String>> quizTabel = decoder.decode();
 		String [] varNamen = {"Auteur","DatumRegistratie","Leerjaren","Onderwerp","IsTest","QuizStatus","IsUniekeDeelname"};
 		
-		for(String var : varNamen){
+		
 						
-			for(int j = 0; j<quizTabel.get("Auteur").size();j++){
-				String[] leerjarenString = quizTabel.get("Leerjaren").get(j).replace("[", "").replace("]","").split(",");
-				int[] leerjaren = new int[leerjarenString.length];;
-								
-				for(int i=0; i<leerjarenString.length; i++)
-				{
-					leerjaren[i] = Integer.parseInt(leerjarenString[i]);
-				}
-				
-				this.quizen = newQuiz(quizTabel.get("Onderwerp").get(j), leerjaren , (quizTabel.get("IsTest").get(j)=="True"?true:false),
-						(quizTabel.get("IsUniekeDeelname").get(j)=="True"?true:false), Leraar.valueOf(quizTabel.get("Auteur").get(j)), new Datum(quizTabel.get("DatumRegistratie").get(j)), QuizStatus.valueOf(quizTabel.get("QuizStatus").get(j)));
+		for(int j = 0; j<quizTabel.get("Auteur").size();j++){
+			String[] leerjarenString = quizTabel.get("Leerjaren").get(j).replace("[", "").replace("]","").split(",");
+			int[] leerjaren = new int[leerjarenString.length];;
+							
+			for(int i=0; i<leerjarenString.length; i++)
+			{
+				leerjaren[i] = Integer.parseInt(leerjarenString[i]);
 			}
 			
+			this.quizen.add(new Quiz(quizTabel.get("Onderwerp").get(j), leerjaren , (quizTabel.get("IsTest").get(j)=="True"?true:false),
+					(quizTabel.get("IsUniekeDeelname").get(j)=="True"?true:false), Leraar.valueOf(quizTabel.get("Auteur").get(j)), new Datum(quizTabel.get("DatumRegistratie").get(j)), QuizStatus.valueOf(quizTabel.get("QuizStatus").get(j))));
+		}
+			
 
-		}
 		
-		ArrayList<String[]> list = null;
-		String [] VarNamen = {"Auteur","DatumRegistratie","Leerjaren","Onderwerp","IsTest","QuizStatus","IsUniekeDeelname"};
-		list.add(VarNamen);
-		for(Quiz quiz : this.quizen){
-			String[] quizVars = {quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),quiz.getLeerjaren().toString(),quiz.getOnderwerp(),quiz.getIsTest().toString(),quiz.getQuizStatus().toString(),quiz.getIsUniekeDeelname().toString()};
-			list.add(quizVars);
-		}
 		
 	}
 	
@@ -124,7 +116,7 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 				return true;	
 	}
 	
-	public void opslaanInBestand(String bestandsnaam) throws IOException {
+	public void wegschrijvenAlsTekstbestand(String bestandsnaam) throws IOException {
 		txtEncoderDecoder encoder = new txtEncoderDecoder(bestandsnaam);
 		
 		ArrayList<String[]> list = null;
