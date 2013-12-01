@@ -7,7 +7,6 @@ import utils.Datum;
 import model.enums.Leraar;
 import java.util.Set;
 import java.util.HashSet;
-import model.baseclasses.*;
 
 /**
  * 
@@ -248,9 +247,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	}
 	
 	public int compareTo(Quiz quiz) {
-		// TODO Auto-generated method stub
 		return this.getOnderwerp().compareTo(quiz.getOnderwerp());
-		//return 0;
 	}
 	
 	public Boolean quizOpdrachtToevoegen(QuizOpdracht quizopdracht){

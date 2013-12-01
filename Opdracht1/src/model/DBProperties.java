@@ -109,6 +109,8 @@ public class DBProperties {
 		setDatabase(database);
 	}
 	
+	public DBProperties() {}
+	
 	/**
 	 * Creates an instance of DBProperties.
 	 * 

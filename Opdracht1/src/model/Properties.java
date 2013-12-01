@@ -48,6 +48,10 @@ public class Properties {
 		this.dbProperties = dbProperties;
 	}
 	
+	private void setDbProperties(String dbType, String connector, String host, String port, String database) {
+		DBProperties dbProps = new DBProperties(dbType, connector, host, port, database);
+	}
+	
 	//constructors
 	
 	/**
@@ -55,11 +59,16 @@ public class Properties {
 	 * @param pathToIniFile
 	 */
 	public Properties(String pathToIniFile) {
-		setDbProperties(SimpleIniFile.deserialize(pathToIniFile));
+		//setDbProperties(SimpleIniFile.deserialize(pathToIniFile));
 	}
 	
-	public Properties(){
-		
+	/**
+	 * Initialize Properties with a DBProperties object.
+	 * Additional properties need to be implemented.
+	 * @param dbProps
+	 */
+	public Properties(DBProperties dbProps){
+		setDbProperties(dbProps);
 	}
 	
 	//overrides
