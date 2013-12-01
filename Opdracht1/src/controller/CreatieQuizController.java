@@ -1,5 +1,7 @@
 package controller;
 
+import model.Quiz;
+
 /**
  * 
  * @author Wim Ombelets
@@ -10,6 +12,10 @@ public class CreatieQuizController {
 	
 	public CreatieQuizController() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void opslaan(Quiz q) {
+		//TODO verder afwerken
 	}
 	
 }

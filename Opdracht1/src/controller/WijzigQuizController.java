@@ -1,5 +1,7 @@
 package controller;
 
+import model.Quiz;
+
 /**
  * 
  * @author Wim Ombelets
@@ -10,6 +12,10 @@ public class WijzigQuizController {
 
 	public WijzigQuizController() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void wijzigen(Quiz q) {
+		//TODO verder afwerken
 	}
 	
 }
