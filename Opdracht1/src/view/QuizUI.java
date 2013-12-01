@@ -134,7 +134,7 @@ public class QuizUI extends JFrame {
 		lblQuizStatus.setBounds(606, 9, 74, 16);
 		topPanel.add(lblQuizStatus);
 		
-		quizStatusComboBox = new JComboBox<QuizStatus>(QuizStatus.values());
+		quizStatusComboBox = new JComboBox(QuizStatus.values());
 		quizStatusComboBox.setBounds(692, 6, 125, 22);
 		topPanel.add(quizStatusComboBox);
 		btnNewButton.addActionListener(new ActionListener() {
