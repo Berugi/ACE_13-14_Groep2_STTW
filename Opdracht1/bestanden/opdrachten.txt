@@ -1,2 +1,11 @@
--1;Wat is het antwoord;Dit is het antwoord;1;30;Pieter;AlgemeneKennis;4 november 2013;
--1;Wat is een tekstbestand;flat file van ascii tekens;3;60;Jean;AlgemeneKennis;4 november 2013;
+1;Wat is het antwoord;Dit is het antwoord;1;30;Pieter;AlgemeneKennis;4 november 2013;
+2;Wat is een tekstbestand;flat file van ascii tekens;3;60;Jean;AlgemeneKennis;4 november 2013;
+3;Wat is de hoofdstad van Belgie;Brussel;3;30;Pieter;Aardrijkskunde;25 november 2013;
+4;Hoeveel is 2 + 2;4;2;10;Jean;Rekenen;25 november 2013;
+5;Wat is de hoofdstad van Frankrijk;Parijs;3;40;An;AlgemeneKennis;25 november 2013;
+6;Hoeveel is 5 * 5;25;2;20;Sarah;Rekenen;26 november 2013;
+7;Wat is de hoofdstad van Nederland;Amsterdam;1;50;Pieter;AlgemeneKennis;27 november 2013;
+8;Met noemt men de Belgische stad “Tienen” in het Frans?;Tirlemont;1;30;Fransenaam;Jean;28 november 2013;
+10; ; ; ; ; ; ; ;
+11; ; ; ; ; ; ; ;
+
