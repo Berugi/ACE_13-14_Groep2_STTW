@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.DBProperties;
 import model.Properties;
 
 /**
@@ -48,6 +49,7 @@ public class SimpleIniFile {
 		
 		Path p;
 		Properties deserializedProperties = null;
+		DBProperties dbProps = null;
 		
 		try {
 			p = Paths.get(pathToIniFile);
@@ -55,23 +57,29 @@ public class SimpleIniFile {
 			if(p == null)
 				return null;
 			
-			Map<String, String> props = readProperties(p);
+			Map<String, String> props = readAllProperties(p);
 			
-			
-			for(Map.Entry<String, String> entry : props.entrySet()) {
-				//entries found, initialize return object
-				deserializedProperties = new Properties();
-				//key refers to a complex class field
-				if(entry.getKey().contains(".")) {
-					if(entry.getKey().startsWith("dbproperties")) {
+			try {
+				for(Map.Entry<String, String> entry : props.entrySet()) {
+					//entries found, initialize return object
+					
+					//deserializedProperties = new Properties();
+					//key refers to a complex class field
+					if(entry.getKey().contains(".")) {
+						if(entry.getKey().startsWith("dbproperties")) {
+							if(dbProps == null)
+								dbProps = new DBProperties();
+						}
+					}
+					//key refers to a primitive field
+					else {
 						
 					}
 				}
-				//key refers to a primitive field
-				else {
-					
-				}
+			} catch (Exception blah) {
+				blah.printStackTrace();
 			}
+			
 			
 		} catch (InvalidPathException e) {
 			e.printStackTrace();
@@ -89,12 +97,17 @@ public class SimpleIniFile {
 		
 		BufferedReader reader = null;
 		
+		/*
 		try {
 			File file = new File(new FileReader())
 		}
+		*/
+		
+		//TODO verder afwerken
+		return null;
 	}
 	
-	private static Map<String, String> readProperties(Path pathToIniFile) {
+	private static Map<String, String> readAllProperties(Path pathToIniFile) {
 		
 		//check if there is a valid .ini file at given pathToIniFile
 		if(Files.notExists(pathToIniFile))
@@ -130,6 +143,11 @@ public class SimpleIniFile {
 		}
 		
 		return iniProps;		
+	}
+	
+	private DBProperties loadDBProperties() {
+		//TODO verder afwerken
+		return null;
 	}
 	
 }
