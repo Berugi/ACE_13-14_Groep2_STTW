@@ -9,30 +9,34 @@ import javax.swing.*;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
+
 import javax.swing.border.LineBorder;
 
 /**
  * This class contains the GUI for the Quiz Application
  * @author Tom Vaes
  * @version 20131109-01 - initial version.
+ * @version 20131201-01 - modified by Wim Ombelets - coupling of UI
  *
  */
 
 public class QuizUI extends JFrame {
+	
 	private JButton rangschikButton;
 	private JButton toevoegButton;
 	private JButton verwijderButton;
-	private JComboBox sorteerComboBox;
+	private JComboBox<?> sorteerComboBox;
 	private JCheckBox isUniekeDeelnameChkBox;
 	private JCheckBox isTestChkBox;
 	private JLabel lblOnderwerp;
 	private JButton btnNewButton;
 	private JTextField textField;
 	private JLabel lblKlas;
-	private JComboBox klasComboBox;
+	private JComboBox<String> comboBoxKlas;
 	private JLabel lblAuteur;
 	private JLabel lblQuizStatus;
-	private JComboBox auteurComboBox;
+	private JComboBox<Leraar> auteurComboBox;
+	private JComboBox<QuizStatus> quizStatusComboBox;
 	
 	public QuizUI() {
 		super("Aanmaken nieuwe Quiz");
@@ -49,11 +53,11 @@ public class QuizUI extends JFrame {
 		mainPanel.add(bottomPanel);
 		bottomPanel.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<?> comboBox = new JComboBox<Object>();
 		comboBox.setBounds(229, 23, 117, 22);
 		bottomPanel.add(comboBox);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<?> comboBox_1 = new JComboBox<Object>();
 		comboBox_1.setBounds(229, 81, 117, 22);
 		bottomPanel.add(comboBox_1);
 		
@@ -82,11 +86,11 @@ public class QuizUI extends JFrame {
 		lblNewLabel_1.setBounds(12, 84, 56, 16);
 		bottomPanel.add(lblNewLabel_1);
 		
-		JList list = new JList();
+		JList<?> list = new JList<Object>();
 		list.setBounds(22, 143, 324, 253);
 		bottomPanel.add(list);
 		
-		JList list_1 = new JList();
+		JList<?> list_1 = new JList<Object>();
 		list_1.setBounds(493, 143, 324, 266);
 		bottomPanel.add(list_1);
 		
@@ -100,10 +104,10 @@ public class QuizUI extends JFrame {
 		lblOnderwerp.setBounds(12, 9, 73, 16);
 		topPanel.add(lblOnderwerp);
 		
-		klasComboBox = new JComboBox();
-		klasComboBox.setModel(new DefaultComboBoxModel(new String[] {"", "1A", "2A", "3A", "4A", "5A", "6A"}));
-		klasComboBox.setBounds(367, 6, 62, 22);
-		topPanel.add(klasComboBox);
+		comboBoxKlas = new JComboBox<String>();
+		//comboBoxKlas.setModel(new DefaultComboBoxModel(new String[] {"", "1A", "2A", "3A", "4A", "5A", "6A"}));
+		comboBoxKlas.setBounds(367, 6, 62, 22);
+		topPanel.add(comboBoxKlas);
 		
 		textField = new JTextField();
 		textField.setBounds(97, 6, 215, 22);
@@ -130,7 +134,7 @@ public class QuizUI extends JFrame {
 		lblQuizStatus.setBounds(606, 9, 74, 16);
 		topPanel.add(lblQuizStatus);
 		
-		JComboBox quizStatusComboBox = new JComboBox(QuizStatus.values());
+		quizStatusComboBox = new JComboBox<QuizStatus>(QuizStatus.values());
 		quizStatusComboBox.setBounds(692, 6, 125, 22);
 		topPanel.add(quizStatusComboBox);
 		btnNewButton.addActionListener(new ActionListener() {
