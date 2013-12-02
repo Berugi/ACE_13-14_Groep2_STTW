@@ -30,13 +30,14 @@ public class QuizUI extends JFrame {
 	private JCheckBox isTestChkBox;
 	private JLabel lblOnderwerp;
 	private JButton btnNewButton;
-	private JTextField textField;
+	private JTextField txtOnderwerp;
 	private JLabel lblKlas;
 	private JComboBox<String> comboBoxKlas;
 	private JLabel lblAuteur;
 	private JLabel lblQuizStatus;
 	private JComboBox<Leraar> auteurComboBox;
 	private JComboBox<QuizStatus> quizStatusComboBox;
+	private JTable table;
 	
 	public QuizUI() {
 		super("Aanmaken nieuwe Quiz");
@@ -49,21 +50,21 @@ public class QuizUI extends JFrame {
 		
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		bottomPanel.setBounds(0, 116, 843, 422);
+		bottomPanel.setBounds(0, 84, 843, 422);
 		mainPanel.add(bottomPanel);
 		bottomPanel.setLayout(null);
 		
-		JComboBox<?> comboBox = new JComboBox<Object>();
-		comboBox.setBounds(229, 23, 117, 22);
-		bottomPanel.add(comboBox);
+		JComboBox<?> cbOpdrachtCat = new JComboBox<Object>();
+		cbOpdrachtCat.setBounds(229, 23, 117, 22);
+		bottomPanel.add(cbOpdrachtCat);
 		
-		JComboBox<?> comboBox_1 = new JComboBox<Object>();
-		comboBox_1.setBounds(229, 81, 117, 22);
-		bottomPanel.add(comboBox_1);
+		JComboBox<?> cbSorteerOpdr = new JComboBox<Object>();
+		cbSorteerOpdr.setBounds(229, 58, 117, 22);
+		bottomPanel.add(cbSorteerOpdr);
 		
 		JButton btnSorteer = new JButton("^^^^^^^^^");
 		btnSorteer.setFont(new Font("Verdana", Font.PLAIN, 14));
-		btnSorteer.setBounds(574, 90, 148, 40);
+		btnSorteer.setBounds(493, 70, 324, 27);
 		bottomPanel.add(btnSorteer);
 		
 		JButton btnAdd = new JButton(">>>");
@@ -74,29 +75,29 @@ public class QuizUI extends JFrame {
 		btnRemove.setBounds(370, 186, 97, 40);
 		bottomPanel.add(btnRemove);
 		
-		JLabel lblCategorie = new JLabel("categorie :");
-		lblCategorie.setBounds(12, 26, 117, 16);
+		JLabel lblCategorie = new JLabel("Toon opdrachten van categorie :");
+		lblCategorie.setBounds(12, 26, 194, 16);
 		bottomPanel.add(lblCategorie);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(608, 41, 56, 16);
-		bottomPanel.add(lblNewLabel);
+		JLabel lblAantalOpdrachten = new JLabel("Aantal toegevoegde opdrachten :");
+		lblAantalOpdrachten.setBounds(493, 41, 201, 16);
+		bottomPanel.add(lblAantalOpdrachten);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(12, 84, 56, 16);
-		bottomPanel.add(lblNewLabel_1);
+		JLabel lblSorteer = new JLabel("Sorteer opdrachten op :");
+		lblSorteer.setBounds(12, 61, 148, 16);
+		bottomPanel.add(lblSorteer);
 		
-		JList<?> list = new JList<Object>();
-		list.setBounds(22, 143, 324, 253);
-		bottomPanel.add(list);
+		JList<?> listOpdrachten = new JList<Object>();
+		listOpdrachten.setBounds(22, 143, 324, 253);
+		bottomPanel.add(listOpdrachten);
 		
-		JList<?> list_1 = new JList<Object>();
-		list_1.setBounds(493, 143, 324, 266);
-		bottomPanel.add(list_1);
+		table = new JTable();
+		table.setBounds(507, 278, 274, -121);
+		bottomPanel.add(table);
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		topPanel.setBounds(0, 0, 843, 103);
+		topPanel.setBounds(0, 0, 843, 79);
 		mainPanel.add(topPanel);
 		topPanel.setLayout(null);
 		
@@ -109,10 +110,10 @@ public class QuizUI extends JFrame {
 		comboBoxKlas.setBounds(367, 6, 62, 22);
 		topPanel.add(comboBoxKlas);
 		
-		textField = new JTextField();
-		textField.setBounds(97, 6, 215, 22);
-		topPanel.add(textField);
-		textField.setColumns(10);
+		txtOnderwerp = new JTextField();
+		txtOnderwerp.setBounds(97, 6, 215, 22);
+		topPanel.add(txtOnderwerp);
+		txtOnderwerp.setColumns(10);
 		
 		lblKlas = new JLabel("Klas : ");
 		lblKlas.setBounds(324, 9, 36, 16);
@@ -127,7 +128,7 @@ public class QuizUI extends JFrame {
 		topPanel.add(lblAuteur);
 		
 		btnNewButton = new JButton("Registreer nieuwe quiz");
-		btnNewButton.setBounds(12, 56, 819, 34);
+		btnNewButton.setBounds(12, 38, 819, 34);
 		topPanel.add(btnNewButton);
 		
 		lblQuizStatus = new JLabel("Quiz Status :");
@@ -143,11 +144,4 @@ public class QuizUI extends JFrame {
 		});
 		
 	}
-
-	//public static void main(String [] args){
-	//QuizUI testQuiz = new QuizUI();
-	//testQuiz.setSize(861,587);
-    //testQuiz.setMinimumSize(new Dimension(520,600));
-    //testQuiz.setVisible(true);
-	//}
 }
