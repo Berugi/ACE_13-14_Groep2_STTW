@@ -144,10 +144,10 @@ public class QuizUI extends JFrame {
 		
 	}
 
-	public static void main(String [] args){
-	QuizUI testQuiz = new QuizUI();
-	testQuiz.setSize(861,587);
+	//public static void main(String [] args){
+	//QuizUI testQuiz = new QuizUI();
+	//testQuiz.setSize(861,587);
     //testQuiz.setMinimumSize(new Dimension(520,600));
-    testQuiz.setVisible(true);
+    //testQuiz.setVisible(true);
 	}
 }
