@@ -149,5 +149,5 @@ public class QuizUI extends JFrame {
 	//testQuiz.setSize(861,587);
     //testQuiz.setMinimumSize(new Dimension(520,600));
     //testQuiz.setVisible(true);
-	}
+	//}
 }

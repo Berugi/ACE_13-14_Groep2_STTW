@@ -23,7 +23,7 @@ public class QuizApplication {
 			choice =-1;
 			while (choice < 0)
 			{
-				//System.out.print(showMenu());
+				System.out.print(showMenu());
 				System.out.print("Maak je Keuze (0-7): ");
 				
 				Scanner sc = new Scanner(System.in);
@@ -44,7 +44,12 @@ public class QuizApplication {
 					}
 					case 2:
 					{//Beheren van quizzen/testen
-						break;
+						//choice = -1;
+						QuizUI testQuiz = new QuizUI();
+						testQuiz.setSize(861,587);
+					    //testQuiz.setMinimumSize(new Dimension(520,600));
+					    testQuiz.setVisible(true);
+						//break;
 					}
 					case 3:
 					{//Deelnemem aan quiz
