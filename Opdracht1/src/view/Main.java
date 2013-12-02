@@ -2,16 +2,7 @@ package view;
 
 import java.util.Scanner;
 
-/**
- * 
- * This class is just a temporary testing ground for the model
- * and will be replaced at some point by a Swing UI
- * @author wim ombelets
- * @version 20131102-01 - initial commit
- * @version 20131103-01 - switch toegevoegd - Tom Scheepers
- * @version 20131201-01 - while toegevoed - Tom Vaes
- */
-public class QuizApplication {
+public class Main {
 
 	//data members
 		private static String ingave;
@@ -21,9 +12,10 @@ public class QuizApplication {
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
 			choice =-1;
+			
 			while (choice < 0)
 			{
-				//System.out.print(showMenu());
+				System.out.print(showMenu());
 				System.out.print("Maak je Keuze (0-7): ");
 				
 				Scanner sc = new Scanner(System.in);
