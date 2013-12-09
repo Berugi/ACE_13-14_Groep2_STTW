@@ -41,7 +41,7 @@ public class QuizUI extends JFrame {
 	
 	public QuizUI() {
 		super("Aanmaken nieuwe Quiz");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel mainPanel = new JPanel();
 		

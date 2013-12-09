@@ -21,13 +21,13 @@ public class QuizApplication {
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
 			choice =-1;
+			Scanner sc = new Scanner(System.in);
+			
 			while (choice < 0)
 			{
 				System.out.print(showMenu());
 				System.out.print("Maak je Keuze (0-7): ");
-				
-				Scanner sc = new Scanner(System.in);
-				
+
 				ingave = sc.nextLine();
 				try{
 				choice = Integer.parseInt(ingave);
@@ -38,49 +38,67 @@ public class QuizApplication {
 				
 				switch (choice)
 				{
+					case 0:
+					{
+						sc.close();
+						System.exit(0);
+					}
 					case 1:
 					{//Beheren van opdrachten
+						choice = -1;
+						System.out.print("Deze optie is nog niet geïmplementeerd");
 						break;
 					}
 					case 2:
 					{//Beheren van quizzen/testen
-						//choice = -1;
 						QuizUI testQuiz = new QuizUI();
 						testQuiz.setSize(861,587);
 					    //testQuiz.setMinimumSize(new Dimension(520,600));
 					    testQuiz.setVisible(true);
-						//break;
+					    choice = -1;
+					    break;
+					    
 					}
 					case 3:
 					{//Deelnemem aan quiz
+						choice = -1;
+						System.out.print("Deze optie is nog niet geïmplementeerd");
 						break;
 					}
 					case 4:
 					{//Overzicht scores
+						choice = -1;
+						System.out.print("Deze optie is nog niet geïmplementeerd");
 						break;
 					}
 					case 5:
 					{//Quiz report
+						choice = -1;
+						System.out.print("Deze optie is nog niet geïmplementeerd");
 						break;
 					}
 					case 6:
-					{//Quiz lijsten
+					{//Q
+						choice = -1;
+						System.out.print("Deze optie is nog niet geïmplementeerd");
 						break;
 					}
 					case 7:
 					{//Instellingen van de quiz applicatie
+						choice = -1;
+						System.out.print("Deze optie is nog niet geïmplementeerd");
 						break;
 					}
 					default:
 					{//verkeerde optie
 						choice = -1;
-						
-						//break;
+						System.out.print("Gelieve een nummer tussen 1 en 7 in te geven. 0 om te eindigen.");
+						break;
 					}
 				}//end switch
-				
-			}
-		}
+			}//end while loop
+		System.console().flush();
+		}//end main
 		
 		private static String showMenu() {
 			String menu = "*** QuizApplicatie ***\n"
@@ -94,6 +112,21 @@ public class QuizApplication {
 					+ "0. Stoppen\n\n";
 			
 			return menu;	
+		}
+		
+		private void quizSubMenu(){
+			
+		}
+		
+		
+		private static String showSubMenuQuiz(){
+			String subMenu = "Beheren van quizzen/testen (leraar)\n"
+					+ "1. Aanmaken Quiz\n"
+					+ "2. Verwijderen Quiz\n"
+					+ "3. Quiz beheer\n\n"
+					+ "0. Terug\n";
+			
+			return subMenu;
 		}
 
 	}
