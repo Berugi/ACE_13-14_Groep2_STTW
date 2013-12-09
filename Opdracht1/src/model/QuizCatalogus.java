@@ -19,7 +19,7 @@ import model.enums.QuizStatus;
  * 
  * @version 20131008-01 - Initial version
  * @version 20131020-01 - modified by Tom Vaes - complete redesign.
- *
+ * @version 20131209-01 - modified by Tom Vaes - small correction add quiz.
  * Bevat QuizCatalogues informatie
  */
 
@@ -100,13 +100,11 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		for(Quiz existingQuiz : this.quizen)
 		{
 			if (existingQuiz.getShortOnderwerp().equals(newQuiz.getShortOnderwerp()))
-				result = false;
+				throw new IllegalArgumentException("Het onderwerp van de quiz bestaat reeds !");
 		}
 		
-		if(result) {
+		if(result)
 			this.quizen.add(newQuiz);
-			return result;
-		}
 		
 		return result;
 	}
@@ -142,8 +140,8 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		public static void main(String[] args) 
 		{
 			Datum d = new Datum();
-			Quiz quiz1 = new Quiz("hoofdsteden, europa",Leraar.AN,d,QuizStatus.INCONSTRUCTIE);
-			Quiz quiz2 = new Quiz("De hoofdsteden? van Europa!",Leraar.AN,d,QuizStatus.INCONSTRUCTIE);
+			Quiz quiz1 = new Quiz("hoofdsteden, europa",Leraar.AN,d,QuizStatus.OPENGESTELD);
+			Quiz quiz2 = new Quiz("De steden? van Europa!",Leraar.PIETER,d,QuizStatus.INCONSTRUCTIE);
 			QuizCatalogus quizen = new QuizCatalogus();
 			
 			try
@@ -156,25 +154,30 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 			}
 			
 			//System.out.println(quiz1);
-//			try
-//			{
-//				quizen.remove(quiz1);
-//			}
-//			catch (Exception e)
-//			{
-//				System.out.println(e);
-//			}
+
 			
 			try
 			{
-				if(!quizen.add(quiz2))
-					System.out.println("Quiz kon niet toegevoegd worden !");
+				quizen.add(quiz2);
 			}
 			catch (Exception e)
 			{
 				System.out.println(e);
 			}
 			
+			for(Quiz z : quizen.getCatalogus())
+			{
+				System.out.println(z);
+			}
+			
+			try
+			{
+				quizen.remove(quiz1);
+			}
+			catch (Exception e)
+			{
+				System.out.println(e);
+			}
 			for(Quiz z : quizen.getCatalogus())
 			{
 				System.out.println(z);
