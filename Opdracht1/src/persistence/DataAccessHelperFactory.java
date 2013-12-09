@@ -1,6 +1,6 @@
 package persistence;
 
-import persistence.baseclasses.AbstractDataAccessHelper;
+import persistence.baseclasses.DataAccessHelper;
 import persistence.enums.ContextType;
 
 /**
@@ -14,7 +14,7 @@ public class DataAccessHelperFactory {
 	
 	public DataAccessHelperFactory() { }
 	
-	public static AbstractDataAccessHelper getDataAccessHelper(ContextType type) {
+	public static DataAccessHelper getDataAccessHelper(ContextType type) {
 		
 		switch(type) {
 			case LocalFS:

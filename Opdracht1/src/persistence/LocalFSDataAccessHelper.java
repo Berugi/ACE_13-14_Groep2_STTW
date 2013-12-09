@@ -3,7 +3,7 @@ package persistence;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import persistence.baseclasses.AbstractDataAccessHelper;
+import persistence.baseclasses.DataAccessHelper;
 
 /**
  * Concrete data access strategy aimed towards local file system access.
@@ -11,7 +11,7 @@ import persistence.baseclasses.AbstractDataAccessHelper;
  * @author Wim Ombelets
  * @version 20131122-01 - initial commit
  */
-public class LocalFSDataAccessHelper extends AbstractDataAccessHelper {
+public class LocalFSDataAccessHelper extends DataAccessHelper {
 
 	//data members
 	
