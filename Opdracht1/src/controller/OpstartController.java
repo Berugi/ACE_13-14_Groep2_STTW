@@ -12,8 +12,10 @@ import view.QuizUI;
 public class OpstartController {
 
 	public static void main(String[] args) {
-        QuizUI ui = new QuizUI();
+        
+		QuizUI ui = new QuizUI();
         ui.setVisible(true);
+        
 	}
 
 }
