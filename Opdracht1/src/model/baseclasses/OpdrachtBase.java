@@ -39,7 +39,7 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	//antwoorden was niet gedefinieerd dus heb
 	//heb ik een Object antwoorden bijgemaakt
 	//verder uitvissen !!! Wim
-	private Object antwoorden;
+	//private Object antwoorden; => Er is maar 1 antwoord mogelijk => zie private String juisteAntwoord
 	
 	
 	//getters & setters
@@ -268,9 +268,6 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Arrays.hashCode(antwoordHints);
-		
-		result = prime * result
-				+ ((antwoorden == null) ? 0 : antwoorden.hashCode());
 		result = prime * result + ((auteur == null) ? 0 : auteur.hashCode());
 		result = prime * result
 				+ ((categorie == null) ? 0 : categorie.hashCode());
@@ -285,11 +282,13 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 
 	@Override
 	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
+		if (this == obj)
+			return true;
+		else
+			return false;
 //		if (obj == null)
 //			return false;
-//		if (getClass() != obj.getClass())
+//		if (this.getClass() != obj.getClass())
 //			return false;
 //		Opdracht other = (Opdracht) obj;
 //		if (!Arrays.equals(antwoordHints, other.antwoordHints))
@@ -317,14 +316,13 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 //				return false;
 //		} else if (!vraag.equals(other.vraag))
 //			return false;
-		return false;
 	}
 
 	@Override
 	public String toString() {
 		return "Opdracht [vraag=" + vraag + ", maxAantalPogingen="
 				+ maxAantalPogingen + ", maxAntwoordTijd=" + maxAntwoordTijd
-				+ ", antwoorden=" + antwoorden + ", antwoordHints="
+				+ ", antwoordHints="
 				+ Arrays.toString(antwoordHints) + ", auteur=" + auteur
 				+ ", categorie=" + categorie + ", datumRegistratie="
 				+ datumRegistratie + "]";
