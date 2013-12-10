@@ -221,7 +221,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	private String removeDelimString(String tekst, String[] delim)
 	{
-		final  String[] delimitors = delim;
+		final String[] delimitors = delim;
 		String str, input;
 		String[] output;
 		
