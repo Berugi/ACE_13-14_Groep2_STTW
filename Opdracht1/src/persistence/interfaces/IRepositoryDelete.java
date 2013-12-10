@@ -1,4 +1,4 @@
-package controller.interfaces;
+package persistence.interfaces;
 
 import java.util.HashSet;
 
@@ -9,10 +9,9 @@ import java.util.HashSet;
  *
  * @param <T>
  */
-public interface IRepositoryRead<T> {
+public interface IRepositoryDelete<T> {
 
-	HashSet<T> readAll();
-	HashSet<T> readSubset();
-	T read(T t);
+	boolean delete(T t);
+	boolean deleteSubset(HashSet<T> subset);
 	
 }

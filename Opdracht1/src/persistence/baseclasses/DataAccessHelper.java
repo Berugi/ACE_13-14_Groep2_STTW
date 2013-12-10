@@ -1,5 +1,8 @@
 package persistence.baseclasses;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 import persistence.enums.ContextType;
 
 /**
@@ -10,7 +13,7 @@ import persistence.enums.ContextType;
  * @version 20131210-01 - added ContextType and constructor
  *
  */
-public class DataAccessHelper {
+public class DataAccessHelper implements Closeable {
 
 	//data members
 	
@@ -58,6 +61,15 @@ public class DataAccessHelper {
 	public String toString() {
 		return "DataAccessHelper [connectionString=" + connectionString
 				+ ", contextType=" + contextType + "]";
+	}
+
+	public void close() throws IOException {
+		try {			
+			this.close();
+		}
+		catch(IOException e) {
+			throw e;
+		}
 	}
 	
 }

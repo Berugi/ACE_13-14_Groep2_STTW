@@ -1,4 +1,4 @@
-package controller.interfaces;
+package persistence.interfaces;
 
 /**
  * 

@@ -1,7 +1,11 @@
 package controller;
 
-import controller.interfaces.IRepositoryCreate;
+import java.io.IOException;
+
+import persistence.DataAccessHelperFactory;
+import persistence.baseclasses.DataAccessHelper;
 import persistence.enums.ContextType;
+import persistence.interfaces.IRepositoryCreate;
 import model.Quiz;
 
 /**
@@ -13,12 +17,22 @@ import model.Quiz;
  */
 public class CreatieQuizController implements IRepositoryCreate<Quiz> {
 	
-	public CreatieQuizController(ContextType type) {
-		// TODO Auto-generated constructor stub
+	private final DataAccessHelper daHelper;	
+	
+	public CreatieQuizController(ContextType contextType) {
+		
+		daHelper = DataAccessHelperFactory.getDataAccessHelper(contextType);
+		
 	}
 
 	public void create(Quiz t) {
-		// TODO Auto-generated method stub
+		
+		if(daHelper != null) {
+			
+			daHelper
+			
+		}
+		
 	}
 	
 }

@@ -39,7 +39,7 @@ public class DataAccessHelperFactory {
 		
 	}
 	
-	public DataAccessHelper getDataAccessHelper(ContextType type) throws IllegalArgumentException {
+	public static DataAccessHelper getDataAccessHelper(ContextType type) throws IllegalArgumentException {
 		
 		switch(type) {
 			case LocalFS:
