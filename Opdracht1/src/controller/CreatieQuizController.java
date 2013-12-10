@@ -1,7 +1,7 @@
 package controller;
 
+import controller.interfaces.IRepositoryCreate;
 import persistence.enums.ContextType;
-import persistence.interfaces.IRepositoryCreate;
 import model.Quiz;
 
 /**

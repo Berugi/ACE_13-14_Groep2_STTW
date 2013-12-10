@@ -2,8 +2,8 @@ package controller;
 
 import java.util.HashSet;
 
+import controller.interfaces.IRepositoryDelete;
 import persistence.enums.ContextType;
-import persistence.interfaces.IRepositoryDelete;
 import model.Quiz;
 
 /**
