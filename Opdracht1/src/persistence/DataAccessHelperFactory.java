@@ -9,12 +9,37 @@ import persistence.enums.ContextType;
  * @author Wim Ombelets
  * @version 20131122-01 - initial commit
  * @version 20131123-01 - added comment
+ * @version 20131210-01 - further work on persistence
  */
 public class DataAccessHelperFactory {
 	
-	public DataAccessHelperFactory() { }
+	//data members
 	
-	public static DataAccessHelper getDataAccessHelper(ContextType type) {
+	private String connectionString;
+	
+	//getters & setters
+	
+	public String getConnectionString() {
+		
+		return connectionString;
+		
+	}
+	
+	private void setConnectionString(String connectionString) {
+		
+		if(connectionString != null && !connectionString.isEmpty()) {
+			this.connectionString = connectionString;
+		}
+		
+	}
+	
+	public DataAccessHelperFactory(String connectionString) {
+		
+		setConnectionString(connectionString);
+		
+	}
+	
+	public DataAccessHelper getDataAccessHelper(ContextType type) throws IllegalArgumentException {
 		
 		switch(type) {
 			case LocalFS:
