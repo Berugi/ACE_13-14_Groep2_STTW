@@ -3,6 +3,7 @@ package config;
 import java.io.Closeable;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -20,13 +21,13 @@ public class IniFileManager implements Closeable {
 	//data members
 	
 	private static IniFileManager instance = null;
-	
+	private static final String fileName = "start.ini";
 	private Properties props;	
 	
 	//constructors
 	
 	private IniFileManager() {		
-		initProps();
+		loadProperties();
 	}
 	
 	//methods
@@ -37,12 +38,24 @@ public class IniFileManager implements Closeable {
 		return instance;
 	}
 	
-	private void initProps() {
+	private void loadProperties() {
 		this.props = new Properties();
 		try {
+			FileInputStream input = new FileInputStream(fileName);
+			this.props.load(input);
+			input.close();
 			
-			this.props.load(new FileInputStream("start.ini"));
-			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void saveProperties() {
+		try {
+			FileOutputStream output = new FileOutputStream(fileName);
+			this.props.store(output, null);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -59,6 +72,7 @@ public class IniFileManager implements Closeable {
 		if(key != null && !key.isEmpty() && value != null && !value.isEmpty()) {			
 			try {
 				props.put(key, value);
+				saveProperties();
 			}
 			catch(IllegalArgumentException e) {
 				throw e;
@@ -88,6 +102,7 @@ public class IniFileManager implements Closeable {
 		setProperty("dbdatabase", db.getDatabase());
 		setProperty("dbusername", db.getUsername());
 		setProperty("dbpassword", db.getPassword());
+		saveProperties();
 	}
 	
 	public void close() throws IOException {
