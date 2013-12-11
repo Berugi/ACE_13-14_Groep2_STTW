@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.mysql.jdbc.PreparedStatement;
 
 import config.IniFileManager;
+import persistence.enums.DbParamType;
 import persistence.interfaces.IPersistenceStrategy;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -44,18 +45,18 @@ public class MySQLPersistenceStrategy implements IPersistenceStrategy {
 	
 	//methods
 
-	public Object read(String statement, ArrayList<DbParameter> paramsList) {
+	public Object readByID(Object o) {
 		try {
 			conn = DriverManager.getConnection(getConnectionString(), db.getUsername(), db.getPassword());
-			PreparedStatement pS = createPreparedStatement(statement, paramsList);
-			ResultSet rs = pS.executeQuery();
-			return rs.getObject(0);
+			String statement = "SELECT * FROM " + o.getClass().toString() + " WHERE ID=?";
+			ArrayList<DbParameter> paramsList = new ArrayList<DbParameter>();
+			DbParameter dbParam = new DbParameter(DbParamType.Int, o.getClass().getField("ID"))
+			paramsList.add(e)
+			PreparedStatement pS = createPreparedStatement(statement, paramsList)
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return null;
 	}
 
 	public Object create(Object t) throws NotImplementedException {

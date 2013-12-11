@@ -20,17 +20,17 @@ import persistence.interfaces.IPersistenceStrategy;
  * @version 20131210-01 - added ContextType and constructor
  *
  */
-public abstract class AbstractDataAccessHelper implements Closeable {
+public abstract class AbstractDataAccessHelper<T> implements Closeable {
 	
 	private IPersistenceStrategy persistenceStrategy;
 	
 	private void setPersistenceStrategy(ContextType contextType) {
 		
 		switch(contextType) {
-		case LocalFS:
+		case LOCALFS:
 			this.persistenceStrategy = new LocalFSPersistenceStrategy();
 			break;
-		case MySQL:
+		case MYSQL:
 			this.persistenceStrategy = new MySQLPersistenceStrategy();
 			break;
 		}
@@ -41,12 +41,9 @@ public abstract class AbstractDataAccessHelper implements Closeable {
 		setPersistenceStrategy(contextType);
 	}
 	
-	public Object read(Object id) {
-		return persistenceStrategy.read(id);
-	}
-	
-	public Object read(String property, String value) {
-		return persistenceStrategy.read(property, value);
+	@SuppressWarnings("unchecked")
+	public T read(T id) {
+		return (T) persistenceStrategy.readByID(id);
 	}
 	
 //	//data members

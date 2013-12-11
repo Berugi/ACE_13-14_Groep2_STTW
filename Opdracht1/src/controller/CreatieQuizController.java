@@ -2,37 +2,35 @@ package controller;
 
 import java.io.IOException;
 
-import persistence.DataAccessHelperFactory;
-import persistence.baseclasses.DataAccessHelper;
 import persistence.enums.ContextType;
 import persistence.interfaces.IRepositoryCreate;
 import model.Quiz;
 
 /**
+ * Singleton controller responsible for creating new Quizzes.
  * 
  * @author Wim Ombelets
  * @version 20131201-01 - initial commit
  * @version 20131209-01 - refactor using {@link IRepositoryCreate}
  *
  */
-public class CreatieQuizController implements IRepositoryCreate<Quiz> {
+public class CreatieQuizController {
 	
-	private final DataAccessHelper daHelper;	
+	private static CreatieQuizController instance = null;
 	
-	public CreatieQuizController(ContextType contextType) {
+	public static
+	
+	private CreatieQuizController(ContextType contextType) {
 		
-		daHelper = DataAccessHelperFactory.getDataAccessHelper(contextType);
 		
 	}
 
-	public void create(Quiz t) {
+	public Quiz createQuiz(Quiz q) {
 		
-		if(daHelper != null) {
-			
-			daHelper
-			
-		}
+		
 		
 	}
+
+	
 	
 }

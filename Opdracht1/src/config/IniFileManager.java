@@ -21,7 +21,7 @@ public class IniFileManager implements Closeable {
 	//data members
 	
 	private static IniFileManager instance = null;
-	private static final String fileName = "start.ini";
+	private static final String fileName = "bin/config/start.ini";
 	private Properties props;	
 	
 	//constructors

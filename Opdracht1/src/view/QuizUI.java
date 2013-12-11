@@ -12,6 +12,8 @@ import model.enums.QuizStatus;
 
 import javax.swing.border.LineBorder;
 
+import config.IniFileManager;
+
 /**
  * This class contains the GUI for the Quiz Application
  * @author Tom Vaes
@@ -40,7 +42,11 @@ public class QuizUI extends JFrame {
 	private JTable table;
 	
 	public QuizUI() {
-		super("Aanmaken nieuwe Quiz");
+		super(IniFileManager.getInstance().getProperty("apptitle"));
+		setResizable(Boolean.parseBoolean(IniFileManager.getInstance().getProperty("appresizable")));
+		int width = Integer.parseInt(IniFileManager.getInstance().getProperty("appwidth"));
+		int height = Integer.parseInt(IniFileManager.getInstance().getProperty("appheight"));
+		setSize(width, height);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel mainPanel = new JPanel();
