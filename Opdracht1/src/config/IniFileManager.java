@@ -56,9 +56,9 @@ public class IniFileManager implements Closeable {
 	
 	public void setProperty(String key, String value) throws IllegalArgumentException {
 		
-		if(key != null && !key.isEmpty() && value != null && !value.isEmpty()) {
+		if(key != null && !key.isEmpty() && value != null && !value.isEmpty()) {			
 			try {
-				props.setProperty(key, value);
+				props.put(key, value);
 			}
 			catch(IllegalArgumentException e) {
 				throw e;
