@@ -2,9 +2,10 @@ package model;
 
 import java.util.Arrays;
 
-import model.enums.QuizStatus;
 import utils.Datum;
 import model.enums.Leraar;
+import model.interfaces.IQuizStatus;
+
 import java.util.Set;
 import java.util.HashSet;
 
@@ -30,7 +31,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	private Boolean isUniekeDeelname;
 	private Leraar auteur;
 	private Datum datumRegistratie;
-	private QuizStatus quizStatus;
+	private IQuizStatus quizStatus;
 	private Set<QuizOpdracht> quizOpdrachten;
 	
 	//getters & setters
@@ -95,12 +96,12 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return this.datumRegistratie;
 	}
 	
-	public void setQuizStatus(QuizStatus status)
+	public void setQuizStatus(final IQuizStatus nieuweStatus)
 	{
-		this.quizStatus = status;
+		this.quizStatus = nieuweStatus;
 	}
 	
-	public QuizStatus getQuizStatus()
+	public IQuizStatus getQuizStatus()
 	{
 		return this.quizStatus;
 	}
@@ -112,7 +113,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		this (onderwerp, null, false, false, auteur, regDatum,null);
 	}
 	
-	public Quiz(String onderwerp, Leraar auteur, Datum regDatum, QuizStatus status)
+	public Quiz(String onderwerp, Leraar auteur, Datum regDatum, IQuizStatus status)
 	{
 		this (onderwerp, null, false, false, auteur, regDatum,status);
 	}
@@ -133,7 +134,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	}
 	
 	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
-			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) {
+			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
 		setOnderwerp(onderwerp);
 		setLeerjaren(leerjaren);
 		setIsTest(isTest);

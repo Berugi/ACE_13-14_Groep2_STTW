@@ -42,11 +42,13 @@ public class QuizUI extends JFrame {
 	private JTable table;
 	
 	public QuizUI() {
-		super(IniFileManager.getInstance().getProperty("apptitle"));
+		super(IniFileManager.getInstance().getProperty("apptitle") 
+				+ " (ContextType: " + IniFileManager.getInstance().getProperty("persistencemethod") + ")" );
 		setResizable(Boolean.parseBoolean(IniFileManager.getInstance().getProperty("appresizable")));
 		int width = Integer.parseInt(IniFileManager.getInstance().getProperty("appwidth"));
 		int height = Integer.parseInt(IniFileManager.getInstance().getProperty("appheight"));
 		setSize(width, height);
+		setLocationRelativeTo(null);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel mainPanel = new JPanel();
