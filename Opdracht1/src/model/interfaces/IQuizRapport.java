@@ -10,6 +10,6 @@ import model.QuizRapport;
  */
 public interface IQuizRapport {
 	
-	String toonRapport(QuizRapport q);
+	String toonRapport();
 	
 }

@@ -1,6 +1,5 @@
 package model.decorator;
 
-import model.QuizRapport;
 import model.decorator.baseclasses.QuizRapportDecorator;
 import model.interfaces.IQuizRapport;
 
@@ -18,9 +17,8 @@ public class QuizRapportDecorated_Default extends QuizRapportDecorator {
 	}
 
 	@Override
-	public String toonRapport(QuizRapport q) {
-		// TODO Auto-generated method stub
-		return null;
+	public String toonRapport() {
+		return "DECORATED " + super.getQuizRapport().toString() + " DECORATED";
 	}
 	
 }
