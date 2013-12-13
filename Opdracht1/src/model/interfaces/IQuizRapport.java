@@ -1,7 +1,5 @@
 package model.interfaces;
 
-import model.QuizRapport;
-
 /**
  * 
  * @author Wim Ombelets

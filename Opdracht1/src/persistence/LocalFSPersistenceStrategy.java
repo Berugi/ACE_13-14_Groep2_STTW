@@ -1,7 +1,6 @@
 package persistence;
 
 import persistence.interfaces.IPersistenceStrategy;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 

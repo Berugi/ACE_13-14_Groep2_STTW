@@ -13,7 +13,7 @@ import java.util.Set;
  *
  * Bevat QuizCatalogues informatie
  */
-public class QuizDeelname {
+public class QuizDeelname implements Comparable<QuizDeelname>, Cloneable {
 
 	private Leerling leerling;
 	private Quiz quiz;
@@ -68,4 +68,24 @@ public class QuizDeelname {
 			return false;
 		}
 	}
+	
+	public int compareTo(QuizDeelname other) {
+		final int BEFORE = -1;
+	    final int EQUAL = 0;
+	    final int AFTER = 1;
+	    
+		if(this == other)
+			return EQUAL;
+		
+		//Enkel quizdeelnames van dezelfde leerling worden vergeleken
+		if(this.getLeerling() == other.getLeerling()) {
+			return this.getDatumDeelname().compareTo(other.getDatumDeelname());
+		}
+		
+		if(this.equals(other))
+			return EQUAL;
+		
+		return EQUAL;
+	}
+	
 }

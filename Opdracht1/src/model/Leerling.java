@@ -47,5 +47,10 @@ public class Leerling {
 		setNaam(naam);
 		setLeerjaar(leerjaar);
 	}
+
+	public int compareTo(Leerling leerling) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

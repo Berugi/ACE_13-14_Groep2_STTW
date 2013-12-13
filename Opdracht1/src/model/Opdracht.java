@@ -81,6 +81,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	public Opdracht(){
 		
 	}
+	
 	public Opdracht(String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
 			String ... antwoordHints) {

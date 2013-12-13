@@ -108,6 +108,8 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	//constructors
 	
+	public Quiz() { }
+	
 	public Quiz(String onderwerp, Leraar auteur, Datum regDatum)
 	{
 		this (onderwerp, null, false, false, auteur, regDatum,null);

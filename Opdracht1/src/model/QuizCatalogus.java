@@ -10,7 +10,7 @@ import java.util.Set;
 
 import utils.Datum;
 import model.enums.Leraar;
-import model.enums.QuizStatus;
+import model.interfaces.IQuizStatus;
 
 
 /**
@@ -60,7 +60,7 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 							(quizTabel.get("IsUniekeDeelname").get(j)=="True"?true:false),
 							Leraar.valueOf(quizTabel.get("Auteur").get(j)), 
 							new Datum(quizTabel.get("DatumRegistratie").get(j)),
-							QuizStatus.valueOf(quizTabel.get("QuizStatus").get(j))
+							IQuizStatus.valueOf(quizTabel.get("IQuizStatus").get(j))
 							)
 					);
 		}
