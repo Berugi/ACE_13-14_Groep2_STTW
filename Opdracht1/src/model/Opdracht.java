@@ -1,25 +1,30 @@
 package model;
 
 import java.util.Arrays;
+
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import utils.Datum;
 
+/**
+ * Represents an Opdracht
+ * 
+ * @author Wim Ombelets
+ * @version 20131213-01 - initial commit
+ *
+ */
 public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	
 	//data members
 	
 	private String vraag;
-	private int maxAantalPogingen;
-	//private IetsMetTijd ??? maxAntwoordTijd
-	private int maxAntwoordTijd;
-	
-	private String juisteAntwoord;
 	private String[] antwoordHints;
+	private String juisteAntwoord;
+	private int maxAantalPogingen;
+	private int maxAntwoordTijd;
+	private OpdrachtCategorie opdrachtCategorie;
 	private Leraar auteur;
-	private OpdrachtCategorie categorie;
 	private Datum datumRegistratie;
-	
 	
 	//getters & setters
 	
@@ -31,14 +36,20 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 		this.vraag = vraag;
 	}
 
+	public String[] getAntwoordHints() {
+		return antwoordHints;
+	}
+
+	private void setAntwoordHints(String[] antwoordHints) {
+		this.antwoordHints = antwoordHints;
+	}
+
 	public String getJuisteAntwoord() {
-		return this.juisteAntwoord;
+		return juisteAntwoord;
 	}
 
 	private void setJuisteAntwoord(String juisteAntwoord) {
-		
 		this.juisteAntwoord = juisteAntwoord;
-		
 	}
 
 	public int getMaxAantalPogingen() {
@@ -49,50 +60,53 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 		this.maxAantalPogingen = maxAantalPogingen;
 	}
 
-	public String[] getAntwoordHints() {
-		return antwoordHints;
-	}
-
-	private void setAntwoordHints(String[] antwoordHints) {
-		this.antwoordHints = antwoordHints;
-	}
-	
 	public int getMaxAntwoordTijd() {
 		return maxAntwoordTijd;
 	}
-	
-	private void setAuteur(Leraar auteur) {
-		this.auteur = auteur;
+
+	private void setMaxAntwoordTijd(int maxAntwoordTijd) {
+		this.maxAntwoordTijd = maxAntwoordTijd;
 	}
-	
+
+	public OpdrachtCategorie getOpdrachtCategorie() {
+		return opdrachtCategorie;
+	}
+
+	private void setOpdrachtCategorie(OpdrachtCategorie opdrachtCategorie) {
+		this.opdrachtCategorie = opdrachtCategorie;
+	}
+
 	public Leraar getAuteur() {
 		return auteur;
 	}
-	
-	private void setOpdrachtCategorie(OpdrachtCategorie categorie) {
-		this.categorie = categorie;
+
+	private void setAuteur(Leraar auteur) {
+		this.auteur = auteur;
 	}
-	
-	public OpdrachtCategorie getOpdrachtCategorie() {
-		return categorie;
+
+	public Datum getDatumRegistratie() {
+		return datumRegistratie;
 	}
-	
+
+	private void setDatumRegistratie(Datum datumRegistratie) {
+		this.datumRegistratie = datumRegistratie;
+	}
+
 	//constructors
 	public Opdracht(){
 		
 	}
 	
-	public Opdracht(String vraag, String juisteAntwoord, int maxAantalPogingen,
-			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
-			String ... antwoordHints) {
-		this();
+	public Opdracht(String vraag, String[] antwoordHints, String juisteAntwoord, int maxAantalPogingen,
+			int maxAntwoordTijd, OpdrachtCategorie categorie, Leraar auteur, Datum datumRegistratie) {
 		setVraag(vraag);
+		setAntwoordHints(antwoordHints);
 		setJuisteAntwoord(juisteAntwoord);
 		setMaxAantalPogingen(maxAantalPogingen);
-		setMaxAantalPogingen(maxAntwoordTijd);
-		setAuteur(auteur);
+		setMaxAntwoordTijd(maxAntwoordTijd);
 		setOpdrachtCategorie(categorie);
-		setAntwoordHints(antwoordHints);
+		setAuteur(auteur);
+		setDatumRegistratie(datumRegistratie);
 	}
 	
 	//methods
@@ -102,10 +116,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	}
 
 	public int compareTo(Opdracht opdracht) {
-		// TODO Auto-generated method stub
-		return this.getVraag().compareTo(opdracht.getVraag());
-		//return 0;
-			
+		return this.getVraag().compareTo(opdracht.getVraag());			
 	}
 
 	@Override
@@ -113,65 +124,81 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Arrays.hashCode(antwoordHints);
-		result = prime * result
-				+ ((juisteAntwoord == null) ? 0 : juisteAntwoord.hashCode());
 		result = prime * result + ((auteur == null) ? 0 : auteur.hashCode());
-		result = prime * result
-				+ ((categorie == null) ? 0 : categorie.hashCode());
 		result = prime
 				* result
 				+ ((datumRegistratie == null) ? 0 : datumRegistratie.hashCode());
+		result = prime * result
+				+ ((juisteAntwoord == null) ? 0 : juisteAntwoord.hashCode());
 		result = prime * result + maxAantalPogingen;
 		result = prime * result + maxAntwoordTijd;
+		result = prime
+				* result
+				+ ((opdrachtCategorie == null) ? 0 : opdrachtCategorie
+						.hashCode());
 		result = prime * result + ((vraag == null) ? 0 : vraag.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Opdracht)) {
 			return false;
+		}
 		Opdracht other = (Opdracht) obj;
-		if (!Arrays.equals(antwoordHints, other.antwoordHints))
+		if (!Arrays.equals(antwoordHints, other.antwoordHints)) {
 			return false;
-		if (juisteAntwoord == null) {
-			if (other.juisteAntwoord != null)
-				return false;
-		} else if (!juisteAntwoord.equals(other.juisteAntwoord))
+		}
+		if (auteur != other.auteur) {
 			return false;
-		if (auteur != other.auteur)
-			return false;
-		if (categorie != other.categorie)
-			return false;
+		}
 		if (datumRegistratie == null) {
-			if (other.datumRegistratie != null)
+			if (other.datumRegistratie != null) {
 				return false;
-		} else if (!datumRegistratie.equals(other.datumRegistratie))
+			}
+		} else if (!datumRegistratie.equals(other.datumRegistratie)) {
 			return false;
-		if (maxAantalPogingen != other.maxAantalPogingen)
+		}
+		if (juisteAntwoord == null) {
+			if (other.juisteAntwoord != null) {
+				return false;
+			}
+		} else if (!juisteAntwoord.equals(other.juisteAntwoord)) {
 			return false;
-		if (maxAntwoordTijd != other.maxAntwoordTijd)
+		}
+		if (maxAantalPogingen != other.maxAantalPogingen) {
 			return false;
+		}
+		if (maxAntwoordTijd != other.maxAntwoordTijd) {
+			return false;
+		}
+		if (opdrachtCategorie != other.opdrachtCategorie) {
+			return false;
+		}
 		if (vraag == null) {
-			if (other.vraag != null)
+			if (other.vraag != null) {
 				return false;
-		} else if (!vraag.equals(other.vraag))
+			}
+		} else if (!vraag.equals(other.vraag)) {
 			return false;
+		}
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Opdracht [vraag=" + vraag + ", maxAantalPogingen="
-				+ maxAantalPogingen + ", maxAntwoordTijd=" + maxAntwoordTijd
-				+ ", juiste antwoord=" + juisteAntwoord + ", antwoordHints="
-				+ Arrays.toString(antwoordHints) + ", auteur=" + auteur
-				+ ", categorie=" + categorie + ", datumRegistratie="
-				+ datumRegistratie + "]";
+		return "Opdracht [vraag=" + vraag + ", antwoordHints="
+				+ Arrays.toString(antwoordHints) + ", juisteAntwoord="
+				+ juisteAntwoord + ", maxAantalPogingen=" + maxAantalPogingen
+				+ ", maxAntwoordTijd=" + maxAntwoordTijd
+				+ ", opdrachtCategorie=" + opdrachtCategorie + ", auteur="
+				+ auteur + ", datumRegistratie=" + datumRegistratie + "]";
 	}
 	
 }

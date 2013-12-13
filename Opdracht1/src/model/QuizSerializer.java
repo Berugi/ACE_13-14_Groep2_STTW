@@ -28,22 +28,22 @@ public class QuizSerializer implements ICSVSerializable<Object> {
 			throw new IllegalArgumentException("Can only serialize objects of type Quiz.");
 		
 		Quiz q = (Quiz)o;
-		StringBuilder csvString = new StringBuilder();
-		csvString.append(q.getOnderwerp() + ps);
+		StringBuilder csvStringBuilder = new StringBuilder();
+		csvStringBuilder.append(q.getOnderwerp() + ps);
 		
 		for(int i=0; i<q.getLeerjaren().length; i++) {
-			csvString.append(q.getLeerjaren()[i]);
+			csvStringBuilder.append(q.getLeerjaren()[i]);
 			if(i != q.getLeerjaren().length -1)
-				csvString.append(',');
+				csvStringBuilder.append(',');
 		}
 		
-		csvString.append(q.getIsTest().toString() + ps
+		csvStringBuilder.append(q.getIsTest().toString() + ps
 				+ q.getIsUniekeDeelname() + ps
 				+ q.getAuteur().toString() + ps
 				+ q.getDatumRegistratie().toString() + ps
 				+ q.getQuizStatus().toString());		
 		
-		return csvString.toString();
+		return csvStringBuilder.toString();
 	}
 	
 	public Quiz deserialize(String csvString) throws IllegalArgumentException, NumberFormatException {
