@@ -22,7 +22,7 @@ import utils.Datum;
  * @
  */
 
-public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
+public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 	
 	//data members
 	
@@ -256,10 +256,14 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 		}
 	}
 
-	public int compareTo(Opdracht arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-			
+	public int compareTo(OpdrachtBase opd) {
+		int counter=0;
+		
+		if (this.vraag==opd.vraag) counter++;
+		if (this.auteur==opd.auteur) counter++;
+		if (this.categorie==opd.categorie) counter++;
+		//...
+		return counter;
 	}
 
 	@Override
@@ -284,38 +288,34 @@ public class OpdrachtBase implements Comparable<Opdracht>, Cloneable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		else
+		if (obj == null)
 			return false;
-//		if (obj == null)
-//			return false;
-//		if (this.getClass() != obj.getClass())
-//			return false;
-//		Opdracht other = (Opdracht) obj;
-//		if (!Arrays.equals(antwoordHints, other.antwoordHints))
-//			return false;
-//		if (antwoorden == null) {
-//			if (other.antwoorden != null)
-//				return false;
-//		} else if (!antwoorden.equals(other.antwoorden))
-//			return false;
-//		if (auteur != other.auteur)
-//			return false;
-//		if (categorie != other.categorie)
-//			return false;
-//		if (datumRegistratie == null) {
-//			if (other.datumRegistratie != null)
-//				return false;
-//		} else if (!datumRegistratie.equals(other.datumRegistratie))
-//			return false;
-//		if (maxAantalPogingen != other.maxAantalPogingen)
-//			return false;
-//		if (maxAntwoordTijd != other.maxAntwoordTijd)
-//			return false;
-//		if (vraag == null) {
-//			if (other.vraag != null)
-//				return false;
-//		} else if (!vraag.equals(other.vraag))
-//			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		OpdrachtBase other = (OpdrachtBase) obj;
+		if (!Arrays.equals(antwoordHints, other.antwoordHints))
+			return false;
+		if (juisteAntwoord != other.juisteAntwoord)
+			return false;
+		if (auteur != other.auteur)
+			return false;
+		if (categorie != other.categorie)
+			return false;
+		if (datumRegistratie == null) {
+			if (other.datumRegistratie != null)
+				return false;
+		} else if (!datumRegistratie.equals(other.datumRegistratie))
+			return false;
+		if (maxAantalPogingen != other.maxAantalPogingen)
+			return false;
+		if (maxAntwoordTijd != other.maxAntwoordTijd)
+			return false;
+		if (vraag == null) {
+			if (other.vraag != null)
+				return false;
+		} else if (!vraag.equals(other.vraag))
+			return false;
+		return true;
 	}
 
 	@Override
