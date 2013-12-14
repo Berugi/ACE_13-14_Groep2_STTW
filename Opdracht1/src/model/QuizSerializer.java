@@ -17,10 +17,12 @@ import utils.Datum;
 public class QuizSerializer implements ICSVSerializable<Object> {
 	
 	private Character ps;
+	private Character mvs;
 	
 	public QuizSerializer() {
 		CSVSerializer serializer = new CSVSerializer();
 		ps = serializer.getPropertySeparator();
+		mvs = serializer.getMultiValueSeparator();
 	}
 	
 	public String serialize(Object o) throws IllegalArgumentException {
@@ -34,7 +36,7 @@ public class QuizSerializer implements ICSVSerializable<Object> {
 		for(int i=0; i<q.getLeerjaren().length; i++) {
 			csvStringBuilder.append(q.getLeerjaren()[i]);
 			if(i != q.getLeerjaren().length -1)
-				csvStringBuilder.append(',');
+				csvStringBuilder.append(mvs);
 		}
 		
 		csvStringBuilder.append(q.getIsTest().toString() + ps

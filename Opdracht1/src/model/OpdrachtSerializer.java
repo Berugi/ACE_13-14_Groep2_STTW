@@ -15,10 +15,12 @@ import utils.Datum;
 public class OpdrachtSerializer implements ICSVSerializable<Object> {
 
 	private Character ps;
+	private Character mvs;
 	
 	public OpdrachtSerializer() { 
 		CSVSerializer serializer = new CSVSerializer();
 		ps = serializer.getPropertySeparator();
+		mvs = serializer.getMultiValueSeparator();
 	}
 	
 	public String serialize(Object obj) throws IllegalArgumentException {
@@ -29,14 +31,12 @@ public class OpdrachtSerializer implements ICSVSerializable<Object> {
 		Opdracht o = (Opdracht)obj;
 		StringBuilder csvStringBuilder = new StringBuilder();
 		
-		//11;Wie vond het principe van de relativiteit uit?;Einstein;2;20;Natuurkunde;Pieter;2 december 2013;
-		
 		csvStringBuilder.append(o.getVraag() + ps); 
 		
 		for(int i=0; i<o.getAntwoordHints().length; i++) {
 			csvStringBuilder.append(o.getAntwoordHints()[i]);
 			if(i != o.getAntwoordHints().length - 1)
-				csvStringBuilder.append(',');
+				csvStringBuilder.append(mvs);
 		}
 		
 		csvStringBuilder.append(o.getJuisteAntwoord() + ps 
@@ -52,10 +52,11 @@ public class OpdrachtSerializer implements ICSVSerializable<Object> {
 
 	public Opdracht deserialize(String csvString) throws IllegalArgumentException, NumberFormatException {
 		Opdracht o = null;
+		
 		try {
 			String[] values = csvString.split(ps.toString());
 			String vraag = values[0];
-			String[] antwoordHints = values[1].split(",");
+			String[] antwoordHints = values[1].split(mvs.toString());
 			String juisteAntwoord = values[2];
 			int maxAantalPogingen;
 			int maxAntwoordTijd;

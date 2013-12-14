@@ -1,54 +1,31 @@
 package model.baseclasses;
 
-import model.Opdracht;
-import model.OpdrachtSerializer;
-import model.Quiz;
-import model.QuizSerializer;
 import persistence.interfaces.ICSVSerializable;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public abstract class AbstractCSVSerializer {
-
-	//data members
-	private Character propertySeparator;
-	//private Character keyValueSeparator;
-	private ICSVSerializable<Object> serializerStrategy;
+/**
+ * Abstract representation of a CSV (de)serialization class that supports serialization strategy switching.
+ * 
+ * @author Wim Ombelets
+ * @version 20131214-01 - initial commit
+ *
+ */
+public abstract class AbstractCSVSerializer {	
 
 	//getters & setters
-	public Character getPropertySeparator() {
-		return propertySeparator;
-	}
+	public abstract Character getPropertySeparator();
 
-	public void setPropertySeparator(Character propertySeparator) {
-		this.propertySeparator = propertySeparator;
-	}
+	public abstract void setPropertySeparator(Character propertySeparator);
 	
-	public ICSVSerializable<Object> getSerializerStrategy() {
-		return serializerStrategy;
-	}
+	public abstract Character getMultiValueSeparator();
 
-	public void setSerializerStrategy(Object o) throws NotImplementedException {
-		if (o instanceof Quiz) {
-			this.serializerStrategy = new QuizSerializer();
-		}
-		else if(o instanceof Opdracht) {
-			this.serializerStrategy = new OpdrachtSerializer();
-		}
-		else throw new NotImplementedException();
-	}
+	public abstract void setMultiValueSeparator(Character multiValueSeparator);
 
-	//constructor
-	public AbstractCSVSerializer() {
-		setPropertySeparator(';');
-		//setKeyValueSeparator(':');
-	}
+	public abstract ICSVSerializable<Object> getSerializerStrategy();
+
+	public abstract void setSerializerStrategy(Object o);
 	
 	//methods
-	public String serialize(Object o) {
-		return getSerializerStrategy().serialize(o);
-	}
+	public abstract String serialize(Object o);
 	
-	public Object deserialize(String csvString) {
-		return getSerializerStrategy().deserialize(csvString);
-	}
+	public abstract Object deserialize(String csvString);
 }

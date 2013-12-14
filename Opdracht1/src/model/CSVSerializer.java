@@ -9,40 +9,83 @@ import model.baseclasses.AbstractCSVSerializer;
  * 
  * @author Wim Ombelets
  * @version 20131213-01 - initial commit
+ * @version 20131214-01 - moved concrete method implementations here
  *
  */
 public class CSVSerializer extends AbstractCSVSerializer {
 
+	//data members
+	private Character propertySeparator;
+	private Character multiValueSeparator;
+	private ICSVSerializable<Object> serializerStrategy;
+	
+	//getters & setters
 	@Override
 	public Character getPropertySeparator() {
-		return super.getPropertySeparator();
+		return propertySeparator;
 	}
 
 	@Override
 	public void setPropertySeparator(Character propertySeparator) {
-		super.setPropertySeparator(propertySeparator);
+		this.propertySeparator = propertySeparator;
+	}
+	
+	@Override
+	public Character getMultiValueSeparator() {
+		return multiValueSeparator;
+	}
+
+	@Override
+	public void setMultiValueSeparator(Character multiValueSeparator) {
+		this.multiValueSeparator = multiValueSeparator;
 	}
 
 	@Override
 	public ICSVSerializable<Object> getSerializerStrategy() {
-		return super.getSerializerStrategy();
+		return serializerStrategy;
 	}
 
 	@Override
 	public void setSerializerStrategy(Object o) throws NotImplementedException {
-		super.setSerializerStrategy(o);
+		if (o instanceof Quiz) {
+			this.serializerStrategy = new QuizSerializer();
+		}
+		else if(o instanceof Opdracht) {
+			this.serializerStrategy = new OpdrachtSerializer();
+		}
+		else throw new NotImplementedException();
 	}
-
+	
+	//constructors
+	
+	/**
+	 * Create a new CSVSerializer object and use the default property and multivalue separator characters.
+	 */
+	public CSVSerializer() {
+		setPropertySeparator(';');
+		setMultiValueSeparator(',');
+	}
+	
+	/**
+	 * Create a new CSVSerializer object and provide your own property and multivalue separator characters.
+	 * 
+	 * @param propertySeparator
+	 * @param multiValueSeparator
+	 */
+	public CSVSerializer(Character propertySeparator, Character multiValueSeparator) {
+		setPropertySeparator(propertySeparator);
+		setMultiValueSeparator(multiValueSeparator);
+	}
+	
+	//methods
 	@Override
 	public String serialize(Object o) {
-		return super.serialize(o);
+		return getSerializerStrategy().serialize(o);
 	}
 
 	@Override
 	public Object deserialize(String csvString) {
-		return super.deserialize(csvString);
+		return getSerializerStrategy().deserialize(csvString);
 	}
-
-	
 	
 }
