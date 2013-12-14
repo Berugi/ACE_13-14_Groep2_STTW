@@ -1,6 +1,9 @@
 package model;
 
+import model.enums.Leraar;
+import model.enums.OpdrachtCategorie;
 import persistence.interfaces.ICSVSerializable;
+import utils.Datum;
 
 /**
  * A concrete serializer / deserializer strategy for Opdracht objects.
@@ -47,9 +50,32 @@ public class OpdrachtSerializer implements ICSVSerializable<Object> {
 		return csvStringBuilder.toString();
 	}
 
-	public Opdracht deserialize(String csvString) {
-		Opdracht o = new Opdracht();
-		//concrete invulling van de properties waarden op basis van de CSV string.
+	public Opdracht deserialize(String csvString) throws IllegalArgumentException, NumberFormatException {
+		Opdracht o = null;
+		try {
+			String[] values = csvString.split(ps.toString());
+			String vraag = values[0];
+			String[] antwoordHints = values[1].split(",");
+			String juisteAntwoord = values[2];
+			int maxAantalPogingen;
+			int maxAntwoordTijd;
+			try {
+				maxAantalPogingen = Integer.parseInt(values[3]);
+				maxAntwoordTijd = Integer.parseInt(values[4]);
+			}
+			catch(NumberFormatException e) {
+				throw e;
+			}
+			OpdrachtCategorie opdrachtCategorie = OpdrachtCategorie.valueOf(values[5]);
+			Leraar auteur = Leraar.valueOf(values[6]);
+			Datum datumRegistratie = new Datum(values[7]);
+			
+			o = new Opdracht(vraag, antwoordHints, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd, opdrachtCategorie, auteur, datumRegistratie);
+		}
+		catch(IllegalArgumentException e) {
+			throw e;
+		}
+		
 		return o;
 	}
 	
