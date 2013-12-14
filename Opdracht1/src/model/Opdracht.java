@@ -12,7 +12,7 @@ import utils.Datum;
  * @author Wim Ombelets
  * @version 20131213-01 - initial commit
  *
- */
+
 public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	
 	//data members
@@ -202,3 +202,4 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable{
 	}
 	
 }
+*/

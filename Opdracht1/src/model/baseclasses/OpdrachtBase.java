@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 
-import model.Opdracht;
 import model.QuizOpdracht;
 import model.enums.OpdrachtCategorie;
 import model.enums.Leraar;

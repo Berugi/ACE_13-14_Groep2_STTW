@@ -14,13 +14,15 @@ import controller.baseclasses.BaseController;
  */
 
 public class AfsluitController extends BaseController {
+
+	/*
+	private int test;
+	private String regel;
 	
-//	private int test;
-//	private String regel;
-//	
-//	public Boolean Wegschrijven(QuizCatalogus qc){
-//
-//		
-//	return true;
-//	}
+	public Boolean Wegschrijven(QuizCatalogus qc){
+
+		
+	return true;
+	}
+	*/
 }

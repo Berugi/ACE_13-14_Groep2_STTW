@@ -12,7 +12,8 @@ import java.text.SimpleDateFormat;
  * 
  * @author Tom Scheepers
  * @version initial 20131005-01
- *
+ * Ook in deze Datum versie is de datum uiteindelijk omgevormd naar dag - maan- jaar in overeenstemming met de eerste versie van Datum.
+ * Normaal gezien was dit niet nodig geweest en hadden we de datum zo kunnen gebruiken
  */
 
 public class Datum implements Comparable<Datum> {

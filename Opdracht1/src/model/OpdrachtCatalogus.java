@@ -8,7 +8,7 @@ import model.baseclasses.*;
 import utils.Datum;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
-import model.enums.QuizStatus;
+
 
 import java.util.Iterator;
 
@@ -31,11 +31,13 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 		//this.registratiedatum = new Datum();
 		//this.auteur = Leraar.TBA;
 	}
+	
 	/**
 	 * Constructor that uses a txt file
 	 * @param bestandsnaam
 	 * @throws IOException
 	 */
+	
 	public OpdrachtCatalogus(String bestandsnaam) throws IOException{
 		this();
 		txtEncoderDecoder decoder = new txtEncoderDecoder(bestandsnaam);
