@@ -3,6 +3,8 @@ package model;
 import persistence.interfaces.ICSVSerializable;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import model.baseclasses.AbstractCSVSerializer;
+import model.strategy.OpdrachtSerializer;
+import model.strategy.QuizSerializer;
 
 /**
  * Concrete CSV Serializer class that can switch serializer strategy based on certain class types.

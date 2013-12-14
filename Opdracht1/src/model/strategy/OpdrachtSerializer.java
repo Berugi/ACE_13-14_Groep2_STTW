@@ -1,5 +1,7 @@
-package model;
+package model.strategy;
 
+import model.CSVSerializer;
+import model.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import persistence.interfaces.ICSVSerializable;

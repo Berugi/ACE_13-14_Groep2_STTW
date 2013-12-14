@@ -1,8 +1,9 @@
-package model;
+package model.strategy;
 
+import model.CSVSerializer;
+import model.Quiz;
 import model.enums.Leraar;
 import model.interfaces.IQuizStatus;
-
 import persistence.interfaces.ICSVSerializable;
 import utils.Datum;
 
