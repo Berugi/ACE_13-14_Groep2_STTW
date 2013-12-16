@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -20,12 +21,14 @@ public class QuizApplication {
 		
 		//public static void main(String[] args) {
 			// TODO Auto-generated method stub
-		public QuizApplication(){
+		
+		public QuizApplication() {
 			choice =-1;
 			Scanner sc = new Scanner(System.in);
 			
 			while (choice < 0)
 			{
+				
 				System.out.print(showMenu());
 				System.out.print("Maak je Keuze (0-7): ");
 
@@ -42,6 +45,7 @@ public class QuizApplication {
 					case 0:
 					{
 						sc.close();
+						System.out.println("Programma beeindigd!");
 						System.exit(0);
 					}
 					case 1:
