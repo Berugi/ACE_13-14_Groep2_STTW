@@ -61,7 +61,8 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 							(quizTabel.get("IsUniekeDeelname").get(j)=="True"?true:false),
 							Leraar.valueOf(quizTabel.get("Auteur").get(j)), 
 							new Datum(quizTabel.get("DatumRegistratie").get(j)),
-							IQuizStatus.valueOf(quizTabel.get("IQuizStatus").get(j))
+							//IQuizStatus.valueOf(quizTabel.get("IQuizStatus").get(j))//--for state pattern
+							QuizStatus.valueOf(quizTabel.get("QuizStatus").get(j))
 							)
 					);
 		}

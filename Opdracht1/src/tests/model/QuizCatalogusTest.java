@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Random;
 
-import model.OpdrachtCatalogus;
+import model.Quiz;
 import model.QuizCatalogus;
 
 import org.junit.Before;
@@ -22,8 +22,22 @@ public class QuizCatalogusTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		this.quizCatalogus = new QuizCatalogus();
 	}
 
+	
+	@Test
+	public void test_QuizCatalogus_Geslaagd() {
+		this.quizCatalogus = new QuizCatalogus();
+	}
+	
+	
+	@Test
+	public void test_Add_Lege_Quiz_Geslaagd() {
+		assertEquals(true,this.quizCatalogus.add(new Quiz()));
+		
+	}
+	
 	@Test
 	public void test() {
 		fail("Not yet implemented");

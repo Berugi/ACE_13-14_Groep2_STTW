@@ -47,7 +47,7 @@ public class QuizUI extends JFrame {
 		setResizable(Boolean.parseBoolean(IniFileManager.getInstance().getProperty("appresizable")));
 		int width = Integer.parseInt(IniFileManager.getInstance().getProperty("appwidth"));
 		int height = Integer.parseInt(IniFileManager.getInstance().getProperty("appheight"));
-		setSize(width, height);
+		setSize(816, 547);
 		setLocationRelativeTo(null);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
