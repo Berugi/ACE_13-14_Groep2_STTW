@@ -13,7 +13,8 @@ import org.junit.Test;
 /**
  * 
  * @author wim
- *
+ * @version 20131215 - modified by Tom Vaes - added test routines
+ * 
  */
 public class QuizCatalogusTest {
 
