@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import utils.Datum;
 import model.enums.Leraar;
+import model.enums.QuizStatus;
 import model.interfaces.IQuizStatus;
 
 import java.util.Set;
@@ -31,7 +32,8 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	private Boolean isUniekeDeelname;
 	private Leraar auteur;
 	private Datum datumRegistratie;
-	private IQuizStatus quizStatus;
+	//private IQuizStatus quizStatus; -- for state pattern
+	private QuizStatus quizStatus;
 	private Set<QuizOpdracht> quizOpdrachten;
 	
 	//getters & setters
@@ -96,15 +98,28 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return this.datumRegistratie;
 	}
 	
-	public void setQuizStatus(final IQuizStatus nieuweStatus)
+	//-- for state pattern
+	//public void setQuizStatus(final IQuizStatus nieuweStatus)
+	//{
+	//	this.quizStatus = nieuweStatus;
+	//}
+	
+	public void setQuizStatus(QuizStatus nieuweStatus)
 	{
 		this.quizStatus = nieuweStatus;
 	}
 	
-	public IQuizStatus getQuizStatus()
+	//-- for state pattern
+	//public IQuizStatus getQuizStatus()
+	//{
+	//	return this.quizStatus;
+	//}
+	
+	public QuizStatus getQuizStatus()
 	{
 		return this.quizStatus;
 	}
+	
 	
 	//constructors
 	
@@ -115,10 +130,13 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		this (onderwerp, null, false, false, auteur, regDatum,null);
 	}
 	
-	public Quiz(String onderwerp, Leraar auteur, Datum regDatum, IQuizStatus status)
+	public Quiz(String onderwerp, Leraar auteur, Datum regDatum, QuizStatus status)
+	//-- for state pattern
+	//public Quiz(String onderwerp, Leraar auteur, Datum regDatum, IQuizStatus status)
 	{
 		this (onderwerp, null, false, false, auteur, regDatum,status);
 	}
+	
 	
 	public Quiz(String onderwerp, int[] leerjaren, Leraar auteur, Datum regDatum)
 	{
@@ -136,17 +154,21 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	}
 	
 	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
-			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
+			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) {
+		//-- for state pattern
+	//public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
+	//		Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
 		setOnderwerp(onderwerp);
 		setLeerjaren(leerjaren);
 		setIsTest(isTest);
 		setIsUniekeDeelname(isUniekeDeelname);
 		setAuteur(auteur);
 		setDatumRegistratie(regDatum);
-		setQuizStatus(status);
+		setQuizStatus(status); 
 		this.quizOpdrachten = new HashSet<QuizOpdracht>();
 	}
-
+	
+	
 	// Override methodes - standard	
 	@Override
 	public String toString() {

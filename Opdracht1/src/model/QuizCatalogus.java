@@ -10,7 +10,8 @@ import java.util.Set;
 
 import utils.Datum;
 import model.enums.Leraar;
-import model.interfaces.IQuizStatus;
+import model.enums.QuizStatus;
+//import model.interfaces.IQuizStatus;//-- for state pattern
 
 
 /**
