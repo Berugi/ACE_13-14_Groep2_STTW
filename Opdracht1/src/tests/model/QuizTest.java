@@ -23,7 +23,7 @@ public class QuizTest {
 		int[] leerjaren = new int[]{1,2,3};
 		boolean isTest = true;
 		boolean isUniekeDeelname = false;
-		Leraar auteur = Leraar.Jean;
+		Leraar auteur = Leraar.JEAN;
 		
 		quiz = new Quiz(onderwerp, leerjaren, isTest, isUniekeDeelname, auteur);
 	}
@@ -34,7 +34,7 @@ public class QuizTest {
 		int[] leerjaren = new int[]{1,2,3};
 		boolean isTest = true;
 		boolean isUniekeDeelname = false;
-		Leraar auteur = Leraar.Jean;
+		Leraar auteur = Leraar.JEAN;
 		
 		quiz = new Quiz(onderwerp, leerjaren, isTest, isUniekeDeelname, auteur);
 	}
@@ -45,7 +45,7 @@ public class QuizTest {
 		int[] leerjaren = new int[]{1,2,3};
 		boolean isTest = true;
 		boolean isUniekeDeelname = false;
-		Leraar auteur = Leraar.Jean;
+		Leraar auteur = Leraar.JEAN;
 		
 		quiz = new Quiz(onderwerp, leerjaren, isTest, isUniekeDeelname, auteur);
 	}

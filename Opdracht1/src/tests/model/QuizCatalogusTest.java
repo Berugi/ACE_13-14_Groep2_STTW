@@ -2,6 +2,11 @@ package tests.model;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
+import model.OpdrachtCatalogus;
+import model.QuizCatalogus;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +17,9 @@ import org.junit.Test;
  */
 public class QuizCatalogusTest {
 
+	private QuizCatalogus quizCatalogus; 
+	private Random generator = new Random();
+	
 	@Before
 	public void setUp() throws Exception {
 	}
