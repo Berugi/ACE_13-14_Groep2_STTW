@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Scanner;
  * @author wim ombelets
  * @version 20131102-01 - initial commit
  * @version 20131103-01 - switch toegevoegd - Tom Scheepers
- * @version 20131201-01 - while toegevoed - Tom Vaes
+ * @version 20131201-01 - while toegevoegd - Tom Vaes
  */
 public class QuizApplication {
 
@@ -18,13 +19,16 @@ public class QuizApplication {
 		private static int choice;
 		private static Scanner sc;
 		
-		public static void main(String[] args) {
+		//public static void main(String[] args) {
 			// TODO Auto-generated method stub
+		
+		public QuizApplication() {
 			choice =-1;
 			Scanner sc = new Scanner(System.in);
 			
 			while (choice < 0)
 			{
+				
 				System.out.print(showMenu());
 				System.out.print("Maak je Keuze (0-7): ");
 
@@ -41,6 +45,7 @@ public class QuizApplication {
 					case 0:
 					{
 						sc.close();
+						System.out.println("Programma beeindigd!");
 						System.exit(0);
 					}
 					case 1:

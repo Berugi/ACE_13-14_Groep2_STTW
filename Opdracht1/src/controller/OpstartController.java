@@ -3,6 +3,7 @@ package controller;
 import persistence.enums.ContextType;
 import config.IniFileManager;
 import view.QuizUI;
+import view.QuizApplication;
 
 /**
  * Primary controller that initializes the app, its properties, the secondary controllers
@@ -51,10 +52,16 @@ public class OpstartController {
 		
 		//initialize secondary controllers
 		
-		
+		//Initialize menu
+		try{
+		QuizApplication qa = new QuizApplication();
+		}
+		catch (Exception e){
+			System.out.println("Fout in het opbouwen van de menu!");
+		}
 		//initialize the main UI view
-		QuizUI ui = new QuizUI();
-        ui.setVisible(true);
+		//QuizUI ui = new QuizUI();
+        //ui.setVisible(true);
 	}
 
 }
