@@ -35,7 +35,9 @@ public class QuizCatalogusTest {
 	
 	@Test
 	public void test_Add_Lege_Quiz_Geslaagd() {
-		assertEquals(true,this.quizCatalogus.add(new Quiz()));
+		private Quiz QuizTest = new Quiz();
+		
+		//assertEquals(true,this.quizCatalogus.add(quizTest);
 		
 	}
 	
