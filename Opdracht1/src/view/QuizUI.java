@@ -148,6 +148,7 @@ public class QuizUI extends JFrame {
 		topPanel.add(quizStatusComboBox);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//Quiz nieuweQuiz = new Quiz(txtOnderwerp.);
 			}
 		});
 		

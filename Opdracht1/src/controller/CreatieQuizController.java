@@ -25,12 +25,9 @@ public class CreatieQuizController {
 		
 	}
 
-	public Quiz createQuiz(Quiz q) {
-		
-		
+	
+	public Quiz createQuiz(Quiz z) {
 		
 	}
 
-	
-	
 }
