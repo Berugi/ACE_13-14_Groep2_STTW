@@ -83,16 +83,17 @@ public class IniFileManager implements Closeable {
 	public MySQLDbInfo getMySQLDbInfoProperties() {		
 		
 		String dbType = props.getProperty("dbtype");
-		if(dbType != null && !dbType.isEmpty() && dbType == "mysql")
+		System.out.println(dbType);
+		if (dbType !=null && !dbType.isEmpty() && dbType.matches("mysql"))
 			return new MySQLDbInfo(
-					getProperty("dbconnector"), 
-					getProperty("dbserver"), 
-					getProperty("dbport"), 
-					getProperty("dbdatabase"), 
-					getProperty("dbusername"), 
-					getProperty("dbpassword")
+					props.getProperty("dbconnector"), 
+					props.getProperty("dbserver"), 
+					props.getProperty("dbport"), 
+					props.getProperty("dbdatabase"), 
+					props.getProperty("dbusername"), 
+					props.getProperty("dbpassword")
 			);		
-		else return null;
+				else return null;
 	}
 	
 	public void setMySQLDbInfoProperties(MySQLDbInfo db) {

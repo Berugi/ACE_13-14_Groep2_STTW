@@ -2,7 +2,6 @@ package controller;
 
 import persistence.enums.ContextType;
 import config.IniFileManager;
-import view.QuizUI;
 import view.QuizApplication;
 
 /**
@@ -52,6 +51,7 @@ public class OpstartController {
 		
 		//initialize secondary controllers
 		
+		
 		//Initialize menu
 		try{
 		QuizApplication qa = new QuizApplication();
@@ -59,6 +59,7 @@ public class OpstartController {
 		catch (Exception e){
 			System.out.println("Fout in het opbouwen van de menu!");
 		}
+		
 		//initialize the main UI view
 		//QuizUI ui = new QuizUI();
         //ui.setVisible(true);
