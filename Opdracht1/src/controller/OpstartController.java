@@ -3,6 +3,7 @@ package controller;
 import persistence.enums.ContextType;
 import config.IniFileManager;
 import view.QuizApplication;
+import persistence.*;
 
 /**
  * Primary controller that initializes the app, its properties, the secondary controllers
@@ -18,6 +19,7 @@ public class OpstartController {
 	//data members	
 	private static IniFileManager iniProps = null;
 	private static ContextType contextType;
+	private static DataContext dc = null;
 	
 	//getters & setters
 	private static IniFileManager getIniProps() {
@@ -34,6 +36,20 @@ public class OpstartController {
 	
 	private static void setContextType() {
 		contextType = ContextType.valueOf(getIniProps().getProperty("persistencemethod").toUpperCase());
+		dc = new DataContext();
+		switch(contextType){
+		case LOCALFS: 
+			{System.out.println("Gekozen voor text files");
+			dc.setStrategy(new LocalFSPersistenceStrategy());
+			break;}
+		case MYSQL:{
+			dc.setStrategy(new MySQLPersistenceStrategy());
+			break;
+		}
+		default:{
+			break;
+		}
+		}
 	}
 
 	//main
@@ -49,6 +65,7 @@ public class OpstartController {
 		//set initial ContextType
 		setContextType();
 		
+		
 		//initialize secondary controllers
 		
 		
@@ -63,6 +80,9 @@ public class OpstartController {
 		//initialize the main UI view
 		//QuizUI ui = new QuizUI();
         //ui.setVisible(true);
+		
+		//Load data
+		
 	}
 
 }

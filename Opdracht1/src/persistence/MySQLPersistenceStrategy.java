@@ -40,6 +40,7 @@ public class MySQLPersistenceStrategy implements IPersistenceStrategy {
 	//constructors
 	
 	public MySQLPersistenceStrategy() {
+		//uitlezen van de MySQL database info in de ini file
 		setDb(IniFileManager.getInstance().getMySQLDbInfoProperties());
 	}
 	
@@ -50,7 +51,7 @@ public class MySQLPersistenceStrategy implements IPersistenceStrategy {
 			conn = DriverManager.getConnection(getConnectionString(), db.getUsername(), db.getPassword());
 			String statement = "SELECT * FROM " + o.getClass().toString() + " WHERE ID=?";
 			ArrayList<DbParameter> paramsList = new ArrayList<DbParameter>();
-			DbParameter dbParam = new DbParameter(DbParamType.Int, o.getClass().getField("ID"))
+			DbParameter dbParam = new DbParameter(DbParamType.Int, o.getClass().getField("ID").toString());
 			paramsList.add(e)
 			PreparedStatement pS = createPreparedStatement(statement, paramsList)
 		} catch (SQLException e) {

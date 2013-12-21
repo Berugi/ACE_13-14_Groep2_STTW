@@ -5,6 +5,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import model.baseclasses.AbstractCSVSerializer;
 import model.strategy.OpdrachtSerializer;
 import model.strategy.QuizSerializer;
+import model.baseclasses.OpdrachtBase;
 
 /**
  * Concrete CSV Serializer class that can switch serializer strategy based on certain class types.
@@ -52,7 +53,7 @@ public class CSVSerializer extends AbstractCSVSerializer {
 		if (o instanceof Quiz) {
 			this.serializerStrategy = new QuizSerializer();
 		}
-		else if(o instanceof Opdracht) {
+		else if(o instanceof OpdrachtBase) {
 			this.serializerStrategy = new OpdrachtSerializer();
 		}
 		else throw new NotImplementedException();
