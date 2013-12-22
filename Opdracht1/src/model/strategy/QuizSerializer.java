@@ -1,6 +1,6 @@
 package model.strategy;
 
-import model.CSVSerializer;
+import model.CSVSerializerContext;
 import model.Quiz;
 import model.enums.Leraar;
 import model.interfaces.IQuizStatus;
@@ -21,7 +21,7 @@ public class QuizSerializer implements ICSVSerializable<Object> {
 	private Character mvs;
 	
 	public QuizSerializer() {
-		CSVSerializer serializer = new CSVSerializer();
+		CSVSerializerContext serializer = new CSVSerializerContext();
 		ps = serializer.getPropertySeparator();
 		mvs = serializer.getMultiValueSeparator();
 	}

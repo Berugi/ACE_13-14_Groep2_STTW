@@ -1,6 +1,6 @@
 package model.strategy;
 
-import model.CSVSerializer;
+import model.CSVSerializerContext;
 import model.baseclasses.OpdrachtBase;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
@@ -20,7 +20,7 @@ public class OpdrachtSerializer implements ICSVSerializable<Object> {
 	private Character mvs;
 	
 	public OpdrachtSerializer() { 
-		CSVSerializer serializer = new CSVSerializer();
+		CSVSerializerContext serializer = new CSVSerializerContext();
 		ps = serializer.getPropertySeparator();
 		mvs = serializer.getMultiValueSeparator();
 	}
