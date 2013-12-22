@@ -46,33 +46,71 @@ public class MySQLPersistenceStrategy implements IPersistenceStrategy {
 	
 	//methods
 
-	public Object readByID(Object o) {
+	/**
+	 * Executes a parameterized SELECT statement.
+	 * 
+	 * @param statement
+	 * @return ResultSet
+	 * @throws SQLException
+	 */
+	public ResultSet select(PreparedStatement statement) throws SQLException {
 		try {
 			conn = DriverManager.getConnection(getConnectionString(), db.getUsername(), db.getPassword());
-			String statement = "SELECT * FROM " + o.getClass().toString() + " WHERE ID=?";
-			ArrayList<DbParameter> paramsList = new ArrayList<DbParameter>();
-			DbParameter dbParam = new DbParameter(DbParamType.Int, o.getClass().getField("ID").toString());
-			paramsList.add(e)
-			PreparedStatement pS = createPreparedStatement(statement, paramsList)
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return statement.executeQuery();
+		}
+		catch (SQLException e) {
+			throw e;
 		}
 	}
-
-	public Object create(Object t) throws NotImplementedException {
-		// TODO Auto-generated method stub
-		return null;
+	
+	/**
+	 * Executes a parameterized INSERT statement.
+	 * 
+	 * @param statement
+	 * @throws SQLException
+	 */
+	public void insert(PreparedStatement statement) throws SQLException {
+		try {
+			conn = DriverManager.getConnection(getConnectionString(), db.getUsername(), db.getPassword());
+			statement.execute();
+		}
+		catch (SQLException e) {
+			throw e;
+		}
 	}
-
-	public Object update(Object t) throws NotImplementedException {
-		// TODO Auto-generated method stub
-		return null;
+	
+	/**
+	 * Executes a parameterized UPDATE statement.
+	 * 
+	 * @param statement
+	 * @return int (number of affected rows)
+	 * @throws SQLException
+	 */
+	public int update(PreparedStatement statement) throws SQLException {
+		try {
+			conn = DriverManager.getConnection(getConnectionString(), db.getUsername(), db.getPassword());
+			return statement.executeUpdate();
+		}
+		catch(SQLException e) {
+			throw e;
+		}
 	}
-
-	public void delete(Object t) throws NotImplementedException {
-		// TODO Auto-generated method stub
-		
+	
+	/**
+	 * Executes a parameterized DELETE statement.
+	 * 
+	 * @param statement
+	 * @return boolean
+	 * @throws SQLException
+	 */
+	public boolean delete(PreparedStatement statement) throws SQLException {
+		try {
+			conn = DriverManager.getConnection(getConnectionString(), db.getUsername(), db.getPassword());
+			return statement.execute();
+		}
+		catch(SQLException e) {
+			throw e;
+		}
 	}
 
 	/**
@@ -83,7 +121,7 @@ public class MySQLPersistenceStrategy implements IPersistenceStrategy {
 	 * @return PreparedStatement
 	 * @throws IllegalArgumentException
 	 */
-	private PreparedStatement createPreparedStatement(String statement, ArrayList<DbParameter> paramsList) throws IllegalArgumentException {
+	public PreparedStatement createPreparedStatement(String statement, ArrayList<DbParameter> paramsList) throws IllegalArgumentException {
 		
 		PreparedStatement pS = null;
 		
@@ -123,41 +161,6 @@ public class MySQLPersistenceStrategy implements IPersistenceStrategy {
 		}
 		
 		return pS;
-	}
-	
-	private ResultSet executePreparedStatement(PreparedStatement p) {
-		
-		ResultSet rs = null;
-		
-		if(p != null) {
-			
-			try {
-				
-				Class.forName(JDBC_DRIVER).newInstance();
-				this.conn = DriverManager.getConnection(this.getConnectionString(), db.getUsername(), db.getPassword());
-				rs = p.executeQuery();
-				
-			}
-			catch (SQLException se) {
-				se.printStackTrace();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			finally {
-				if(conn != null)
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-			}
-		}
-		
-		return rs;
 	}
 	
 }
