@@ -1,9 +1,9 @@
 package model.strategy;
 
-import model.CSVSerializerContext;
 import model.baseclasses.OpdrachtBase;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
+import persistence.CSVSerializerContext;
 import persistence.interfaces.ICSVSerializable;
 import utils.Datum;
 
