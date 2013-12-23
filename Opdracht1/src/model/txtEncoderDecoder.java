@@ -27,7 +27,8 @@ public class txtEncoderDecoder {
 	public txtEncoderDecoder() {
 		// TODO Auto-generated constructor stub
 	}
-
+    
+	//encode method
 	public boolean encode(String[][] objectTabel) throws IOException{
 		File bestand = new File(this.bestandspad);		 
 		//tekstbestand aanmaken als het nog niet bestaat
@@ -51,6 +52,7 @@ public class txtEncoderDecoder {
 		    }
 	}
 	
+	//decode method
 	public Hashtable<String,ArrayList<String>> decode() throws IOException{
 		BufferedReader reader  = new BufferedReader(new FileReader(bestandspad));
 		
@@ -65,10 +67,12 @@ public class txtEncoderDecoder {
 			   }
 			reader.close();
 			
+			// lees per veld alle waarden uit
 			for(int i = 0;i<arrayTabel.get(0).length;i++){
-				
+				// i = fieldcounter
 				ArrayList<String> waarden = new ArrayList<String>();
 				for(int j = 1;j<arrayTabel.size();j++){
+					//j = valuecounter
 					waarden.add(arrayTabel.get(j)[i]);
 				}
 				tabel.put(arrayTabel.get(0)[i],waarden);

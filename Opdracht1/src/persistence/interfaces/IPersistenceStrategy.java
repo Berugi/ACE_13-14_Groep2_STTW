@@ -8,6 +8,6 @@ public interface IPersistenceStrategy {
 	// en het finale resultaat dat wordt weggeschreven bij het afsluiten.
 	
 	public boolean ReadData();
-	public boolean WriteDate();
+	public boolean WriteData();
 	
 }

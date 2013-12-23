@@ -1,11 +1,11 @@
-1;Wat is het antwoord;Dit is het antwoord;1;30;Pieter;Wetenschappen;4 november 2013;
-2;Wat is een tekstbestand;flat file van ascii tekens;3;60;Jean;Wetenschappen;4 november 2013;
-3;Wat is de hoofdstad van Belgie;Brussel;3;30;Pieter;Aardrijkskunde;25 november 2013;
-4;Hoeveel is 2 + 2;4;2;10;Jean;Wiskunde;25 november 2013;
-5;Wat is de hoofdstad van Frankrijk;Parijs;3;40;An;Aardrijkskunde;25 november 2013;
-6;Hoeveel is 5 * 5;25;2;20;Sarah;Wiskunde;26 november 2013;
-7;Wat is de hoofdstad van Nederland;Amsterdam;1;50;Pieter;Aardrijkskunde;27 november 2013;
-8;Hoe noemt men de Belgische stad “Tienen” in het Frans?;Tirlemont;1;30;Fransenaam;Jean;28 november 2013;
-10;Wie was de eerste Belg in de ruimte?;Dirk Frimout;1;20;An;Aardrijkskunde;2 december 2013 ;
-11;Wie vond het principe van de relativiteit uit?;Einstein;2;20;Natuurkunde;Pieter;2 december 2013;
-
+ID;Vraag;JuisteAntwoord;MaxPogingen;MaxAntwoordtijd;Auteur;Category;RegistratieDatum
+1;Wat is het antwoord;Dit is het antwoord;1;30;Pieter;Wetenschappen;4 november 2013
+2;Wat is een tekstbestand;flat file van ascii tekens;3;60;Jean;Wetenschappen;4 november 2013
+3;Wat is de hoofdstad van Belgie;Brussel;3;30;Pieter;Aardrijkskunde;25 november 2013
+4;Hoeveel is 2 + 2;4;2;10;Jean;Wiskunde;25 november 2013
+5;Wat is de hoofdstad van Frankrijk;Parijs;3;40;An;Aardrijkskunde;25 november 2013
+6;Hoeveel is 5 * 5;25;2;20;Sarah;Wiskunde;26 november 2013
+7;Wat is de hoofdstad van Nederland;Amsterdam;1;50;Pieter;Aardrijkskunde;27 november 2013
+8;Hoe noemt men de Belgische stad “Tienen” in het Frans?;Tirlemont;1;30;Fransenaam;Jean;28 november 2013
+10;Wie was de eerste Belg in de ruimte?;Dirk Frimout;1;20;An;Aardrijkskunde;2 december 2013
+11;Wie vond het principe van de relativiteit uit?;Einstein;2;20;Natuurkunde;Pieter;2 december 2013
