@@ -43,10 +43,13 @@ public class OpstartController {
 			dc.setStrategy(new LocalFSPersistenceStrategy());
 			break;}
 		case MYSQL:{
+			System.out.println("Gekozen voor MySQL database");
 			dc.setStrategy(new MySQLPersistenceStrategy());
 			break;
 		}
 		default:{
+			System.out.println("Default persistence MySQL database");
+			dc.setStrategy(new MySQLPersistenceStrategy());
 			break;
 		}
 		}
@@ -62,12 +65,15 @@ public class OpstartController {
 		//load app properties
 		setIniProps(IniFileManager.getInstance());
 		
-		//set initial ContextType
+		//set initial Data ContextType
 		setContextType();
-		
-		
+				
 		//initialize secondary controllers
 		
+		//Load data
+		dc.getStrategy().ReadData();
+		
+		//
 		
 		//Initialize menu
 		try{
@@ -80,8 +86,6 @@ public class OpstartController {
 		//initialize the main UI view
 		//QuizUI ui = new QuizUI();
         //ui.setVisible(true);
-		
-		//Load data
 		
 	}
 
