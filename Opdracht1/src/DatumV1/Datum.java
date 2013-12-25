@@ -265,7 +265,7 @@ public class Datum implements Comparable<Datum>
 	/**
 	 * 
 	 * Main method
-	 */
+	 
 	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
@@ -287,5 +287,6 @@ public class Datum implements Comparable<Datum>
 		Datum d2 = d.veranderDatumObject(10);
 		System.out.println(d2);
 	}
+	*/
 
 }

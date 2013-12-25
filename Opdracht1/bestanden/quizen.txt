@@ -1,0 +1,3 @@
+QuizID;Onderwerp;Leerjaren;IsTest;IsUniekeDeelname;Auteur;Registratiedatum;Status
+1;Dit is het onderwerp;1,2;false;false;PIETER;25/11/2013;INCONSTRUCTIE
+2;Dit is nog een onderwerp;3,4,5;true;false;AN;25/02/2013;OPENGESTELD
