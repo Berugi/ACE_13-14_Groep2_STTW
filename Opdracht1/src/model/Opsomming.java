@@ -3,7 +3,7 @@ package model;
 import model.baseclasses.OpdrachtBase;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
-import model.interfaces.IValideerbaar;
+import utils.Datum;
 
 /**
  * 
@@ -22,11 +22,11 @@ public class Opsomming  extends OpdrachtBase implements IValideerbaar {
 		
 	}
 
-	public Opsomming(String vraag, String juisteAntwoord,
+	public Opsomming(Integer opdrachtID,String vraag, String juisteAntwoord,
 			int maxAantalPogingen, int maxAntwoordTijd, Leraar auteur,
-			OpdrachtCategorie categorie, String... antwoordHints) {
-		super(vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd,
-				auteur, categorie, antwoordHints);
+			OpdrachtCategorie categorie, Datum registratiedatum, String... antwoordHints) {
+		super(opdrachtID,vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd,
+				auteur, categorie, registratiedatum, antwoordHints);
 	}
 	
 	//getters en setters

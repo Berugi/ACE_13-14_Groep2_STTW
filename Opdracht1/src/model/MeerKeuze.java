@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.interfaces.IValideerbaar;
+import utils.Datum;
+
 /**
  * 
  * @author 
@@ -24,11 +26,11 @@ public class MeerKeuze extends OpdrachtBase implements IValideerbaar {
 	}
 
 	//keuzes in Arraylist<String>
-	public MeerKeuze(ArrayList<String> keuzes,String vraag, String juisteAntwoord,
+	public MeerKeuze(Integer opdrachtID,ArrayList<String> keuzes,String vraag, String juisteAntwoord,
 			int maxAantalPogingen, int maxAntwoordTijd, Leraar auteur,
-			OpdrachtCategorie categorie, String... antwoordHints) {
-		super(vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd,
-				auteur, categorie, antwoordHints);
+			OpdrachtCategorie categorie,Datum registratiedatum, String... antwoordHints) {
+		super(opdrachtID,vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd,
+				auteur, categorie, registratiedatum, antwoordHints);
 		
 		if(!keuzes.contains(juisteAntwoord)){
 			throw new IllegalArgumentException("De mogelijke keuzes bevatten niet het juiste antwoord!");

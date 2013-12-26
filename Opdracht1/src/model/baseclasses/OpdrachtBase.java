@@ -25,6 +25,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 	
 	//data members
 	
+	private int opdrachtID;
 	private String vraag;
 	private int maxAantalPogingen;
 	private int maxAntwoordTijd; // in seconden
@@ -34,7 +35,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 	private OpdrachtCategorie categorie;
 	private Datum datumRegistratie;
 	private Set<QuizOpdracht> quizOpdrachten;
-	
+		
 	//antwoorden was niet gedefinieerd dus heb
 	//heb ik een Object antwoorden bijgemaakt
 	//verder uitvissen !!! Wim
@@ -42,6 +43,14 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 	
 	
 	//getters & setters
+	
+	public int getOpdrachtID(){
+		return this.opdrachtID;
+	}
+	
+	public void setOpdrachtID(int oid){
+		this.opdrachtID = oid;
+	}
 	
 	public String getVraag() {
 		return vraag;
@@ -158,6 +167,21 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie, Datum datumRegistratie,
 			String... antwoordHints) {
 		this();
+		setVraag(vraag);
+		setJuisteAntwoord(juisteAntwoord);
+		setMaxAantalPogingen(maxAantalPogingen);
+		setMaxAntwoordTijd(maxAntwoordTijd);
+		setAuteur(auteur);
+		setOpdrachtCategorie(categorie);
+		setAntwoordHints(antwoordHints);
+		setDatumRegistratie(datumRegistratie);
+	}
+	
+	public OpdrachtBase(Integer opdrachtid, String vraag, String juisteAntwoord, int maxAantalPogingen,
+			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie, Datum datumRegistratie,
+			String... antwoordHints) {
+		this();
+		setOpdrachtID(opdrachtid);
 		setVraag(vraag);
 		setJuisteAntwoord(juisteAntwoord);
 		setMaxAantalPogingen(maxAantalPogingen);
