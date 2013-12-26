@@ -18,7 +18,7 @@ import java.util.Iterator;
  * 
  * @version 20131008-01 - Initial version
  * @version 20131021-01 - Sander Van der Borght removed registratiedatum, auteur, check if this exists in opdracht
- *
+ * @version 20131226-01 - Tom Vaes - corrected constructor that uses text file.
  * Bevat OpdrachtCatalogues informatie
  */
 public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Catalogus>{
@@ -48,14 +48,15 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 			
 			this.opdrachten.add(
 					new OpdrachtBase(
-							opdrachtTabel.get("vraag").get(j), 
-							opdrachtTabel.get("juisteAntwoord").get(j) , 
-							Integer.parseInt(opdrachtTabel.get("maxAantalPogingen").get(j)),
-							Integer.parseInt(opdrachtTabel.get("maxAntwoordTijd").get(j)), 
-							Leraar.valueOf(opdrachtTabel.get("auteur").get(j)), 
-							OpdrachtCategorie.valueOf(opdrachtTabel.get("opdrachtCategorie").get(j)), 
-							new Datum(opdrachtTabel.get("DatumRegistratie").get(j)), 
-							opdrachtTabel.get("antwoordHints").get(j))
+							opdrachtTabel.get("Vraag").get(j), 
+							opdrachtTabel.get("JuisteAntwoord").get(j) , 
+							Integer.parseInt(opdrachtTabel.get("MaxPogingen").get(j)),
+							Integer.parseInt(opdrachtTabel.get("MaxAntwoordtijd").get(j)), 
+							Leraar.valueOf(opdrachtTabel.get("Auteur").get(j)), 
+							OpdrachtCategorie.valueOf(opdrachtTabel.get("Categorie").get(j)), 
+							new Datum(opdrachtTabel.get("Registratiedatum").get(j))//, 
+							//opdrachtTabel.get("antwoordHints").get(j))
+							)
 			);
 		}
 		

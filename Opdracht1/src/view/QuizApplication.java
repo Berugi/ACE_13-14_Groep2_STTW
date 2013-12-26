@@ -45,13 +45,13 @@ public class QuizApplication {
 					case 0:
 					{
 						sc.close();
-						System.out.println("Programma beeindigd!");
+						System.out.println("Programma beeindigd!\n");
 						System.exit(0);
 					}
 					case 1:
 					{//Beheren van opdrachten
 						choice = -1;
-						System.out.print("Deze optie is nog niet geïmplementeerd");
+						System.out.print("Deze optie is nog niet geïmplementeerd !\n");
 						break;
 					}
 					case 2:
@@ -67,31 +67,31 @@ public class QuizApplication {
 					case 3:
 					{//Deelnemem aan quiz
 						choice = -1;
-						System.out.print("Deze optie is nog niet geïmplementeerd");
+						System.out.print("Deze optie is nog niet geïmplementeerd !\n");
 						break;
 					}
 					case 4:
 					{//Overzicht scores
 						choice = -1;
-						System.out.print("Deze optie is nog niet geïmplementeerd");
+						System.out.print("Deze optie is nog niet geïmplementeerd !\n");
 						break;
 					}
 					case 5:
 					{//Quiz report
 						choice = -1;
-						System.out.print("Deze optie is nog niet geïmplementeerd");
+						System.out.print("Deze optie is nog niet geïmplementeerd !\n");
 						break;
 					}
 					case 6:
 					{//Q
 						choice = -1;
-						System.out.print("Deze optie is nog niet geïmplementeerd");
+						System.out.print("Deze optie is nog niet geïmplementeerd !\n");
 						break;
 					}
 					case 7:
 					{//Instellingen van de quiz applicatie
 						choice = -1;
-						System.out.print("Deze optie is nog niet geïmplementeerd");
+						System.out.print("Deze optie is nog niet geïmplementeerd !\n");
 						break;
 					}
 					default:

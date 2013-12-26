@@ -21,6 +21,7 @@ import model.enums.QuizStatus;
  * @version 20131008-01 - Initial version
  * @version 20131020-01 - modified by Tom Vaes - complete redesign.
  * @version 20131209-01 - modified by Tom Vaes - small correction add quiz.
+ * @version 20131226-01 - modified by Tom Vaes - corrected constructor using text file.
  * Bevat QuizCatalogues informatie
  */
 
@@ -60,7 +61,7 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 							(quizTabel.get("IsTest").get(j)=="True"?true:false),
 							(quizTabel.get("IsUniekeDeelname").get(j)=="True"?true:false),
 							Leraar.valueOf(quizTabel.get("Auteur").get(j)), 
-							new Datum(quizTabel.get("DatumRegistratie").get(j)),
+							new Datum(quizTabel.get("Registratiedatum").get(j)),
 							//IQuizStatus.valueOf(quizTabel.get("IQuizStatus").get(j))//--for state pattern
 							QuizStatus.valueOf(quizTabel.get("QuizStatus").get(j))
 							)
@@ -183,6 +184,13 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 			for(Quiz z : quizen.getCatalogus())
 			{
 				System.out.println(z);
+			}
+			
+			try {
+				quizen.wegschrijvenAlsTekstbestand("d:\\myquiz.txt");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	
