@@ -124,14 +124,16 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 	
 	public void wegschrijvenAlsTekstbestand(String bestandsnaam) throws IOException {
 		txtEncoderDecoder encoder = new txtEncoderDecoder(bestandsnaam);
-		
-		ArrayList<String[]> list = null;
-		String [] VarNamen = {"Auteur","DatumRegistratie","Leerjaren","Onderwerp","IsTest","QuizStatus","IsUniekeDeelname"};
+		int i =1;
+		ArrayList<String[]> list = new ArrayList<String[]>();
+		String [] VarNamen = {"QuizID","Onderwerp","Leerjaren","IsTest","IsUniekeDeelname","Auteur","Registratiedatum","QuizStatus"};
 		list.add(VarNamen);
 		
 		for(Quiz quiz : this.quizen){
-			String[] quizVars = {quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),Arrays.toString(quiz.getLeerjaren()),quiz.getOnderwerp(),quiz.getIsTest().toString(),quiz.getQuizStatus().toString(),quiz.getIsUniekeDeelname().toString()};
+			String[] quizVars = {Integer.toString(i),quiz.getOnderwerp(),Arrays.toString(quiz.getLeerjaren()),quiz.getIsTest().toString(),
+					quiz.getIsUniekeDeelname().toString(),quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),quiz.getQuizStatus().toString()};
 			list.add(quizVars);
+			i++;
 		}
 		
 		String [][] quizTabel = list.toArray(new String[list.size()][list.get(0).length]);

@@ -172,10 +172,6 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	// Override methodes - standard	
 	@Override
 	public String toString() {
-		String quizOpdrachten;
-		
-		for()
-		
 		return "Quiz [onderwerp=" + onderwerp + ", leerjaren="
 				+ Arrays.toString(leerjaren) + ", isTest=" + isTest
 				+ ", isUniekeDeelname=" + isUniekeDeelname + ", auteur="

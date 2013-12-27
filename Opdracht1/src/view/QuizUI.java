@@ -6,6 +6,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import model.OpdrachtCatalogus;
+import model.Quiz;
+import model.QuizCatalogus;
+import model.baseclasses.OpdrachtBase;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
@@ -13,6 +17,9 @@ import model.enums.QuizStatus;
 import javax.swing.border.LineBorder;
 
 import config.IniFileManager;
+
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  * This class contains the GUI for the Quiz Application
@@ -38,10 +45,22 @@ public class QuizUI extends JFrame {
 	private JLabel lblAuteur;
 	private JLabel lblQuizStatus;
 	private JComboBox<Leraar> auteurComboBox;
+	private JComboBox<OpdrachtCategorie> opdrCategorieCb;
 	private JComboBox<QuizStatus> quizStatusComboBox;
 	private JTable table;
+	private JList listOpdrachten;
 	
-	public QuizUI() {
+	//for test purposes
+	private String[] Leerjaren = {"1","2","3","4","5","6"};
+	private DefaultListModel testOpdracht = new DefaultListModel();
+	private String[] tableColumNames = {"Opdracht","Score"};
+	private Object [] [] tableData = {};
+
+	//to be placed in the controller.
+	public static OpdrachtCatalogus opdrachtcatalogus = null;
+	public static QuizCatalogus quizcatalogus = null;
+	
+	public QuizUI(QuizCatalogus quizcl, OpdrachtCatalogus opdrachtcl) {
 		super(IniFileManager.getInstance().getProperty("apptitle") 
 				+ " (ContextType: " + IniFileManager.getInstance().getProperty("persistencemethod") + ")" );
 		setResizable(Boolean.parseBoolean(IniFileManager.getInstance().getProperty("appresizable")));
@@ -51,7 +70,21 @@ public class QuizUI extends JFrame {
 		setLocationRelativeTo(null);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//to be placed in the controller.
+		opdrachtcatalogus = opdrachtcl;
+		quizcatalogus = quizcl;
+		
 		JPanel mainPanel = new JPanel();
+		
+		//testing - to be placed in the controller.
+		for (OpdrachtBase opdracht : opdrachtcatalogus.getCatalogus())
+		{
+			testOpdracht.addElement(opdracht.toString());
+		}
+		//testOpdracht.addElement("Opdracht 1");
+		//testOpdracht.addElement("Opdracht 2");
+		//testOpdracht.addElement("Opdracht 3");
+		//testOpdracht.addElement("Opdracht 4");
 		
 		super.setContentPane(mainPanel);
 		mainPanel.setLayout(null);
@@ -62,26 +95,49 @@ public class QuizUI extends JFrame {
 		mainPanel.add(bottomPanel);
 		bottomPanel.setLayout(null);
 		
-		JComboBox<?> cbOpdrachtCat = new JComboBox<Object>();
-		cbOpdrachtCat.setBounds(229, 23, 117, 22);
-		bottomPanel.add(cbOpdrachtCat);
+		opdrCategorieCb = new JComboBox(OpdrachtCategorie.values());
+		opdrCategorieCb.setBounds(229, 23, 117, 22);
+		bottomPanel.add(opdrCategorieCb);
 		
 		JComboBox<?> cbSorteerOpdr = new JComboBox<Object>();
 		cbSorteerOpdr.setBounds(229, 58, 117, 22);
 		bottomPanel.add(cbSorteerOpdr);
 		
-		JButton btnSorteer = new JButton("^^^^^^^^^");
-		btnSorteer.setFont(new Font("Verdana", Font.PLAIN, 14));
-		btnSorteer.setBounds(493, 70, 324, 27);
-		bottomPanel.add(btnSorteer);
+		rangschikButton = new JButton("^^^^^^^^^");
+		rangschikButton.setFont(new Font("Verdana", Font.PLAIN, 14));
+		rangschikButton.setBounds(493, 70, 324, 27);
+		bottomPanel.add(rangschikButton);
 		
-		JButton btnAdd = new JButton(">>>");
-		btnAdd.setBounds(370, 143, 97, 40);
-		bottomPanel.add(btnAdd);
+		toevoegButton = new JButton(">>>");
+		toevoegButton.setEnabled(false);
+		toevoegButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int index = listOpdrachten.getSelectedIndex();
+				testOpdracht.remove(index);
+
+			    int size = testOpdracht.getSize();
+
+			    if (size == 0) { //Nobody's left, disable firing.
+			    	toevoegButton.setEnabled(false);
+
+			    } else { //Select an index.
+			        if (index == testOpdracht.getSize()) {
+			            //removed item in last position
+			            index--;
+			        }
+
+			        listOpdrachten.setSelectedIndex(index);
+			        listOpdrachten.ensureIndexIsVisible(index);
+			    }
+						}
+					});
+		toevoegButton.setBounds(370, 143, 97, 40);
+		bottomPanel.add(toevoegButton);
 		
-		JButton btnRemove = new JButton("<<<");
-		btnRemove.setBounds(370, 186, 97, 40);
-		bottomPanel.add(btnRemove);
+		verwijderButton = new JButton("<<<");
+		verwijderButton.setEnabled(false);
+		verwijderButton.setBounds(370, 186, 97, 40);
+		bottomPanel.add(verwijderButton);
 		
 		JLabel lblCategorie = new JLabel("Toon opdrachten van categorie :");
 		lblCategorie.setBounds(12, 26, 194, 16);
@@ -95,11 +151,26 @@ public class QuizUI extends JFrame {
 		lblSorteer.setBounds(12, 61, 148, 16);
 		bottomPanel.add(lblSorteer);
 		
-		JList<?> listOpdrachten = new JList<Object>();
+		listOpdrachten = new JList(testOpdracht);
+		listOpdrachten.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (e.getValueIsAdjusting() == false)
+				{
+					if(listOpdrachten.getSelectedIndex() == -1)
+					{//no selection
+						toevoegButton.setEnabled(false);
+					}
+					else
+					{//Selection
+						toevoegButton.setEnabled(true);
+					}
+				}
+			}
+		});
 		listOpdrachten.setBounds(22, 143, 324, 253);
 		bottomPanel.add(listOpdrachten);
 		
-		table = new JTable();
+		table = new JTable(tableData, tableColumNames);
 		table.setBounds(507, 278, 274, -121);
 		bottomPanel.add(table);
 		
@@ -113,8 +184,7 @@ public class QuizUI extends JFrame {
 		lblOnderwerp.setBounds(12, 9, 73, 16);
 		topPanel.add(lblOnderwerp);
 		
-		comboBoxKlas = new JComboBox<String>();
-		//comboBoxKlas.setModel(new DefaultComboBoxModel(new String[] {"", "1A", "2A", "3A", "4A", "5A", "6A"}));
+		comboBoxKlas = new JComboBox(Leerjaren);
 		comboBoxKlas.setBounds(367, 6, 62, 22);
 		topPanel.add(comboBoxKlas);
 		
@@ -138,6 +208,13 @@ public class QuizUI extends JFrame {
 		btnNewButton = new JButton("Registreer nieuwe quiz");
 		btnNewButton.setBounds(12, 38, 819, 34);
 		topPanel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Quiz nieuweQuiz = new Quiz();
+				
+				//quizcatalogus.add(nieuweQuiz);
+			}
+		});
 		
 		lblQuizStatus = new JLabel("Quiz Status :");
 		lblQuizStatus.setBounds(606, 9, 74, 16);
@@ -146,11 +223,6 @@ public class QuizUI extends JFrame {
 		quizStatusComboBox = new JComboBox(QuizStatus.values());
 		quizStatusComboBox.setBounds(692, 6, 125, 22);
 		topPanel.add(quizStatusComboBox);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//Quiz nieuweQuiz = new Quiz(txtOnderwerp.);
-			}
-		});
-		
+
 	}
 }

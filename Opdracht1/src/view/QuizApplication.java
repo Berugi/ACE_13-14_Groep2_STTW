@@ -3,6 +3,9 @@ package view;
 import java.io.IOException;
 import java.util.Scanner;
 
+import model.OpdrachtCatalogus;
+import model.QuizCatalogus;
+
 /**
  * 
  * This class is just a temporary testing ground for the model
@@ -18,11 +21,15 @@ public class QuizApplication {
 		private static String ingave;
 		private static int choice;
 		private static Scanner sc;
+		public static OpdrachtCatalogus opdrachtcatalogus = null;
+		public static QuizCatalogus quizcatalogus = null;
 		
 		//public static void main(String[] args) {
 			// TODO Auto-generated method stub
 		
-		public QuizApplication() {
+		public QuizApplication(QuizCatalogus quizcl, OpdrachtCatalogus opdrachtcl) {
+			opdrachtcatalogus = opdrachtcl;
+			quizcatalogus = quizcl;
 			choice =-1;
 			Scanner sc = new Scanner(System.in);
 			
@@ -44,6 +51,13 @@ public class QuizApplication {
 				{
 					case 0:
 					{
+						try {
+							quizcatalogus.wegschrijvenAlsTekstbestand("d:\\test.txt");
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							System.out.println("Fout in wegschrijven quiz!");
+							e.printStackTrace();
+						}
 						sc.close();
 						System.out.println("Programma beeindigd!\n");
 						System.exit(0);
@@ -56,7 +70,7 @@ public class QuizApplication {
 					}
 					case 2:
 					{//Beheren van quizzen/testen
-						QuizUI testQuiz = new QuizUI();
+						QuizUI testQuiz = new QuizUI(quizcatalogus, opdrachtcatalogus);
 						testQuiz.setSize(861,587);
 					    //testQuiz.setMinimumSize(new Dimension(520,600));
 					    testQuiz.setVisible(true);

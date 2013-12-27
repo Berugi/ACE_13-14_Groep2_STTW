@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import persistence.enums.ContextType;
 import config.IniFileManager;
 import view.QuizApplication;
@@ -89,11 +91,13 @@ public class OpstartController {
 		
 		//Initialize menu
 		try{
-		QuizApplication qa = new QuizApplication();
+		QuizApplication qa = new QuizApplication(quizcatalogus,opdrachtcatalogus);
 		}
 		catch (Exception e){
 			System.out.println("Fout in het opbouwen van de menu!");
+			e.printStackTrace();
 		}
+		
 		
 		//initialize the main UI view
 		//QuizUI ui = new QuizUI();
