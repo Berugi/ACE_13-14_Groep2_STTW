@@ -25,7 +25,7 @@ import model.enums.QuizStatus;
  * Bevat QuizCatalogues informatie
  */
 
-public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Catalogus>{
+public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Quiz>{
 
 	public ArrayList<Quiz> quizen;
 	//public Datum registratiedatum;
@@ -87,13 +87,14 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		return 0;
 	}
 
-	public Iterator<Catalogus> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<Quiz> iterator() {
+		
+		return this.quizen.iterator();
+		
 	}
 	
 		
-	public Boolean add(Quiz newQuiz) throws IllegalArgumentException{
+	public boolean add(Quiz newQuiz) throws IllegalArgumentException{
 		
 		Boolean result = true;
 		
@@ -113,7 +114,7 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 	}
 	
 
-	public Boolean remove(Quiz removeQuiz) throws IllegalArgumentException
+	public boolean remove(Quiz removeQuiz) throws IllegalArgumentException
 	{
 		if(removeQuiz.getQuizStatus() == QuizStatus.AFGEWERKT || removeQuiz.getQuizStatus() == QuizStatus.INCONSTRUCTIE)
 		 throw new IllegalArgumentException (String.format("Quiz kan niet verwijderd worden. Status = %s",removeQuiz.getQuizStatus().getDescription()));
