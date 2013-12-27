@@ -30,15 +30,6 @@ public class OpdrachtFactory {
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie, Datum datumRegistratie, String Keuzes,
 			String... antwoordHints) throws Exception{
 		
-		//opdrachtid kontroleren/bepalen
-		if(opdrachtid==0){ //maak nieuwe opdrachtID aan dat hoger is dan elke bestaande id
-			HoogsteID++;
-			opdrachtid=HoogsteID;
-		} else { // Kontroleer of de opgegeven ID al niet bestaat
-			if(oc.getCatalogus().contains(opdrachtid)){
-				throw new Exception("OpdrachtID moet uniek zijn");
-			}
-		}
 		
 		//juisteantwoord opsplitsen -> meer dan 1 juisteantwoord = opsomming
 		String[] antwoorden = juisteAntwoord.split(",");
@@ -52,26 +43,35 @@ public class OpdrachtFactory {
 				if(meerkeuzelijst.size()<2){
 					throw new Exception("Meerkeuzelijst bevat minder dan 2 keuzes!");
 				} else
-				{				
-					return new MeerKeuze(opdrachtid, meerkeuzelijst, vraag, juisteAntwoord, maxAantalPogingen,
+				{	
+					bepaalID(opdrachtid);
+					OpdrachtBase ob = new MeerKeuze(opdrachtid, meerkeuzelijst, vraag, juisteAntwoord, maxAantalPogingen,
 							maxAntwoordTijd, auteur, categorie, datumRegistratie,
 							antwoordHints);
+					oc.add(ob);
+					return ob;
 				}
 			}
 			else
 			{ 
 				// gewone opdracht
-				return new OpdrachtBase(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
+				bepaalID(opdrachtid);
+				OpdrachtBase ob = new OpdrachtBase(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
 						maxAntwoordTijd, auteur, categorie, datumRegistratie,
 						antwoordHints);
+				oc.add(ob);
+				return ob;
 			}
 		}
 		else 
 		{
 			//Opsomming
-			return new Opsomming(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
+			bepaalID(opdrachtid);
+			OpdrachtBase ob = new Opsomming(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
 					maxAntwoordTijd, auteur, categorie, datumRegistratie,
 					antwoordHints);
+			oc.add(ob);
+			return ob;
 		}
 
 	}
@@ -84,5 +84,18 @@ public class OpdrachtFactory {
 			}
 		}
 		return hoogsteID;
+	}
+	
+	public int bepaalID(Integer id) throws Exception {
+		//opdrachtid kontroleren/bepalen
+		if(id==0){ //maak nieuwe opdrachtID aan dat hoger is dan elke bestaande id
+			HoogsteID++;
+			id=HoogsteID;
+		} else { // Kontroleer of de opgegeven ID al niet bestaat
+			if(oc.getCatalogus().contains(id)){
+				throw new Exception("OpdrachtID moet uniek zijn");
+			}
+		}
+		return id;
 	}
 }

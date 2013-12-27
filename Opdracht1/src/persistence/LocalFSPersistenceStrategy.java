@@ -19,6 +19,7 @@ import model.enums.QuizStatus;
 import model.QuizCatalogus;
 import model.OpdrachtCatalogus;
 import model.baseclasses.OpdrachtBase;
+import model.factory.OpdrachtFactory;
 
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +36,8 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 	
 	public boolean ReadData(){
 		try {
+			OpdrachtFactory opdrachtfactory = new OpdrachtFactory(opdrachtcatalogus);
+			
 			// lezen quizen
 			Hashtable<String,ArrayList<String>> txtQuizHash = quizenDecoder.decode();
 			//Hashtable<String,ArrayList<String>> txtLeerjarenHash = leerjarenDecoder.decode();
@@ -79,7 +82,21 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 			
 			Hashtable<String,ArrayList<String>> txtOpdrachtHash = opdrachtenDecoder.decode();
 			
+			try{
 			for(int i=0;i<txtOpdrachtHash.get("OpdrachtID").size();i++){
+				
+				opdrachtfactory.getOpdracht(Integer.parseInt(txtOpdrachtHash.get("OpdrachtID").get(i)),
+						txtOpdrachtHash.get("Vraag").get(i), 
+						txtOpdrachtHash.get("JuisteAntwoord").get(i), 
+						Integer.parseInt(txtOpdrachtHash.get("MaxPogingen").get(i)), 
+						Integer.parseInt(txtOpdrachtHash.get("MaxAntwoordtijd").get(i)), 
+						Leraar.valueOf(txtOpdrachtHash.get("Auteur").get(i)), 
+						OpdrachtCategorie.valueOf(txtOpdrachtHash.get("Categorie").get(i)), 
+						new Datum(txtOpdrachtHash.get("Registratiedatum").get(i)), 
+						txtOpdrachtHash.get("Meerkeuze").get(i), 
+						txtOpdrachtHash.get("Hints").get(i));
+				
+				/*
 				opdrachtcatalogus.add(new OpdrachtBase(
 						txtOpdrachtHash.get("Vraag").get(i),
 						txtOpdrachtHash.get("JuisteAntwoord").get(i),
@@ -88,6 +105,11 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 						Leraar.valueOf(txtOpdrachtHash.get("Auteur").get(i)),
 						OpdrachtCategorie.valueOf(txtOpdrachtHash.get("Categorie").get(i)),
 						new Datum(txtOpdrachtHash.get("Registratiedatum").get(i))));
+						*/
+			}
+			}
+			catch (Exception e){
+				e.printStackTrace();
 			}
 			
 			//}
