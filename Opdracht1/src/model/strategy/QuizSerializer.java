@@ -2,6 +2,7 @@ package model.strategy;
 
 import model.Quiz;
 import model.enums.Leraar;
+import model.enums.QuizStatus;
 import model.interfaces.IQuizStatus;
 import persistence.CSVSerializerContext;
 import persistence.interfaces.ICSVSerializable;
@@ -71,15 +72,7 @@ public class QuizSerializer implements ICSVSerializable<Object> {
 			boolean isUniekeDeelname = Boolean.parseBoolean(values[3]);
 			Leraar auteur = Leraar.valueOf(values[4]);
 			Datum regDatum = new Datum(values[5]);
-			
-			//IQuizStatus geef ik momenteel door als INCONSTRUCTIE omdat ik nog niet goed zie hoe ik die moet hercreëren vanuit CSV - Wim (20131213)
-			IQuizStatus status = new IQuizStatus() {
-				public void zetQuizInOPENGESTELD(Quiz quizContext) {}
-				public void zetQuizInINCONSTRUCTIE(Quiz quizContext) {}
-				public void zetQuizInAFGEWERKT(Quiz quizContext) {}
-				public void zetQuiqInLAATSTEKANS(Quiz quizContext) {}
-			};
-			status.zetQuizInINCONSTRUCTIE(q);
+			QuizStatus status = QuizStatus.valueOf(values[6]);
 			
 			q = new Quiz(onderwerp, leerjaren, isTest, isUniekeDeelname, auteur, regDatum, status);
 		}
