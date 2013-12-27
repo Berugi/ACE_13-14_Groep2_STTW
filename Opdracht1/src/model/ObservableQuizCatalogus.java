@@ -12,9 +12,10 @@ import model.interfaces.IObserver;
  * 
  * @author Wim Ombelets
  * @version 20131227-01 - initial commit
+ * @version 20131227-02 - additional work
  *
  */
-public class ObservableQuizCatalogus extends QuizCatalogus implements IObservable {
+public class ObservableQuizCatalogus extends QuizCatalogus implements IObservable, Cloneable, Iterable<Quiz> {
 
 	private ArrayList<IObserver> observers;
 	
@@ -27,6 +28,12 @@ public class ObservableQuizCatalogus extends QuizCatalogus implements IObservabl
 	public ObservableQuizCatalogus(String fileName) throws IOException {
 		
 		super(fileName);
+		
+	}
+	
+	public Iterator<Quiz> iterator() {
+		
+		return super.iterator();
 		
 	}
 	
@@ -49,6 +56,12 @@ public class ObservableQuizCatalogus extends QuizCatalogus implements IObservabl
 		boolean result = super.remove(q);
 		notifyObservers();
 		return result;
+		
+	}
+	
+	public boolean contains(Quiz q) {
+		
+		return super.quizen.contains(q);
 		
 	}
 	
@@ -76,6 +89,6 @@ public class ObservableQuizCatalogus extends QuizCatalogus implements IObservabl
 			
 		}
 		
-	}
+	}	
 	
 }
