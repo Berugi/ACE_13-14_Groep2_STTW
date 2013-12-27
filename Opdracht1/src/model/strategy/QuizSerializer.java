@@ -73,6 +73,7 @@ public class QuizSerializer implements ICSVSerializable<Object> {
 			Leraar auteur = Leraar.valueOf(values[4]);
 			Datum regDatum = new Datum(values[5]);
 			QuizStatus status = QuizStatus.valueOf(values[6]);
+			
 			q = new Quiz(onderwerp, leerjaren, isTest, isUniekeDeelname, auteur, regDatum, status);
 		}
 		catch(IllegalArgumentException e) {
