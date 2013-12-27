@@ -4,6 +4,9 @@ import persistence.enums.ContextType;
 import config.IniFileManager;
 import view.QuizApplication;
 import persistence.*;
+import model.factory.*;
+import model.OpdrachtCatalogus;
+import model.QuizCatalogus;
 
 /**
  * Primary controller that initializes the app, its properties, the secondary controllers
@@ -20,6 +23,8 @@ public class OpstartController {
 	private static IniFileManager iniProps = null;
 	private static ContextType contextType;
 	private static DataContext dc = null;
+	public static OpdrachtCatalogus opdrachtcatalogus = null;
+	public static QuizCatalogus quizcatalogus = null;
 	
 	//getters & setters
 	private static IniFileManager getIniProps() {
@@ -67,11 +72,18 @@ public class OpstartController {
 		
 		//set initial Data ContextType
 		setContextType();
+		
+		//create OpdrachtCatalogus and QuizCatalogus
+		opdrachtcatalogus = new OpdrachtCatalogus();
+		quizcatalogus = new QuizCatalogus();
+		
+		//create singleton OpdrachtFactory
+		OpdrachtFactory.Initialise(opdrachtcatalogus);
 				
 		//initialize secondary controllers
 		
 		//Load data
-		dc.getStrategy().ReadData();
+		dc.getStrategy().ReadData(quizcatalogus,opdrachtcatalogus);
 		
 		//
 		

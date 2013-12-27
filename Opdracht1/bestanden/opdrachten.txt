@@ -1,12 +1,12 @@
 OpdrachtID;Vraag;JuisteAntwoord;MaxPogingen;MaxAntwoordtijd;Auteur;Categorie;Registratiedatum;Meerkeuze;Hints
-1;Wat is het antwoord;Dit is het antwoord;1;30;PIETER;WETENSCHAPPEN;4/11/2013;;
-2;Wat is een tekstbestand;flat file van ascii tekens;3;60;JEAN;WETENSCHAPPEN;4/11/2013;;
-3;Wat is de hoofdstad van Belgie;Brussel;3;30;PIETER;AARDRIJKSKUNDE;25/11/2013;;De naam begint met een "B"
-4;Hoeveel is 2 + 2;4;2;10;JEAN;WISKUNDE;25/11/2013;;
-5;Wat is de hoofdstad van Frankrijk;Parijs;3;40;AN;AARDRIJKSKUNDE;25/11/013;;De naam begint met een "P"
-6;Hoeveel is 5 * 5;25;2;20;SARAH;WISKUNDE;26/11/2013;;
-7;Wat is de hoofdstad van Nederland;Amsterdam;1;50;PIETER;AARDRIJKSKUNDE;27/11/2013;;
-10;Wie was de eerste Belg in de ruimte;PIETER;1;20;AN;AARDRIJKSKUNDE;2/12/2013;;
-11;Wie vond het principe van de relativiteit uit;PIETER;2;20;WETENSCHAPPEN;Pieter;2/12/2013;;
-12;Wat zijn de kleuren van de Belgische vlag;zwart,geel,rood;JEAN;1;30;AARDRIJKSKUNDE;26/12/2013;;
-13;Hoeveel is 25 gedeeld door 5;5;AN;1;20;WISKUNDE;26/12/2013;3,4,5;
+1;Wat is het antwoord;Dit is het antwoord;1;30;PIETER;WETENSCHAPPEN;04/11/2013; ; 
+2;Wat is een tekstbestand;flat file van ascii tekens;3;60;JEAN;WETENSCHAPPEN;04/11/2013; ; 
+12;Wat zijn de kleuren van de Belgische vlag;zwart,geel,rood;1;30;JEAN;AARDRIJKSKUNDE;26/12/2013; ; 
+13;Hoeveel is 25 gedeeld door 5;5;1;20;AN;WISKUNDE;26/12/2013;3,4,5; 
+3;Wat is de hoofdstad van Belgie;Brussel;3;30;PIETER;AARDRIJKSKUNDE;25/11/2013; ;De naam begint met een "B"
+4;Hoeveel is 2 + 2;4;2;10;JEAN;WISKUNDE;25/11/2013; ; 
+5;Wat is de hoofdstad van Frankrijk;Parijs;3;40;AN;AARDRIJKSKUNDE;25/11/2013; ;De naam begint met een "P"
+6;Hoeveel is 5 * 5;25;2;20;SARAH;WISKUNDE;26/11/2013; ; 
+7;Wat is de hoofdstad van Nederland;Amsterdam;1;50;PIETER;AARDRIJKSKUNDE;27/11/2013; ; 
+10;Wie was de eerste Belg in de ruimte;Frimout;1;20;AN;AARDRIJKSKUNDE;02/12/2013; ; 
+11;Wie vond het principe van de relativiteit uit;Einstein;2;20;PIETER;WETENSCHAPPEN;02/12/2013; ; 

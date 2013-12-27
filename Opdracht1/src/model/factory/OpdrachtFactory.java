@@ -15,12 +15,14 @@ public class OpdrachtFactory {
 	
 	protected static int HoogsteID = 0;
 	private OpdrachtCatalogus oc;
+	private static OpdrachtFactory opdrachtfactory = null;
 	
 	// Constructor
-	// Singleton van maken !!
-	public OpdrachtFactory(OpdrachtCatalogus opdrachtcatalogus){
+
+	private OpdrachtFactory(OpdrachtCatalogus opdrachtcatalogus){
 		this.oc = opdrachtcatalogus;
 		HoogsteID=this.getHoogsteOpdrachtID(opdrachtcatalogus);
+		opdrachtfactory = this;
 	}
 
 	// methods
@@ -37,14 +39,14 @@ public class OpdrachtFactory {
 		// Bepaal type opdracht
 		if(antwoorden.length==1)
 		{ // geen opsomming
-			if(Keuzes!="")
+			if(Keuzes.contains(","))
 			{ //meerkeuze
-				ArrayList<String> meerkeuzelijst = (ArrayList<String>) Arrays.asList(Keuzes.split(","));
+				ArrayList<String> meerkeuzelijst = new ArrayList<String>(Arrays.asList(Keuzes.split(",")));
 				if(meerkeuzelijst.size()<2){
 					throw new Exception("Meerkeuzelijst bevat minder dan 2 keuzes!");
 				} else
 				{	
-					bepaalID(opdrachtid);
+					opdrachtid=bepaalID(opdrachtid);
 					OpdrachtBase ob = new MeerKeuze(opdrachtid, meerkeuzelijst, vraag, juisteAntwoord, maxAantalPogingen,
 							maxAntwoordTijd, auteur, categorie, datumRegistratie,
 							antwoordHints);
@@ -55,7 +57,7 @@ public class OpdrachtFactory {
 			else
 			{ 
 				// gewone opdracht
-				bepaalID(opdrachtid);
+				opdrachtid=bepaalID(opdrachtid);
 				OpdrachtBase ob = new OpdrachtBase(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
 						maxAntwoordTijd, auteur, categorie, datumRegistratie,
 						antwoordHints);
@@ -66,7 +68,7 @@ public class OpdrachtFactory {
 		else 
 		{
 			//Opsomming
-			bepaalID(opdrachtid);
+			opdrachtid=bepaalID(opdrachtid);
 			OpdrachtBase ob = new Opsomming(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
 					maxAntwoordTijd, auteur, categorie, datumRegistratie,
 					antwoordHints);
@@ -97,5 +99,16 @@ public class OpdrachtFactory {
 			}
 		}
 		return id;
+	}
+	
+	// Singleton pattern
+	public static void Initialise(OpdrachtCatalogus oc){
+		if(opdrachtfactory==null){
+		opdrachtfactory = new OpdrachtFactory(oc);
+		}
+	}
+	
+	public static OpdrachtFactory getOpdrachtFactory(){
+		return opdrachtfactory;
 	}
 }
