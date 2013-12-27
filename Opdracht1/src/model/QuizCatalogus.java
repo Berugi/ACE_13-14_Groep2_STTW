@@ -87,6 +87,48 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		return 0;
 	}
 
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((quizen == null) ? 0 : quizen.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof QuizCatalogus)) {
+			return false;
+		}
+		QuizCatalogus other = (QuizCatalogus) obj;
+		if (quizen == null) {
+			if (other.quizen != null) {
+				return false;
+			}
+		} else if (!quizen.equals(other.quizen)) {
+			return false;
+		}
+		return true;
+	}
+
 	public Iterator<Quiz> iterator() {
 		
 		return this.quizen.iterator();

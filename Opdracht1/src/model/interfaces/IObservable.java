@@ -1,7 +1,7 @@
 package model.interfaces;
 
 /**
- * Defines a provider for push-based notification.
+ * Defines a provider for pull-based notification.
  * 
  * @author Wim Ombelets
  * @version 20131227-01 - initial commit
