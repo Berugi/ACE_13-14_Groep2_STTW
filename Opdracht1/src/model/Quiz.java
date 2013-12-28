@@ -12,6 +12,7 @@ import controller.OpstartController;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Map;
 
 /**
  * 
@@ -218,13 +219,18 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	// Override methodes - standard	
 	@Override
 	public String toString() {
-		String quizOpdrachten;
 		
-		return "Quiz [onderwerp=" + onderwerp + ", leerjaren="
-				+ Arrays.toString(leerjaren) + ", isTest=" + isTest
-				+ ", isUniekeDeelname=" + isUniekeDeelname + ", auteur="
-				+ auteur + ", datumRegistratie=" + datumRegistratie + 
-				"quizOpdrachten =" +
+		String quizOpdrachtenstring = "";
+		
+		for(QuizOpdracht qo: quizOpdrachten){
+			quizOpdrachtenstring = quizOpdrachtenstring + qo.toString();
+        }
+			
+		return "Quiz [quizID= "+ quizID +", onderwerp= " + onderwerp + ", leerjaren= "
+				+ Arrays.toString(leerjaren) + ", isTest= " + isTest
+				+ ", isUniekeDeelname= " + isUniekeDeelname + ", auteur= "
+				+ auteur + ", datumRegistratie= " + datumRegistratie + ", quizstatus= " + quizStatus +
+				", quizOpdrachten =" + quizOpdrachtenstring +
 				
 				"]";
 	}

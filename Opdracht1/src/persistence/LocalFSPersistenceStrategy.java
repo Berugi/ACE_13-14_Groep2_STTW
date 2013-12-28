@@ -16,6 +16,8 @@ import model.enums.QuizStatus;
 import model.QuizCatalogus;
 import model.OpdrachtCatalogus;
 import model.factory.OpdrachtFactory;
+import model.baseclasses.OpdrachtBase;
+import model.QuizOpdracht;
 
 
 /**
@@ -101,7 +103,12 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 				
 				for(Quiz quiz: quizcatalogus.quizen){
 					if(quiz.getQuizID()==Integer.parseInt(txtQuizenOpdrachtenHash.get("QuizID").get(i))){
-						//nog doen
+						for(OpdrachtBase opdracht: opdrachtcatalogus.getCatalogus()){
+							if(opdracht.getOpdrachtID()==Integer.parseInt(txtQuizenOpdrachtenHash.get("OpdrachtID").get(i))){
+								QuizOpdracht quizopdracht = new QuizOpdracht(Integer.parseInt(txtQuizenOpdrachtenHash.get("MaxScore").get(i)),quiz,opdracht);
+								quiz.quizOpdrachtToevoegen(quizopdracht);
+							}
+						}
 					}
 				}
 			}

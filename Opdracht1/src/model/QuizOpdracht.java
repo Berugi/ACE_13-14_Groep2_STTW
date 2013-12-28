@@ -84,6 +84,13 @@ public class QuizOpdracht {
 			this.opdrachtAntwoorden.add(opdrachtantwoord);
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "[quiz=" + quiz.getQuizID()
+				+ ", opdracht=" + opdracht.getOpdrachtID() + ", maxScore=" + maxScore + "]";
+	}
+	
 	
 	//...
 }

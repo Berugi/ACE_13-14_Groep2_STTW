@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import model.OpdrachtCatalogus;
 import model.QuizCatalogus;
+import tests.model.DataTest;
 
 /**
  * 
@@ -108,6 +109,11 @@ public class QuizApplication {
 						System.out.print("Deze optie is nog niet geïmplementeerd !\n");
 						break;
 					}
+					case 8:
+					{
+						choice = -1;
+						DataTest dt = new DataTest(quizcatalogus, opdrachtcatalogus);
+					}
 					default:
 					{//verkeerde optie
 						choice = -1;
@@ -127,7 +133,8 @@ public class QuizApplication {
 					+ "4. Overzicht scores(leraar)\n"
 					+ "5. Quiz rapport (deelnemer quiz)\n"
 					+ "6. Quiz lijsten\n"
-					+ "7. Instellingen van de quiz applicatie\n\n"
+					+ "7. Instellingen van de quiz applicatie\n"
+					+ "8. Test - Data weergeven\n\n"
 					+ "0. Stoppen\n\n";
 			
 			return menu;	
