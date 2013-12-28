@@ -25,7 +25,7 @@ public class txtEncoderDecoder {
 	}
 	
 	public txtEncoderDecoder() {
-		// TODO Auto-generated constructor stub
+		
 	}
     
 	//encode method
