@@ -3,9 +3,12 @@ package model;
 import java.util.Arrays;
 
 import utils.Datum;
+import model.baseclasses.OpdrachtBase;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
 import model.interfaces.IQuizStatus;
+import model.QuizCatalogus;
+import controller.OpstartController;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -26,6 +29,7 @@ import java.util.HashSet;
 public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	//data members
+	private int quizID;
 	private String onderwerp;
 	private int[] leerjaren;
 	private Boolean isTest;
@@ -35,6 +39,8 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	//private IQuizStatus quizStatus; -- for state pattern
 	private QuizStatus quizStatus;
 	private Set<QuizOpdracht> quizOpdrachten;
+	
+	private static int HoogsteID;
 	
 	//getters & setters
 
@@ -98,6 +104,13 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return this.datumRegistratie;
 	}
 	
+	public int getQuizID(){
+		return this.quizID;
+	}
+	
+	public void setQuizID(int qid){
+		this.quizID = qid;
+	}
 	//-- for state pattern
 	//public void setQuizStatus(final IQuizStatus nieuweStatus)
 	//{
@@ -168,10 +181,33 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		this.quizOpdrachten = new HashSet<QuizOpdracht>();
 	}
 	
+	public Quiz(Integer quizID,String onderwerp, int[] leerjaren, Boolean isTest,
+			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) throws Exception {
+		//-- for state pattern
+	//public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
+	//		Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
+		HoogsteID=this.getHoogsteOpdrachtID();
+		try{
+		quizID=bepaalID(quizID);
+		} catch (Exception e){
+			throw e;
+		}
+		setQuizID(quizID);
+		setOnderwerp(onderwerp);
+		setLeerjaren(leerjaren);
+		setIsTest(isTest);
+		setIsUniekeDeelname(isUniekeDeelname);
+		setAuteur(auteur);
+		setDatumRegistratie(regDatum);
+		setQuizStatus(status); 
+		this.quizOpdrachten = new HashSet<QuizOpdracht>();
+	}
 	
 	// Override methodes - standard	
 	@Override
 	public String toString() {
+		String quizOpdrachten;
+		
 		return "Quiz [onderwerp=" + onderwerp + ", leerjaren="
 				+ Arrays.toString(leerjaren) + ", isTest=" + isTest
 				+ ", isUniekeDeelname=" + isUniekeDeelname + ", auteur="
@@ -296,5 +332,28 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		catch (Exception e){
 			return false;
 		}
+	}
+	
+	public int getHoogsteOpdrachtID(){
+		int hoogsteID = 0;
+		for(Quiz quiz:OpstartController.quizcatalogus.quizen){
+			if(quiz.getQuizID()>hoogsteID){
+				hoogsteID=quiz.getQuizID();
+			}
+		}
+		return hoogsteID;
+	}
+	
+	public int bepaalID(Integer id) throws Exception {
+		//opdrachtid kontroleren/bepalen
+		if(id==0){ //maak nieuwe opdrachtID aan dat hoger is dan elke bestaande id
+			HoogsteID++;
+			id=HoogsteID;
+		} else { // Kontroleer of de opgegeven ID al niet bestaat
+			if(OpstartController.quizcatalogus.quizen.contains(id)){
+				throw new Exception("OpdrachtID moet uniek zijn");
+			}
+		}
+		return id;
 	}
 }

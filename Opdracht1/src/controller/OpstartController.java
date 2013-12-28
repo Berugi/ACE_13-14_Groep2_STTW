@@ -1,7 +1,5 @@
 package controller;
 
-import java.io.IOException;
-
 import persistence.enums.ContextType;
 import config.IniFileManager;
 import view.QuizApplication;
@@ -46,9 +44,9 @@ public class OpstartController {
 		dc = new DataContext();
 		switch(contextType){
 		case LOCALFS: 
-			{System.out.println("Gekozen voor text files");
-			dc.setStrategy(new LocalFSPersistenceStrategy());
-			break;}
+		{System.out.println("Gekozen voor text files");
+		dc.setStrategy(new LocalFSPersistenceStrategy());
+		break;}
 		case MYSQL:{
 			System.out.println("Gekozen voor MySQL database");
 			dc.setStrategy(new MySQLPersistenceStrategy());
@@ -60,6 +58,14 @@ public class OpstartController {
 			break;
 		}
 		}
+	}
+	
+	public OpdrachtCatalogus getOpdrachtCatalogus(){
+		return opdrachtcatalogus;
+	}
+	
+	public QuizCatalogus getQuizCatalogus(){
+		return quizcatalogus;
 	}
 
 	//main
@@ -85,8 +91,12 @@ public class OpstartController {
 		//initialize secondary controllers
 		
 		//Load data
+		try{
 		dc.getStrategy().ReadData(quizcatalogus,opdrachtcatalogus);
-		
+		}
+		catch (Exception e){
+			System.out.println(e.toString());
+		}
 		//
 		
 		//Initialize menu
@@ -95,9 +105,7 @@ public class OpstartController {
 		}
 		catch (Exception e){
 			System.out.println("Fout in het opbouwen van de menu!");
-			e.printStackTrace();
 		}
-		
 		
 		//initialize the main UI view
 		//QuizUI ui = new QuizUI();

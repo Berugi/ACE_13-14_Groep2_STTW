@@ -18,32 +18,40 @@ import model.OpdrachtCatalogus;
 import model.factory.OpdrachtFactory;
 
 
+/**
+ * @author Tom Scheepers
+ * 
+ * @version 20131225-01: Initial
+ * @version 20131227-01: Use of OpdrachtFactory
+ * 
+ */
 
 public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 
 	private txtEncoderDecoder opdrachtenDecoder= new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathopdrachten"));
 	private txtEncoderDecoder quizenDecoder = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathquizen"));
-	
-	public boolean ReadData(QuizCatalogus quizcatalogus, OpdrachtCatalogus opdrachtcatalogus){
+	private txtEncoderDecoder quizenopdrachtenDecoder = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathquizopdrachten"));
+
+	public void ReadData(QuizCatalogus quizcatalogus, OpdrachtCatalogus opdrachtcatalogus) throws Exception{
 		try {
-			
+
 			// lezen quizen
 			Hashtable<String,ArrayList<String>> txtQuizHash = quizenDecoder.decode();
 			//Hashtable<String,ArrayList<String>> txtLeerjarenHash = leerjarenDecoder.decode();
 
-			
+
 			for(int i=0;i<txtQuizHash.get("QuizID").size();i++){
-			
+
 				//Leerjaren van String naar Int[]
 				String[] leerjarenString = txtQuizHash.get("Leerjaren").get(i).replace("[", "").replace("]","").split(",");
 				int[] leerjaren = new int[leerjarenString.length];;
-								
+
 				for(int j=0; j<leerjarenString.length; j++)
 				{
 					leerjaren[j] = Integer.parseInt(leerjarenString[j]);
 				}
 				
-				quizcatalogus.add(new Quiz(
+				quizcatalogus.add(new Quiz(Integer.parseInt(txtQuizHash.get("QuizID").get(i)),
 						txtQuizHash.get("Onderwerp").get(i),
 						leerjaren,
 						Boolean.parseBoolean(txtQuizHash.get("IsTest").get(i)),
@@ -52,50 +60,61 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 						new Datum(txtQuizHash.get("Registratiedatum").get(i)),
 						QuizStatus.valueOf(txtQuizHash.get("QuizStatus").get(i))
 						));
-				
+
 			}		
-			
-			//lezen opdrachten
-			
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		
+		
+		//lezen opdrachten
+
+		try{
 			Hashtable<String,ArrayList<String>> txtOpdrachtHash = opdrachtenDecoder.decode();
 			
-			try{
-				for(int i=0;i<txtOpdrachtHash.get("OpdrachtID").size();i++){
+			for(int i=0;i<txtOpdrachtHash.get("OpdrachtID").size();i++){
 
+				OpdrachtFactory.getOpdrachtFactory().getOpdracht(Integer.parseInt(txtOpdrachtHash.get("OpdrachtID").get(i)),
+						txtOpdrachtHash.get("Vraag").get(i), 
+						txtOpdrachtHash.get("JuisteAntwoord").get(i), 
+						Integer.parseInt(txtOpdrachtHash.get("MaxPogingen").get(i)), 
+						Integer.parseInt(txtOpdrachtHash.get("MaxAntwoordtijd").get(i)), 
+						Leraar.valueOf(txtOpdrachtHash.get("Auteur").get(i)), 
+						OpdrachtCategorie.valueOf(txtOpdrachtHash.get("Categorie").get(i)), 
+						new Datum(txtOpdrachtHash.get("Registratiedatum").get(i)), 
+						txtOpdrachtHash.get("Meerkeuze").get(i), 
+						txtOpdrachtHash.get("Hints").get(i));
+			}
+		}
+		catch (Exception e){
+			System.out.println("Opdrachten konden niet gelezen worden!");
+			throw e;
+		}
+		
+		//lezen QuizOpdrachten
 
-					OpdrachtFactory.getOpdrachtFactory().getOpdracht(Integer.parseInt(txtOpdrachtHash.get("OpdrachtID").get(i)),
-							txtOpdrachtHash.get("Vraag").get(i), 
-							txtOpdrachtHash.get("JuisteAntwoord").get(i), 
-							Integer.parseInt(txtOpdrachtHash.get("MaxPogingen").get(i)), 
-							Integer.parseInt(txtOpdrachtHash.get("MaxAntwoordtijd").get(i)), 
-							Leraar.valueOf(txtOpdrachtHash.get("Auteur").get(i)), 
-							OpdrachtCategorie.valueOf(txtOpdrachtHash.get("Categorie").get(i)), 
-							new Datum(txtOpdrachtHash.get("Registratiedatum").get(i)), 
-							txtOpdrachtHash.get("Meerkeuze").get(i), 
-							txtOpdrachtHash.get("Hints").get(i));
+		try{
+			Hashtable<String,ArrayList<String>> txtQuizenOpdrachtenHash = quizenopdrachtenDecoder.decode();
+			
+			for(int i=0;i<txtQuizenOpdrachtenHash.get("ID").size();i++){
+				
+				for(Quiz quiz: quizcatalogus.quizen){
+					if(quiz.getQuizID()==Integer.parseInt(txtQuizenOpdrachtenHash.get("QuizID").get(i))){
+						//nog doen
+					}
 				}
 			}
-			catch (Exception e){
-				e.printStackTrace();
-			}
-			
-			//}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-		return true;
+		}
+		catch (Exception e) {
+			System.out.println("QuizOpdrachten konden niet uitgelezen worden!");
+		}
+
+
 	}
-	
-	public boolean WriteData(){
-		
-		return true;
+
+	public void WriteData(){
+
 	}
-	
-	/*
-	public Object readByID(Object o) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
+
 }

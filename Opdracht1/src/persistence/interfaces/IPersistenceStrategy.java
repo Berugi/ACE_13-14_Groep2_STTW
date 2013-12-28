@@ -10,7 +10,7 @@ public interface IPersistenceStrategy {
 	// Alle bewerkingen (insert, update, delete) worden gedaan in het programma. Het is de initiële dataset die wordt ingelezen bij het opstarten
 	// en het finale resultaat dat wordt weggeschreven bij het afsluiten.
 	
-	public boolean ReadData(QuizCatalogus qc,OpdrachtCatalogus oc);
-	public boolean WriteData();
+	public void ReadData(QuizCatalogus qc,OpdrachtCatalogus oc) throws Exception;
+	public void WriteData() throws Exception;
 	
 }
