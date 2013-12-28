@@ -108,8 +108,14 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return this.quizID;
 	}
 	
-	public void setQuizID(int qid){
-		this.quizID = qid;
+	public void setQuizID(int qid) throws Exception{
+		try{
+		this.quizID = bepaalID(qid);
+		}
+		catch (Exception e){
+			System.out.println("QuizID kon niet worden bepaald!");
+			throw e;
+		}
 	}
 	//-- for state pattern
 	//public void setQuizStatus(final IQuizStatus nieuweStatus)
@@ -171,14 +177,20 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		//-- for state pattern
 	//public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
 	//		Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
-		setOnderwerp(onderwerp);
-		setLeerjaren(leerjaren);
-		setIsTest(isTest);
-		setIsUniekeDeelname(isUniekeDeelname);
-		setAuteur(auteur);
-		setDatumRegistratie(regDatum);
-		setQuizStatus(status); 
-		this.quizOpdrachten = new HashSet<QuizOpdracht>();
+		try{
+			HoogsteID=this.getHoogsteOpdrachtID();
+			setQuizID(0);
+			setOnderwerp(onderwerp);
+			setLeerjaren(leerjaren);
+			setIsTest(isTest);
+			setIsUniekeDeelname(isUniekeDeelname);
+			setAuteur(auteur);
+			setDatumRegistratie(regDatum);
+			setQuizStatus(status); 
+			this.quizOpdrachten = new HashSet<QuizOpdracht>();
+		} catch (Exception e){
+			System.out.println("Quiz kon niet aangemaakt worden!");
+		}
 	}
 	
 	public Quiz(Integer quizID,String onderwerp, int[] leerjaren, Boolean isTest,
@@ -351,7 +363,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 			id=HoogsteID;
 		} else { // Kontroleer of de opgegeven ID al niet bestaat
 			if(OpstartController.quizcatalogus.quizen.contains(id)){
-				throw new Exception("OpdrachtID moet uniek zijn");
+				throw new Exception("QuizID moet uniek zijn");
 			}
 		}
 		return id;
