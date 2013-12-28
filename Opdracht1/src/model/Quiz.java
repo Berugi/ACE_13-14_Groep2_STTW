@@ -3,16 +3,12 @@ package model;
 import java.util.Arrays;
 
 import utils.Datum;
-import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
-import model.interfaces.IQuizStatus;
-import model.QuizCatalogus;
 import controller.OpstartController;
 
 import java.util.Set;
 import java.util.HashSet;
-import java.util.Map;
 
 /**
  * 
