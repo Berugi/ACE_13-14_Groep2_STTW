@@ -10,15 +10,16 @@ import controller.interfaces.IController;
  * @param <T>
  *
  */
-public class BaseController implements IController<BaseController> {
+@Deprecated
+public class Controller implements IController<Controller> {
 
-	private BaseController instance = null;
+	private Controller instance = null;
 	
-	protected BaseController() { }
+	protected Controller() { }
 	
-	public BaseController getInstance() {
+	public Controller getInstance() {
 		if(instance == null)
-			instance = new BaseController();
+			instance = new Controller();
 		return instance;
 	}
 	

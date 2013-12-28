@@ -31,6 +31,7 @@ public class OpstartController {
 	//constructor
 	public OpstartController(QuizCatalogus quizcl, OpdrachtCatalogus opdrachtcl, QuizApplication app)
 	{
+		setDataContext();
 		opdrachtcatalogus = opdrachtcl;
 		quizcatalogus = quizcl;
 		application = app;
@@ -38,37 +39,30 @@ public class OpstartController {
 	
 	//getters & setters
 	private static IniFileManager getIniProps() {
+		
 		return iniProps;
 	}
 
 	private static void setIniProps(IniFileManager iniProps) {
+		
 		OpstartController.iniProps = iniProps;
+		
 	}
 	
 	private static ContextType getContextType() {
 		return contextType;
 	}
 	
-	//methodes
-	private static void setContextType() {
-		contextType = ContextType.valueOf(getIniProps().getProperty("persistencemethod").toUpperCase());
+	private static void setDataContext() {
+		
 		dc = new DataContext();
-		switch(contextType){
-		case LOCALFS: 
-		{System.out.println("Gekozen voor text files");
-		dc.setStrategy(new LocalFSPersistenceStrategy());
-		break;}
-		case MYSQL:{
-			System.out.println("Gekozen voor MySQL database");
-			dc.setStrategy(new MySQLPersistenceStrategy());
-			break;
-		}
-		default:{
-			System.out.println("Default persistence MySQL database");
-			dc.setStrategy(new MySQLPersistenceStrategy());
-			break;
-		}
-		}
+		
+	}
+	
+	private static void setDataContext(ContextType contextType) {
+		
+		dc = new DataContext(contextType);
+		
 	}
 	
 	public static OpdrachtCatalogus getOpdrachtCatalogus(){
@@ -91,7 +85,7 @@ public class OpstartController {
 		setIniProps(IniFileManager.getInstance());
 		
 		//set initial Data ContextType
-		setContextType();
+		setDataContext();
 		
 		//create OpdrachtCatalogus and QuizCatalogus
 		//opdrachtcatalogus = new OpdrachtCatalogus();

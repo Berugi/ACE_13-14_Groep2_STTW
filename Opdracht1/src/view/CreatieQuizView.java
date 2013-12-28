@@ -13,8 +13,6 @@ import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 
 import controller.CreatieQuizController;
-import controller.QuizController;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

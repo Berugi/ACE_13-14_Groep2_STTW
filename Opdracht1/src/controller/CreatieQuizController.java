@@ -1,10 +1,12 @@
 package controller;
 
-import java.io.IOException;
+import javax.swing.JFrame;
 
+import model.ObservableQuizCatalogus;
+import model.interfaces.IObservable;
+import persistence.DataContext;
 import persistence.enums.ContextType;
-import persistence.interfaces.IRepositoryCreate;
-import model.Quiz;
+import view.CreatieQuizView;
 
 /**
  * Singleton controller responsible for creating new Quizzes.
@@ -16,17 +18,37 @@ import model.Quiz;
  */
 public class CreatieQuizController {
 	
-	private static CreatieQuizController instance = null;
+	private CreatieQuizController instance = null;
+	private DataContext dc;
+	private ContextType contextType;
+	private JFrame view;
+	private IObservable model;
 	
-	public static
-	
-	private CreatieQuizController(ContextType contextType) {
+	private CreatieQuizController(IObservable observableQuizCatalogus, JFrame creatieQuizView, ContextType contextType) {
 		
+		dc = new DataContext(contextType);
+		this.model = observableQuizCatalogus;
+		this.view = creatieQuizView;
 		
 	}
 
+	public CreatieQuizController getInstance(IObservable observableQuizCatalogus, JFrame creatieQuizView, ContextType contextType) {
+		
+		if(instance == null)
+			instance = new CreatieQuizController(observableQuizCatalogus, creatieQuizView, contextType);
+		return instance;
+		
+	}
 	
-	public Quiz createQuiz(Quiz z) {
+	public void showView() {
+		
+		this.view.setVisible(true);
+		
+	}
+	
+	public void hideView() {
+		
+		this.view.setVisible(false);
 		
 	}
 

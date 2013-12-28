@@ -4,8 +4,6 @@ import model.*;
 
 import java.io.*;
 
-import controller.baseclasses.BaseController;
-
 /**
  * Deze class zet alle gekende data naar tekstbestanden 
  * 
@@ -13,7 +11,7 @@ import controller.baseclasses.BaseController;
  * @version 20131103-01 - Initial version - Tom Scheepers
  */
 
-public class AfsluitController extends BaseController {
+public class AfsluitController {
 
 	/*
 	private int test;
