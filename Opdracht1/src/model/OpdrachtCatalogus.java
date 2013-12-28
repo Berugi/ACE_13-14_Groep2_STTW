@@ -21,13 +21,13 @@ import java.util.Iterator;
  * @version 20131226-01 - Tom Vaes - corrected constructor that uses text file.
  * Bevat OpdrachtCatalogues informatie
  */
-public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Catalogus>{
+public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Opdracht>{
 	
-	private ArrayList<OpdrachtBase> opdrachten;
+	private ArrayList<Opdracht> opdrachten;
 	//constructors
 	
 	public OpdrachtCatalogus() {
-		this.opdrachten = new ArrayList<OpdrachtBase>();
+		this.opdrachten = new ArrayList<Opdracht>();
 		//this.registratiedatum = new Datum();
 		//this.auteur = Leraar.TBA;
 	}
@@ -47,7 +47,7 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 		for(int j = 0; j<opdrachtTabel.get("Auteur").size();j++){
 			
 			this.opdrachten.add(
-					new OpdrachtBase(
+					new Opdracht(
 							opdrachtTabel.get("Vraag").get(j), 
 							opdrachtTabel.get("JuisteAntwoord").get(j) , 
 							Integer.parseInt(opdrachtTabel.get("MaxPogingen").get(j)),
@@ -63,20 +63,20 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 	}
 	
 	//getters en setters
-	public ArrayList<OpdrachtBase> getCatalogus()
+	public ArrayList<Opdracht> getCatalogus()
 	{
 		return this.opdrachten;
 	}
 	//methods
 	
-	public boolean add(OpdrachtBase newOpdracht) throws IllegalArgumentException{
+	public boolean add(Opdracht newOpdracht) throws IllegalArgumentException{
 		
 		Boolean result = true;
 		
 		if (newOpdracht.getDatumRegistratie() == null || newOpdracht.getAuteur() == null || newOpdracht.getAuteur() == Leraar.TBA)
 			throw new IllegalArgumentException("Auteur en/of registratie datum van de opdracht moeten ingevuld zijn");
 		
-		for(OpdrachtBase existingOpdracht : this.opdrachten)
+		for(Opdracht existingOpdracht : this.opdrachten)
 		{
 			if (existingOpdracht.equals(newOpdracht))
 				result = false;
@@ -100,7 +100,7 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 	 * @return true als het verwijderen gelukt is
 	 */
 	
-	public boolean remove(OpdrachtBase opdracht){
+	public boolean remove(Opdracht opdracht){
 		try{
 			if (opdracht.getQuizOpdrachten().size()==0){
 				if(opdracht.MagGewijzigdWorden()){
@@ -135,7 +135,7 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 			writer.println(regel.toString());
 			
 			
-			for (OpdrachtBase opdracht: opdrachten)
+			for (Opdracht opdracht: opdrachten)
 			{
 				regel = new StringBuilder();
 				regel.append(opdrachten.indexOf(opdracht)+";");
@@ -158,7 +158,7 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 		}
 	}
 	
-	public OpdrachtBase change(int index) {
+	public Opdracht change(int index) {
 		return  this.opdrachten.get(index);
 	}
 
@@ -167,7 +167,7 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 		return 0;
 	}
 
-	public Iterator<Catalogus> iterator() {
+	public Iterator<Opdracht> iterator() {
 		
 		return null;
 	}

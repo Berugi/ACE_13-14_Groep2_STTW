@@ -3,7 +3,7 @@ package model;
 import java.util.Arrays;
 
 import utils.Datum;
-import model.baseclasses.OpdrachtBase;
+import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
 import model.interfaces.IQuizStatus;

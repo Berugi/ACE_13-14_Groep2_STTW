@@ -1,6 +1,6 @@
 package model.strategy;
 
-import model.baseclasses.OpdrachtBase;
+import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import persistence.CSVSerializerContext;
@@ -26,11 +26,11 @@ public class OpdrachtSerializer implements ICSVSerializable<Object> {
 	}
 	
 	public String serialize(Object obj) throws IllegalArgumentException {
-		if(!(obj instanceof OpdrachtBase)) {
+		if(!(obj instanceof Opdracht)) {
 			throw new IllegalArgumentException("Can only serialize objects of type OpdrachtBase.");
 		}
 		
-		OpdrachtBase o = (OpdrachtBase)obj;
+		Opdracht o = (Opdracht)obj;
 		StringBuilder csvStringBuilder = new StringBuilder();
 		
 		csvStringBuilder.append(o.getVraag() + ps); 
@@ -52,8 +52,8 @@ public class OpdrachtSerializer implements ICSVSerializable<Object> {
 		return csvStringBuilder.toString();
 	}
 
-	public OpdrachtBase deserialize(String csvString) throws IllegalArgumentException, NumberFormatException {
-		OpdrachtBase o = null;
+	public Opdracht deserialize(String csvString) throws IllegalArgumentException, NumberFormatException {
+		Opdracht o = null;
 		
 		try {
 			String[] values = csvString.split(ps.toString());
@@ -73,7 +73,7 @@ public class OpdrachtSerializer implements ICSVSerializable<Object> {
 			Leraar auteur = Leraar.valueOf(values[6]);
 			Datum datumRegistratie = new Datum(values[7]);
 			
-			o = new OpdrachtBase(vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd, auteur, opdrachtCategorie, datumRegistratie, antwoordHints);
+			o = new Opdracht(vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd, auteur, opdrachtCategorie, datumRegistratie, antwoordHints);
 		}
 		catch(IllegalArgumentException e) {
 			throw e;

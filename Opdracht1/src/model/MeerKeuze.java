@@ -1,6 +1,6 @@
 package model;
 
-import model.baseclasses.OpdrachtBase;
+import model.baseclasses.Opdracht;
 
 import java.util.ArrayList;
 import model.enums.Leraar;
@@ -16,7 +16,7 @@ import utils.Datum;
  *
  * Bevat informatie over meerkeuzevragen
  */
-public class MeerKeuze extends OpdrachtBase implements IValideerbaar {
+public class MeerKeuze extends Opdracht implements IValideerbaar {
 	
 	private ArrayList<String> keuzes;
 	private String valideerTekst = "Er is nog geen validatie gebeurd";

@@ -3,7 +3,7 @@ package model.factory;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import utils.Datum;
-import model.baseclasses.OpdrachtBase;
+import model.baseclasses.Opdracht;
 import model.Opsomming;
 import model.MeerKeuze;
 import model.OpdrachtCatalogus;
@@ -28,7 +28,7 @@ public class OpdrachtFactory {
 	// methods
 	// als de opdrachtid die wordt meegegeven = 0, dan wordt een ID aangemaakt die hoger is dan de hoogste id in de catalogus
 	
-	public OpdrachtBase getOpdracht(Integer opdrachtid, String vraag, String juisteAntwoord, int maxAantalPogingen,
+	public Opdracht getOpdracht(Integer opdrachtid, String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie, Datum datumRegistratie, String Keuzes,
 			String... antwoordHints) throws Exception{
 		
@@ -47,7 +47,7 @@ public class OpdrachtFactory {
 				} else
 				{	
 					opdrachtid=bepaalID(opdrachtid);
-					OpdrachtBase ob = new MeerKeuze(opdrachtid, meerkeuzelijst, vraag, juisteAntwoord, maxAantalPogingen,
+					Opdracht ob = new MeerKeuze(opdrachtid, meerkeuzelijst, vraag, juisteAntwoord, maxAantalPogingen,
 							maxAntwoordTijd, auteur, categorie, datumRegistratie,
 							antwoordHints);
 					oc.add(ob);
@@ -58,7 +58,7 @@ public class OpdrachtFactory {
 			{ 
 				// gewone opdracht
 				opdrachtid=bepaalID(opdrachtid);
-				OpdrachtBase ob = new OpdrachtBase(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
+				Opdracht ob = new Opdracht(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
 						maxAntwoordTijd, auteur, categorie, datumRegistratie,
 						antwoordHints);
 				oc.add(ob);
@@ -69,7 +69,7 @@ public class OpdrachtFactory {
 		{
 			//Opsomming
 			opdrachtid=bepaalID(opdrachtid);
-			OpdrachtBase ob = new Opsomming(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
+			Opdracht ob = new Opsomming(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
 					maxAntwoordTijd, auteur, categorie, datumRegistratie,
 					antwoordHints);
 			oc.add(ob);
@@ -80,7 +80,7 @@ public class OpdrachtFactory {
 	
 	public int getHoogsteOpdrachtID(OpdrachtCatalogus oc){
 		int hoogsteID = 0;
-		for(OpdrachtBase opdracht:oc.getCatalogus()){
+		for(Opdracht opdracht:oc.getCatalogus()){
 			if(opdracht.getOpdrachtID()>hoogsteID){
 				hoogsteID=opdracht.getOpdrachtID();
 			}

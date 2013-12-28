@@ -21,7 +21,7 @@ import utils.Datum;
  * @
  */
 
-public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
+public class Opdracht implements Comparable<Opdracht>, Cloneable {
 	
 	//data members
 	
@@ -138,7 +138,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 	 * 	
 	 */
 	
-	public OpdrachtBase(){
+	public Opdracht(){
 		this.vraag = "";
 		this.juisteAntwoord="";
 		this.antwoordHints=null;
@@ -150,7 +150,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 		this.setDatumRegistratie(new Datum());
 	}
 	
-	public OpdrachtBase(String vraag, String juisteAntwoord, int maxAantalPogingen,
+	public Opdracht(String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie,
 			String... antwoordHints) {
 		this();
@@ -163,7 +163,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 		setAntwoordHints(antwoordHints);
 	}
 	
-	public OpdrachtBase(String vraag, String juisteAntwoord, int maxAantalPogingen,
+	public Opdracht(String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie, Datum datumRegistratie,
 			String... antwoordHints) {
 		this();
@@ -177,7 +177,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 		setDatumRegistratie(datumRegistratie);
 	}
 	
-	public OpdrachtBase(Integer opdrachtid, String vraag, String juisteAntwoord, int maxAantalPogingen,
+	public Opdracht(Integer opdrachtid, String vraag, String juisteAntwoord, int maxAantalPogingen,
 			int maxAntwoordTijd, Leraar auteur, OpdrachtCategorie categorie, Datum datumRegistratie,
 			String... antwoordHints) {
 		this();
@@ -279,7 +279,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 		}
 	}
 
-	public int compareTo(OpdrachtBase opd) {
+	public int compareTo(Opdracht opd) {
 		int counter=0;
 		
 		if (this.vraag==opd.vraag) counter++;
@@ -315,7 +315,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 			return false;
 		if (this.getClass() != obj.getClass())
 			return false;
-		OpdrachtBase other = (OpdrachtBase) obj;
+		Opdracht other = (Opdracht) obj;
 		if (!Arrays.equals(antwoordHints, other.antwoordHints))
 			return false;
 		if (juisteAntwoord != other.juisteAntwoord)
@@ -352,7 +352,7 @@ public class OpdrachtBase implements Comparable<OpdrachtBase>, Cloneable {
 	}
 	
 	@Override
-	public OpdrachtBase clone() throws CloneNotSupportedException{
+	public Opdracht clone() throws CloneNotSupportedException{
 		return this;
 	}
 }

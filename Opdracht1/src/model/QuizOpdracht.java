@@ -18,7 +18,7 @@ public class QuizOpdracht {
 	private int maxScore;
 	//private ArrayList<Quiz> quizzes;
 	private Quiz quiz;
-	private OpdrachtBase opdracht;
+	private Opdracht opdracht;
 	private Set<OpdrachtAntwoord> opdrachtAntwoorden;
 	
 	//getters & setters
@@ -49,11 +49,11 @@ public class QuizOpdracht {
 	}
 	*/
 	
-	public OpdrachtBase getOpdracht() {
+	public Opdracht getOpdracht() {
 		return opdracht;
 	}
 	
-	private void setOpdracht(OpdrachtBase opdracht) {
+	private void setOpdracht(Opdracht opdracht) {
 		this.opdracht = opdracht;
 	}
 	
@@ -63,7 +63,7 @@ public class QuizOpdracht {
 	
 	//constructors
 	
-	public QuizOpdracht(int maxScore, Quiz quiz, OpdrachtBase opdracht) {
+	public QuizOpdracht(int maxScore, Quiz quiz, Opdracht opdracht) {
 		setMaxScore(maxScore);
 		setQuiz(quiz);
 		setOpdracht(opdracht);

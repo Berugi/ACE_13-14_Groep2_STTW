@@ -1,6 +1,6 @@
 package model;
 
-import model.baseclasses.OpdrachtBase;
+import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import utils.Datum;
@@ -15,7 +15,7 @@ import model.interfaces.IValideerbaar;;
  * Bevat informatie over opsommingsvragen
  */
 
-public class Opsomming  extends OpdrachtBase implements IValideerbaar {
+public class Opsomming  extends Opdracht implements IValideerbaar {
 
 	private String valideerTekst = "Er is nog geen validatie gebeurd";
 	
