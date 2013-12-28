@@ -106,11 +106,6 @@ public class OpstartController {
 		catch (Exception e){
 			System.out.println("Fout in het opbouwen van de menu!");
 		}
-		
-		//initialize the main UI view
-		//QuizUI ui = new QuizUI();
-        //ui.setVisible(true);
-		
 	}
 
 }

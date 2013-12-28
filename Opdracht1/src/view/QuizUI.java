@@ -20,6 +20,7 @@ import config.IniFileManager;
 
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * This class contains the GUI for the Quiz Application
@@ -49,13 +50,16 @@ public class QuizUI extends JFrame {
 	private JComboBox<QuizStatus> quizStatusComboBox;
 	private JTable table;
 	private JList listOpdrachten;
+	private JList listQuizen;
 	
 	//for test purposes
 	private String[] Leerjaren = {"1","2","3","4","5","6"};
 	private DefaultListModel testOpdracht = new DefaultListModel();
+	private DefaultListModel testQuiz = new DefaultListModel();
 	private String[] tableColumNames = {"Opdracht","Score"};
-	private Object [] [] tableData = {};
-
+	private Object [] [] tableData = {{"Test1","1"},{"Test2","2"}};
+	//private DefaultTableModel tableData;
+	
 	//to be placed in the controller.
 	public static OpdrachtCatalogus opdrachtcatalogus = null;
 	public static QuizCatalogus quizcatalogus = null;
@@ -66,7 +70,7 @@ public class QuizUI extends JFrame {
 		setResizable(Boolean.parseBoolean(IniFileManager.getInstance().getProperty("appresizable")));
 		int width = Integer.parseInt(IniFileManager.getInstance().getProperty("appwidth"));
 		int height = Integer.parseInt(IniFileManager.getInstance().getProperty("appheight"));
-		setSize(816, 547);
+		setSize(854, 676);
 		setLocationRelativeTo(null);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -91,7 +95,7 @@ public class QuizUI extends JFrame {
 		
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		bottomPanel.setBounds(0, 84, 843, 422);
+		bottomPanel.setBounds(0, 217, 843, 422);
 		mainPanel.add(bottomPanel);
 		bottomPanel.setLayout(null);
 		
@@ -113,6 +117,7 @@ public class QuizUI extends JFrame {
 		toevoegButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int index = listOpdrachten.getSelectedIndex();
+				tableData.
 				testOpdracht.remove(index);
 
 			    int size = testOpdracht.getSize();
@@ -150,8 +155,13 @@ public class QuizUI extends JFrame {
 		JLabel lblSorteer = new JLabel("Sorteer opdrachten op :");
 		lblSorteer.setBounds(12, 61, 148, 16);
 		bottomPanel.add(lblSorteer);
-		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setLocation(12, 143);
+		scrollPane.setSize(324, 266);
+		bottomPanel.add(scrollPane);
+				
 		listOpdrachten = new JList(testOpdracht);
+		scrollPane.setViewportView(listOpdrachten);
 		listOpdrachten.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				if (e.getValueIsAdjusting() == false)
@@ -167,18 +177,26 @@ public class QuizUI extends JFrame {
 				}
 			}
 		});
-		listOpdrachten.setBounds(22, 143, 324, 253);
-		bottomPanel.add(listOpdrachten);
+		
 		
 		table = new JTable(tableData, tableColumNames);
 		table.setBounds(507, 278, 274, -121);
-		bottomPanel.add(table);
+		table.setFillsViewportHeight(true);
+		JScrollPane scrollPane2 = new JScrollPane(table);
+		scrollPane2.setLocation(493, 143);
+		scrollPane2.setSize(338, 266);
+		bottomPanel.add(scrollPane2);
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		topPanel.setBounds(0, 0, 843, 79);
+		topPanel.setBounds(0, 0, 843, 213);
 		mainPanel.add(topPanel);
 		topPanel.setLayout(null);
+		
+		for (Quiz quiz : quizcatalogus.getCatalogus())
+		{
+			testQuiz.addElement(quiz.toString());
+		}
 		
 		lblOnderwerp = new JLabel("Onderwerp :");
 		lblOnderwerp.setBounds(12, 9, 73, 16);
@@ -223,6 +241,18 @@ public class QuizUI extends JFrame {
 		quizStatusComboBox = new JComboBox(QuizStatus.values());
 		quizStatusComboBox.setBounds(692, 6, 125, 22);
 		topPanel.add(quizStatusComboBox);
+		
+		listQuizen = new JList(testQuiz);
+		listQuizen.setBounds(66, 138, 724, -34);
+		topPanel.add(listQuizen);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(listQuizen);
+		scrollPane_1.setBounds(12, 85, 819, 115);
+		topPanel.add(scrollPane_1);
+		
+		
+		
+		
 
 	}
 }
