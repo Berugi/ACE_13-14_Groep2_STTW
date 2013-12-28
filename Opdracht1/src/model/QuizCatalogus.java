@@ -1,13 +1,10 @@
 package model;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.Set;
-
 import utils.Datum;
 import model.baseclasses.Catalogus;
 import model.enums.Leraar;
@@ -26,7 +23,7 @@ import model.enums.QuizStatus;
  * Bevat QuizCatalogues informatie
  */
 
-public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Quiz>{
+public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Quiz> {
 
 	public ArrayList<Quiz> quizen;
 	//public Datum registratiedatum;
