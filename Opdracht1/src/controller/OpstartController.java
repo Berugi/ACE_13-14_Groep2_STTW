@@ -5,6 +5,8 @@ import config.IniFileManager;
 import view.QuizApplication;
 import persistence.*;
 import model.factory.*;
+import model.ObservableOpdrachtCatalogus;
+import model.ObservableQuizCatalogus;
 import model.OpdrachtCatalogus;
 import model.QuizCatalogus;
 
@@ -23,13 +25,13 @@ public class OpstartController {
 	private static IniFileManager iniProps = null;
 	private static ContextType contextType;
 	private static DataContext dc = null;
-	private static OpdrachtCatalogus opdrachtcatalogus = null;
-	private static QuizCatalogus quizcatalogus = null;
+	private static ObservableOpdrachtCatalogus opdrachtcatalogus = null;
+	private static ObservableQuizCatalogus quizcatalogus = null;
 	//View
 	private static QuizApplication application = null;
 	
 	//constructor
-	public OpstartController(QuizCatalogus quizcl, OpdrachtCatalogus opdrachtcl, QuizApplication app)
+	public OpstartController(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app)
 	{
 		setDataContext();
 		opdrachtcatalogus = opdrachtcl;
@@ -65,11 +67,11 @@ public class OpstartController {
 		
 	}
 	
-	public static OpdrachtCatalogus getOpdrachtCatalogus(){
+	public static ObservableOpdrachtCatalogus getOpdrachtCatalogus(){
 		return opdrachtcatalogus;
 	}
 	
-	public static QuizCatalogus getQuizCatalogus(){
+	public static ObservableQuizCatalogus getQuizCatalogus(){
 		return quizcatalogus;
 	}
 

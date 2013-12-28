@@ -1,8 +1,5 @@
 package controller;
 
-import javax.swing.JFrame;
-
-import model.ObservableQuizCatalogus;
 import model.interfaces.IObservable;
 import persistence.DataContext;
 import persistence.enums.ContextType;
@@ -14,6 +11,7 @@ import view.CreatieQuizView;
  * @author Wim Ombelets
  * @version 20131201-01 - initial commit
  * @version 20131209-01 - refactor using {@link IRepositoryCreate}
+ * @version 20131228-01 - added beginnings of link to model and view
  *
  */
 public class CreatieQuizController {
@@ -21,21 +19,23 @@ public class CreatieQuizController {
 	private CreatieQuizController instance = null;
 	private DataContext dc;
 	private ContextType contextType;
-	private JFrame view;
-	private IObservable model;
+	private CreatieQuizView view;
+	private IObservable quizCatalogusModel;
+	private IObservable opdrachtCatalogusModel;
 	
-	private CreatieQuizController(IObservable observableQuizCatalogus, JFrame creatieQuizView, ContextType contextType) {
+	private CreatieQuizController(ContextType contextType) {
 		
 		dc = new DataContext(contextType);
-		this.model = observableQuizCatalogus;
-		this.view = creatieQuizView;
+		this.quizCatalogusModel = OpstartController.getQuizCatalogus();
+		this.opdrachtCatalogusModel = OpstartController.getOpdrachtCatalogus();
+		this.view = new CreatieQuizView();
 		
 	}
 
-	public CreatieQuizController getInstance(IObservable observableQuizCatalogus, JFrame creatieQuizView, ContextType contextType) {
+	public CreatieQuizController getInstance(ContextType contextType) {
 		
 		if(instance == null)
-			instance = new CreatieQuizController(observableQuizCatalogus, creatieQuizView, contextType);
+			instance = new CreatieQuizController(contextType);
 		return instance;
 		
 	}
