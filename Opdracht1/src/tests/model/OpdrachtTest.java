@@ -6,15 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utils.Datum;
-import model.baseclasses.OpdrachtBase;
+import model.baseclasses.Opdracht;
 import model.enums.*;
 import model.*;
 
 
 public class OpdrachtTest {
 	
-	private OpdrachtBase opdracht;
-	private OpdrachtBase opdracht2;
+	private Opdracht opdracht;
+	private Opdracht opdracht2;
 	private String[] hints;
 	private Quiz quiz;
 	private Leerling leerling1;
@@ -33,14 +33,14 @@ public class OpdrachtTest {
 
 	@Test
 	public void Test_OpdrachtBase_Default_Constructor_Object_aangemaakt() {
-		opdracht = new OpdrachtBase();
+		opdracht = new Opdracht();
 	}
 
 	@Test
 	public void Test_OpdrachtBase_Parameter_Constructor_Object_aangemaakt() {
 		String[] hints = {"Simpel","Antwoord"};
-		opdracht = new OpdrachtBase("Wat is het antwoord","Dit is het antwoord",1,30,Leraar.PIETER,OpdrachtCategorie.AARDRIJKSKUNDE,hints);
-		opdracht2 = new OpdrachtBase("Wat is een tekstbestand","flat file van ascii tekens",3,60,Leraar.JEAN,OpdrachtCategorie.AARDRIJKSKUNDE,"");
+		opdracht = new Opdracht("Wat is het antwoord","Dit is het antwoord",1,30,Leraar.PIETER,OpdrachtCategorie.AARDRIJKSKUNDE,hints);
+		opdracht2 = new Opdracht("Wat is een tekstbestand","flat file van ascii tekens",3,60,Leraar.JEAN,OpdrachtCategorie.AARDRIJKSKUNDE,"");
 		opdrachtCatalogus.add(opdracht);
 		opdrachtCatalogus.add(opdracht2);
 		assertEquals("Wat is het antwoord",opdracht.getVraag());
@@ -66,7 +66,7 @@ public class OpdrachtTest {
 		int[] ljr ={1,2};
 		quiz = new Quiz("Test Quiz",ljr,false, false, Leraar.AN,new Datum());
 		String[] hints = {"Simpel","Antwoord"};
-		opdracht = new OpdrachtBase("Wat is het antwoord","Dit is het antwoord",1,30,Leraar.PIETER,OpdrachtCategorie.AARDRIJKSKUNDE,hints);
+		opdracht = new Opdracht("Wat is het antwoord","Dit is het antwoord",1,30,Leraar.PIETER,OpdrachtCategorie.AARDRIJKSKUNDE,hints);
 		quiz.quizOpdrachtToevoegen(new QuizOpdracht(5,quiz,opdracht));
 		//we hebben nu een opdracht die behoort tot een Quiz die nog nooit werd uitgevoerd
 		//proberen deze nu te wijzigen
@@ -81,7 +81,7 @@ public class OpdrachtTest {
 		int[] ljr ={1,2};
 		String[] hints = {"Simpel","Antwoord"};
 		quiz = new Quiz("Test Quiz",ljr,false, false, Leraar.AN,new Datum());
-		opdracht = new OpdrachtBase("Wat is het antwoord","Dit is het antwoord",1,30,Leraar.PIETER,OpdrachtCategorie.AARDRIJKSKUNDE,hints);
+		opdracht = new Opdracht("Wat is het antwoord","Dit is het antwoord",1,30,Leraar.PIETER,OpdrachtCategorie.AARDRIJKSKUNDE,hints);
 		qo = new QuizOpdracht(5,quiz,opdracht);	
 		quiz.quizOpdrachtToevoegen(qo);
 		deelname = new QuizDeelname(leerling1,quiz);		

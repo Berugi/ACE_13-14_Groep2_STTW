@@ -1,23 +1,21 @@
 package persistence;
 
-import persistence.interfaces.IPersistenceStrategy;
-import model.txtEncoderDecoder;
-
-import java.io.IOException;
-import java.util.Hashtable;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
-import utils.Datum;
-import config.IniFileManager;
+import model.OpdrachtCatalogus;
 import model.Quiz;
+import model.QuizCatalogus;
+import model.QuizOpdracht;
+import model.txtEncoderDecoder;
+import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
-import model.QuizCatalogus;
-import model.OpdrachtCatalogus;
 import model.factory.OpdrachtFactory;
-import model.baseclasses.OpdrachtBase;
-import model.QuizOpdracht;
+import persistence.interfaces.IPersistenceStrategy;
+import utils.Datum;
+import config.IniFileManager;
 
 
 /**
@@ -103,7 +101,7 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 				
 				for(Quiz quiz: quizcatalogus.quizen){
 					if(quiz.getQuizID()==Integer.parseInt(txtQuizenOpdrachtenHash.get("QuizID").get(i))){
-						for(OpdrachtBase opdracht: opdrachtcatalogus.getCatalogus()){
+						for(Opdracht opdracht: opdrachtcatalogus.getCatalogus()){
 							if(opdracht.getOpdrachtID()==Integer.parseInt(txtQuizenOpdrachtenHash.get("OpdrachtID").get(i))){
 								QuizOpdracht quizopdracht = new QuizOpdracht(Integer.parseInt(txtQuizenOpdrachtenHash.get("MaxScore").get(i)),quiz,opdracht);
 								quiz.quizOpdrachtToevoegen(quizopdracht);

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-import model.MeerKeuze;
+import model.MeerKeuzeOpdracht;
 import model.Opsomming;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;

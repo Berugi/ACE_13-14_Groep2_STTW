@@ -9,7 +9,7 @@ import javax.swing.*;
 import model.OpdrachtCatalogus;
 import model.Quiz;
 import model.QuizCatalogus;
-import model.baseclasses.OpdrachtBase;
+import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
@@ -81,7 +81,7 @@ public class QuizUI extends JFrame {
 		JPanel mainPanel = new JPanel();
 		
 		//testing - to be placed in the controller.
-		for (OpdrachtBase opdracht : opdrachtcatalogus.getCatalogus())
+		for (Opdracht opdracht : opdrachtcatalogus.getCatalogus())
 		{
 			testOpdracht.addElement(opdracht.toString());
 		}

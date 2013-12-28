@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-import model.MeerKeuze;
+import model.MeerKeuzeOpdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 
@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class MeerKeuzeTest {
 
-	private MeerKeuze meerkeuzevraag;
+	private MeerKeuzeOpdracht meerkeuzevraag;
 	private Random generator = new Random();
 	
 	@Before
@@ -28,7 +28,7 @@ public class MeerKeuzeTest {
 
 	@Test
 	public void test_MeerKeuze() {
-		this.meerkeuzevraag = new MeerKeuze();
+		this.meerkeuzevraag = new MeerKeuzeOpdracht();
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class MeerKeuzeTest {
 				antwoordHints2 += Character.toString(((char) generator.nextInt()));
 			}		
 					
-			this.meerkeuzevraag = new MeerKeuze(keuzes,vraag, juisteAntwoord,
+			this.meerkeuzevraag = new MeerKeuzeOpdracht(keuzes,vraag, juisteAntwoord,
 					maxAantalPogingen, maxAntwoordTijd, auteur,
 					categorie, antwoordHints,antwoordHints2);
 		}
@@ -81,7 +81,7 @@ public class MeerKeuzeTest {
 				keuzes.add(keuze);
 			}
 					
-			this.meerkeuzevraag = new MeerKeuze(keuzes,"", "",
+			this.meerkeuzevraag = new MeerKeuzeOpdracht(keuzes,"", "",
 					1, 1, Leraar.An,
 					OpdrachtCategorie.AlgemeneKennis, "");
 			
@@ -92,7 +92,7 @@ public class MeerKeuzeTest {
 	@Test
 	public void test_SetKeuzes_Geldige_Waarden_Geslaagd() {
 		for(int k = 0;k<10;k++){
-			this.meerkeuzevraag = new MeerKeuze();
+			this.meerkeuzevraag = new MeerKeuzeOpdracht();
 			
 			ArrayList<String> keuzes = null;
 			
@@ -130,7 +130,7 @@ public class MeerKeuzeTest {
 			String juisteAntwoord = keuzes.get(generator.nextInt(keuzes.size()));
 			
 					
-			this.meerkeuzevraag = new MeerKeuze(keuzes,"", juisteAntwoord,
+			this.meerkeuzevraag = new MeerKeuzeOpdracht(keuzes,"", juisteAntwoord,
 					1, 1, Leraar.An,
 					OpdrachtCategorie.AlgemeneKennis, "");
 			assertEquals(true,meerkeuzevraag.isJuisteTekst(juisteAntwoord));
@@ -159,7 +159,7 @@ public class MeerKeuzeTest {
 				}
 			}while(fouteAntwoord == juisteAntwoord);
 					
-			this.meerkeuzevraag = new MeerKeuze(keuzes,"", juisteAntwoord,
+			this.meerkeuzevraag = new MeerKeuzeOpdracht(keuzes,"", juisteAntwoord,
 					1, 1, Leraar.An,
 					OpdrachtCategorie.AlgemeneKennis, "");
 			assertEquals(false,meerkeuzevraag.isJuisteTekst(fouteAntwoord));
@@ -181,7 +181,7 @@ public class MeerKeuzeTest {
 			int keuze = generator.nextInt(keuzes.size())+1;
 			String juisteAntwoord = keuzes.get(keuze-1);	
 			
-			this.meerkeuzevraag = new MeerKeuze(keuzes,"", juisteAntwoord,
+			this.meerkeuzevraag = new MeerKeuzeOpdracht(keuzes,"", juisteAntwoord,
 					1, 1, Leraar.An,
 					OpdrachtCategorie.AlgemeneKennis, "");
 			assertEquals(true,meerkeuzevraag.isJuisteKeuze(keuze));
@@ -207,7 +207,7 @@ public class MeerKeuzeTest {
 			
 			String juisteAntwoord = keuzes.get(generator.nextInt(keuzes.size()));
 			
-			this.meerkeuzevraag = new MeerKeuze(keuzes,"", juisteAntwoord,
+			this.meerkeuzevraag = new MeerKeuzeOpdracht(keuzes,"", juisteAntwoord,
 					1, 1, Leraar.An,
 					OpdrachtCategorie.AlgemeneKennis, "");
 		}
@@ -229,7 +229,7 @@ public class MeerKeuzeTest {
 						
 			String juisteAntwoord = keuzes.get(generator.nextInt(keuzes.size()));
 			
-			this.meerkeuzevraag = new MeerKeuze(keuzes,"", juisteAntwoord,
+			this.meerkeuzevraag = new MeerKeuzeOpdracht(keuzes,"", juisteAntwoord,
 					1, 1, Leraar.An,
 					OpdrachtCategorie.AlgemeneKennis, "");
 			
@@ -256,7 +256,7 @@ public class MeerKeuzeTest {
 						
 			String juisteAntwoord = keuzes.get(generator.nextInt(keuzes.size()));
 			
-			this.meerkeuzevraag = new MeerKeuze(keuzes,"", juisteAntwoord,
+			this.meerkeuzevraag = new MeerKeuzeOpdracht(keuzes,"", juisteAntwoord,
 					1, 1, Leraar.An,
 					OpdrachtCategorie.AlgemeneKennis, "");
 			
