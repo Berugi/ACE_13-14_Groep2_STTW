@@ -8,7 +8,7 @@ import persistence.interfaces.IPersistenceStrategy;
  * 
  * @author Tom Scheepers
  * @version 20131221-01 - initial commit
- * @version 20131228 - modified by Wim Ombelets - now uses PersistenceStrategyFactory to set the strategy.
+ * @version 20131228-01 - modified by Wim Ombelets - now uses PersistenceStrategyFactory to set the strategy.
  *
  */
 public class DataContext {
