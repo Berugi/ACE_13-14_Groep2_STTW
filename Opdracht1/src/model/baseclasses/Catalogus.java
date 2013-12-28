@@ -1,4 +1,4 @@
-package model;
+package model.baseclasses;
 
 import java.util.ArrayList;
 import DatumV1.Datum;

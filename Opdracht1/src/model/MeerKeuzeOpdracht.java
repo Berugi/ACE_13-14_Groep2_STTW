@@ -16,17 +16,17 @@ import utils.Datum;
  *
  * Bevat informatie over meerkeuzevragen
  */
-public class MeerKeuze extends Opdracht implements IValideerbaar {
+public class MeerKeuzeOpdracht extends Opdracht implements IValideerbaar {
 	
 	private ArrayList<String> keuzes;
 	private String valideerTekst = "Er is nog geen validatie gebeurd";
 
-	public MeerKeuze() {
+	public MeerKeuzeOpdracht() {
 		this.keuzes = null;
 	}
 
 	//keuzes in Arraylist<String>
-	public MeerKeuze(Integer opdrachtID,ArrayList<String> keuzes,String vraag, String juisteAntwoord,
+	public MeerKeuzeOpdracht(Integer opdrachtID,ArrayList<String> keuzes,String vraag, String juisteAntwoord,
 			int maxAantalPogingen, int maxAntwoordTijd, Leraar auteur,
 			OpdrachtCategorie categorie,Datum registratiedatum, String... antwoordHints) {
 		super(opdrachtID,vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd,

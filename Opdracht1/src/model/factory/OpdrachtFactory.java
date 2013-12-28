@@ -5,7 +5,7 @@ import model.enums.OpdrachtCategorie;
 import utils.Datum;
 import model.baseclasses.Opdracht;
 import model.Opsomming;
-import model.MeerKeuze;
+import model.MeerKeuzeOpdracht;
 import model.OpdrachtCatalogus;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class OpdrachtFactory {
 				} else
 				{	
 					opdrachtid=bepaalID(opdrachtid);
-					Opdracht ob = new MeerKeuze(opdrachtid, meerkeuzelijst, vraag, juisteAntwoord, maxAantalPogingen,
+					Opdracht ob = new MeerKeuzeOpdracht(opdrachtid, meerkeuzelijst, vraag, juisteAntwoord, maxAantalPogingen,
 							maxAntwoordTijd, auteur, categorie, datumRegistratie,
 							antwoordHints);
 					oc.add(ob);

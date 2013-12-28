@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import utils.Datum;
+import model.baseclasses.Catalogus;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
 //import model.interfaces.IQuizStatus;//-- for state pattern

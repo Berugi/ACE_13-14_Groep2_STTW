@@ -9,7 +9,6 @@ import utils.Datum;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 
-
 import java.util.Iterator;
 
 /**
