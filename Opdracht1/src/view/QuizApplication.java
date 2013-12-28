@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import model.OpdrachtCatalogus;
 import model.QuizCatalogus;
-import tests.model.DataTest;
+//import tests.model.DataTest;
 
 /**
  * 
@@ -21,7 +21,6 @@ public class QuizApplication {
 	//data members
 		private static String ingave;
 		private static int choice;
-		private static Scanner sc;
 		public static OpdrachtCatalogus opdrachtcatalogus = null;
 		public static QuizCatalogus quizcatalogus = null;
 		
@@ -32,6 +31,9 @@ public class QuizApplication {
 			opdrachtcatalogus = opdrachtcl;
 			quizcatalogus = quizcl;
 			choice =-1;
+		}
+		
+		public void ShowMenu(){
 			Scanner sc = new Scanner(System.in);
 			
 			while (choice < 0)
@@ -71,8 +73,9 @@ public class QuizApplication {
 					}
 					case 2:
 					{//Beheren van quizzen/testen
+						//new QuizUI controller
 						QuizUI testQuiz = new QuizUI(quizcatalogus, opdrachtcatalogus);
-						testQuiz.setSize(861,587);
+						//testQuiz.setSize(861,587);
 					    //testQuiz.setMinimumSize(new Dimension(520,600));
 					    testQuiz.setVisible(true);
 					    choice = -1;
@@ -112,7 +115,7 @@ public class QuizApplication {
 					case 8:
 					{
 						choice = -1;
-						DataTest dt = new DataTest(quizcatalogus, opdrachtcatalogus);
+						//DataTest dt = new DataTest(quizcatalogus, opdrachtcatalogus);
 					}
 					default:
 					{//verkeerde optie

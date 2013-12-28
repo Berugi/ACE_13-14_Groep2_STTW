@@ -354,7 +354,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	public int getHoogsteOpdrachtID(){
 		int hoogsteID = 0;
-		for(Quiz quiz:OpstartController.quizcatalogus.quizen){
+		for(Quiz quiz:OpstartController.getQuizCatalogus().quizen){
 			if(quiz.getQuizID()>hoogsteID){
 				hoogsteID=quiz.getQuizID();
 			}
@@ -368,7 +368,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 			HoogsteID++;
 			id=HoogsteID;
 		} else { // Kontroleer of de opgegeven ID al niet bestaat
-			if(OpstartController.quizcatalogus.quizen.contains(id)){
+			if(OpstartController.getQuizCatalogus().quizen.contains(id)){
 				throw new Exception("QuizID moet uniek zijn");
 			}
 		}
