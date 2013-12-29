@@ -144,7 +144,11 @@ public class Datum implements Comparable<Datum>
 	@Override
 	public String toString() 
 	{
-		return dag + " " + MAANDEN_NAAR_TEKST[maand] + " "+ jaar;
+		return dag+"/"+maand+"/"+jaar;
+	}
+	
+	public String toLongString(){
+		return dag + " " + MAANDEN_NAAR_TEKST[maand] + " "+ jaar;		
 	}
 
 	@Override

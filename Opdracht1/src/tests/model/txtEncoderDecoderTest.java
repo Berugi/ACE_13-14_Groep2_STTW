@@ -58,10 +58,10 @@ public class txtEncoderDecoderTest {
 		String [][] objectTabel = {{"var1","var2"},{"test11","test12"},{"test21","test22"}};
 		
 		boolean f = testEncoderDecoder.encode(objectTabel);
-		String [][] decodedTabel = testEncoderDecoder.decode();
+		Hashtable<String,ArrayList<String>> decodedTabel = testEncoderDecoder.decode();
 		for(int i = 0;i < objectTabel.length; i++){
 			for(int j = 0 ;j<objectTabel[i].length; j++){
-				assertEquals(true,objectTabel[i][j].equals(decodedTabel[i][j]));
+				assertEquals(true,objectTabel[1][0].equals(decodedTabel.get("var1").get(0)));
 			}
 		}		
 	}
