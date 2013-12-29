@@ -19,7 +19,8 @@ import java.util.HashSet;
  * @version 20131013-02 - modified by Tom Scheepers - added QuizStatus
  * @version 20131020-01 - modified by Tom Vaes - added constructors
  * @version 20131031-01 - modified by Tom Scheepers - added methods to add/remove QuizOpdrachten
- *
+ * @version 20131228 01 - modified by Tom Scheepers - added QuizID
+ * 
  * Bevat Quiz informatie
  */
 

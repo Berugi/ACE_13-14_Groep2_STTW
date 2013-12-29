@@ -17,7 +17,7 @@ import model.QuizCatalogus;
  * @author Wim Ombelets
  * @version 20131122-01 - initial commit
  * @version 20131211-01 - added reading of ini file properties
- * 
+ * @version 20131226-01 - added DataContext, Opdrachtfactory, ReadData
  * @version 20131228-01 - Tom Vaes - changes towards MVC for main program
  * @version 20131228-02 - Wim Ombelets -
  */
@@ -29,6 +29,7 @@ public class OpstartController {
 	private static DataContext dc = null;
 	private static ObservableOpdrachtCatalogus opdrachtcatalogus = null;
 	private static ObservableQuizCatalogus quizcatalogus = null;
+	
 	//View
 	private static QuizApplication application = null;
 	
