@@ -66,7 +66,7 @@ public class QuizUI extends JFrame {
 	
 	public QuizUI(QuizCatalogus quizcl, OpdrachtCatalogus opdrachtcl) {
 		super(IniFileManager.getInstance().getProperty("apptitle") 
-				+ " (ContextType: " + IniFileManager.getInstance().getProperty("persistencemethod") + ")" );
+				+ " (ContextType: " + IniFileManager.getInstance().getProperty("persistencestrategy") + ")" );
 		setResizable(Boolean.parseBoolean(IniFileManager.getInstance().getProperty("appresizable")));
 		int width = Integer.parseInt(IniFileManager.getInstance().getProperty("appwidth"));
 		int height = Integer.parseInt(IniFileManager.getInstance().getProperty("appheight"));
