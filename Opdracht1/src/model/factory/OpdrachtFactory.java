@@ -4,7 +4,7 @@ import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import utils.Datum;
 import model.baseclasses.Opdracht;
-import model.Opsomming;
+import model.OpsommingOpdracht;
 import model.MeerKeuzeOpdracht;
 import model.OpdrachtCatalogus;
 
@@ -77,7 +77,7 @@ public class OpdrachtFactory {
 		{
 			//Opsomming
 			opdrachtid=bepaalID(opdrachtid);
-			Opdracht ob = new Opsomming(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
+			Opdracht ob = new OpsommingOpdracht(opdrachtid, vraag, juisteAntwoord, maxAantalPogingen,
 					maxAntwoordTijd, auteur, categorie, datumRegistratie,
 					antwoordHints);
 			oc.add(ob);

@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import model.MeerKeuzeOpdracht;
-import model.Opsomming;
+import model.OpsommingOpdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class OpsommingTest {
+public class OpsommingOpdrachtTest {
 
-	private Opsomming opsomming;
+	private OpsommingOpdracht opsomming;
 	private Random generator = new Random();
 	@Before
 	public void setUp() throws Exception {
@@ -23,7 +23,7 @@ public class OpsommingTest {
 
 	@Test
 	public void test_Opsomming() {
-		this.opsomming = new Opsomming();
+		this.opsomming = new OpsommingOpdracht();
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class OpsommingTest {
 				antwoordHints2 += Character.toString(((char) generator.nextInt()));
 			}		
 					
-			this.opsomming = new Opsomming(vraag, juisteAntwoord,
+			this.opsomming = new OpsommingOpdracht(vraag, juisteAntwoord,
 					maxAantalPogingen, maxAntwoordTijd, auteur,
 					categorie, antwoordHints,antwoordHints2);
 		}
@@ -65,7 +65,7 @@ public class OpsommingTest {
 
 	@Test
 	public void test_GetValideerTekst_Geslaagd() {
-		this.opsomming = new Opsomming();
+		this.opsomming = new OpsommingOpdracht();
 		assertEquals(true,this.opsomming.getValideerTekst().getClass().equals(String.class));
 	}
 
@@ -100,7 +100,7 @@ public class OpsommingTest {
 				antwoordHints2 += Character.toString(((char) generator.nextInt()));
 			}		
 					
-			this.opsomming = new Opsomming(vraag, juisteAntwoord,
+			this.opsomming = new OpsommingOpdracht(vraag, juisteAntwoord,
 					maxAantalPogingen, maxAntwoordTijd, auteur,
 					categorie, antwoordHints,antwoordHints2);
 			
@@ -139,7 +139,7 @@ public class OpsommingTest {
 				antwoordHints2 += Character.toString(((char) generator.nextInt()));
 			}		
 					
-			this.opsomming = new Opsomming(vraag, juisteAntwoord,
+			this.opsomming = new OpsommingOpdracht(vraag, juisteAntwoord,
 					maxAantalPogingen, maxAntwoordTijd, auteur,
 					categorie, antwoordHints,antwoordHints2);
 			
@@ -163,7 +163,7 @@ public class OpsommingTest {
 						
 			String juisteAntwoord = opsomming;
 			
-			this.opsomming = new Opsomming("", juisteAntwoord,
+			this.opsomming = new OpsommingOpdracht("", juisteAntwoord,
 					1, 1, Leraar.An,
 					OpdrachtCategorie.AlgemeneKennis, "");
 			

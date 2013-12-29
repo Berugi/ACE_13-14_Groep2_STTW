@@ -4,7 +4,7 @@ import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import utils.Datum;
-import model.interfaces.IValideerbaar;;
+import model.interfaces.IValideerbaar;
 
 /**
  * 
@@ -15,15 +15,15 @@ import model.interfaces.IValideerbaar;;
  * Bevat informatie over opsommingsvragen
  */
 
-public class Opsomming  extends Opdracht implements IValideerbaar {
+public class OpsommingOpdracht  extends Opdracht implements IValideerbaar {
 
 	private String valideerTekst = "Er is nog geen validatie gebeurd";
 	
-	public Opsomming() {
+	public OpsommingOpdracht() {
 		
 	}
 
-	public Opsomming(Integer opdrachtID,String vraag, String juisteAntwoord,
+	public OpsommingOpdracht(Integer opdrachtID,String vraag, String juisteAntwoord,
 			int maxAantalPogingen, int maxAntwoordTijd, Leraar auteur,
 			OpdrachtCategorie categorie, Datum registratiedatum, String... antwoordHints) {
 		super(opdrachtID,vraag, juisteAntwoord, maxAantalPogingen, maxAntwoordTijd,
