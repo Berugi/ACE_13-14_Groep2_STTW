@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import utils.Datum;
 import model.baseclasses.Catalogus;
+import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
 //import model.interfaces.IQuizStatus;//-- for state pattern
@@ -76,7 +77,7 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 	
 	//methods
 	
-	Quiz change(int index) {
+	public Quiz change(int index) {
 		return  quizen.get(index);
 	}
 
@@ -152,7 +153,6 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 		
 		return result;
 	}
-	
 
 	public boolean remove(Quiz removeQuiz) throws IllegalArgumentException
 	{

@@ -14,6 +14,8 @@ import model.enums.OpdrachtCategorie;
 import org.junit.Before;
 import org.junit.Test;
 
+import utils.Datum;
+
 /**
  * 
  * @author wim
@@ -39,7 +41,7 @@ public class QuizCatalogusTest {
 	
 	@Test
 	public void test_Add_Lege_Quiz_Geslaagd() {
-		private Quiz QuizTest = new Quiz();
+		Quiz QuizTest = new Quiz();
 		
 		//assertEquals(true,this.quizCatalogus.add(quizTest);
 		
@@ -52,32 +54,19 @@ public class QuizCatalogusTest {
 		
 		//catalogus wordt gevuld met 60 willekeurige opdrachten
 		for(int j = 0;j<60;j++){
-			String vraag = "";
+			String onderwerp = "";
 			for(int i =0;i < generator.nextInt(120);i++){
-				vraag += Character.toString(((char) (generator.nextInt(20)+98)));
+				onderwerp += Character.toString(((char) (generator.nextInt(20)+98)));
 			}
-			String juisteAntwoord = "";
-			for(int i = 0;i < generator.nextInt(120);i++){
-				juisteAntwoord += Character.toString(((char) (generator.nextInt(20)+98)));
-			}
-			int maxAantalPogingen = generator.nextInt(120);
-			int maxAntwoordTijd = generator.nextInt(120);
-			Leraar auteur = Leraar.AN;
-			OpdrachtCategorie categorie = OpdrachtCategorie.AARDRIJKSKUNDE;
-			String antwoordHints = "";
-			for(int i= 0;i < generator.nextInt(120);i++){
-				antwoordHints += Character.toString(((char) (generator.nextInt(20)+98)));
-			}
-			String antwoordHints2 = "";
-			for(int i= 0;i < generator.nextInt(120);i++){
-				antwoordHints2 += Character.toString(((char) (generator.nextInt(20)+98)));
-			}		
-			this.catalogus.add(new Quiz(vraag, juisteAntwoord, maxAantalPogingen,maxAntwoordTijd, auteur, categorie,	antwoordHints,antwoordHints2));
+			int[] leerjaren = new int[]{1,2,3};
+			
+			this.catalogus.add(new Quiz(onderwerp, leerjaren, true,true, Leraar.AN));
+						
 		}
 		
 		this.catalogus.wegschrijvenAlsTekstbestand("testquiz.txt");
 		
-		assertEquals(this.catalogus.change(0).getVraag(),new OpdrachtCatalogus("testquiz.txt").change(0).getVraag());
+		assertEquals(this.catalogus.change(0).getOnderwerp(),new QuizCatalogus("testquiz.txt").change(0).getOnderwerp());
 	}
 	
 }
