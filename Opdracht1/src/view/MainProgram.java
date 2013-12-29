@@ -29,7 +29,13 @@ public class MainProgram {
 		//Afsluitcontroller afsluiten = new AfsluitController();
 		
 		//Opstarten menu
-		application.ShowMenu();
+		
+		try {
+			application.ShowMenu();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//afsluiten.closeu();
 	}

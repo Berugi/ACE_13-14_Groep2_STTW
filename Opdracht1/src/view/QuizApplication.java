@@ -6,6 +6,8 @@ import java.util.Scanner;
 import model.ObservableOpdrachtCatalogus;
 import model.ObservableQuizCatalogus;
 import tests.model.DataTest;
+import persistence.DataContext;
+import controller.AfsluitController;
 
 /**
  * 
@@ -23,6 +25,7 @@ public class QuizApplication {
 		private static int choice;
 		public static ObservableOpdrachtCatalogus opdrachtcatalogus = null;
 		public static ObservableQuizCatalogus quizcatalogus = null;
+		public static DataContext datacontext;
 		
 		//public static void main(String[] args) {
 			// TODO Auto-generated method stub
@@ -30,10 +33,11 @@ public class QuizApplication {
 		public QuizApplication(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl) {
 			opdrachtcatalogus = opdrachtcl;
 			quizcatalogus = quizcl;
+			datacontext = null;
 			choice =-1;
 		}
 		
-		public void ShowMenu(){
+		public void ShowMenu() throws Exception{
 			Scanner sc = new Scanner(System.in);
 			
 			while (choice < 0)
@@ -55,7 +59,8 @@ public class QuizApplication {
 					case 0:
 					{
 						try {
-							quizcatalogus.wegschrijvenAlsTekstbestand("d:\\test.txt");
+							AfsluitController.Afsluiten();
+							//quizcatalogus.wegschrijvenAlsTekstbestand("d:\\test.txt");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							System.out.println("Fout in wegschrijven quiz!");

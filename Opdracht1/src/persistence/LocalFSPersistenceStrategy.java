@@ -122,7 +122,7 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 
 	public void WriteData(ObservableQuizCatalogus quizcatalogus, ObservableOpdrachtCatalogus opdrachtcatalogus) throws Exception{
 
-			txtEncoderDecoder encoder = new txtEncoderDecoder("New "+ IniFileManager.getInstance().getProperty("txtpathquizen"));
+			txtEncoderDecoder encoder = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathquizennew"));
 			int i =1;
 			ArrayList<String[]> list = new ArrayList<String[]>();
 			String [] VarNamen = {"QuizID","Onderwerp","Leerjaren","IsTest","IsUniekeDeelname","Auteur","Registratiedatum","QuizStatus"};

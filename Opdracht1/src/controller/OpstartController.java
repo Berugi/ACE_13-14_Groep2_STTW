@@ -61,15 +61,17 @@ public class OpstartController {
 	}
 	
 	private static void setDataContext() {
-		
 		dc = new DataContext();
-		
 	}
 	
 	private static void setDataContext(ContextType contextType) {
 		
 		dc = new DataContext(contextType);
 		
+	}
+	
+	public DataContext getDataContext(){
+		return dc;
 	}
 	
 	public static ObservableOpdrachtCatalogus getOpdrachtCatalogus(){
@@ -93,6 +95,7 @@ public class OpstartController {
 		
 		//set initial Data ContextType
 		setDataContext();
+		application.datacontext=this.getDataContext();
 		
 		//create OpdrachtCatalogus and QuizCatalogus
 		//opdrachtcatalogus = new OpdrachtCatalogus();
@@ -102,6 +105,7 @@ public class OpstartController {
 		OpdrachtFactory.Initialise(getOpdrachtCatalogus());
 				
 		//initialize secondary controllers
+		AfsluitController afsluitcontroller = new AfsluitController(quizcatalogus, opdrachtcatalogus,dc);
 		
 		//Load data
 		try{
