@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import model.Quiz;
 import model.enums.*;
 import java.awt.Font;
 
@@ -35,6 +37,7 @@ public class WijzigQuizView extends JFrame {
 	private JTextField txb_hints;
 	private JTextField txb_datumOpdracht;
 	private JComboBox cmb_opdrachten;
+	private JComboBox cmb_kiesQuiz;
 
 	/**
 	 * Launch the application.
@@ -73,7 +76,7 @@ public class WijzigQuizView extends JFrame {
 		lblKiesQuiz.setBounds(5, 29, 56, 14);
 		contentPane.add(lblKiesQuiz);
 		
-		JComboBox cmb_kiesQuiz = new JComboBox();
+		cmb_kiesQuiz = new JComboBox();
 		cmb_kiesQuiz.setBounds(80, 29, 214, 20);
 		contentPane.add(cmb_kiesQuiz);
 		
@@ -238,11 +241,11 @@ public class WijzigQuizView extends JFrame {
 		lblWijzigQuiz.setBounds(5, 0, 785, 23);
 		contentPane.add(lblWijzigQuiz);
 		
-		setUpComboBoxes();
 	}
 	
-	private void setUpComboBoxes(){
-		
+	public void selectQuiz(Quiz q){
+		this.cmb_kiesQuiz.addItem(q);
+		this.cmb_kiesQuiz.setSelectedItem(q);
 	}
 	
 }
