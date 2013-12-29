@@ -41,7 +41,9 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	private static int HoogsteID;
 	
 	//getters & setters
-
+	public Set<QuizOpdracht> getQuizOpdrachten(){
+		return this.quizOpdrachten;
+	}
 	public String getOnderwerp() {
 		return onderwerp;
 	}

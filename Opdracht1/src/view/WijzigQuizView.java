@@ -17,8 +17,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import model.Quiz;
+import model.QuizOpdracht;
+import model.baseclasses.Opdracht;
 import model.enums.*;
 import java.awt.Font;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class WijzigQuizView extends JFrame {
 
@@ -38,6 +42,14 @@ public class WijzigQuizView extends JFrame {
 	private JTextField txb_datumOpdracht;
 	private JComboBox cmb_opdrachten;
 	private JComboBox cmb_kiesQuiz;
+	JButton btn_OpdrachtOpslaan;
+	JComboBox cmb_opdrachtCategorie;
+	JCheckBox chckbx_isTest;
+	JCheckBox chckbx_Isuniekedeelname;
+	JComboBox cmb_auteurQuiz;
+	JComboBox cmb_quizStatus;
+	JComboBox cmb_auteurOpdracht;
+	JTextField txb_vraag;
 
 	/**
 	 * Launch the application.
@@ -76,9 +88,7 @@ public class WijzigQuizView extends JFrame {
 		lblKiesQuiz.setBounds(5, 29, 56, 14);
 		contentPane.add(lblKiesQuiz);
 		
-		cmb_kiesQuiz = new JComboBox();
-		cmb_kiesQuiz.setBounds(80, 29, 214, 20);
-		contentPane.add(cmb_kiesQuiz);
+		
 		
 		JLabel lblOnderwerp = new JLabel("Onderwerp");
 		lblOnderwerp.setBounds(5, 139, 64, 14);
@@ -98,15 +108,15 @@ public class WijzigQuizView extends JFrame {
 		contentPane.add(txb_leerjaren);
 		txb_leerjaren.setColumns(10);
 		
-		JCheckBox chckbx_isTest = new JCheckBox("Is test?");
+		chckbx_isTest = new JCheckBox("Is test?");
 		chckbx_isTest.setBounds(80, 216, 97, 23);
 		contentPane.add(chckbx_isTest);
 		
-		JCheckBox chckbx_Isuniekedeelname = new JCheckBox("isUniekeDeelname");
+		chckbx_Isuniekedeelname = new JCheckBox("isUniekeDeelname");
 		chckbx_Isuniekedeelname.setBounds(80, 242, 122, 23);
 		contentPane.add(chckbx_Isuniekedeelname);
 		
-		JComboBox cmb_auteurQuiz = new JComboBox(Leraar.values());
+		cmb_auteurQuiz = new JComboBox(Leraar.values());
 		cmb_auteurQuiz.setBounds(149, 356, 145, 20);
 		contentPane.add(cmb_auteurQuiz);
 		
@@ -128,7 +138,7 @@ public class WijzigQuizView extends JFrame {
 		lblQuizstatus.setBounds(5, 73, 97, 14);
 		contentPane.add(lblQuizstatus);
 		
-		JComboBox cmb_quizStatus = new JComboBox(QuizStatus.values());
+		cmb_quizStatus = new JComboBox(QuizStatus.values());
 		cmb_quizStatus.setSelectedIndex(-1);
 		cmb_quizStatus.setBounds(80, 70, 145, 20);
 		contentPane.add(cmb_quizStatus);
@@ -140,14 +150,39 @@ public class WijzigQuizView extends JFrame {
 		JButton btn_QuizgegevensOpslaan = new JButton("Quizgegevens opslaan");
 		btn_QuizgegevensOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+				btn_saveQuizPressed();				
 			}
 		});
 		btn_QuizgegevensOpslaan.setBounds(80, 426, 145, 23);
 		contentPane.add(btn_QuizgegevensOpslaan);
 		
 		cmb_opdrachten = new JComboBox();
+		cmb_opdrachten.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evt) {
+				if (evt.getStateChange() == ItemEvent.DESELECTED){
+				    return;
+				}
+				if(cmb_opdrachten.getSelectedItem() != null){
+					Opdracht opdracht = (Opdracht) cmb_opdrachten.getSelectedItem();
+					cmb_opdrachtCategorie.setSelectedItem(opdracht.getOpdrachtCategorie());
+					txb_vraag.setText(opdracht.getVraag());
+					txb_maxAantalPogingen.setText(opdracht.getMaxAantalPogingen()+"");
+					txb_maxAntwoordtijd.setText(opdracht.getMaxAntwoordTijd()+"");
+					txb_juisteAntwoord.setText(opdracht.getJuisteAntwoord());
+					
+					String hints = "";
+					for(String hint : opdracht.getAntwoordHints()){
+						hints += hint + "\n";
+					}
+					txb_hints.setText(hints);
+					cmb_auteurOpdracht.setSelectedItem(opdracht.getAuteur());
+					txb_datumOpdracht.setText(opdracht.getDatumRegistratie().toLongString());
+				}
+				//TODO
+				//Fill all textfield, comboboxes etc.
+				
+			}
+		});
 		cmb_opdrachten.setBounds(505, 70, 191, 20);
 		contentPane.add(cmb_opdrachten);
 		
@@ -164,7 +199,7 @@ public class WijzigQuizView extends JFrame {
 		lblVraag.setBounds(338, 152, 46, 14);
 		contentPane.add(lblVraag);
 		
-		JTextField txb_vraag = new JTextField();
+		txb_vraag = new JTextField();
 		txb_vraag.setBounds(505, 149, 235, 20);
 		contentPane.add(txb_vraag);
 		txb_vraag.setColumns(10);
@@ -205,7 +240,7 @@ public class WijzigQuizView extends JFrame {
 		contentPane.add(txb_hints);
 		txb_hints.setColumns(10);
 		
-		JComboBox cmb_auteurOpdracht = new JComboBox(Leraar.values());
+		cmb_auteurOpdracht = new JComboBox(Leraar.values());
 		cmb_auteurOpdracht.setBounds(595, 348, 145, 20);
 		contentPane.add(cmb_auteurOpdracht);
 		
@@ -227,11 +262,11 @@ public class WijzigQuizView extends JFrame {
 		lblCategorie.setBounds(338, 99, 69, 14);
 		contentPane.add(lblCategorie);
 		
-		JComboBox cmb_opdrachtCategorie = new JComboBox(OpdrachtCategorie.values());
+		cmb_opdrachtCategorie = new JComboBox(OpdrachtCategorie.values());
 		cmb_opdrachtCategorie.setBounds(505, 96, 145, 20);
 		contentPane.add(cmb_opdrachtCategorie);
 		
-		JButton btn_OpdrachtOpslaan = new JButton("Opdracht opslaan");
+		btn_OpdrachtOpslaan = new JButton("Opdracht opslaan");
 		btn_OpdrachtOpslaan.setBounds(505, 426, 145, 23);
 		contentPane.add(btn_OpdrachtOpslaan);
 		
@@ -241,11 +276,64 @@ public class WijzigQuizView extends JFrame {
 		lblWijzigQuiz.setBounds(5, 0, 785, 23);
 		contentPane.add(lblWijzigQuiz);
 		
+		cmb_kiesQuiz = new JComboBox();
+		cmb_kiesQuiz.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent evt) {
+				if (evt.getStateChange() == ItemEvent.DESELECTED){
+				    return;
+				}
+				
+				//TODO
+				//Fill all textfield, comboboxes etc.
+				
+			}
+
+		});
+		cmb_kiesQuiz.setBounds(80, 29, 214, 20);
+		contentPane.add(cmb_kiesQuiz);
+		
 	}
 	
 	public void selectQuiz(Quiz q){
 		this.cmb_kiesQuiz.addItem(q);
 		this.cmb_kiesQuiz.setSelectedItem(q);
+		
+		this.cmb_quizStatus.setSelectedItem(q.getQuizStatus());
+		this.txb_onderwerp.setText(q.getOnderwerp());
+		String leerjaren = "";
+		for(int i : q.getLeerjaren()){
+			leerjaren += i+";";
+		}
+		//verwijder laatste ';'
+		leerjaren = leerjaren.substring(0, leerjaren.length()-2);
+		
+		this.txb_leerjaren.setText(leerjaren);
+		this.chckbx_isTest.setSelected(q.getIsTest());
+		this.chckbx_Isuniekedeelname.setSelected(q.getIsUniekeDeelname());
+		this.cmb_auteurQuiz.setSelectedItem(q.getAuteur());
+		this.txb_datumQuiz.setText(q.getDatumRegistratie().toLongString());
+		for(QuizOpdracht quizopdracht : q.getQuizOpdrachten()){
+			this.cmb_opdrachten.addItem(quizopdracht.getOpdracht());
+		}
 	}
 	
+	private void btn_saveQuizPressed(){
+		Quiz q = (Quiz)this.cmb_kiesQuiz.getSelectedItem();
+		
+		q.setQuizStatus((QuizStatus)this.cmb_quizStatus.getSelectedItem());
+		q.setOnderwerp(this.txb_onderwerp.getText());
+		
+		//check:
+		String[] leerjarenstrings = this.txb_leerjaren.getText().split(";");
+		int[] leerjarenints = new int[leerjarenstrings.length];
+		for (int i=0; i < leerjarenstrings.length; i++) {
+	        leerjarenints[i] = Integer.parseInt(leerjarenstrings[i]);
+	    }
+		
+		q.setLeerjaren( leerjarenints);
+		q.setIsTest(this.chckbx_isTest.isSelected());
+		q.setIsUniekeDeelname(this.chckbx_Isuniekedeelname.isSelected());
+		q.setAuteur((Leraar)this.cmb_auteurQuiz.getSelectedItem());
+	
+	}
 }
