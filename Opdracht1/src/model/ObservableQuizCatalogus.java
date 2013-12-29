@@ -13,6 +13,7 @@ import model.interfaces.IObserver;
  * @author Wim Ombelets
  * @version 20131227-01 - initial commit
  * @version 20131227-02 - additional work
+ * @version 20131229-01 - Tom Scheepers - added init observers in constructors
  *
  */
 public class ObservableQuizCatalogus extends QuizCatalogus implements IObservable, Cloneable, Iterable<Quiz> {
@@ -20,15 +21,15 @@ public class ObservableQuizCatalogus extends QuizCatalogus implements IObservabl
 	private ArrayList<IObserver> observers;
 	
 	public ObservableQuizCatalogus() {
-		
 		super();
+		this.observers = new ArrayList<IObserver>();
 		
 	}
 	
 	public ObservableQuizCatalogus(String fileName) throws IOException {
 		
 		super(fileName);
-		
+		this.observers = new ArrayList<IObserver>();
 	}
 	
 	public Iterator<Quiz> iterator() {

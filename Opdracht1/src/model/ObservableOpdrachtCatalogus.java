@@ -15,6 +15,7 @@ import model.interfaces.IObserver;
  * 
  * @author Wim Ombelets
  * @version 20131228-01 - initial commit
+ * @version 20131229-01 - Tom Scheepers - added init observers in constructors
  *
  */
 public class ObservableOpdrachtCatalogus extends OpdrachtCatalogus implements IObservable, Cloneable, Iterable<Opdracht> {
@@ -24,13 +25,13 @@ public class ObservableOpdrachtCatalogus extends OpdrachtCatalogus implements IO
 	public ObservableOpdrachtCatalogus() {
 		
 		super();
-		
+		this.observers = new ArrayList<IObserver>();
 	}
 	
 	public ObservableOpdrachtCatalogus(String fileName) throws IOException {
 		
 		super(fileName);
-		
+		this.observers = new ArrayList<IObserver>();
 	}
 	
 	public Iterator<Opdracht> iterator() {

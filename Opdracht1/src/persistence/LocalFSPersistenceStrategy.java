@@ -3,9 +3,9 @@ package persistence;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import model.OpdrachtCatalogus;
+import model.ObservableOpdrachtCatalogus;
 import model.Quiz;
-import model.QuizCatalogus;
+import model.ObservableQuizCatalogus;
 import model.QuizOpdracht;
 import model.txtEncoderDecoder;
 import model.baseclasses.Opdracht;
@@ -32,7 +32,7 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 	private txtEncoderDecoder quizenDecoder = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathquizen"));
 	private txtEncoderDecoder quizenopdrachtenDecoder = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathquizopdrachten"));
 
-	public void ReadData(QuizCatalogus quizcatalogus, OpdrachtCatalogus opdrachtcatalogus) throws Exception{
+	public void ReadData(ObservableQuizCatalogus quizcatalogus, ObservableOpdrachtCatalogus opdrachtcatalogus) throws Exception{
 		try {
 
 			// lezen quizen

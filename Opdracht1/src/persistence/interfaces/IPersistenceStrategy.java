@@ -1,7 +1,7 @@
 package persistence.interfaces;
 
-import model.QuizCatalogus;
-import model.OpdrachtCatalogus;
+import model.ObservableQuizCatalogus;
+import model.ObservableOpdrachtCatalogus;
 
 public interface IPersistenceStrategy {
 	
@@ -10,7 +10,7 @@ public interface IPersistenceStrategy {
 	// Alle bewerkingen (insert, update, delete) worden gedaan in het programma. Het is de initiële dataset die wordt ingelezen bij het opstarten
 	// en het finale resultaat dat wordt weggeschreven bij het afsluiten.
 	
-	public void ReadData(QuizCatalogus qc,OpdrachtCatalogus oc) throws Exception;
+	public void ReadData(ObservableQuizCatalogus qc,ObservableOpdrachtCatalogus oc) throws Exception;
 	public void WriteData() throws Exception;
 	
 }

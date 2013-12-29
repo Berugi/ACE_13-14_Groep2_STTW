@@ -37,10 +37,10 @@ public class OpstartController {
 	//constructor
 	private OpstartController(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app)
 	{
-		setDataContext();
 		opdrachtcatalogus = opdrachtcl;
 		quizcatalogus = quizcl;
 		application = app;
+		Initialize();
 		opstartcontroller = this;
 	}
 	
@@ -86,7 +86,7 @@ public class OpstartController {
 	//	initialize();
 	//}
 
-	public void initialize() {
+	public void Initialize() {
 		
 		//load app properties
 		setIniProps(IniFileManager.getInstance());
@@ -99,13 +99,13 @@ public class OpstartController {
 		//quizcatalogus = new QuizCatalogus();
 		
 		//create singleton OpdrachtFactory
-		OpdrachtFactory.Initialise(opdrachtcatalogus);
+		OpdrachtFactory.Initialise(getOpdrachtCatalogus());
 				
 		//initialize secondary controllers
 		
 		//Load data
 		try{
-		dc.getStrategy().ReadData(quizcatalogus,opdrachtcatalogus);
+		dc.getStrategy().ReadData(getQuizCatalogus(),getOpdrachtCatalogus());
 		}
 		catch (Exception e){
 			System.out.println(e.toString());
