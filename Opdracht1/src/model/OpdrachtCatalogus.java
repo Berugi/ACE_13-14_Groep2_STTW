@@ -43,19 +43,18 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 		
 		Hashtable<String,ArrayList<String>> opdrachtTabel = decoder.decode();
 						
-		for(int j = 0; j<opdrachtTabel.get("Auteur").size();j++){
+		for(int j = 0; j<opdrachtTabel.get("auteur").size();j++){
 			
 			this.opdrachten.add(
 					new Opdracht(
-							opdrachtTabel.get("Vraag").get(j), 
-							opdrachtTabel.get("JuisteAntwoord").get(j) , 
-							Integer.parseInt(opdrachtTabel.get("MaxPogingen").get(j)),
-							Integer.parseInt(opdrachtTabel.get("MaxAntwoordtijd").get(j)), 
-							Leraar.valueOf(opdrachtTabel.get("Auteur").get(j)), 
-							OpdrachtCategorie.valueOf(opdrachtTabel.get("Categorie").get(j)), 
-							new Datum(opdrachtTabel.get("Registratiedatum").get(j))//, 
-							//opdrachtTabel.get("antwoordHints").get(j))
-							)
+							opdrachtTabel.get("vraag").get(j), 
+							opdrachtTabel.get("juisteAntwoord").get(j) , 
+							Integer.parseInt(opdrachtTabel.get("maxAantalPogingen").get(j)),
+							Integer.parseInt(opdrachtTabel.get("maxAntwoordTijd").get(j)), 
+							Leraar.valueOf(opdrachtTabel.get("auteur").get(j).toUpperCase()), 
+							OpdrachtCategorie.valueOf(opdrachtTabel.get("opdrachtCategorie").get(j).toUpperCase()), 
+							new Datum(opdrachtTabel.get("datumRegistratie").get(j)), 
+							opdrachtTabel.get("antwoordHints").get(j))
 			);
 		}
 		
@@ -144,7 +143,8 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 				regel.append(opdracht.getMaxAntwoordTijd()+";");
 				regel.append(opdracht.getAuteur()+";");
 				regel.append(opdracht.getOpdrachtCategorie()+";");
-				regel.append(opdracht.getDatumRegistratie()+";");
+				regel.append(opdracht.getDatumRegistratie().toString()+";");
+				regel.append(opdracht.getAntwoordHints()+";");
 				//nog geen quizopdrachten
 				writer.println(regel.toString());
 			}
