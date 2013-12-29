@@ -17,7 +17,7 @@ import model.QuizCatalogus;
  * @author Wim Ombelets
  * @version 20131122-01 - initial commit
  * @version 20131211-01 - added reading of ini file properties
- * @version 20131226-01 - added DataContext, Opdrachtfactory, ReadData
+ * @version 20131226-01 - Tom Scheepers - added DataContext, Opdrachtfactory, ReadData
  * @version 20131228-01 - Tom Vaes - changes towards MVC for main program
  * @version 20131228-02 - Wim Ombelets -
  */
@@ -29,17 +29,19 @@ public class OpstartController {
 	private static DataContext dc = null;
 	private static ObservableOpdrachtCatalogus opdrachtcatalogus = null;
 	private static ObservableQuizCatalogus quizcatalogus = null;
+	private static OpstartController opstartcontroller = null;
 	
 	//View
 	private static QuizApplication application = null;
 	
 	//constructor
-	public OpstartController(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app)
+	private OpstartController(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app)
 	{
 		setDataContext();
 		opdrachtcatalogus = opdrachtcl;
 		quizcatalogus = quizcl;
 		application = app;
+		opstartcontroller = this;
 	}
 	
 	//getters & setters
@@ -119,5 +121,14 @@ public class OpstartController {
 			
 		}
 	}
-
+	// Singleton pattern
+	public static void Initialise(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app){
+		if(opstartcontroller==null){
+		opstartcontroller = new OpstartController(quizcl,opdrachtcl,app);
+		}
+	}
+	
+	public static OpstartController getOpstartController(){
+		return opstartcontroller;
+	}
 }

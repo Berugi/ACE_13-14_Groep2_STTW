@@ -3,9 +3,9 @@ package view;
 import java.io.IOException;
 import java.util.Scanner;
 
-import model.OpdrachtCatalogus;
-import model.QuizCatalogus;
-//import tests.model.DataTest;
+import model.ObservableOpdrachtCatalogus;
+import model.ObservableQuizCatalogus;
+import tests.model.DataTest;
 
 /**
  * 
@@ -21,13 +21,13 @@ public class QuizApplication {
 	//data members
 		private static String ingave;
 		private static int choice;
-		public static OpdrachtCatalogus opdrachtcatalogus = null;
-		public static QuizCatalogus quizcatalogus = null;
+		public static ObservableOpdrachtCatalogus opdrachtcatalogus = null;
+		public static ObservableQuizCatalogus quizcatalogus = null;
 		
 		//public static void main(String[] args) {
 			// TODO Auto-generated method stub
 		
-		public QuizApplication(QuizCatalogus quizcl, OpdrachtCatalogus opdrachtcl) {
+		public QuizApplication(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl) {
 			opdrachtcatalogus = opdrachtcl;
 			quizcatalogus = quizcl;
 			choice =-1;
@@ -115,7 +115,7 @@ public class QuizApplication {
 					case 8:
 					{
 						choice = -1;
-						//DataTest dt = new DataTest(quizcatalogus, opdrachtcatalogus);
+						DataTest dt = new DataTest(quizcatalogus, opdrachtcatalogus);
 					}
 					default:
 					{//verkeerde optie

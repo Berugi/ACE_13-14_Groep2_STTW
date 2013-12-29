@@ -24,12 +24,12 @@ public class MainProgram {
 		QuizApplication application = new QuizApplication(quizCatalogus, opdrachtCatalogus);
 		
 		//Controllers
-	
-		OpstartController startup = new OpstartController(quizCatalogus,opdrachtCatalogus, application);
+		OpstartController.Initialise(quizCatalogus,opdrachtCatalogus,application);
 		
 		//Afsluitcontroller afsluiten = new AfsluitController();
 		
-		startup.initialize();
+		//Opstarten menu
+		application.ShowMenu();
 		
 		//afsluiten.closeu();
 	}
