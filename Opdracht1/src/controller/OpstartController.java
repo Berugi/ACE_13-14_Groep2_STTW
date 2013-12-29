@@ -29,6 +29,7 @@ public class OpstartController {
 	private static DataContext dc = null;
 	private static ObservableOpdrachtCatalogus opdrachtcatalogus = null;
 	private static ObservableQuizCatalogus quizcatalogus = null;
+	
 	//View
 	private static QuizApplication application = null;
 	

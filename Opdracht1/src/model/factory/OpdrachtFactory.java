@@ -11,6 +11,14 @@ import model.OpdrachtCatalogus;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * 
+ * @author Tom Scheepers
+ * 
+ * @Version 201312 -01 - Initial Version.
+ *
+ */
+
 public class OpdrachtFactory {
 	
 	protected static int HoogsteID = 0;
