@@ -11,6 +11,6 @@ public interface IPersistenceStrategy {
 	// en het finale resultaat dat wordt weggeschreven bij het afsluiten.
 	
 	public void ReadData(ObservableQuizCatalogus qc,ObservableOpdrachtCatalogus oc) throws Exception;
-	public void WriteData() throws Exception;
+	public void WriteData(ObservableQuizCatalogus qc, ObservableOpdrachtCatalogus oc) throws Exception;
 	
 }

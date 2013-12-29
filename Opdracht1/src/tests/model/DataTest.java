@@ -18,6 +18,8 @@ public class DataTest {
 		for(Opdracht opdracht: oc.getCatalogus()){
 			System.out.println(opdracht.toString());
 		}
+		
+		System.out.println("\n\n");
 	}
 
 }

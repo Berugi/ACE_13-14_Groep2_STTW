@@ -42,14 +42,14 @@ public class OpdrachtFactory {
 		
 		
 		//juisteantwoord opsplitsen -> meer dan 1 juisteantwoord = opsomming
-		String[] antwoorden = juisteAntwoord.split(",");
+		String[] antwoorden = juisteAntwoord.replace("[", "").replace("]","").split(",");
 		
 		// Bepaal type opdracht
 		if(antwoorden.length==1)
 		{ // geen opsomming
 			if(Keuzes.contains(","))
 			{ //meerkeuze
-				ArrayList<String> meerkeuzelijst = new ArrayList<String>(Arrays.asList(Keuzes.split(",")));
+				ArrayList<String> meerkeuzelijst = new ArrayList<String>(Arrays.asList(Keuzes.replace("[", "").replace("]","").split(",")));
 				if(meerkeuzelijst.size()<2){
 					throw new Exception("Meerkeuzelijst bevat minder dan 2 keuzes!");
 				} else

@@ -1,6 +1,8 @@
 package persistence;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 import model.ObservableOpdrachtCatalogus;
@@ -118,8 +120,24 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 
 	}
 
-	public void WriteData(){
+	public void WriteData(ObservableQuizCatalogus quizcatalogus, ObservableOpdrachtCatalogus opdrachtcatalogus) throws Exception{
 
-	}
+			txtEncoderDecoder encoder = new txtEncoderDecoder("New "+ IniFileManager.getInstance().getProperty("txtpathquizen"));
+			int i =1;
+			ArrayList<String[]> list = new ArrayList<String[]>();
+			String [] VarNamen = {"QuizID","Onderwerp","Leerjaren","IsTest","IsUniekeDeelname","Auteur","Registratiedatum","QuizStatus"};
+			list.add(VarNamen);
+			
+			for(Quiz quiz : quizcatalogus.quizen){
+				String[] quizVars = {Integer.toString(quiz.getQuizID()) ,quiz.getOnderwerp(),Arrays.toString(quiz.getLeerjaren()),quiz.getIsTest().toString(),
+						quiz.getIsUniekeDeelname().toString(),quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),quiz.getQuizStatus().toString()};
+				list.add(quizVars);
+				i++;
+			}
+			
+			String [][] quizTabel = list.toArray(new String[list.size()][list.get(0).length]);
+			
+			encoder.encode(quizTabel);
+		}
 
 }
