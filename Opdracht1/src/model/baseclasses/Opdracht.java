@@ -56,7 +56,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 		return vraag;
 	}
 
-	private void setVraag(String vraag) {
+	public void setVraag(String vraag) {
 		this.vraag = vraag;
 	}
 
@@ -64,7 +64,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 		return this.juisteAntwoord;
 	}
 
-	private void setJuisteAntwoord(String juisteAntwoord) {
+	public void setJuisteAntwoord(String juisteAntwoord) {
 		this.juisteAntwoord=juisteAntwoord;
 	}
 
@@ -73,7 +73,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 		return maxAantalPogingen;
 	}
 
-	private void setMaxAantalPogingen(int maxAantalPogingen) {
+	public void setMaxAantalPogingen(int maxAantalPogingen) {
 		this.maxAantalPogingen = maxAantalPogingen;
 	}
 
@@ -81,7 +81,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 		return antwoordHints;
 	}
 
-	private void setAntwoordHints(String[] antwoordHints) {
+	public void setAntwoordHints(String[] antwoordHints) {
 		this.antwoordHints = antwoordHints;
 	}
 	
@@ -93,7 +93,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 		this.maxAntwoordTijd = maxAntwoordTijd;
 	}
 	
-	private void setAuteur(Leraar auteur) {
+	public void setAuteur(Leraar auteur) {
 		this.auteur = auteur;
 	}
 	
@@ -101,7 +101,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 		return auteur;
 	}
 	
-	private void setOpdrachtCategorie(OpdrachtCategorie categorie) {
+	public void setOpdrachtCategorie(OpdrachtCategorie categorie) {
 		this.categorie = categorie;
 	}
 	

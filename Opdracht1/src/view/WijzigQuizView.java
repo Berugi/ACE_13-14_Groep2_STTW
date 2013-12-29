@@ -150,7 +150,9 @@ public class WijzigQuizView extends JFrame {
 		JButton btn_QuizgegevensOpslaan = new JButton("Quizgegevens opslaan");
 		btn_QuizgegevensOpslaan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				btn_saveQuizPressed();				
+				if(cmb_kiesQuiz.getSelectedItem() != null){
+					btn_saveQuizPressed();		
+				}
 			}
 		});
 		btn_QuizgegevensOpslaan.setBounds(80, 426, 145, 23);
@@ -174,6 +176,7 @@ public class WijzigQuizView extends JFrame {
 					for(String hint : opdracht.getAntwoordHints()){
 						hints += hint + "\n";
 					}
+					hints= hints.substring(0, hints.lastIndexOf("\n")-1);
 					txb_hints.setText(hints);
 					cmb_auteurOpdracht.setSelectedItem(opdracht.getAuteur());
 					txb_datumOpdracht.setText(opdracht.getDatumRegistratie().toLongString());
@@ -267,6 +270,14 @@ public class WijzigQuizView extends JFrame {
 		contentPane.add(cmb_opdrachtCategorie);
 		
 		btn_OpdrachtOpslaan = new JButton("Opdracht opslaan");
+		btn_OpdrachtOpslaan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				if(cmb_opdrachten.getSelectedItem() != null){
+					btn_saveOpdrachtPressed();
+				}
+				
+			}
+		});
 		btn_OpdrachtOpslaan.setBounds(505, 426, 145, 23);
 		contentPane.add(btn_OpdrachtOpslaan);
 		
@@ -318,12 +329,13 @@ public class WijzigQuizView extends JFrame {
 	}
 	
 	private void btn_saveQuizPressed(){
+		//check:
 		Quiz q = (Quiz)this.cmb_kiesQuiz.getSelectedItem();
 		
 		q.setQuizStatus((QuizStatus)this.cmb_quizStatus.getSelectedItem());
 		q.setOnderwerp(this.txb_onderwerp.getText());
 		
-		//check:
+		
 		String[] leerjarenstrings = this.txb_leerjaren.getText().split(";");
 		int[] leerjarenints = new int[leerjarenstrings.length];
 		for (int i=0; i < leerjarenstrings.length; i++) {
@@ -333,7 +345,19 @@ public class WijzigQuizView extends JFrame {
 		q.setLeerjaren( leerjarenints);
 		q.setIsTest(this.chckbx_isTest.isSelected());
 		q.setIsUniekeDeelname(this.chckbx_Isuniekedeelname.isSelected());
-		q.setAuteur((Leraar)this.cmb_auteurQuiz.getSelectedItem());
-	
+		q.setAuteur((Leraar)this.cmb_auteurQuiz.getSelectedItem());	
+	}
+	private void btn_saveOpdrachtPressed(){
+		//Check:
+		Opdracht opdracht = (Opdracht)this.cmb_opdrachten.getSelectedItem();
+		
+		opdracht.setOpdrachtCategorie((OpdrachtCategorie)cmb_opdrachtCategorie.getSelectedItem());
+		opdracht.setVraag(txb_vraag.getText());
+		opdracht.setMaxAantalPogingen(Integer.parseInt(txb_maxAantalPogingen.getText()));		
+		opdracht.setMaxAntwoordTijd(Integer.parseInt(txb_maxAntwoordtijd.getText()));
+		opdracht.setJuisteAntwoord(txb_juisteAntwoord.getText());
+		opdracht.setAntwoordHints(txb_hints.getText().split("\n"));
+		opdracht.setAuteur((Leraar)cmb_auteurOpdracht.getSelectedItem());		
+		
 	}
 }
