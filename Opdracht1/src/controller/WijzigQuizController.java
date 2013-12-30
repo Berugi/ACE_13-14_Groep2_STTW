@@ -15,12 +15,8 @@ import model.interfaces.IObservable;
 public class WijzigQuizController {
 
 	private WijzigQuizView view;
-	private IObservable quizCatalogusModel;
-	private IObservable opdrachtCatalogusModel;
 	
 	public WijzigQuizController() {
-		this.quizCatalogusModel = OpstartController.getQuizCatalogus();
-		this.opdrachtCatalogusModel = OpstartController.getOpdrachtCatalogus();
 		this.view = new WijzigQuizView();
 	}
 	

@@ -353,10 +353,14 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	public int getHoogsteOpdrachtID(){
 		int hoogsteID = 0;
-		for(Quiz quiz:OpstartController.getQuizCatalogus().quizen){
-			if(quiz.getQuizID()>hoogsteID){
-				hoogsteID=quiz.getQuizID();
-			}
+		try{
+			for(Quiz quiz:OpstartController.getQuizCatalogus().quizen){
+				if(quiz.getQuizID()>hoogsteID){
+					hoogsteID=quiz.getQuizID();
+				}
+		}
+		}catch(NullPointerException ex){
+			
 		}
 		return hoogsteID;
 	}

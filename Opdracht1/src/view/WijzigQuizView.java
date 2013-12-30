@@ -173,10 +173,12 @@ public class WijzigQuizView extends JFrame {
 					txb_juisteAntwoord.setText(opdracht.getJuisteAntwoord());
 					
 					String hints = "";
-					for(String hint : opdracht.getAntwoordHints()){
-						hints += hint + "\n";
+					if(opdracht.getAntwoordHints() != null){
+						for(String hint : opdracht.getAntwoordHints()){
+							hints += hint + "\n";
+						}
+						hints= hints.substring(0, hints.lastIndexOf("\n")-1);
 					}
-					hints= hints.substring(0, hints.lastIndexOf("\n")-1);
 					txb_hints.setText(hints);
 					cmb_auteurOpdracht.setSelectedItem(opdracht.getAuteur());
 					txb_datumOpdracht.setText(opdracht.getDatumRegistratie().toLongString());

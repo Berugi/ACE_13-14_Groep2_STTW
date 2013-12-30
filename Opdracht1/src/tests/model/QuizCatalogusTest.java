@@ -52,7 +52,7 @@ public class QuizCatalogusTest {
 		
 		this.catalogus = new QuizCatalogus();
 		
-		//catalogus wordt gevuld met 60 willekeurige opdrachten
+		//catalogus wordt gevuld met 60 willekeurige quizen
 		for(int j = 0;j<60;j++){
 			String onderwerp = "";
 			for(int i =0;i < generator.nextInt(120);i++){

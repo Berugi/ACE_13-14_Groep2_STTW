@@ -3,6 +3,8 @@ package tests.model;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Random;
 
 import model.txtEncoderDecoder;
