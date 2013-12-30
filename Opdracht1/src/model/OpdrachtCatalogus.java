@@ -170,4 +170,7 @@ public class OpdrachtCatalogus implements Comparable<Catalogus>, Cloneable, Iter
 		
 		return null;
 	}
+	public int size(){
+		return this.opdrachten.size();
+	}
 }
