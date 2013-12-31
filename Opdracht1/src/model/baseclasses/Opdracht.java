@@ -80,6 +80,16 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 	public String[] getAntwoordHints() {
 		return antwoordHints;
 	}
+	
+	public String getAntwoordHintsAsString(){
+		String result="";
+		for(String o: this.getAntwoordHints()){
+			if(result!=""){result=result+",";}
+			result=result+o.trim();
+		}
+		if(result==""){result=" ";} //nodig bij het wegschrijven naar een tekstbestand zodat dit tekstbestand kan ingelezen worden via een encoder
+		return result;
+	}
 
 	public void setAntwoordHints(String[] antwoordHints) {
 		this.antwoordHints = antwoordHints;

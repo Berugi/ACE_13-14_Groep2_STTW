@@ -29,6 +29,14 @@ public enum Leraar {
 		this.naam = naam;
 	}
 	
+	public static Leraar getLeraar(String auteur){
+		for(Leraar l: Leraar.values()){
+			if(l.getDescription().equalsIgnoreCase(auteur))
+			{return l;}
+		}
+		return Leraar.TBA;
+	}
+	
 	@Override
     public String toString() {
         return naam;

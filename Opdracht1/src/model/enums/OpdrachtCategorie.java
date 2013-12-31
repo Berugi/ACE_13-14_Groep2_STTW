@@ -28,6 +28,14 @@ public enum OpdrachtCategorie {
 		this.description = description;
 	}
 	
+	public static OpdrachtCategorie getCategorie(String cat){
+		for(OpdrachtCategorie c: OpdrachtCategorie.values()){
+			if(c.getDescription().equalsIgnoreCase(cat))
+			{return c;}
+		}
+		return OpdrachtCategorie.TBA;
+	}
+	
 	@Override
     public String toString() {
         return description;

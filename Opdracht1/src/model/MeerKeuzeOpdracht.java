@@ -3,6 +3,7 @@ package model;
 import model.baseclasses.Opdracht;
 
 import java.util.ArrayList;
+
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.interfaces.IValideerbaar;
@@ -42,6 +43,16 @@ public class MeerKeuzeOpdracht extends Opdracht implements IValideerbaar {
 	// Getter & Setter	
 	public ArrayList<String> getKeuzes(){
 		return this.keuzes;
+	}
+	
+	public String getKeuzesAsString(){
+		String result="";
+		for(String k: this.getKeuzes()){
+			if(result!=""){result=result+",";}
+			result=result+k.trim();
+		}
+		if(result==""){result=" ";} //nodig bij het wegschrijven naar een tekstbestand zodat dit tekstbestand kan ingelezen worden via een encoder
+		return result;
 	}
 	
 	public void setKeuzes(ArrayList<String> keuzes){

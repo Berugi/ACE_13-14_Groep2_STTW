@@ -38,10 +38,13 @@ public class txtEncoderDecoder {
 		
 		BufferedWriter writer = new BufferedWriter(new FileWriter(this.bestandspad));
 		try {
-			
 			for(String[] list : objectTabel){
+				String record="";
 				for(String item : list){
-					writer.write(item+";");
+					if(item==""){item=" ";}
+					if(record!=""){item=";"+item;}
+					record = record + item;
+					writer.write(item);
 				}
 				writer.newLine();
 			}	

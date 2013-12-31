@@ -119,12 +119,18 @@ public class Datum implements Comparable<Datum>
 	
 	public Datum(String datum) throws IllegalArgumentException
 	{
-		if (datum.length() != 10)
-			throw new IllegalArgumentException("Datum moet in formaat dd/mm/jjjj zijn met /-teken !");
+		//if (datum.length() != 10)
+		//	throw new IllegalArgumentException("Datum moet in formaat dd/mm/jjjj zijn met /-teken !");
 		
-		setDatum(Integer.parseInt(datum.substring(0,2)),
-				Integer.parseInt(datum.substring(3,5)), 
-				Integer.parseInt(datum.substring(6,10)));
+		String[] datumtekst= datum.split("/");
+		if (datumtekst.length!=3){
+			throw new IllegalArgumentException("Datum moet in formaat dd/mm/jjjj zijn met /-teken !");
+		}
+		
+		setDatum(Integer.parseInt(datumtekst[0]),Integer.parseInt(datumtekst[1]),Integer.parseInt(datumtekst[2]));
+		//setDatum(Integer.parseInt(datum.substring(0,2)),
+		//		Integer.parseInt(datum.substring(3,5)), 
+		//		Integer.parseInt(datum.substring(6,10)));
 	}
 	
 	/**

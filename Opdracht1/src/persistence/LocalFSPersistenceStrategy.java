@@ -14,8 +14,11 @@ import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
 import model.factory.OpdrachtFactory;
+import model.MeerKeuzeOpdracht;
 import persistence.interfaces.IPersistenceStrategy;
+
 import utils.Datum;
+
 import config.IniFileManager;
 
 
@@ -57,9 +60,9 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 						leerjaren,
 						Boolean.parseBoolean(txtQuizHash.get("IsTest").get(i)),
 						Boolean.parseBoolean(txtQuizHash.get("IsUniekeDeelname").get(i)),
-						Leraar.valueOf(txtQuizHash.get("Auteur").get(i)),
+						Leraar.getLeraar((txtQuizHash.get("Auteur").get(i))),
 						new Datum(txtQuizHash.get("Registratiedatum").get(i)),
-						QuizStatus.valueOf(txtQuizHash.get("QuizStatus").get(i))
+						QuizStatus.getStatus(txtQuizHash.get("QuizStatus").get(i))
 						));
 
 			}		
@@ -81,8 +84,8 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 						txtOpdrachtHash.get("JuisteAntwoord").get(i), 
 						Integer.parseInt(txtOpdrachtHash.get("MaxPogingen").get(i)), 
 						Integer.parseInt(txtOpdrachtHash.get("MaxAntwoordtijd").get(i)), 
-						Leraar.valueOf(txtOpdrachtHash.get("Auteur").get(i)), 
-						OpdrachtCategorie.valueOf(txtOpdrachtHash.get("Categorie").get(i)), 
+						Leraar.getLeraar(txtOpdrachtHash.get("Auteur").get(i)), 
+						OpdrachtCategorie.getCategorie(txtOpdrachtHash.get("Categorie").get(i)), 
 						new Datum(txtOpdrachtHash.get("Registratiedatum").get(i)), 
 						txtOpdrachtHash.get("Meerkeuze").get(i), 
 						txtOpdrachtHash.get("Hints").get(i));
@@ -121,22 +124,57 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 
 	public void WriteData(ObservableQuizCatalogus quizcatalogus, ObservableOpdrachtCatalogus opdrachtcatalogus) throws Exception{
 
+		//wegschrijven van Quizen
+		try {
 			txtEncoderDecoder encoder = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathquizennew"));
-			int i =1;
 			ArrayList<String[]> list = new ArrayList<String[]>();
 			String [] VarNamen = {"QuizID","Onderwerp","Leerjaren","IsTest","IsUniekeDeelname","Auteur","Registratiedatum","QuizStatus"};
 			list.add(VarNamen);
-			
+
 			for(Quiz quiz : quizcatalogus.quizen){
 				String[] quizVars = {Integer.toString(quiz.getQuizID()) ,quiz.getOnderwerp(),quiz.getLeerjarenAsString(),quiz.getIsTest().toString(),
 						quiz.getIsUniekeDeelname().toString(),quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),quiz.getQuizStatus().toString()};
 				list.add(quizVars);
-				i++;
 			}
-			
+
 			String [][] quizTabel = list.toArray(new String[list.size()][list.get(0).length]);
-			
+
 			encoder.encode(quizTabel);
+			
+		} catch (Exception e) {
+			System.out.println("Quizen konden niet weggeschreven worden!");
+			e.printStackTrace();
 		}
+		
+		
+		//wegschrijven van Opdrachten
+		try {
+			txtEncoderDecoder encoder = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathopdrachtennew"));
+			String meerkeuze;
+			ArrayList<String[]> list = new ArrayList<String[]>();
+			String [] VarNamen = {"OpdrachtID","Vraag","JuisteAntwoord","MaxPogingen","MaxAntwoordtijd","Auteur","Categorie","Registratiedatum","Meerkeuze","Hints"};
+			list.add(VarNamen);
+
+			for(Opdracht opdracht : opdrachtcatalogus.getCatalogus()){
+				meerkeuze="";
+				if(opdracht instanceof MeerKeuzeOpdracht)
+				{
+					meerkeuze = ((MeerKeuzeOpdracht) opdracht).getKeuzesAsString();
+				}
+				String[] opdrachtVars = {Integer.toString(opdracht.getOpdrachtID()),opdracht.getVraag(),opdracht.getJuisteAntwoord(),
+						Integer.toString(opdracht.getMaxAantalPogingen()), Integer.toString(opdracht.getMaxAntwoordTijd()),opdracht.getAuteur().toString(),opdracht.getOpdrachtCategorie().toString(),opdracht.getDatumRegistratie().toString(),meerkeuze,opdracht.getAntwoordHintsAsString()};
+				list.add(opdrachtVars);
+			}
+
+			String [][] opdrachtTabel = list.toArray(new String[list.size()][list.get(0).length]);
+
+			encoder.encode(opdrachtTabel);
+			
+		} catch (Exception e) {
+			System.out.println("Opdrachten konden niet weggeschreven worden!");
+			e.printStackTrace();
+		}
+		
+	}
 
 }

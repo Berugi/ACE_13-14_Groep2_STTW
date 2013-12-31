@@ -30,6 +30,14 @@ public enum QuizStatus {
 		this.description = description;
 	}
 	
+	public static QuizStatus getStatus(String status){
+		for(QuizStatus s: QuizStatus.values()){
+			if(s.getDescription().equalsIgnoreCase(status))
+			{return s;}
+		}
+		return null;
+	}
+	
 	@Override
     public String toString() {
         return description;
