@@ -42,6 +42,7 @@ public abstract class GenericTableModel extends AbstractTableModel {
 		return (data == null ? 0 : data.length);
 	}
 	
+	@Override
 	public String getColumnName(int col) {
 		return columnNames[col];
 	}
@@ -54,6 +55,7 @@ public abstract class GenericTableModel extends AbstractTableModel {
 		data[row][col] = value;
 	}
 	
+	@Override
 	public Class getColumnClass(int c) {
 		Object object = getValueAt(0, c);
 		if (object == null)
@@ -62,8 +64,10 @@ public abstract class GenericTableModel extends AbstractTableModel {
 	}
 		
 	
+	@Override
 	public abstract boolean isCellEditable(int row, int col);
 
+	@Override
 	public abstract void setValueAt(Object value, int row, int col);
 
 	public abstract void setTableModel(int[] columnWidth);

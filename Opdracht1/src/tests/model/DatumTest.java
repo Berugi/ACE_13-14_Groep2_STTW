@@ -5,10 +5,6 @@ import static org.junit.Assert.*;
 
 import java.text.ParseException;
 import java.util.Random;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -563,7 +559,7 @@ public class DatumTest {
 			
 			datum2.setDatum(dag2, maand2, jaar2);
 			
-			int verschilInJaren = (int)(datum2.getDatumInAantalDagen() - datum.getDatumInAantalDagen())/365;
+			int verschilInJaren = (datum2.getDatumInAantalDagen() - datum.getDatumInAantalDagen())/365;
 			if(verschilInJaren < 0){
 				verschilInJaren = -verschilInJaren;
 			}

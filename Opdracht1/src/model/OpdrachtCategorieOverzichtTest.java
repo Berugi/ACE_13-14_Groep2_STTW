@@ -1,10 +1,5 @@
 package model;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.Random;
-
 import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;

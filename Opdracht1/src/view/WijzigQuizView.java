@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,7 +11,6 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

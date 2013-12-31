@@ -7,7 +7,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import utils.Datum;
 import model.baseclasses.Catalogus;
-import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
 //import model.interfaces.IQuizStatus;//-- for state pattern

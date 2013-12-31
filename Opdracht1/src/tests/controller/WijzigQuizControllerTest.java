@@ -1,7 +1,5 @@
 package tests.controller;
 
-import static org.junit.Assert.*;
-
 import model.Quiz;
 import model.QuizOpdracht;
 import model.baseclasses.Opdracht;

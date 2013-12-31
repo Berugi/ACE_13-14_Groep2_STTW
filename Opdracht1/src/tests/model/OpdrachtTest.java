@@ -47,7 +47,7 @@ public class OpdrachtTest {
 		assertEquals(Leraar.PIETER,opdracht.getAuteur());
 		assertTrue(opdracht.IsJuisteAntwoord("Dit is het antwoord"));
 		assertEquals(1,opdracht.getMaxAantalPogingen());
-		assertEquals(30l,(long)opdracht.getMaxAntwoordTijd());
+		assertEquals(30l,opdracht.getMaxAntwoordTijd());
 		assertEquals(OpdrachtCategorie.AARDRIJKSKUNDE,opdracht.getOpdrachtCategorie());
 		assertEquals(hints,opdracht.getAntwoordHints());
 		/*

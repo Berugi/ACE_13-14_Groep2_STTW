@@ -1,6 +1,5 @@
 package model.decorator.baseclasses;
 
-import model.QuizRapport;
 import model.interfaces.IQuizRapport;
 
 /**

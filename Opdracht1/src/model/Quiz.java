@@ -70,6 +70,15 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		}*/
 		this.leerjaren = leerjaren;
 	}
+	
+	public String getLeerjarenAsString(){
+		String result="";
+		for(int lj: this.leerjaren){
+			if(result!=""){result=result+",";}
+			result=result+Integer.toString(lj);
+		}
+		return result;
+	}
 
 	public Boolean getIsTest() {
 		return this.isTest;

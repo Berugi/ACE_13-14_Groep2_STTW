@@ -1,9 +1,7 @@
 package controller;
 
-import view.CreatieQuizView;
 import view.WijzigQuizView;
 import model.Quiz;
-import model.interfaces.IObservable;
 
 /**
  * 

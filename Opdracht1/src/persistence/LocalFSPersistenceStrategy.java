@@ -1,6 +1,5 @@
 package persistence;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
@@ -129,7 +128,7 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 			list.add(VarNamen);
 			
 			for(Quiz quiz : quizcatalogus.quizen){
-				String[] quizVars = {Integer.toString(quiz.getQuizID()) ,quiz.getOnderwerp(),Arrays.toString(quiz.getLeerjaren()),quiz.getIsTest().toString(),
+				String[] quizVars = {Integer.toString(quiz.getQuizID()) ,quiz.getOnderwerp(),quiz.getLeerjarenAsString(),quiz.getIsTest().toString(),
 						quiz.getIsUniekeDeelname().toString(),quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),quiz.getQuizStatus().toString()};
 				list.add(quizVars);
 				i++;

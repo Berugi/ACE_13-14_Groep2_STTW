@@ -218,9 +218,9 @@ public class Datum implements Comparable<Datum>
 	public int verschilInMaanden(Datum d)
 	{			
 		if (this.compareTo(d) < 0)
-			return -(int)(double)this.compareTo(d)/(365/12);
+			return -(int)this.compareTo(d)/(365/12);
 		else			
-			return (int)(double)this.compareTo(d)/(365/12);
+			return (int)this.compareTo(d)/(365/12);
 	}
 	
 	public int verschilInDagen(Datum d)

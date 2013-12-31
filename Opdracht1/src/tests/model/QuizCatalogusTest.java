@@ -4,17 +4,11 @@ import static org.junit.Assert.*;
 
 import java.util.Random;
 
-import model.OpdrachtCatalogus;
 import model.Quiz;
 import model.QuizCatalogus;
-import model.baseclasses.Opdracht;
 import model.enums.Leraar;
-import model.enums.OpdrachtCategorie;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import utils.Datum;
 
 /**
  * 

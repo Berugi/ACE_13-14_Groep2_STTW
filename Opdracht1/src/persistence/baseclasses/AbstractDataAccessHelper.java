@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.PreparedStatement;
-
 import persistence.LocalFSPersistenceStrategy;
 import persistence.MySQLPersistenceStrategy;
 import persistence.enums.ContextType;

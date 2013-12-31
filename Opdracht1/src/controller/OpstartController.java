@@ -7,8 +7,6 @@ import persistence.*;
 import model.factory.*;
 import model.ObservableOpdrachtCatalogus;
 import model.ObservableQuizCatalogus;
-import model.OpdrachtCatalogus;
-import model.QuizCatalogus;
 
 /**
  * Primary controller that initializes the app, its properties, the secondary controllers
@@ -95,7 +93,7 @@ public class OpstartController {
 		
 		//set initial Data ContextType
 		setDataContext();
-		application.datacontext=this.getDataContext();
+		QuizApplication.datacontext=this.getDataContext();
 		
 		//create OpdrachtCatalogus and QuizCatalogus
 		//opdrachtcatalogus = new OpdrachtCatalogus();

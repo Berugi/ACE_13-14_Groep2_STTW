@@ -3,7 +3,6 @@ package model.strategy;
 import model.Quiz;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
-import model.interfaces.IQuizStatus;
 import persistence.CSVSerializerContext;
 import persistence.interfaces.ICSVSerializable;
 import utils.Datum;

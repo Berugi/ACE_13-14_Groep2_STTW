@@ -32,12 +32,14 @@ public class ObservableQuizCatalogus extends QuizCatalogus implements IObservabl
 		this.observers = new ArrayList<IObserver>();
 	}
 	
+	@Override
 	public Iterator<Quiz> iterator() {
 		
 		return super.iterator();
 		
 	}
 	
+	@Override
 	public boolean add(Quiz q) {
 		
 		if(q == null)
@@ -49,6 +51,7 @@ public class ObservableQuizCatalogus extends QuizCatalogus implements IObservabl
 	
 	}
 	
+	@Override
 	public boolean remove(Quiz q) {
 		
 		if(q == null)

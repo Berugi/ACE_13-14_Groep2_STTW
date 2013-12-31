@@ -34,12 +34,14 @@ public class ObservableOpdrachtCatalogus extends OpdrachtCatalogus implements IO
 		this.observers = new ArrayList<IObserver>();
 	}
 	
+	@Override
 	public Iterator<Opdracht> iterator() {
 		
 		return super.iterator();
 		
 	}
 	
+	@Override
 	public boolean add(Opdracht o) {
 		
 		if(o == null)
@@ -51,6 +53,7 @@ public class ObservableOpdrachtCatalogus extends OpdrachtCatalogus implements IO
 		
 	}
 	
+	@Override
 	public boolean remove(Opdracht o) {
 		
 		if(o == null)
