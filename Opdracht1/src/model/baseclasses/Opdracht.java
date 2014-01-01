@@ -87,7 +87,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 			if(result!=""){result=result+",";}
 			result=result+o.trim();
 		}
-		if(result==""){result=" ";} //nodig bij het wegschrijven naar een tekstbestand zodat dit tekstbestand kan ingelezen worden via een encoder
+		if(result.equals("")){result=" ";} //nodig bij het wegschrijven naar een tekstbestand zodat dit tekstbestand kan ingelezen worden via een encoder
 		return result;
 	}
 
@@ -353,7 +353,7 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 
 	@Override
 	public String toString() {
-		return "Opdracht [vraag=" + vraag + ", maxAantalPogingen="
+		return "Opdracht [OpdrachtID="+opdrachtID+", vraag=" + vraag + ", maxAantalPogingen="
 				+ maxAantalPogingen + ", maxAntwoordTijd=" + maxAntwoordTijd
 				+ ", antwoordHints="
 				+ Arrays.toString(antwoordHints) + ", auteur=" + auteur

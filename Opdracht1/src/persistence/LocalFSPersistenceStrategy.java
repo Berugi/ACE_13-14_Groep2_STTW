@@ -1,8 +1,10 @@
 package persistence;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
+import java.io.File;
+
+
 
 import model.ObservableOpdrachtCatalogus;
 import model.Quiz;
@@ -16,9 +18,7 @@ import model.enums.QuizStatus;
 import model.factory.OpdrachtFactory;
 import model.MeerKeuzeOpdracht;
 import persistence.interfaces.IPersistenceStrategy;
-
 import utils.Datum;
-
 import config.IniFileManager;
 
 
@@ -68,6 +68,7 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 			}		
 		} 
 		catch (Exception e) {
+			System.out.println("Quizen konden niet gelezen worden!");
 			throw e;
 		}
 		
@@ -124,25 +125,44 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 
 	public void WriteData(ObservableQuizCatalogus quizcatalogus, ObservableOpdrachtCatalogus opdrachtcatalogus) throws Exception{
 
+		Boolean quizenWegschrijvenOK=false;
+		Boolean opdrachtenWegschrijvenOK=false;
+		Boolean quizopdrachtenWegschrijvenOK=false;
 		//wegschrijven van Quizen
 		try {
 			txtEncoderDecoder encoder = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathquizennew"));
+			txtEncoderDecoder encoderqo = new txtEncoderDecoder(IniFileManager.getInstance().getProperty("txtpathquizopdrachtennew"));
+			//quizdata
 			ArrayList<String[]> list = new ArrayList<String[]>();
 			String [] VarNamen = {"QuizID","Onderwerp","Leerjaren","IsTest","IsUniekeDeelname","Auteur","Registratiedatum","QuizStatus"};
 			list.add(VarNamen);
+			//quizantwoord data
+			ArrayList<String[]> listqo = new ArrayList<String[]>();
+			String [] VarNamenqo = {"ID","QuizID","OpdrachtID","MaxScore"};
+			listqo.add(VarNamenqo);
+			
+			int quizopdrachtenTeller=0;
 
 			for(Quiz quiz : quizcatalogus.quizen){
 				String[] quizVars = {Integer.toString(quiz.getQuizID()) ,quiz.getOnderwerp(),quiz.getLeerjarenAsString(),quiz.getIsTest().toString(),
 						quiz.getIsUniekeDeelname().toString(),quiz.getAuteur().toString(),quiz.getDatumRegistratie().toString(),quiz.getQuizStatus().toString()};
 				list.add(quizVars);
+				if(quiz.getQuizOpdrachten()!=null){
+					for(QuizOpdracht quizopdracht: quiz.getQuizOpdrachten()){
+						String[] quizopdrachtenVars = {Integer.toString(++quizopdrachtenTeller),Integer.toString(quizopdracht.getQuiz().getQuizID()),Integer.toString(quizopdracht.getOpdracht().getOpdrachtID()),Integer.toString(quizopdracht.getMaxScore())};
+						listqo.add(quizopdrachtenVars);
+					}
+				}
 			}
 
 			String [][] quizTabel = list.toArray(new String[list.size()][list.get(0).length]);
+			String [][] quizopdrachtenTabel = listqo.toArray(new String[listqo.size()][listqo.get(0).length]);
 
-			encoder.encode(quizTabel);
+			quizenWegschrijvenOK=encoder.encode(quizTabel);
+			quizopdrachtenWegschrijvenOK=encoderqo.encode(quizopdrachtenTabel);
 			
 		} catch (Exception e) {
-			System.out.println("Quizen konden niet weggeschreven worden!");
+			System.out.println("Quizen / QuizOpdrachten konden niet weggeschreven worden!");
 			e.printStackTrace();
 		}
 		
@@ -168,13 +188,49 @@ public class LocalFSPersistenceStrategy implements IPersistenceStrategy {
 
 			String [][] opdrachtTabel = list.toArray(new String[list.size()][list.get(0).length]);
 
-			encoder.encode(opdrachtTabel);
+			opdrachtenWegschrijvenOK=encoder.encode(opdrachtTabel);
 			
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("Opdrachten konden niet weggeschreven worden!");
 			e.printStackTrace();
 		}
 		
+		//Hernoemen van tekstbestanden indien alle 3 de tekstbestanden werden aangemaakt.
+		// Gedaan vooral om te voorkomen dat onze testdata wordt overschreven door eventueel foute data
+		
+		if (quizenWegschrijvenOK && quizopdrachtenWegschrijvenOK && opdrachtenWegschrijvenOK){
+		try {
+			//de huidige bestanden die worden ingelezen
+			File currentQuizen = new File(IniFileManager.getInstance().getProperty("txtpathquizen"));
+			File currentOpdrachten = new File(IniFileManager.getInstance().getProperty("txtpathopdrachten"));
+			File currentQuizenOpdrachten = new File(IniFileManager.getInstance().getProperty("txtpathquizopdrachten"));
+			
+			// de backup
+			File oldQuizen = new File(IniFileManager.getInstance().getProperty("txtpathquizen")+"_old");
+			File oldOpdrachten = new File(IniFileManager.getInstance().getProperty("txtpathopdrachten")+"_old");
+			File oldQuizenOpdrachten = new File(IniFileManager.getInstance().getProperty("txtpathquizopdrachten")+"_old");
+			
+			//de nieuw weggeschreven bestanden
+			File newQuizen = new File(IniFileManager.getInstance().getProperty("txtpathquizennew"));
+			File newOpdrachten = new File(IniFileManager.getInstance().getProperty("txtpathopdrachtennew"));
+			File newQuizenOpdrachten = new File(IniFileManager.getInstance().getProperty("txtpathquizopdrachtennew"));
+			
+			if (oldQuizen.exists()){oldQuizen.delete();}
+			if (oldOpdrachten.exists()){oldOpdrachten.delete();}
+			if (oldQuizenOpdrachten.exists()){oldQuizenOpdrachten.delete();}
+			
+			currentQuizen.renameTo(oldQuizen);
+			currentOpdrachten.renameTo(oldOpdrachten);
+			currentQuizenOpdrachten.renameTo(oldQuizenOpdrachten);
+			newQuizen.renameTo(currentQuizen);
+			newOpdrachten.renameTo(currentOpdrachten);
+			newQuizenOpdrachten.renameTo(currentQuizenOpdrachten);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 	}
 
 }
