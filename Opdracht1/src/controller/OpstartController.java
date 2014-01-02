@@ -3,6 +3,7 @@ package controller;
 import persistence.enums.ContextType;
 import config.IniFileManager;
 import view.QuizApplication;
+import view.Quiz;
 import persistence.*;
 import model.factory.*;
 import model.ObservableOpdrachtCatalogus;
@@ -31,6 +32,7 @@ public class OpstartController {
 	
 	//View
 	private static QuizApplication application = null;
+	private static Quiz quizapplicatie=null;
 	
 	//constructor
 	private OpstartController(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app)
@@ -43,6 +45,7 @@ public class OpstartController {
 	}
 	
 	//getters & setters
+	
 	private static IniFileManager getIniProps() {
 		
 		return iniProps;
@@ -80,12 +83,8 @@ public class OpstartController {
 		return quizcatalogus;
 	}
 
-	//Refer to MainProgram.java
-	//main
-	//public static void main(String[] args) {
-	//	initialize();
-	//}
-
+	//methods
+	
 	public void Initialize() {
 		
 		//load app properties

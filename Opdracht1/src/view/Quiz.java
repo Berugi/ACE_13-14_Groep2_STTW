@@ -41,6 +41,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Rectangle;
 
+import controller.AfsluitController;
 
 public class Quiz {
 
@@ -99,62 +100,56 @@ public class Quiz {
 		final CardLayout cards = new CardLayout(3, 3);
 		pnlMain.setLayout(cards);
 		
+		//beheer opdrachten
 		JPanel cardBeheerOpdrachten = new JPanel();
-		pnlMain.add(cardBeheerOpdrachten, "opdrachten");
 		cardBeheerOpdrachten.setLayout(new BoxLayout(cardBeheerOpdrachten, BoxLayout.X_AXIS));
-		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		cardBeheerOpdrachten.add(splitPane);
-		
 		JLabel lblBeheerOpdrachten = new JLabel("Beheer opdrachten");
 		lblBeheerOpdrachten.setFont(new Font("Tahoma", Font.BOLD, 15));
 		splitPane.setLeftComponent(lblBeheerOpdrachten);
-		
 		JPanel pnlBeheerOpdrachten = new JPanel();
 		splitPane.setRightComponent(pnlBeheerOpdrachten);
+		pnlMain.add("opdrachten",cardBeheerOpdrachten);
 		
+		//beheer quizen
 		JPanel cardBeheerQuizen = new JPanel();
-		pnlMain.add(cardBeheerQuizen, "quizen");
+		pnlMain.add("quizen",cardBeheerQuizen);
 		
+		//deelnemen
 		JPanel cardDeelnemen = new JPanel();
-		pnlMain.add(cardDeelnemen, "deelnemen");
+		pnlMain.add("deelnemen",cardDeelnemen);
 		
 		//Card Overzicht Scores
 		JPanel cardOverzichtScores = new JPanel();
-		pnlMain.add(cardOverzichtScores, "scores");
+		pnlMain.add("scores",cardOverzichtScores);
 		
-		//Card QuizRapport
-		
+		//Card QuizRapport	
 		JPanel cardQuizRapport = new JPanel();
-		pnlMain.add(cardQuizRapport, "rapport");
+		pnlMain.add("rapport",cardQuizRapport);
 		
 		// Card QuizLijsten
 		
 		JPanel cardQuizLijsten = new JPanel();
-		pnlMain.add(cardQuizLijsten, "lijsten");
+		pnlMain.add("lijsten",cardQuizLijsten);
 		
 		//Card Instellingen
 		
 		final JPanel cardInstellingen = new JPanel();
-		pnlMain.add(cardInstellingen, "instellingen");
-		cardInstellingen.setLayout(null);
-		
+		cardInstellingen.setLayout(null);		
 		JLabel lblNewLabel = new JLabel("Persistence methode: ");
 		lblNewLabel.setBounds(10, 10, 150, 25);
-		cardInstellingen.add(lblNewLabel);
-		
+		cardInstellingen.add(lblNewLabel);	
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(ContextType.values()));
 		comboBox.setBounds(150, 10, 150, 25);
 		cardInstellingen.add(comboBox);
+		pnlMain.add("instellingen",cardInstellingen);
 		
 		//Card Stoppen
 		JPanel cardStoppen = new JPanel();
-		pnlMain.add(cardStoppen, "stoppen");
-		
-		cards.first(cardInstellingen);
-		pnlMain.revalidate();
+		pnlMain.add("stoppen",cardStoppen);
 		
 		//Menu
 		JPanel pnlMenu = new JPanel();
@@ -178,10 +173,20 @@ public class Quiz {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cards.show(pnlMain, "instellingen");
-				pnlMain.revalidate();
 			}
 		});
 		JButton btnStoppen = new JButton("Stoppen");
+		btnStoppen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					AfsluitController.Afsluiten();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		pnlMenu.add(btnOpdrachten);
 		pnlMenu.add(btnQuizen);
