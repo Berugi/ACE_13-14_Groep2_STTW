@@ -69,6 +69,10 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import com.jgoodies.forms.factories.FormFactory;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JTextPane;
 
 public class QuizApp {
 
@@ -182,6 +186,22 @@ public class QuizApp {
 		frame.getContentPane().add(pnlMain, BorderLayout.CENTER);
 		final CardLayout cards = new CardLayout(3, 3);
 		pnlMain.setLayout(cards);
+		
+		// Card: opstart
+		JPanel cardOpstart = new JPanel();
+		cardOpstart.setLayout(null);
+		JLabel lblQuizApplicatie = new JLabel("Quiz applicatie");
+		lblQuizApplicatie.setFont(new Font("Calibri", Font.BOLD, 29));
+		lblQuizApplicatie.setBounds(270, 25, 188, 25);
+		cardOpstart.add(lblQuizApplicatie);
+		JTextPane txtpnSanderVan = new JTextPane();
+		txtpnSanderVan.setBackground(Color.LIGHT_GRAY);
+		txtpnSanderVan.setFont(new Font("Calibri", Font.PLAIN, 20));
+		txtpnSanderVan.setEditable(false);
+		txtpnSanderVan.setText("Sander Van Der Borght - Tom Scheepers - Tom Vaes - Wim Ombelets");
+		txtpnSanderVan.setBounds(98, 173, 583, 44);
+		cardOpstart.add(txtpnSanderVan);
+		pnlMain.add("opstart",cardOpstart);
 		
 		// Card: beheer opdrachten
 		JPanel cardBeheerOpdrachten = new JPanel();
@@ -423,7 +443,7 @@ public class QuizApp {
 		pnlMain.add("quizaanmaken",cardQuizAanmaken);
 		// +++++++++++++
 		
-		
+		cards.first(pnlMain);
 		
 		// ****** Menu ******
 		JPanel pnlMenu = new JPanel();
