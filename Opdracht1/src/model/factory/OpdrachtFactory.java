@@ -6,7 +6,7 @@ import utils.Datum;
 import model.baseclasses.Opdracht;
 import model.OpsommingOpdracht;
 import model.MeerKeuzeOpdracht;
-import model.OpdrachtCatalogus;
+import model.ObservableOpdrachtCatalogus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,12 +22,12 @@ import java.util.Arrays;
 public class OpdrachtFactory {
 	
 	protected static int HoogsteID = 0;
-	private OpdrachtCatalogus oc;
+	private ObservableOpdrachtCatalogus oc;
 	private static OpdrachtFactory opdrachtfactory = null;
 	
 	// Constructor
 
-	private OpdrachtFactory(OpdrachtCatalogus opdrachtcatalogus){
+	private OpdrachtFactory(ObservableOpdrachtCatalogus opdrachtcatalogus){
 		this.oc = opdrachtcatalogus;
 		HoogsteID=this.getHoogsteOpdrachtID(opdrachtcatalogus);
 		opdrachtfactory = this;
@@ -86,7 +86,7 @@ public class OpdrachtFactory {
 
 	}
 	
-	public int getHoogsteOpdrachtID(OpdrachtCatalogus oc){
+	public int getHoogsteOpdrachtID(ObservableOpdrachtCatalogus oc){
 		int hoogsteID = 0;
 		for(Opdracht opdracht:oc.getCatalogus()){
 			if(opdracht.getOpdrachtID()>hoogsteID){
@@ -110,7 +110,7 @@ public class OpdrachtFactory {
 	}
 	
 	// Singleton pattern
-	public static void Initialise(OpdrachtCatalogus oc){
+	public static void Initialise(ObservableOpdrachtCatalogus oc){
 		if(opdrachtfactory==null){
 		opdrachtfactory = new OpdrachtFactory(oc);
 		}

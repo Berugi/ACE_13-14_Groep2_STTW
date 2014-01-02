@@ -3,9 +3,9 @@ package controller;
 import persistence.enums.ContextType;
 import config.IniFileManager;
 import view.QuizApplication;
-import view.Quiz;
+import view.QuizApp;
 import persistence.*;
-import model.factory.*;
+import model.factory.OpdrachtFactory;
 import model.ObservableOpdrachtCatalogus;
 import model.ObservableQuizCatalogus;
 
@@ -32,18 +32,26 @@ public class OpstartController {
 	
 	//View
 	private static QuizApplication application = null;
-	private static Quiz quizapplicatie=null;
+	private static QuizApp quizapplicatie=null;
 	
 	//constructor
+	private OpstartController()
+	{
+		opdrachtcatalogus = new ObservableOpdrachtCatalogus();
+		quizcatalogus = new ObservableQuizCatalogus();
+		Startup();
+		opstartcontroller = this;
+	}
+	
+	//Deze moet nog weg
 	private OpstartController(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app)
 	{
 		opdrachtcatalogus = opdrachtcl;
 		quizcatalogus = quizcl;
 		application = app;
-		Initialize();
+		Startup();
 		opstartcontroller = this;
 	}
-	
 	//getters & setters
 	
 	private static IniFileManager getIniProps() {
@@ -71,7 +79,7 @@ public class OpstartController {
 		
 	}
 	
-	public DataContext getDataContext(){
+	public static DataContext getDataContext(){
 		return dc;
 	}
 	
@@ -85,14 +93,14 @@ public class OpstartController {
 
 	//methods
 	
-	public void Initialize() {
+	public void Startup() {
 		
 		//load app properties
 		setIniProps(IniFileManager.getInstance());
 		
 		//set initial Data ContextType
 		setDataContext();
-		QuizApplication.datacontext=this.getDataContext();
+		//QuizApplication.datacontext=this.getDataContext();
 		
 		//create OpdrachtCatalogus and QuizCatalogus
 		//opdrachtcatalogus = new OpdrachtCatalogus();
@@ -113,16 +121,25 @@ public class OpstartController {
 		}
 		//
 		
-		//Initialize menu
+		/*Initialize menu
 		try{
-			application.ShowMenu();
+			//QuizApp quizapplicatie = new QuizApp();
+			//application.ShowMenu();
 		}
 		catch (Exception e){
 			System.out.println("Fout in het opbouwen van de menu!");
 			
 		}
+		*/
 	}
 	// Singleton pattern
+	public static void Initialise(){
+		if(opstartcontroller==null){
+		opstartcontroller = new OpstartController();
+		}
+	}
+	
+	//Deze moet nog weg (test)
 	public static void Initialise(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app){
 		if(opstartcontroller==null){
 		opstartcontroller = new OpstartController(quizcl,opdrachtcl,app);
