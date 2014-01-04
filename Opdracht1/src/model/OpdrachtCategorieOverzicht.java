@@ -1,10 +1,13 @@
 package model;
 
-import java.util.HashMap;
-
 import model.baseclasses.Opdracht;
 import model.enums.OpdrachtCategorie;
-
+/**
+ * 
+ * @author Sander Van der Borght
+ * 
+ * @version 20131229
+ */
 public class OpdrachtCategorieOverzicht {
 
 	private HashMap<OpdrachtCategorie,Integer> map;

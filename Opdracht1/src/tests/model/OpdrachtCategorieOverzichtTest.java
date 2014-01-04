@@ -1,4 +1,4 @@
-package model;
+package tests.model;
 
 import model.baseclasses.Opdracht;
 import model.enums.Leraar;
