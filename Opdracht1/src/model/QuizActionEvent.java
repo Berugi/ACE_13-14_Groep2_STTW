@@ -20,9 +20,11 @@ public class QuizActionEvent extends ActionEvent {
 
 	}
 
-	private void setEventData(Quiz eventData) {
+	private void setEventData(Quiz eventData) throws NullPointerException {
 
-		if (eventData != null)
+		if (eventData == null)
+			throw new NullPointerException();
+		else
 			this.eventData = eventData;
 
 	}
