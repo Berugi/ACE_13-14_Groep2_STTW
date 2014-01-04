@@ -5,10 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 import model.ObservableQuizCatalogus;
-import model.OpdrachtActionEvent;
 import model.Quiz;
 import model.QuizActionEvent;
-import model.baseclasses.Opdracht;
 import model.interfaces.IObservable;
 import persistence.DataContext;
 import persistence.enums.ContextType;
@@ -20,6 +18,7 @@ import view.CreatieQuizView;
  * @author Wim Ombelets
  * @version 20131201-01 - initial commit
  * @version 20131228-01 - added beginnings of link to model and view
+ * @version 20140104-01 - added further MVC
  *
  */
 public class CreatieQuizController implements ActionListener {
