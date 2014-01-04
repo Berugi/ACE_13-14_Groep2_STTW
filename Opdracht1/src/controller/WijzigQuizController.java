@@ -2,6 +2,7 @@ package controller;
 
 import view.WijzigQuizView;
 import model.Quiz;
+import model.enums.QuizStatus;
 
 /**
  * 
@@ -18,7 +19,10 @@ public class WijzigQuizController {
 		this.view = new WijzigQuizView();
 	}
 	
-	public void wijzigen(Quiz q) {
+	public void wijzigen(Quiz q) throws Exception {
+		if(q.getQuizStatus() != QuizStatus.INCONSTRUCTIE){
+			throw new Exception("Quiz niet wijzigbaar. Quizstatus is niet 'in constructie'!");
+		}
 		this.view.selectQuiz(q);
 	}
 	
