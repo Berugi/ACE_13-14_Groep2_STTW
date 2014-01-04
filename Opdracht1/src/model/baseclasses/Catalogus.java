@@ -1,10 +1,12 @@
 package model.baseclasses;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import DatumV1.Datum;
 import model.enums.Leraar;
 
-public abstract class Catalogus implements Comparable<Catalogus>, Cloneable, Iterable<Catalogus>{
+public abstract class Catalogus implements Comparable<Catalogus>, Cloneable, Iterable<Object>{
 	   
     public ArrayList<Object> catalogus;
     public Datum registratiedatum;
@@ -50,6 +52,12 @@ public abstract class Catalogus implements Comparable<Catalogus>, Cloneable, Ite
 			return true;
 		}
 		return false;
+	}
+	
+	public Iterator<Object> iterator() {
+		
+		return catalogus.iterator();
+		
 	}
    
 	//abstract methods

@@ -9,10 +9,9 @@ import utils.Datum;
 import model.baseclasses.Catalogus;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
-//import model.interfaces.IQuizStatus;//-- for state pattern
-
 
 /**
+ * Represents a QuizCatalogus
  * 
  * @author Sander van der Borght
  * 
@@ -20,14 +19,12 @@ import model.enums.QuizStatus;
  * @version 20131020-01 - modified by Tom Vaes - complete redesign.
  * @version 20131209-01 - modified by Tom Vaes - small correction add quiz.
  * @version 20131226-01 - modified by Tom Vaes - corrected constructor using text file.
- * Bevat QuizCatalogues informatie
+ * 
  */
 
 public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Quiz> {
 
-	public ArrayList<Quiz> quizen;
-	//public Datum registratiedatum;
-	//public Leraar auteur;
+	protected ArrayList<Quiz> quizen;
 	
 	//constructors
 	public QuizCatalogus() {
@@ -87,8 +84,9 @@ public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
+		
 		return super.clone();
+		
 	}
 
 	@Override
