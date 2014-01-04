@@ -24,7 +24,7 @@ import model.enums.QuizStatus;
 
 public class QuizCatalogus implements Comparable<Catalogus>, Cloneable, Iterable<Quiz> {
 
-	protected ArrayList<Quiz> quizen;
+	public ArrayList<Quiz> quizen;
 	
 	//constructors
 	public QuizCatalogus() {

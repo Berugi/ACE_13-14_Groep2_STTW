@@ -441,6 +441,10 @@ public class QuizApp {
 			}
 		});
 		JButton btnQuizen = new JButton("Beheer Quizen");	
+		btnQuizen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnQuizen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
