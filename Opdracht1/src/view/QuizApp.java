@@ -51,27 +51,9 @@ import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
 
-import java.awt.Component;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import java.awt.FlowLayout;
-
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.table.DefaultTableModel;
-import com.jgoodies.forms.factories.FormFactory;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextPane;
 
 public class QuizApp {
@@ -133,7 +115,7 @@ public class QuizApp {
 	}
 
 	/**
-	 * Opstarten van de applicatie.
+	 * Opstarten van de applicatie. 
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -159,6 +141,7 @@ public class QuizApp {
 	/**
 	 * Initialisatie van het frame.
 	 */
+	@SuppressWarnings("unchecked")
 	private void initialize() {
 		int width = Integer.parseInt(IniFileManager.getInstance().getProperty("appwidth"));
 		int height = Integer.parseInt(IniFileManager.getInstance().getProperty("appheight"));
@@ -483,7 +466,6 @@ public class QuizApp {
 					AfsluitController.Afsluiten();
 					frame.dispose();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
