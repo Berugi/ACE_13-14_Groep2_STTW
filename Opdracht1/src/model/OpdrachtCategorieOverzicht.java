@@ -1,12 +1,15 @@
 package model;
 
+import java.util.HashMap;
+
 import model.baseclasses.Opdracht;
 import model.enums.OpdrachtCategorie;
 /**
  * 
  * @author Sander Van der Borght
  * 
- * @version 20131229
+ * @version 20131229-01 - initial commit
+ * @version 20140104-01 - added missing import
  */
 public class OpdrachtCategorieOverzicht {
 
