@@ -68,31 +68,45 @@ public class CreatieQuizController implements ActionListener {
 		
 		if(Arrays.asList(quizCommands).contains(e.getActionCommand())){
 			
-			QuizActionEvent event = (QuizActionEvent)e;
-			Quiz q = event.getEventData();
-			
-			switch(e.getActionCommand()) {
-			case "addQuiz":
-				addQuiz(q);
-				break;
-			case "deleteQuiz":
-				removeQuiz(q);
-				break;
+			try{
+				
+				QuizActionEvent event = (QuizActionEvent)e;
+				Quiz q = event.getEventData();
+				
+				switch(e.getActionCommand()) {
+				case "addQuiz":
+					addQuiz(q);
+					break;
+				case "deleteQuiz":
+					removeQuiz(q);
+					break;
+				}
+				
 			}
-			
+			catch(NullPointerException n) {
+				
+				throw n;
+				
+			}
 		}		
 		else
 			throw new UnsupportedOperationException("Unsupported ActionEvent Command.");
 		
 	}
 	
-	private void addQuiz(Quiz q) {
+	private void addQuiz(Quiz q) throws NullPointerException {
+		
+		if(q == null)
+			throw new NullPointerException();
 		
 		((ObservableQuizCatalogus) quizCatalogusModel).add(q);
 		
 	}
 	
-	private void removeQuiz(Quiz q) {
+	private void removeQuiz(Quiz q) throws NullPointerException {
+		
+		if(q == null)
+			throw new NullPointerException();
 		
 		((ObservableQuizCatalogus) quizCatalogusModel).remove(q);
 		

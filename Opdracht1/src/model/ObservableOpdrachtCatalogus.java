@@ -20,7 +20,7 @@ import model.interfaces.IObserver;
  */
 public class ObservableOpdrachtCatalogus extends OpdrachtCatalogus implements IObservable, Cloneable, Iterable<Opdracht> {
 
-	private List<IObserver> observers = new ArrayList<IObserver>();
+	private List<IObserver> observers;
 
 	public ObservableOpdrachtCatalogus() {
 		
@@ -31,7 +31,7 @@ public class ObservableOpdrachtCatalogus extends OpdrachtCatalogus implements IO
 	public ObservableOpdrachtCatalogus(String fileName) throws IOException {
 		
 		super(fileName);
-		this.observers = new ArrayList<IObserver>();
+		observers = new ArrayList<IObserver>();
 	}
 	
 	@Override
