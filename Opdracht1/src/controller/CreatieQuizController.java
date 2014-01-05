@@ -23,7 +23,7 @@ import view.CreatieQuizView;
  */
 public class CreatieQuizController implements ActionListener {
 	
-	private CreatieQuizController instance = null;
+	private static CreatieQuizController instance = null;
 	private DataContext dc;
 	private ContextType contextType;
 	private CreatieQuizView view;
@@ -41,7 +41,7 @@ public class CreatieQuizController implements ActionListener {
 		
 	}
 
-	public CreatieQuizController getInstance(ContextType contextType) {
+	public static CreatieQuizController getInstance(ContextType contextType) {
 		
 		if(instance == null)
 			instance = new CreatieQuizController(contextType);
@@ -61,7 +61,7 @@ public class CreatieQuizController implements ActionListener {
 		
 	}
 
-	public void actionPerformed(ActionEvent e) throws NullPointerException, IllegalArgumentException {
+	public void actionPerformed(ActionEvent e) throws NullPointerException, UnsupportedOperationException {
 		
 		if(e == null)
 			throw new NullPointerException();
@@ -82,7 +82,7 @@ public class CreatieQuizController implements ActionListener {
 			
 		}		
 		else
-			throw new IllegalArgumentException("Illegal type of ActionEvent.");
+			throw new UnsupportedOperationException("Unsupported ActionEvent Command.");
 		
 	}
 	
