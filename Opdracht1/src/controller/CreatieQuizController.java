@@ -33,20 +33,16 @@ public class CreatieQuizController implements ActionListener {
 	private final String[] quizCommands = {"addQuiz", "deleteQuiz"};
 	
 	private CreatieQuizController(ContextType contextType) {
-		
 		dc = new DataContext(contextType);
 		this.quizCatalogusModel = OpstartController.getQuizCatalogus();
 		this.opdrachtCatalogusModel = OpstartController.getOpdrachtCatalogus();
 		this.view = new CreatieQuizView();
-		
 	}
 
 	public static CreatieQuizController getInstance(ContextType contextType) {
-		
 		if(instance == null)
 			instance = new CreatieQuizController(contextType);
 		return instance;
-		
 	}
 	
 	public void showView() {

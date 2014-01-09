@@ -14,10 +14,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import model.ObservableQuizCatalogus;
 import model.Quiz;
 import model.QuizOpdracht;
 import model.baseclasses.Opdracht;
 import model.enums.*;
+import model.interfaces.IObservable;
+
 import java.awt.Font;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
@@ -69,6 +72,20 @@ public class WijzigQuizView extends JFrame {
 	 * Create the frame.
 	 */
 	public WijzigQuizView() {
+		
+		initialize();
+	}
+	
+	public WijzigQuizView(IObservable _quizCatalogusModel) {
+		
+		initialize();
+		for(Quiz q : ((ObservableQuizCatalogus)_quizCatalogusModel).quizen)
+		{
+			this.cmb_kiesQuiz.addItem(q);
+		}
+	}
+	
+	private void initialize(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 816, 517);
 		contentPane = new JPanel();
@@ -293,16 +310,14 @@ public class WijzigQuizView extends JFrame {
 				if (evt.getStateChange() == ItemEvent.DESELECTED){
 				    return;
 				}
-				
+				selectQuiz((Quiz)cmb_kiesQuiz.getSelectedItem());
 				//TODO
 				//Fill all textfield, comboboxes etc.
-				
 			}
 
 		});
 		cmb_kiesQuiz.setBounds(80, 29, 214, 20);
-		contentPane.add(cmb_kiesQuiz);
-		
+		contentPane.add(cmb_kiesQuiz);		
 	}
 	
 	public void selectQuiz(Quiz q){
@@ -315,7 +330,7 @@ public class WijzigQuizView extends JFrame {
 		for(int i : q.getLeerjaren()){
 			leerjaren += i+";";
 		}
-		//verwijder laatste ';'
+		//verwijder laatste ';':
 		leerjaren = leerjaren.substring(0, leerjaren.length()-2);
 		
 		this.txb_leerjaren.setText(leerjaren);
@@ -329,7 +344,7 @@ public class WijzigQuizView extends JFrame {
 	}
 	
 	private void btn_saveQuizPressed(){
-		//check:
+		//to check:
 		Quiz q = (Quiz)this.cmb_kiesQuiz.getSelectedItem();
 		
 		q.setQuizStatus((QuizStatus)this.cmb_quizStatus.getSelectedItem());
