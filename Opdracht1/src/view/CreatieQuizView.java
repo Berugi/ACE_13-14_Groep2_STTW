@@ -76,7 +76,6 @@ public class CreatieQuizView extends JPanel implements Observer, ActionListener 
 	}
 	
 	private void initialize() {
-		
 		setLayout(null);
 		
 		JLabel lblOnderwerp = new JLabel("Onderwerp");
@@ -125,8 +124,8 @@ public class CreatieQuizView extends JPanel implements Observer, ActionListener 
 		add(chkBoxIsUniekeDeelname);
 		
 		comboBoxLeraar = new JComboBox<Leraar>();
-		comboBoxLeraar.setModel(new DefaultComboBoxModel<Leraar>(Leraar.values()));
 		comboBoxLeraar.setBounds(150, 132, 128, 20);
+		comboBoxLeraar.setModel(new DefaultComboBoxModel<Leraar>(Leraar.values()));
 		add(comboBoxLeraar);
 		
 		lblLeraar = new JLabel("Leraar");
@@ -138,8 +137,8 @@ public class CreatieQuizView extends JPanel implements Observer, ActionListener 
 		add(lblDatum);
 		
 		textField = new JTextField();
-		textField.setColumns(10);
 		textField.setBounds(150, 157, 164, 20);
+		textField.setColumns(10);
 		add(textField);
 		
 		lblQuizOpdrachten = new JLabel("Quiz Opdrachten");

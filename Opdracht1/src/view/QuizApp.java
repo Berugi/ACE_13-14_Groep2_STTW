@@ -7,15 +7,8 @@ import javax.swing.JFrame;
 import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
 
 import javax.swing.JSplitPane;
@@ -41,20 +34,9 @@ import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
 import java.awt.geom.Dimension2D;
 import java.awt.Toolkit;
-import java.awt.Dimension;
-
 import controller.*;
 import model.ObservableOpdrachtCatalogus;
 import model.ObservableQuizCatalogus;
-import model.Quiz;
-import model.baseclasses.Opdracht;
-import model.enums.Leraar;
-import model.enums.OpdrachtCategorie;
-import model.enums.QuizStatus;
-
-import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.JTextPane;
 
 import view.CreatieQuizView;
@@ -66,32 +48,6 @@ public class QuizApp {
 	private static ObservableOpdrachtCatalogus opdrachtcatalogus = null;
 	private static ObservableQuizCatalogus quizcatalogus =  null;
 	
-	//for test purposes - aanmaken quiz
-	private String[] Leerjaren = {"1","2","3","4","5","6"};
-	private DefaultListModel testOpdracht = new DefaultListModel();
-	private DefaultListModel testQuiz = new DefaultListModel();
-	private String[] tableColumNames = {"Opdracht","Score"};
-	private Object [] [] tableData = {{"Test1","1"},{"Test2","2"}};
-	private JComboBox<OpdrachtCategorie> opdrCategorieCb;
-	private JComboBox<QuizStatus> quizStatusComboBox;
-	private JButton rangschikButton;
-	private JButton toevoegButton;
-	private JButton verwijderButton;
-	private JComboBox<?> sorteerComboBox;
-	private JCheckBox isUniekeDeelnameChkBox;
-	private JCheckBox isTestChkBox;
-	private JLabel lblOnderwerp;
-	private JButton btnNewButton;
-	private JTextField txtOnderwerp;
-	private JLabel lblKlas;
-	private JComboBox<String> comboBoxKlas;
-	private JLabel lblAuteur;
-	private JLabel lblQuizStatus;
-	private JComboBox<Leraar> auteurComboBox;
-	private JTable table;
-	private JList listOpdrachten;
-	private JList listQuizen;
-
 	private static DataContext getDatacontext() {
 		return datacontext;
 	}
@@ -123,6 +79,7 @@ public class QuizApp {
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					QuizApp window = new QuizApp();
@@ -181,13 +138,13 @@ public class QuizApp {
 		lblQuizApplicatie.setFont(new Font("Calibri", Font.BOLD, 29));
 		lblQuizApplicatie.setBounds(270, 25, 188, 25);
 		cardOpstart.add(lblQuizApplicatie);
-		JTextPane txtpnSanderVan = new JTextPane();
-		txtpnSanderVan.setBackground(Color.LIGHT_GRAY);
-		txtpnSanderVan.setFont(new Font("Calibri", Font.PLAIN, 20));
-		txtpnSanderVan.setEditable(false);
-		txtpnSanderVan.setText("Sander Van Der Borght - Tom Scheepers - Tom Vaes - Wim Ombelets");
-		txtpnSanderVan.setBounds(98, 173, 583, 44);
-		cardOpstart.add(txtpnSanderVan);
+		JTextPane txtNamesPane = new JTextPane();
+		txtNamesPane.setBackground(Color.LIGHT_GRAY);
+		txtNamesPane.setFont(new Font("Calibri", Font.PLAIN, 20));
+		txtNamesPane.setEditable(false);
+		txtNamesPane.setText("Sander Van Der Borght - Tom Scheepers - Tom Vaes - Wim Ombelets");
+		txtNamesPane.setBounds(98, 173, 583, 44);
+		cardOpstart.add(txtNamesPane);
 		pnlMain.add("opstart",cardOpstart);
 		
 		// Card: beheer opdrachten
@@ -231,8 +188,8 @@ public class QuizApp {
 		JLabel lblNewLabel = new JLabel("Persistence methode: ");
 		lblNewLabel.setBounds(10, 10, 150, 25);
 		cardInstellingen.add(lblNewLabel);	
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(ContextType.values()));
+		JComboBox<ContextType> comboBox = new JComboBox<ContextType>();
+		comboBox.setModel(new DefaultComboBoxModel<ContextType>(ContextType.values()));
 		comboBox.setBounds(150, 10, 150, 25);
 		cardInstellingen.add(comboBox);
 		pnlMain.add("instellingen",cardInstellingen);
@@ -283,6 +240,7 @@ public class QuizApp {
 		});
 		JButton btnQuizen = new JButton("Beheer Quizen");	
 		btnQuizen.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
