@@ -32,30 +32,24 @@ public class CreatieQuizController implements ActionListener {
 	
 	private final String[] quizCommands = {"addQuiz", "deleteQuiz"};
 	
-	private CreatieQuizController(ContextType contextType) {
-		dc = new DataContext(contextType);
+	private CreatieQuizController(CreatieQuizView quizview) {
+		
+		this.dc = OpstartController.getDataContext();
 		this.quizCatalogusModel = OpstartController.getQuizCatalogus();
 		this.opdrachtCatalogusModel = OpstartController.getOpdrachtCatalogus();
-		this.view = new CreatieQuizView();
+		this.view = quizview;
+		view.setActionListener(this);
+		
 	}
 
-	public static CreatieQuizController getInstance(ContextType contextType) {
+	public static CreatieQuizController getInstance(CreatieQuizView quizview) {
+		
 		if(instance == null)
-			instance = new CreatieQuizController(contextType);
+			instance = new CreatieQuizController(quizview);
 		return instance;
-	}
-	
-	public void showView() {
-		
-		this.view.setVisible(true);
 		
 	}
 	
-	public void hideView() {
-		
-		this.view.setVisible(false);
-		
-	}
 
 	public void actionPerformed(ActionEvent e) throws NullPointerException, UnsupportedOperationException {
 		
