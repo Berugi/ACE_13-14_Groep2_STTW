@@ -16,33 +16,27 @@ public class AfsluitController {
 	private static DataContext datacontext;
 	private static ObservableQuizCatalogus quizcatalogus;
 	private static ObservableOpdrachtCatalogus opdrachtcatalogus;
+	private static AfsluitController afsluitcontroller = null;
 	
-	public AfsluitController(ObservableQuizCatalogus qc,ObservableOpdrachtCatalogus oc,DataContext dc){
-		datacontext=dc;
-		opdrachtcatalogus=oc;
-		quizcatalogus=qc;
-	}
-	
-	//getters & setters
-	
-	private void SetDataContext(DataContext dc){
-		datacontext=dc;
+	private AfsluitController(){
+		quizcatalogus = OpstartController.getQuizCatalogus();
+		opdrachtcatalogus = OpstartController.getOpdrachtCatalogus();
+		datacontext = OpstartController.getDataContext();
 	}
 
+	//methods
 	public static void Afsluiten() throws Exception{
 		datacontext.getStrategy().WriteData(quizcatalogus, opdrachtcatalogus);
 	}
-	/*
-	private int test;
-	private String regel;
 	
-	public Boolean Wegschrijven(QuizCatalogus qc){
-
-		
-	return true;
+	public static void Initialise(){
+		if(afsluitcontroller==null){
+			afsluitcontroller = new AfsluitController();
+		}
 	}
-	*/
 	
-	
+	public static AfsluitController getAfsluitController(){
+		return afsluitcontroller;
+	}
 	
 }
