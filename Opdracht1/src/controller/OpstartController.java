@@ -43,7 +43,7 @@ public class OpstartController {
 		opstartcontroller = this;
 	}
 	
-	//Deze moet nog weg
+	//Deze moet nog weg als we voor QuizApp gaan
 	private OpstartController(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app)
 	{
 		opdrachtcatalogus = opdrachtcl;
@@ -102,15 +102,11 @@ public class OpstartController {
 		setDataContext();
 		//QuizApplication.datacontext=this.getDataContext();
 		
-		//create OpdrachtCatalogus and QuizCatalogus
-		//opdrachtcatalogus = new OpdrachtCatalogus();
-		//quizcatalogus = new QuizCatalogus();
-		
 		//create singleton OpdrachtFactory
 		OpdrachtFactory.Initialise(getOpdrachtCatalogus());
 				
 		//initialize secondary controllers
-		AfsluitController afsluitcontroller = new AfsluitController(quizcatalogus, opdrachtcatalogus,dc);
+		AfsluitController.Initialise();
 		
 		//Load data
 		try{
