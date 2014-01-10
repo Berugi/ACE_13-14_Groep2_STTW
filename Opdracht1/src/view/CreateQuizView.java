@@ -132,14 +132,14 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		toevoegButton = new JButton(">>>");
 		toevoegButton.setBounds(370, 143, 97, 40);
 		toevoegButton.setEnabled(false);
-		toevoegButton.setActionCommand("addQuiz");
+		toevoegButton.setActionCommand("addOpdracht");
 		toevoegButton.addActionListener(this);
 		bottomPanel.add(toevoegButton);
 		
 		verwijderButton = new JButton("<<<");
 		verwijderButton.setBounds(370, 186, 97, 40);
 		verwijderButton.setEnabled(false);
-		verwijderButton.setActionCommand("deleteQuiz");
+		verwijderButton.setActionCommand("deleteOpdracht");
 		verwijderButton.addActionListener(this);
 		bottomPanel.add(verwijderButton);
 		
@@ -219,6 +219,7 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		topPanel.add(chckbxIsUniekeDeelname);
 		
 		btnNewQuiz = new JButton("Registreer nieuwe quiz");
+		btnNewQuiz.setActionCommand("newQuiz");
 		btnNewQuiz.setBounds(12, 70, 819, 34);
 		topPanel.add(btnNewQuiz);
 		btnNewQuiz.addActionListener(this);
@@ -236,7 +237,7 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		if (e.getSource() == rangschikButton) {
 			
 		} 
-		else if (e.getSource()==toevoegButton){
+		else if (e.getSource()==btnNewQuiz){
 			int[] lj = {Integer.parseInt(Leerjaren[comboBoxKlas.getSelectedIndex()])};
 			
 			try {
@@ -256,6 +257,9 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 					(Leraar)auteurComboBox.getSelectedItem(),new Datum(),(QuizStatus)quizStatusComboBox.getSelectedItem()));
 			*/
 		}
+		else if (e.getSource()==toevoegButton){
+			
+		} 
 		else if (e.getSource()==verwijderButton){
 			
 		}

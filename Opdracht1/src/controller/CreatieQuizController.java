@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import model.ObservableQuizCatalogus;
 import model.Quiz;
-import model.QuizActionEvent;
+import actionevents.QuizActionEvent;
 import model.interfaces.IObservable;
 import persistence.DataContext;
 import persistence.enums.ContextType;
@@ -30,7 +30,7 @@ public class CreatieQuizController implements ActionListener {
 	private IObservable quizCatalogusModel;
 	private IObservable opdrachtCatalogusModel;
 	
-	private final String[] quizCommands = {"addQuiz", "deleteQuiz"};
+	private final String[] quizCommands = {"addQuiz", "deleteQuiz", "newQuiz"};
 	
 	//Getters & Setters
 	public static CreateQuizView getView(){
@@ -64,10 +64,10 @@ public class CreatieQuizController implements ActionListener {
 			try{
 				
 				QuizActionEvent event = (QuizActionEvent)e;
-				Quiz q = event.getEventData();
+				Quiz q = event.getActionData();
 				
 				switch(event.getActionCommand()) {
-				case "addQuiz":
+				case "newQuiz":
 					addQuiz(q);
 					break;
 				case "deleteQuiz":
