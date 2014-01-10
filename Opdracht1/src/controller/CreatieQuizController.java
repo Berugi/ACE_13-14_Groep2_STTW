@@ -57,7 +57,7 @@ public class CreatieQuizController implements ActionListener {
 	}
 	
 
-	public void actionPerformed(QuizActionEvent e) throws NullPointerException, UnsupportedOperationException {
+	public void actionPerformed(ActionEvent e) throws NullPointerException, UnsupportedOperationException {
 		
 		if(e == null)
 			throw new NullPointerException();
@@ -66,8 +66,8 @@ public class CreatieQuizController implements ActionListener {
 			
 			try{
 				
-				//QuizActionEvent event = (QuizActionEvent)e;
-				Quiz q = new Quiz();
+				QuizActionEvent event = (QuizActionEvent)e;
+				Quiz q = new Quiz(event.);
 				
 				switch(e.getActionCommand()) {
 				case "addQuiz":

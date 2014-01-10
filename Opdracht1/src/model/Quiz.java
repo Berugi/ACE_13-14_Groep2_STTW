@@ -187,7 +187,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	//public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
 	//		Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
 		try{
-			HoogsteID=this.getHoogsteOpdrachtID();
+			HoogsteID=this.getHoogsteQuizID();
 			setQuizID(0);
 			setOnderwerp(onderwerp);
 			setLeerjaren(leerjaren);
@@ -207,7 +207,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		//-- for state pattern
 	//public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
 	//		Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
-		HoogsteID=this.getHoogsteOpdrachtID();
+		HoogsteID=this.getHoogsteQuizID();
 		try{
 		quizID=bepaalID(quizID);
 		} catch (Exception e){
@@ -360,7 +360,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		}
 	}
 	
-	public int getHoogsteOpdrachtID(){
+	public int getHoogsteQuizID(){
 		int hoogsteID = 0;
 		try{
 			for(Quiz quiz:OpstartController.getQuizCatalogus().quizen){
