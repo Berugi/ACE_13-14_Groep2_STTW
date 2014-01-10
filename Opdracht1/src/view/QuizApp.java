@@ -39,7 +39,7 @@ import model.ObservableOpdrachtCatalogus;
 import model.ObservableQuizCatalogus;
 import javax.swing.JTextPane;
 
-import view.CreateQuizView;
+import view.CreatieQuizView;
 
 public class QuizApp {
 
@@ -218,7 +218,7 @@ public class QuizApp {
 			
 		// Card: Quiz aanmaken - view created by Tom Vaes
 		
-		CreateQuizView newQuiz = CreatieQuizController.getView();
+		CreatieQuizView newQuiz = CreatieQuizController.getView();
 		newQuiz.setVisible(true);
 		pnlMain.add("quizAanmaken",newQuiz);
 		
