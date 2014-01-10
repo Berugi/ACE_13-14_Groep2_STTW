@@ -92,7 +92,7 @@ public class QuizApp {
 	}
 	
 	public QuizApp(){
-		OpstartController.Initialise(); // Initialiseert ook de andere controllers
+		OpstartController.getInstance(); // Initialiseert ook de andere controllers
 		QuizApp.setDatacontext(OpstartController.getDataContext());
 		QuizApp.setQuizcatalogus(OpstartController.getQuizCatalogus());
 		QuizApp.setOpdrachtcatalogus(OpstartController.getOpdrachtCatalogus());

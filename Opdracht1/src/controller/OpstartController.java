@@ -122,13 +122,11 @@ public class OpstartController {
 		*/
 	}
 	// Singleton pattern
-	public static void Initialise(){
+	public static OpstartController getInstance(){
 		if(opstartcontroller==null){
 		opstartcontroller = new OpstartController();
 		}
-	}
-	
-	public static OpstartController getOpstartController(){
 		return opstartcontroller;
 	}
+	
 }
