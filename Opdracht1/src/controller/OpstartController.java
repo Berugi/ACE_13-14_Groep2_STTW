@@ -19,6 +19,7 @@ import model.ObservableQuizCatalogus;
  * @version 20131226-01 - Tom Scheepers - added DataContext, Opdrachtfactory, ReadData
  * @version 20131228-01 - Tom Vaes - changes towards MVC for main program
  * @version 20131228-02 - Wim Ombelets -
+ * @version 20130110-01 - Tom Scheepers - getInstance + Singleton
  */
 public class OpstartController {
 	
@@ -96,10 +97,6 @@ public class OpstartController {
 		
 		//create singleton OpdrachtFactory
 		OpdrachtFactory.Initialise(getOpdrachtCatalogus());
-				
-		//initialize secondary controllers
-		CreatieQuizController.getInstance();
-		AfsluitController.getInstance();
 		
 		//Load data
 		try{
@@ -108,6 +105,10 @@ public class OpstartController {
 		catch (Exception e){
 			System.out.println(e.toString());
 		}
+		
+		//initialize secondary controllers
+		CreatieQuizController.getInstance();
+		AfsluitController.getInstance();
 		//
 		
 		/*Initialize menu

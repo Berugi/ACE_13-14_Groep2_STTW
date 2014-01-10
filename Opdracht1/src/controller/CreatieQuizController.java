@@ -10,7 +10,7 @@ import model.QuizActionEvent;
 import model.interfaces.IObservable;
 import persistence.DataContext;
 import persistence.enums.ContextType;
-import view.CreatieQuizView;
+import view.CreateQuizView;
 
 /**
  * Singleton controller responsible for creating new Quizzes.
@@ -26,14 +26,14 @@ public class CreatieQuizController implements ActionListener {
 	private static CreatieQuizController instance = null;
 	private DataContext dc;
 	private ContextType contextType;
-	private static CreatieQuizView view;
+	private static CreateQuizView view;
 	private IObservable quizCatalogusModel;
 	private IObservable opdrachtCatalogusModel;
 	
 	private final String[] quizCommands = {"addQuiz", "deleteQuiz"};
 	
 	//Getters & Setters
-	public static CreatieQuizView getView(){
+	public static CreateQuizView getView(){
 		return view;
 	}
 	
@@ -42,7 +42,7 @@ public class CreatieQuizController implements ActionListener {
 		this.dc = OpstartController.getDataContext();
 		this.quizCatalogusModel = OpstartController.getQuizCatalogus();
 		this.opdrachtCatalogusModel = OpstartController.getOpdrachtCatalogus();
-		this.view = new CreatieQuizView();
+		this.view = new CreateQuizView();
 		view.setActionListener(this);
 		
 	}
