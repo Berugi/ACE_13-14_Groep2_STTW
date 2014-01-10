@@ -29,13 +29,10 @@ public class AfsluitController {
 		datacontext.getStrategy().WriteData(quizcatalogus, opdrachtcatalogus);
 	}
 	
-	public static void Initialise(){
+	public static AfsluitController getInstance(){
 		if(afsluitcontroller==null){
 			afsluitcontroller = new AfsluitController();
 		}
-	}
-	
-	public static AfsluitController getAfsluitController(){
 		return afsluitcontroller;
 	}
 	

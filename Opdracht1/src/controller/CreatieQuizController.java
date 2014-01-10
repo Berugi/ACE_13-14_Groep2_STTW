@@ -46,14 +46,11 @@ public class CreatieQuizController implements ActionListener {
 		view.setActionListener(this);
 		
 	}
-
-	public static CreatieQuizController getCreatieQuizController() {
-		return instance;
-	}
 	
-	public static void Initialise(){
+	public static CreatieQuizController getInstance(){
 		if(instance == null)
 			instance = new CreatieQuizController();
+		return instance;
 	}
 	
 
@@ -67,9 +64,9 @@ public class CreatieQuizController implements ActionListener {
 			try{
 				
 				QuizActionEvent event = (QuizActionEvent)e;
-				Quiz q = new Quiz(event.);
+				Quiz q = event.getEventData();
 				
-				switch(e.getActionCommand()) {
+				switch(event.getActionCommand()) {
 				case "addQuiz":
 					addQuiz(q);
 					break;

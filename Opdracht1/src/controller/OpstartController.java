@@ -98,8 +98,8 @@ public class OpstartController {
 		OpdrachtFactory.Initialise(getOpdrachtCatalogus());
 				
 		//initialize secondary controllers
-		CreatieQuizController.Initialise();
-		AfsluitController.Initialise();
+		CreatieQuizController.getInstance();
+		AfsluitController.getInstance();
 		
 		//Load data
 		try{
