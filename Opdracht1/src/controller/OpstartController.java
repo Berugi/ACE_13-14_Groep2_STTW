@@ -43,15 +43,7 @@ public class OpstartController {
 		opstartcontroller = this;
 	}
 	
-	//Deze moet nog weg als we voor QuizApp gaan
-	private OpstartController(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app)
-	{
-		opdrachtcatalogus = opdrachtcl;
-		quizcatalogus = quizcl;
-		application = app;
-		Startup();
-		opstartcontroller = this;
-	}
+
 	//getters & setters
 	
 	private static IniFileManager getIniProps() {
@@ -106,6 +98,7 @@ public class OpstartController {
 		OpdrachtFactory.Initialise(getOpdrachtCatalogus());
 				
 		//initialize secondary controllers
+		CreatieQuizController.Initialise();
 		AfsluitController.Initialise();
 		
 		//Load data
@@ -132,13 +125,6 @@ public class OpstartController {
 	public static void Initialise(){
 		if(opstartcontroller==null){
 		opstartcontroller = new OpstartController();
-		}
-	}
-	
-	//Deze moet nog weg (test)
-	public static void Initialise(ObservableQuizCatalogus quizcl, ObservableOpdrachtCatalogus opdrachtcl, QuizApplication app){
-		if(opstartcontroller==null){
-		opstartcontroller = new OpstartController(quizcl,opdrachtcl,app);
 		}
 	}
 	

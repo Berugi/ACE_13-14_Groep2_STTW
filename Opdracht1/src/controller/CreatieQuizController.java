@@ -10,7 +10,7 @@ import model.QuizActionEvent;
 import model.interfaces.IObservable;
 import persistence.DataContext;
 import persistence.enums.ContextType;
-import view.CreatieQuizView;
+import view.CreateQuizView;
 
 /**
  * Singleton controller responsible for creating new Quizzes.
@@ -26,32 +26,38 @@ public class CreatieQuizController implements ActionListener {
 	private static CreatieQuizController instance = null;
 	private DataContext dc;
 	private ContextType contextType;
-	private CreatieQuizView view;
+	private static CreateQuizView view;
 	private IObservable quizCatalogusModel;
 	private IObservable opdrachtCatalogusModel;
 	
 	private final String[] quizCommands = {"addQuiz", "deleteQuiz"};
 	
-	private CreatieQuizController(CreatieQuizView quizview) {
+	//Getters & Setters
+	public static CreateQuizView getView(){
+		return view;
+	}
+	
+	private CreatieQuizController() {
 		
 		this.dc = OpstartController.getDataContext();
 		this.quizCatalogusModel = OpstartController.getQuizCatalogus();
 		this.opdrachtCatalogusModel = OpstartController.getOpdrachtCatalogus();
-		this.view = quizview;
+		this.view = new CreateQuizView();
 		view.setActionListener(this);
 		
 	}
 
-	public static CreatieQuizController getInstance(CreatieQuizView quizview) {
-		
-		if(instance == null)
-			instance = new CreatieQuizController(quizview);
+	public static CreatieQuizController getCreatieQuizController() {
 		return instance;
-		
+	}
+	
+	public static void Initialise(){
+		if(instance == null)
+			instance = new CreatieQuizController();
 	}
 	
 
-	public void actionPerformed(ActionEvent e) throws NullPointerException, UnsupportedOperationException {
+	public void actionPerformed(QuizActionEvent e) throws NullPointerException, UnsupportedOperationException {
 		
 		if(e == null)
 			throw new NullPointerException();
@@ -60,8 +66,8 @@ public class CreatieQuizController implements ActionListener {
 			
 			try{
 				
-				QuizActionEvent event = (QuizActionEvent)e;
-				Quiz q = event.getEventData();
+				//QuizActionEvent event = (QuizActionEvent)e;
+				Quiz q = new Quiz();
 				
 				switch(e.getActionCommand()) {
 				case "addQuiz":
@@ -101,5 +107,7 @@ public class CreatieQuizController implements ActionListener {
 		((ObservableQuizCatalogus) quizCatalogusModel).remove(q);
 		
 	}
+	
+	
 
 }

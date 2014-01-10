@@ -39,7 +39,7 @@ import model.ObservableOpdrachtCatalogus;
 import model.ObservableQuizCatalogus;
 import javax.swing.JTextPane;
 
-import view.CreatieQuizView;
+import view.CreateQuizView;
 
 public class QuizApp {
 
@@ -215,12 +215,10 @@ public class QuizApp {
 		cardQuizbeheerMenu.add(btnAanpassenVanEen);
 		cardQuizbeheerMenu.add(btnVerwijderenVanEen);
 		pnlMain.add("cardQuizBeheerMenu",cardQuizbeheerMenu);
+			
+		// Card: Quiz aanmaken - view created by Tom Vaes
 		
-		// ++++++ Tom Vaes +++++++
-		
-		// Card: Quiz aanmaken
-		
-		CreatieQuizView newQuiz = new CreatieQuizView();
+		CreateQuizView newQuiz = CreatieQuizController.getView();
 		newQuiz.setVisible(true);
 		pnlMain.add("quizAanmaken",newQuiz);
 		
