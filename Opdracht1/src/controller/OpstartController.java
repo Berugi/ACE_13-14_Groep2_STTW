@@ -2,7 +2,6 @@ package controller;
 
 import persistence.enums.ContextType;
 import config.IniFileManager;
-//import view.QuizApplication;
 import view.QuizApp;
 import persistence.*;
 import model.factory.OpdrachtFactory;
@@ -32,7 +31,6 @@ public class OpstartController {
 	private static OpstartController opstartcontroller = null;
 	
 	//View
-	//private static QuizApplication application = null;
 	private static QuizApp quizapplicatie=null;
 	
 	//constructor
