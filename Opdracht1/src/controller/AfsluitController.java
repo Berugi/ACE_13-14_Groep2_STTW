@@ -9,6 +9,7 @@ import persistence.DataContext;
  * 
  * @author Tom Scheepers
  * @version 20131103-01 - Initial version - Tom Scheepers
+ * @version 20140110-01 - Tom Scheepers - getInstance
  */
 
 public class AfsluitController {

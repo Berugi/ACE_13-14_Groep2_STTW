@@ -36,6 +36,8 @@ import actionevents.QuizActionEvent;
  * @author Tom Vaes
  * @version 20131109-01 - initial version.
  * @version 20131201-01 - modified by Wim Ombelets - coupling of UI
+ * @version 20140109-01 - Tom Scheepers - adjusted for implementation in QuizApp
+ * @version 20140110-01 - Tom Scheepers - MVC ActionEvent + use real data from quizcatalogus and opdrachtcatalogus
  *
  */
 
@@ -99,15 +101,10 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		
 		defaultListModelOpdracht = new DefaultListModel<Opdracht>();
 		defaultListModelQuiz = new DefaultListModel<Quiz>();
-
-		for (Quiz quiz: quizcl){
-			defaultListModelQuiz.addElement(quiz);
-		}
-		/*
-		for (Opdracht opdracht: opdrachtcl){
-			defaultListModelOpdracht.addElement(opdracht);
-		}
-		*/
+		
+		quizRefresh();
+		opdrachtRefresh();
+		
 		setLayout(null);
 		
 		JPanel bottomPanel = new JPanel();
@@ -160,7 +157,7 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 				
 		listOpdrachten = new JList(defaultListModelOpdracht);
 		scrollPane.setViewportView(listOpdrachten);
-		listOpdrachten.addListSelectionListener(this);
+		//listOpdrachten.addListSelectionListener(this);
 		/*
 		String[] opdrachtColumnNames={"Vraag","Categorie","Score"};
 		table = new JTable(null, opdrachtColumnNames);
@@ -244,6 +241,7 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 				Quiz q = new Quiz(0,txtOnderwerp.getText(),lj,chckbxIsTest.isSelected(), chckbxIsUniekeDeelname.isSelected(),
 						(Leraar)auteurComboBox.getSelectedItem(),new Datum(),(QuizStatus)quizStatusComboBox.getSelectedItem());
 				actionlistener.actionPerformed(new QuizActionEvent(e.getSource(),e.getID(),e.getActionCommand(),q));
+				
 			} catch (IllegalArgumentException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -258,10 +256,10 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 			*/
 		}
 		else if (e.getSource()==toevoegButton){
-			
+			//toevoegen van opdrachten tot een quiz
 		} 
 		else if (e.getSource()==verwijderButton){
-			
+			//verwijderen van opdrachten van een quiz
 		}
 	}
 
@@ -274,6 +272,21 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 	}
 	@Override
 	public void update(Observable changedModel, Object arg1) {
+		
+	}
+	
+	private void quizRefresh(){
+		defaultListModelQuiz.removeAllElements();
+		for (Quiz quiz: quizcl.getCatalogus()){
+			defaultListModelQuiz.addElement(quiz);
+		}
+	}
+	
+	private void opdrachtRefresh(){
+		defaultListModelOpdracht.removeAllElements();
+		for (Opdracht opdracht: opdrachtcl.getCatalogus()){
+			defaultListModelOpdracht.addElement(opdracht);
+		}
 		
 	}
 }

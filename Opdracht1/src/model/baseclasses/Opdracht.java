@@ -34,12 +34,6 @@ public class Opdracht implements Comparable<Opdracht>, Cloneable {
 	private Datum datumRegistratie;
 	private Set<QuizOpdracht> quizOpdrachten;
 
-	// antwoorden was niet gedefinieerd dus heb
-	// heb ik een Object antwoorden bijgemaakt
-	// verder uitvissen !!! Wim
-	// private Object antwoorden; => Er is maar 1 antwoord mogelijk => zie
-	// private String juisteAntwoord
-
 	// getters & setters
 
 	public int getOpdrachtID() {

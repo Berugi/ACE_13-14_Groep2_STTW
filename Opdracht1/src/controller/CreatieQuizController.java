@@ -19,6 +19,7 @@ import view.CreateQuizView;
  * @version 20131201-01 - initial commit
  * @version 20131228-01 - added beginnings of link to model and view
  * @version 20140104-01 - added further MVC
+ * @version 20140110-01	- Tom Scheepers - added more MVC: link view & controller
  *
  */
 public class CreatieQuizController implements ActionListener {
@@ -30,7 +31,7 @@ public class CreatieQuizController implements ActionListener {
 	private IObservable quizCatalogusModel;
 	private IObservable opdrachtCatalogusModel;
 	
-	private final String[] quizCommands = {"addQuiz", "deleteQuiz", "newQuiz"};
+	private final String[] quizCommands = {"deleteQuiz", "newQuiz"};
 	
 	//Getters & Setters
 	public static CreateQuizView getView(){

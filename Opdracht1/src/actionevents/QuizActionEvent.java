@@ -7,6 +7,12 @@ import model.enums.QuizStatus;
 import utils.Datum;
 import model.Quiz;
 
+/**
+ * 
+ * @author Tom Scheepers / Wim Ombelets
+ *
+ */
+
 public class QuizActionEvent extends ActionEvent {
 	
 	/**

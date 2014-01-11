@@ -41,6 +41,12 @@ import javax.swing.JTextPane;
 
 import view.CreateQuizView;
 
+/**
+ * 
+ * @author Tom Scheepers
+ * 
+ *
+ */
 public class QuizApp {
 
 	private JFrame frame;
@@ -109,8 +115,8 @@ public class QuizApp {
 		frame = new JFrame();
 		//frame.setLocationRelativeTo(null);
 		frame.setSize(1024, 768);
-		QuizApp.centreWindow(frame);
 		//frame.setSize(width, height);
+		QuizApp.centreWindow(frame);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
