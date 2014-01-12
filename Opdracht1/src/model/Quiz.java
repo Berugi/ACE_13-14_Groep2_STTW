@@ -2,9 +2,15 @@ package model;
 
 import java.util.Arrays;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import utils.Datum;
+import model.baseclasses.AbstractQuizStatus;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
+import model.state.QuizStatusAfgewerkt;
+import model.state.QuizStatusInConstructie;
+import model.state.QuizStatusLaatsteKans;
+import model.state.QuizStatusOpengesteld;
 import controller.OpstartController;
 
 import java.util.Set;
@@ -20,6 +26,7 @@ import java.util.HashSet;
  * @version 20131020-01 - modified by Tom Vaes - added constructors
  * @version 20131031-01 - modified by Tom Scheepers - added methods to add/remove QuizOpdrachten
  * @version 20131228 01 - modified by Tom Scheepers - added QuizID
+ * @version 20140112-01 - modified by Wim Ombelets - refactored state pattern using abstract base class
  * 
  * Bevat Quiz informatie
  */
@@ -34,8 +41,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	private Boolean isUniekeDeelname;
 	private Leraar auteur;
 	private Datum datumRegistratie;
-	//private IQuizStatus quizStatus; -- for state pattern
-	private QuizStatus quizStatus;
+	private AbstractQuizStatus status;
 	private Set<QuizOpdracht> quizOpdrachten;
 	
 	private static int HoogsteID;
@@ -126,26 +132,35 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 			throw e;
 		}
 	}
-	//-- for state pattern
-	//public void setQuizStatus(final IQuizStatus nieuweStatus)
-	//{
-	//	this.quizStatus = nieuweStatus;
-	//}
 	
-	public void setQuizStatus(QuizStatus nieuweStatus)
-	{
-		this.quizStatus = nieuweStatus;
+	public void setQuizStatus(QuizStatus nieuweStatus) throws NullPointerException, IllegalArgumentException {
+		
+		if(nieuweStatus == null)
+			throw new NullPointerException("Status mag niet null zijn.");
+		
+		switch(nieuweStatus) {
+		case AFGEWERKT:
+			this.status = new QuizStatusAfgewerkt();
+			break;
+		case INCONSTRUCTIE:
+			this.status = new QuizStatusInConstructie();
+			break;
+		case LAATSTEKANS:
+			this.status = new QuizStatusLaatsteKans();
+			break;
+		case OPENGESTELD:
+			this.status = new QuizStatusOpengesteld();
+			break;
+		default:
+			throw new IllegalArgumentException("Deze status is niet geldig.");
+		
+		}
+		
 	}
-	
-	//-- for state pattern
-	//public IQuizStatus getQuizStatus()
-	//{
-	//	return this.quizStatus;
-	//}
 	
 	public QuizStatus getQuizStatus()
 	{
-		return this.quizStatus;
+		return this.status.getQuizStatus();
 	}
 	
 	
@@ -183,9 +198,6 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
 			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) {
-		//-- for state pattern
-	//public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
-	//		Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
 		try{
 			HoogsteID=this.getHoogsteQuizID();
 			setQuizID(0);
@@ -204,9 +216,6 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	public Quiz(Integer quizID,String onderwerp, int[] leerjaren, Boolean isTest,
 			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) throws Exception {
-		//-- for state pattern
-	//public Quiz(String onderwerp, int[] leerjaren, Boolean isTest,
-	//		Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, IQuizStatus status) {
 		HoogsteID=this.getHoogsteQuizID();
 		try{
 		quizID=bepaalID(quizID);
@@ -237,7 +246,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		return "Quiz [quizID= "+ quizID +", onderwerp= " + onderwerp + ", leerjaren= "
 				+ Arrays.toString(leerjaren) + ", isTest= " + isTest
 				+ ", isUniekeDeelname= " + isUniekeDeelname + ", auteur= "
-				+ auteur + ", datumRegistratie= " + datumRegistratie + ", quizstatus= " + quizStatus +
+				+ auteur + ", datumRegistratie= " + datumRegistratie + ", quizstatus= " + getQuizStatus() +
 				", quizOpdrachten =" + quizOpdrachtenstring +
 				
 				"]";
@@ -259,7 +268,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		result = prime * result
 				+ ((onderwerp == null) ? 0 : onderwerp.hashCode());
 		result = prime * result
-				+ ((quizStatus == null) ? 0 : quizStatus.hashCode());
+				+ ((getQuizStatus() == null) ? 0 : getQuizStatus().hashCode());
 		return result;
 	}
 
@@ -296,7 +305,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 				return false;
 		} else if (!onderwerp.equals(other.onderwerp))
 			return false;
-		if (quizStatus != other.quizStatus)
+		if (getQuizStatus() != other.getQuizStatus())
 			return false;
 		return true;
 	}
