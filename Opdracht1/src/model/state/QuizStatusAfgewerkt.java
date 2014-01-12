@@ -1,31 +1,14 @@
 package model.state;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import model.Quiz;
-import model.interfaces.IQuizStatus;
-
 /**
- * Concrete implementation of the IQuizStatus interface. 
- * Non-applicable statuses should throw NotImplementedException.
+ * Represents QuizQtatusAfgewerkt state
  * 
  * @author Wim Ombelets
  * @version 20131212-01 - initial commit
- *
+ * @version 20140112-01 - empty class due to future refactor
  */
-public class QuizStatusAfgewerkt implements IQuizStatus {
+public class QuizStatusAfgewerkt {
 
-	public void zetQuizInINCONSTRUCTIE(Quiz quizContext) {
-		quizContext.setQuizStatus(new QuizStatusInConstructie());
-	}
-
-	public void zetQuizInAFGEWERKT(Quiz quizContext) throws NotImplementedException { }
-
-	public void zetQuizInOPENGESTELD(Quiz quizContext) {
-		quizContext.setQuizStatus(new QuizStatusOpengesteld());
-	}
-
-	public void zetQuiqInLAATSTEKANS(Quiz quizContext) {
-		quizContext.setQuizStatus(new QuizStatusLaatsteKans());
-	}
+	
 
 }
