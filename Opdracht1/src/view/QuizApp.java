@@ -215,7 +215,19 @@ public class QuizApp {
 			}
 		});
 		JButton btnAanpassenVanEen = new JButton("Aanpassen van een quiz");
+		btnAanpassenVanEen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cards.show(pnlMain, "quizWijzigen");
+			}
+		});
 		JButton btnVerwijderenVanEen = new JButton("Verwijderen van een quiz");
+		btnVerwijderenVanEen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cards.show(pnlMain, "quizVerwijderen");
+			}
+		});
 		cardQuizbeheerMenu.setLayout(new GridLayout(0, 1, 0, 10));
 		cardQuizbeheerMenu.add(btnAanmakenVanEen);
 		cardQuizbeheerMenu.add(btnAanpassenVanEen);
@@ -227,6 +239,18 @@ public class QuizApp {
 		CreateQuizView newQuiz = CreatieQuizController.getView();
 		newQuiz.setVisible(true);
 		pnlMain.add("quizAanmaken",newQuiz);
+		
+		// Card: Quiz verwijderen
+		
+		VerwijderQuizView deleteQuiz = VerwijderQuizController.getView();
+		deleteQuiz.setVisible(true);
+		pnlMain.add("quizVerwijderen",deleteQuiz);
+		
+		// Card Quiz Wijzigen
+		
+		WijzigQuizView wijzigQuiz = new WijzigQuizView();
+		wijzigQuiz.setVisible(true);
+		pnlMain.add("quizWijzigen",wijzigQuiz);
 		
 		cards.first(pnlMain);
 		

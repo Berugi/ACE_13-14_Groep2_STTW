@@ -6,41 +6,36 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JSplitPane;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+/**
+ * 
+ * @author Tom Scheepers
+ *
+ */
 
-public class VerwijderQuizView extends JFrame {
+public class VerwijderQuizView extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4794465200715026380L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VerwijderQuizView frame = new VerwijderQuizView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VerwijderQuizView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setLayout(new BorderLayout(0, 0));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-	}
+		add(contentPane);
+		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		contentPane.add(splitPane);
+		
+		JLabel lblQuizVerwijderen = new JLabel("Quiz verwijderen");
+		lblQuizVerwijderen.setHorizontalAlignment(SwingConstants.CENTER);
+		splitPane.setLeftComponent(lblQuizVerwijderen);
+		
+		JPanel pnlVerwijderenContent = new JPanel();
+		splitPane.setRightComponent(pnlVerwijderenContent);
 
+	}
 }

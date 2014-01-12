@@ -13,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
 
 import model.ObservableQuizCatalogus;
 import model.Quiz;
@@ -25,12 +26,12 @@ import java.awt.Font;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
-public class WijzigQuizView extends JFrame {
+public class WijzigQuizView extends JPanel {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3404581544561582423L;
+	//private static final long serialVersionUID = -3404581544561582423L;
 	private JPanel contentPane;
 	private JTextField txb_onderwerp;
 	private JTextField txb_leerjaren;
@@ -55,6 +56,7 @@ public class WijzigQuizView extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,7 +69,7 @@ public class WijzigQuizView extends JFrame {
 			}
 		});
 	}
-
+	*/
 	/**
 	 * Create the frame.
 	 */
@@ -86,12 +88,14 @@ public class WijzigQuizView extends JFrame {
 	}
 	
 	private void initialize(){
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 816, 517);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setBounds(100, 100, 816, 517);
+		setLayout(new BorderLayout(0, 0));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		//setContentPane(contentPane);
 		contentPane.setLayout(null);
+		add(contentPane);
 		
 		JLabel lblGroepT = new JLabel("Groep T - 2013");
 		lblGroepT.setFont(new Font("Tahoma", Font.PLAIN, 9));

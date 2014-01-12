@@ -106,6 +106,7 @@ public class OpstartController {
 		
 		//initialize secondary controllers
 		CreatieQuizController.getInstance();
+		VerwijderQuizController.getInstance();
 		AfsluitController.getInstance();
 		//
 		
