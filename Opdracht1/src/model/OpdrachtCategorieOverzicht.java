@@ -23,7 +23,7 @@ public class OpdrachtCategorieOverzicht {
 			map.put(cat, 0);
 		}
 		
-		for(int i =0;i< catalogus.size();i++){
+		for(int i=0; i<catalogus.size();i++){
 			if(catalogus.change(i) != null){
 				Opdracht opdracht = catalogus.change(i);
 				map.put(opdracht.getOpdrachtCategorie(), map.get(opdracht.getOpdrachtCategorie()) + 1);
