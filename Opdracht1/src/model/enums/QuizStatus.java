@@ -16,7 +16,8 @@ public enum QuizStatus {
 	INCONSTRUCTIE("In Constructie"),
 	AFGEWERKT("Afgewerkt"),
 	OPENGESTELD("Opengesteld"),
-	LAATSTEKANS("Laatste Kans");
+	LAATSTEKANS("Laatste Kans"),
+	AFGESLOTEN("Afgesloten");
 
 	private final String description;
 

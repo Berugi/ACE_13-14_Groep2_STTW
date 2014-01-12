@@ -2,10 +2,13 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.ObservableOpdrachtCatalogus;
+import model.ObservableQuizCatalogus;
 import config.IniFileManager;
 import persistence.enums.DbParamType;
 import persistence.interfaces.IPersistenceStrategy;
@@ -159,6 +162,20 @@ public class MySQLPersistenceStrategy implements IPersistenceStrategy {
 		}
 		
 		return pS;
+	}
+
+	@Override
+	public void ReadData(ObservableQuizCatalogus qc,
+			ObservableOpdrachtCatalogus oc) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void WriteData(ObservableQuizCatalogus qc,
+			ObservableOpdrachtCatalogus oc) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
