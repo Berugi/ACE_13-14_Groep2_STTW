@@ -7,6 +7,7 @@ import java.util.Set;
 import model.baseclasses.AbstractQuizStatus;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
+import model.state.QuizStatusAfgesloten;
 import model.state.QuizStatusAfgewerkt;
 import model.state.QuizStatusInConstructie;
 import model.state.QuizStatusLaatsteKans;
@@ -149,6 +150,8 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		case OPENGESTELD:
 			this.status = new QuizStatusOpengesteld();
 			break;
+		case AFGESLOTEN:
+			this.status = new QuizStatusAfgesloten();
 		default:
 			throw new IllegalArgumentException("Deze status is niet geldig.");
 		

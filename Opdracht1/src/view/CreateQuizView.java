@@ -1,38 +1,37 @@
 package view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
-import javax.swing.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableColumnModel;
 
 import model.ObservableOpdrachtCatalogus;
-import model.Quiz;
 import model.ObservableQuizCatalogus;
+import model.Quiz;
 import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
-import model.baseclasses.Opdracht;
-import model.OpdrachtTableModel;
-import controller.CreatieQuizController;
-
-import javax.swing.border.LineBorder;
-
-import config.IniFileManager;
-import controller.OpstartController;
-
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-
-import java.util.Observable;
-import java.util.Observer;
-
 import utils.Datum;
 import actionevents.QuizActionEvent;
+import controller.OpstartController;
 
 /**
  * This class contains the GUI for the Quiz Application
