@@ -1,9 +1,9 @@
 package model;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import utils.Datum;
 import model.baseclasses.AbstractQuizStatus;
 import model.enums.Leraar;
 import model.enums.QuizStatus;
@@ -11,10 +11,8 @@ import model.state.QuizStatusAfgewerkt;
 import model.state.QuizStatusInConstructie;
 import model.state.QuizStatusLaatsteKans;
 import model.state.QuizStatusOpengesteld;
+import utils.Datum;
 import controller.OpstartController;
-
-import java.util.Set;
-import java.util.HashSet;
 
 /**
  * 
@@ -216,12 +214,16 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 	
 	public Quiz(Integer quizID,String onderwerp, int[] leerjaren, Boolean isTest,
 			Boolean isUniekeDeelname, Leraar auteur, Datum regDatum, QuizStatus status) throws Exception {
+		
 		HoogsteID=this.getHoogsteQuizID();
+		
 		try{
-		quizID=bepaalID(quizID);
-		} catch (Exception e){
+			quizID=bepaalID(quizID);
+		} 
+		catch (Exception e){
 			throw e;
 		}
+		
 		setQuizID(quizID);
 		setOnderwerp(onderwerp);
 		setLeerjaren(leerjaren);
@@ -239,7 +241,7 @@ public class Quiz implements Comparable<Quiz>, Cloneable{
 		
 		String quizOpdrachtenstring = "";
 		
-		for(QuizOpdracht qo: quizOpdrachten){
+		for(QuizOpdracht qo : quizOpdrachten){
 			quizOpdrachtenstring = quizOpdrachtenstring + qo.toString();
         }
 			
