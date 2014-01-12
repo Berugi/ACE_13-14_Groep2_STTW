@@ -10,7 +10,9 @@ import model.baseclasses.Opdracht;
 import model.enums.*;
 import model.*;
 
-
+/**
+ * @author Tom Scheepers
+ */
 public class OpdrachtTest {
 	
 	private Opdracht opdracht;
