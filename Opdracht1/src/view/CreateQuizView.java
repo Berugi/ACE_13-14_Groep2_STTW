@@ -14,6 +14,7 @@ import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
 import model.baseclasses.Opdracht;
+import model.OpdrachtTableModel;
 import controller.CreatieQuizController;
 
 import javax.swing.border.LineBorder;
@@ -24,6 +25,8 @@ import controller.OpstartController;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -53,7 +56,7 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 	private JButton btnNewQuiz;
 	private JTextField txtOnderwerp;
 	private JLabel lblKlas;
-	private JComboBox comboBoxKlas;
+	private JComboBox<String> comboBoxKlas;
 	private JLabel lblAuteur;
 	private JLabel lblQuizStatus;
 	private JComboBox<Leraar> auteurComboBox;
@@ -71,6 +74,9 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 	private String[] Leerjaren = {"1","2","3","4","5","6"};
 	private JCheckBox chckbxIsUniekeDeelname;
 	private JCheckBox chckbxIsTest;
+	private OpdrachtTableModel opdrachtTableModel;
+	private JTable tblAlleOpdrachten;
+	private TableColumnModel tcm;
 
 	//getters & setters
 	
@@ -103,7 +109,7 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		defaultListModelQuiz = new DefaultListModel<Quiz>();
 		
 		quizRefresh();
-		opdrachtRefresh();
+		opdrachtRefresh(null);
 		
 		setLayout(null);
 		
@@ -115,6 +121,7 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		
 		opdrCategorieCb = new JComboBox(OpdrachtCategorie.values());
 		opdrCategorieCb.setBounds(229, 23, 117, 22);
+		opdrCategorieCb.addActionListener(this);
 		bottomPanel.add(opdrCategorieCb);
 		
 		JComboBox<?> cbSorteerOpdr = new JComboBox<Object>();
@@ -207,13 +214,13 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		quizStatusComboBox.setBounds(692, 6, 125, 22);
 		topPanel.add(quizStatusComboBox);
 		
-		chckbxIsTest = new JCheckBox("is test");
-		chckbxIsTest.setBounds(355, 37, 73, 25);
-		topPanel.add(chckbxIsTest);
+		isTestChkBox = new JCheckBox("is test");
+		isTestChkBox.setBounds(355, 37, 73, 25);
+		topPanel.add(isTestChkBox);
 		
-		chckbxIsUniekeDeelname = new JCheckBox("is unieke deelname");
-		chckbxIsUniekeDeelname.setBounds(442, 37, 145, 25);
-		topPanel.add(chckbxIsUniekeDeelname);
+		isUniekeDeelnameChkBox = new JCheckBox("is unieke deelname");
+		isUniekeDeelnameChkBox.setBounds(442, 37, 145, 25);
+		topPanel.add(isUniekeDeelnameChkBox);
 		
 		btnNewQuiz = new JButton("Registreer nieuwe quiz");
 		btnNewQuiz.setActionCommand("newQuiz");
@@ -222,12 +229,26 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		btnNewQuiz.addActionListener(this);
 		
 		listQuizen = new JList(defaultListModelQuiz);
-		//listQuizen.setBounds(1, 1, 830, 113);
-		//topPanel.add(listQuizen);
 		
 		JScrollPane scrollPane_1 = new JScrollPane(listQuizen);
 		scrollPane_1.setBounds(12, 115, 819, 115);
 		topPanel.add(scrollPane_1);
+		/*
+		opdrachtTableModel = new OpdrachtTableModel(opdrachtcl);
+		tblAlleOpdrachten = new JTable(opdrachtTableModel);
+		tblAlleOpdrachten.setBounds(500, 180, 300, 500);
+		TableColumn column = null;
+		tcm = tblAlleOpdrachten.getColumnModel();
+		for (int i = 0; i < 6; i++) {
+		    column = tblAlleOpdrachten.getColumnModel().getColumn(i);
+		    if (i == 0) {
+		    	column.setPreferredWidth(150);
+		     } else {
+		    	column.setPreferredWidth(50);
+		    }
+		}
+		bottomPanel.add(tblAlleOpdrachten);
+		*/
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -261,6 +282,10 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		else if (e.getSource()==verwijderButton){
 			//verwijderen van opdrachten van een quiz
 		}
+		else if (e.getSource()==opdrCategorieCb){
+			// Filter opdrachten op categorie
+			opdrachtRefresh((OpdrachtCategorie)opdrCategorieCb.getSelectedItem());
+		}
 	}
 
 	@Override
@@ -282,10 +307,17 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		}
 	}
 	
-	private void opdrachtRefresh(){
+	private void opdrachtRefresh(OpdrachtCategorie cat){
 		defaultListModelOpdracht.removeAllElements();
+		if (cat==null || cat.equals(OpdrachtCategorie.TBA)){
 		for (Opdracht opdracht: opdrachtcl.getCatalogus()){
 			defaultListModelOpdracht.addElement(opdracht);
+		}}
+		else{
+			for (Opdracht opdracht: opdrachtcl.getCatalogus()){
+				if (opdracht.getOpdrachtCategorie()==cat)
+				defaultListModelOpdracht.addElement(opdracht);
+			}
 		}
 		
 	}
