@@ -114,7 +114,7 @@ public class QuizApp {
 		int height = Integer.parseInt(IniFileManager.getInstance().getProperty("appheight"));
 		frame = new JFrame();
 		//frame.setLocationRelativeTo(null);
-		frame.setSize(1024, 768);
+		frame.setSize(1600, 900);
 		//frame.setSize(width, height);
 		QuizApp.centreWindow(frame);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -139,19 +139,23 @@ public class QuizApp {
 		
 		// Card: opstart
 		JPanel cardOpstart = new JPanel();
-		cardOpstart.setLayout(null);
+		pnlMain.add("opstart",cardOpstart);
+		cardOpstart.setLayout(new BorderLayout(0, 0));
+		
+		JSplitPane splitPane_1 = new JSplitPane();
+		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		cardOpstart.add(splitPane_1);
 		JLabel lblQuizApplicatie = new JLabel("Quiz applicatie");
+		splitPane_1.setLeftComponent(lblQuizApplicatie);
 		lblQuizApplicatie.setFont(new Font("Calibri", Font.BOLD, 29));
-		lblQuizApplicatie.setBounds(270, 25, 188, 25);
-		cardOpstart.add(lblQuizApplicatie);
 		JTextPane txtNamesPane = new JTextPane();
 		txtNamesPane.setBackground(Color.LIGHT_GRAY);
 		txtNamesPane.setFont(new Font("Calibri", Font.PLAIN, 20));
 		txtNamesPane.setEditable(false);
 		txtNamesPane.setText("Sander Van Der Borght - Tom Scheepers - Tom Vaes - Wim Ombelets");
-		txtNamesPane.setBounds(98, 173, 583, 44);
-		cardOpstart.add(txtNamesPane);
-		pnlMain.add("opstart",cardOpstart);
+		txtNamesPane.setBounds(200, 63, 583, 44);
+		splitPane_1.setRightComponent(txtNamesPane);
+		//cardOpstart.add(txtNamesPane);
 		
 		// Card: beheer opdrachten
 		JPanel cardBeheerOpdrachten = new JPanel();

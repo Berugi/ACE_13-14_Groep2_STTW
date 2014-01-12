@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -21,7 +22,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableColumn;
 
+import model.GeselecteerdeOpdrachtTableModel;
 import model.ObservableOpdrachtCatalogus;
 import model.ObservableQuizCatalogus;
 import model.Quiz;
@@ -29,6 +32,7 @@ import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;
 import model.enums.QuizStatus;
+import model.OpdrachtTableModel;
 import utils.Datum;
 import actionevents.QuizActionEvent;
 import controller.OpstartController;
@@ -74,7 +78,9 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 	private JCheckBox chckbxIsUniekeDeelname;
 	private JCheckBox chckbxIsTest;
 	private OpdrachtTableModel opdrachtTableModel;
+	private GeselecteerdeOpdrachtTableModel geselecteerdeOpdrachtTableModel;
 	private JTable tblAlleOpdrachten;
+	private JTable tblGeselecteerdeOpdrachten;
 	private TableColumnModel tcm;
 
 	//getters & setters
@@ -110,11 +116,11 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		quizRefresh();
 		opdrachtRefresh(null);
 		
-		setLayout(null);
+		setLayout(new BorderLayout(0, 0));
 		
 		JPanel bottomPanel = new JPanel();
-		bottomPanel.setBounds(0, 244, 843, 427);
-		bottomPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		bottomPanel.setBounds(0, 244, 1200, 600);
+		bottomPanel.setBorder(null);
 		add(bottomPanel);
 		bottomPanel.setLayout(null);
 		
@@ -163,20 +169,10 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 				
 		listOpdrachten = new JList(defaultListModelOpdracht);
 		scrollPane.setViewportView(listOpdrachten);
-		//listOpdrachten.addListSelectionListener(this);
-		/*
-		String[] opdrachtColumnNames={"Vraag","Categorie","Score"};
-		table = new JTable(null, opdrachtColumnNames);
-		table.setBounds(507, 278, 274, -121);
-		table.setFillsViewportHeight(true);
-		JScrollPane scrollPane2 = new JScrollPane(table);
-		scrollPane2.setLocation(493, 143);
-		scrollPane2.setSize(338, 266);
-		bottomPanel.add(scrollPane2);
-		*/
+
 		JPanel topPanel = new JPanel();
-		topPanel.setBounds(0, 0, 843, 241);
-		topPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		topPanel.setBounds(0, 0, 1200, 241);
+		topPanel.setBorder(null);
 		add(topPanel);
 		topPanel.setLayout(null);
 		
@@ -228,25 +224,37 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 		btnNewQuiz.addActionListener(this);
 		
 		listQuizen = new JList(defaultListModelQuiz);
+		listQuizen.addListSelectionListener(this);
 		
 		JScrollPane scrollPane_1 = new JScrollPane(listQuizen);
 		scrollPane_1.setBounds(12, 115, 819, 115);
 		topPanel.add(scrollPane_1);
 		/*
+		Quiz quiz = (Quiz) listQuizen.getSelectedValue();
+		geselecteerdeOpdrachtTableModel = new GeselecteerdeOpdrachtTableModel(quiz.getQuizOpdrachten());
+		tblGeselecteerdeOpdrachten = new JTable(geselecteerdeOpdrachtTableModel);
+		TableColumn column = null;
+		tcm = tblGeselecteerdeOpdrachten.getColumnModel();
+		int[] columnWidth = {250,30};
+		for (int i = 0; i < 2; i++) {
+			tblGeselecteerdeOpdrachten.getColumnModel().getColumn(i).setPreferredWidth(columnWidth[i]);
+		}
+		JScrollPane scrollPaneGeselecteerdeOpdrachten = new JScrollPane(tblGeselecteerdeOpdrachten);
+		scrollPaneGeselecteerdeOpdrachten.setBounds(507, 150, 350, 150);
+		bottomPanel.add(scrollPaneGeselecteerdeOpdrachten);
+		*/
+		/*
 		opdrachtTableModel = new OpdrachtTableModel(opdrachtcl);
 		tblAlleOpdrachten = new JTable(opdrachtTableModel);
-		tblAlleOpdrachten.setBounds(500, 180, 300, 500);
 		TableColumn column = null;
 		tcm = tblAlleOpdrachten.getColumnModel();
+		int[] columnWidth = {40,250,30,30,50,75};
 		for (int i = 0; i < 6; i++) {
-		    column = tblAlleOpdrachten.getColumnModel().getColumn(i);
-		    if (i == 0) {
-		    	column.setPreferredWidth(150);
-		     } else {
-		    	column.setPreferredWidth(50);
-		    }
+		    tblAlleOpdrachten.getColumnModel().getColumn(i).setPreferredWidth(columnWidth[i]);
 		}
-		bottomPanel.add(tblAlleOpdrachten);
+		JScrollPane scrollPaneOpdrachten = new JScrollPane(tblAlleOpdrachten);
+		scrollPaneOpdrachten.setBounds(507, 150, 350, 150);
+		bottomPanel.add(scrollPaneOpdrachten);
 		*/
 	}
 	
@@ -291,7 +299,11 @@ public class CreateQuizView extends JPanel implements Observer, ActionListener, 
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getSource() == listOpdrachten){
 			
-		}
+		} else
+			if (e.getSource()==listQuizen){
+				Quiz quiz = (Quiz) listQuizen.getSelectedValue();
+				geselecteerdeOpdrachtTableModel = new GeselecteerdeOpdrachtTableModel(quiz.getQuizOpdrachten());
+			}
 		
 	}
 	@Override
