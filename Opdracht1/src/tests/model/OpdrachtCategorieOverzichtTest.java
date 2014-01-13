@@ -1,5 +1,7 @@
 package tests.model;
 
+import model.OpdrachtCatalogus;
+import model.OpdrachtCategorieOverzicht;
 import model.baseclasses.Opdracht;
 import model.enums.Leraar;
 import model.enums.OpdrachtCategorie;

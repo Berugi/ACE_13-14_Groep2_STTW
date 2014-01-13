@@ -165,7 +165,7 @@ public class OpdrachtCatalogusTest {
 			}		
 			this.catalogus.add(new Opdracht(vraag, juisteAntwoord, maxAantalPogingen,maxAntwoordTijd, auteur, categorie,	antwoordHints,antwoordHints2));
 		}
-		assertEquals(false,this.catalogus.remove(new Opdracht("testvraag", "testantwoord", 1,1, Leraar.AN, OpdrachtCategorie.AlgemeneKennis,	"Hint")));
+		assertEquals(false,this.catalogus.remove(new Opdracht("testvraag", "testantwoord", 1,1, Leraar.AN, OpdrachtCategorie.AARDRIJKSKUNDE,	"Hint")));
 	}
 	
 	@Test
