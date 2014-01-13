@@ -17,7 +17,7 @@ import model.ObservableQuizCatalogus;
  * @version 20131211-01 - added reading of ini file properties
  * @version 20131226-01 - Tom Scheepers - added DataContext, Opdrachtfactory, ReadData
  * @version 20131228-01 - Tom Vaes - changes towards MVC for main program
- * @version 20131228-02 - Wim Ombelets -
+ * @version 20131228-02 - Wim Ombelets - small refactoring
  * @version 20130110-01 - Tom Scheepers - getInstance + Singleton
  */
 public class OpstartController {
@@ -31,7 +31,7 @@ public class OpstartController {
 	private static OpstartController opstartcontroller = null;
 	
 	//View
-	private static QuizApp quizapplicatie=null;
+	private static QuizApp quizapplicatie = null;
 	
 	//constructor
 	private OpstartController()

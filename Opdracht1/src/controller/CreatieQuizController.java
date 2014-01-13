@@ -6,11 +6,10 @@ import java.util.Arrays;
 
 import model.ObservableQuizCatalogus;
 import model.Quiz;
-import actionevents.QuizActionEvent;
 import model.interfaces.IObservable;
 import persistence.DataContext;
-import persistence.enums.ContextType;
 import view.CreateQuizView;
+import actionevents.QuizActionEvent;
 
 /**
  * Singleton controller responsible for creating new Quizzes.
@@ -26,7 +25,6 @@ public class CreatieQuizController implements ActionListener {
 	
 	private static CreatieQuizController instance = null;
 	private DataContext dc;
-	private ContextType contextType;
 	private static CreateQuizView view;
 	private IObservable quizCatalogusModel;
 	private IObservable opdrachtCatalogusModel;
@@ -38,20 +36,48 @@ public class CreatieQuizController implements ActionListener {
 		return view;
 	}
 	
+	public DataContext getDataContext() {
+		
+		return this.dc;
+		
+	}
+	
+	private void setDataContext(DataContext dc) {
+		
+		if(dc != null)
+			this.dc = dc;
+		
+	}
+	
+	public IObservable getOpdrachtModel() {
+		
+		return this.opdrachtCatalogusModel;
+		
+	}
+	
+	private void setOpdrachtModel(IObservable opdrachtModel) {
+		
+		if(opdrachtModel != null)
+			this.opdrachtCatalogusModel = opdrachtModel;
+		
+	}
+	
 	private CreatieQuizController() {
 		
-		this.dc = OpstartController.getDataContext();
+		setDataContext(OpstartController.getDataContext());
 		this.quizCatalogusModel = OpstartController.getQuizCatalogus();
-		this.opdrachtCatalogusModel = OpstartController.getOpdrachtCatalogus();
+		setOpdrachtModel(OpstartController.getOpdrachtCatalogus());
 		this.view = new CreateQuizView();
 		view.setActionListener(this);
 		
 	}
 	
 	public static CreatieQuizController getInstance(){
+		
 		if(instance == null)
 			instance = new CreatieQuizController();
 		return instance;
+		
 	}
 	
 
@@ -105,7 +131,5 @@ public class CreatieQuizController implements ActionListener {
 		((ObservableQuizCatalogus) quizCatalogusModel).remove(q);
 		
 	}
-	
-	
 
 }
